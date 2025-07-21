@@ -111,7 +111,14 @@
 <section id="content3" class="block_quiz_result" style="max-width: 700px;margin:auto;">
     <div class="container">
          <h1 style="text-align:center">Congratulations!<br>
-        <p class="loading"><a class="dynamicLink" href="https://max.winbigdealss.com/click"><img src="images/prod.png" style="max-width: 250px;margin: 0px auto;display: block;width: 100%;"></a></p>
+<p class="loading">
+  <a class="dynamicLink" 
+     href="https://rewarduplevel.com/aff_c?offer_id=2690&aff_id=1497" 
+     onclick="fbq('track', 'Lead');">
+    <img src="images/prod.png" 
+         style="max-width: 250px; margin: 0px auto; display: block; width: 100%;">
+  </a>
+</p>
 	  <p style="text-align:center"> <h2> Follow these steps to get your Ninja Rewards:</h2> </p>
 	
 		 <p style="text-align:left">
@@ -132,15 +139,21 @@
 
     </section>
 
-    <script>
-        (function() {
-            // Update all links with the "dynamicLink" class
-            var links = document.querySelectorAll('.dynamicLink');
-            links.forEach(function(link) {
-                link.href = 'https://max.winbigdealss.com/click';
-            });
-        })();
-    </script>
+  <script>
+  (function() {
+    // Update all links with the "dynamicLink" class
+    var links = document.querySelectorAll('.dynamicLink');
+    links.forEach(function(link) {
+      link.href = 'https://rewarduplevel.com/aff_c?offer_id=2690&aff_id=1497';
+
+      // Adiciona o evento de clique para rastrear Lead no Facebook Pixel
+      link.addEventListener('click', function() {
+        fbq('track', 'Lead');
+      });
+    });
+  })();
+</script>
+
     
     <style>
 .comments {
