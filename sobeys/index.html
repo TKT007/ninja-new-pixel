@@ -1,0 +1,1937 @@
+<!DOCTYPE html><html lang="en"><head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>
+            Welcome to our Grocery Program
+        </title>
+
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+
+html {
+	margin: 0;
+}
+
+body {
+	margin: 0;
+    font-family: 'Roboto', sans-serif !important;
+}
+
+.page-content {
+    max-width: 1050px;
+}
+
+.timer {
+    overflow: hidden;
+    max-height: 0;
+    max-width: 1050px;
+    background-color: #525f1e;
+	-webkit-transition: all 750ms cubic-bezier(0.4,0,0.2,1);
+	-moz-transition: all 750ms cubic-bezier(0.4,0,0.2,1);
+	transition: all 750ms cubic-bezier(0.4,0,0.2,1);
+}
+
+.started {
+
+	position: -webkit-sticky;
+    position: sticky;
+    bottom: 0;
+ background:#B0CD41;
+}
+
+.started button {
+	cursor: pointer;
+	display: block;
+	color: #000000;
+	background: #fff;
+	font-family: 'Roboto Bold', sans-serif;
+	width: 100%;
+	font-size: 1.125rem;
+	line-height: 28px;
+	border: 3px solid #000000;
+	padding: 10px 20px;
+}
+
+.started button:hover, .question button:hover {
+	background: #B0CD41;
+	color: #fff;
+	border: 3px solid #fff;
+}
+
+.started a {
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    background: #B0CD41;
+    color: #fff;
+    line-height: 30px;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.125rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+
+mark {
+	color: white;
+	font-weight: bold;
+	margin: 0 -0em;
+	padding: 0.1em 0.4em;
+	border-radius: 0.25em;
+	background: transparent;
+	background-image: linear-gradient(
+		to right,
+		#B0CD41,
+		#B0CD41 4%,
+		#B0CD41
+	);
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+}
+
+.sticky-container1 {
+    z-index: 999;
+    position: sticky;
+    top: 0;
+}
+
+.timer.shown {
+    max-height: 150px;
+}
+
+.unaccepted-modal {
+    max-width: 90%;
+    background-color: white;
+    border: 2px solid #B0CD41;
+    border-radius: 10px;
+    padding: 13px 15px;
+}
+
+.unaccepted-modal-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #292929;
+}
+
+.unaccepted-modal-text {
+    text-align: justify;
+}
+
+.timer-text {
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    padding: 8px 20px;
+    font-size: 0.8rem;
+}
+
+.quiz-model {
+	-webkit-transition: all 350ms cubic-bezier(0.4,0,0.2,1);
+	-moz-transition: all 350ms cubic-bezier(0.4,0,0.2,1);
+	transition: all 350ms cubic-bezier(0.4,0,0.2,1);
+}
+
+.quiz-question {
+    color: #1f1f1f;
+    font-weight: bold;
+    text-align: left;
+    font-size: 1.8rem;
+}
+
+.quiz-question-description {
+    color: #6b6b6b;
+    text-align: left;
+    font-size: 1rem;
+}
+
+.question-counter {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fec708;
+}
+
+.question-counter-number {
+	padding-left: 4px;
+	padding-right: 4px;
+	border-radius: 50px;
+    font-size: 1.7rem;
+    color: white;
+	background-image: linear-gradient(
+		to right,
+		#B0CD41,
+		#B0CD41 4%,
+		#B0CD41
+	);
+}
+
+.header-content {
+	background: transparent;
+    background-image: #878787;
+    width: 100%;
+    padding: 13px 0px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal-overlay {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s, visibility 0.5s;
+}
+
+.modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px 30px;
+    border-radius: 8px;
+    text-align: center;
+    width: 90% !important;
+    max-width: 950px !important;
+    position: relative;
+    transform: scale(0.8);
+    transition: transform 0.5s;
+}
+
+.modal-overlay.show .modal-content {
+    transform: scale(1);
+}
+
+.close-icon {
+    position: absolute;
+    top: 8px;
+    right: 20px;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.faq-question {
+    border: 2px solid rgb(212, 212, 212);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.faq-modal-icon {
+    color: white;
+}
+
+.faq-modal-icon:hover {
+    color: rgb(214, 214, 214) !important;
+}
+
+.faq {
+    overflow: hidden;
+    white-space: nowrap; 
+    text-overflow: ellipsis; 
+    font-weight: bold;
+}
+
+.faq-description {
+    transition: height 0.3s ease;
+}
+
+.page {
+    max-width: 620px;
+    width: 90%;
+    text-align: justify;
+}
+
+.page-title, .loading-title, .final-page-title {
+    font-weight: bold;
+    color: #032f72;
+    text-align: left;
+    font-size: 1.8rem;
+}
+
+.loading-subtitle {
+	margin-top: 10px;
+    color: #838383;
+    text-align: left;
+    font-size: 1rem;
+}
+
+.main-image {
+    width: 95%;
+    height: auto;
+    max-width: 450px;
+}
+
+.sticky-container {
+    padding-bottom: 40px;
+    position: sticky;
+    bottom: 0;
+}
+
+.start-quiz-button {
+    width: 100%;
+    border-radius: 15px;
+	border: 2px solid white;
+	background-color: #B0CD41;
+	box-shadow: 0px 0px 10px -3px rgba(0,0,0,0.45);
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.quiz-answer {
+    font-weight: bold;
+    border-radius: 15px;
+    width: 100%;
+    margin-top: 26px;
+	border: 2px solid white;
+	background-color: #B0CD41;
+    color: white;
+    padding: 10px 0px;
+    font-size: 1.05rem;
+    cursor: pointer;
+}
+
+.unaccepted-modal-button {
+    width: 90%;
+    border-radius: 15px;
+	border: 2px solid white;
+	background-color: #B0CD41;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.start-quiz-button:hover, .unaccepted-modal-button:hover {
+    background: #76892a;
+    color: white;
+}
+
+.quiz-answer:hover {
+    background: #76892a;
+    color: white;
+}
+
+.footer-divider {
+    width: 100%;
+    height: 1px;
+    background-color: #d1d5db;
+}
+
+.links-image {
+    width: 10%;
+    max-width: 35px;
+    height: auto;
+}
+
+.links-image-text {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #595959;
+}
+
+.links {
+    font-size: 0.9rem;
+    color: inherit !important;
+    text-decoration: none !important;
+}
+
+.links:hover {
+    font-weight: bold;
+}
+
+.trade-names {
+    font-size: 0.75rem;
+    color: rgb(151, 151, 151);
+    width: 95%;
+    max-width: 500px;
+}
+
+.footer-page-link {
+    color: rgb(49, 49, 49);
+    font-weight: bold !important;
+    text-decoration: none !important;
+}
+
+.footer-page-link:hover {
+    color: black;
+}
+
+.footer-content {
+    font-size: 0.85rem;
+}
+
+.footer {
+    width: 100%;
+}
+
+.small-intro-text {
+    color: rgb(145, 145, 145);
+    font-size: 0.75rem;
+    margin-left: 15px;
+    margin-top: 20px;
+}
+
+.page-text-small {
+    font-size: 0.9rem;
+}
+
+.loading-container-text-col {
+    overflow: hidden; 
+    white-space: nowrap; 
+    text-overflow: ellipsis;
+    font-size: 1.1rem;
+    color: rgb(150, 150, 150);
+}
+        </style>
+        <link rel="icon" type="image/png" href="assets/img/fav-icon.png" sizes="16x16">
+
+<style>
+    .others-say {
+	font-size: 1.25rem;
+	line-height: 28px;
+	font-weight: 700;
+	margin-bottom: 20px;
+	font-family: roboto condensed, sans-serif
+}
+
+.comments {
+	font-family: Helvetica, sans-serif;
+	margin-top: 64px
+}
+
+.inner-sorting-box>span {
+	font-size: .875rem;
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 8px
+}
+
+.sorting-box {
+	padding: 8px 0;
+	margin-bottom: 25px;
+	position: relative;
+	border-bottom: 1px solid #e5e7eb;
+	height: 64px
+}
+
+.sorting-box>p {
+	font-size: .875rem;
+	line-height: 24px;
+	font-weight: 600
+}
+
+.inner-sorting-box {
+	line-height: 20px;
+	font-size: 0;
+	position: absolute;
+	top: 8px;
+	right: 0
+}
+
+.inner-sorting-box>svg {
+	width: 16px;
+	height: 16px;
+	display: none;
+	vertical-align: middle;
+	margin-right: 8px;
+	-webkit-animation: fa-spin 2s linear infinite;
+	animation: fa-spin 2s linear infinite
+}
+
+
+.sort {
+	display: inline-block;
+	vertical-align: middle
+}
+
+.sort>button {
+	cursor: pointer;
+	color: #374151;
+	background: #f3f4f6;
+	padding: 0 8px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	border: 1px solid #d1d5db;
+	font-weight: 700
+}
+
+.sort>button:hover {
+	background: #e5e7eb
+}
+
+.sort>button span {
+	display: inline-block;
+	vertical-align: middle;
+	font-size: .75rem;
+	line-height: 24px;
+	font-family: Helvetica, sans-serif
+}
+
+.sort>button svg {
+	display: inline-block;
+	vertical-align: middle;
+	width: 6px;
+	height: auto;
+	margin-left: 4px
+}
+
+.dropdown-sort {
+	display: none;
+	z-index: 50;
+	position: absolute;
+	top: 4px;
+	right: 0;
+	padding: 4px 0;
+	background: #fff
+}
+
+.dropdown-sort button {
+	font-family: Helvetica, sans-serif;
+	font-size: .75rem;
+	line-height: 16px;
+	background: #fff;
+	border: 1px solid #fff;
+	border-left: 0;
+	border-right: 0;
+	display: block;
+	width: 100%;
+	text-align: left;
+	padding: 4px 12px 4px 20px;
+	position: relative;
+	cursor: pointer
+}
+
+.dropdown-sort button svg {
+	width: 9px;
+	height: auto;
+	display: none;
+	position: absolute;
+	left: 6px;
+	top: 50%;
+	margin-top: -5px
+}
+
+.dropdown-sort button.selected {
+	color: #374151;
+	font-weight: 700
+}
+
+.dropdown-sort button.selected svg {
+	display: block
+}
+
+.dropdown-sort button:hover {
+	color: #fff;
+	background: #2563eb;
+	border-color: #1e40af
+}
+
+.dropdown-sort button:hover svg path {
+	fill: #fff
+}
+
+.add-comment {
+	position: relative;
+	margin-bottom: 32px
+}
+
+.add-comment.active {
+	padding: 0 0 0 58px
+}
+
+.add-comment img {
+	display: none;
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	top: 0;
+	left: 0
+}
+
+.add-comment.active img {
+	display: block
+}
+
+.add-comment textarea {
+	width: 100%;
+	display: block;
+	border: 1px solid #d1d5db;
+	min-height: 64px;
+	padding: 8px 12px;
+	font-family: Helvetica, sans-serif;
+	font-size: 1rem
+}
+
+.add-comment textarea:focus {
+	outline: 1px solid #60a5fa;
+	border-color: #2563eb
+}
+
+.comment-button-box {
+	font-size: 0;
+	background: #f3f4f6;
+	padding: 12px;
+	display: none
+}
+
+.add-comment.active .comment-button-box {
+	display: block
+}
+
+.comment-button-left {
+	width: 65%;
+	display: inline-block;
+	vertical-align: top
+}
+
+.comment-button-left [type=checkbox] {
+	cursor: pointer;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	margin: 0;
+	background: #fff;
+	border: 1px solid #bfdbfe;
+	width: 16px;
+	height: 16px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	display: inline-block;
+	vertical-align: middle
+}
+
+.comment-button-left [type=checkbox]:checked {
+	background-image: url(data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PScwIDAgMTYgMTYnIGZpbGw9J3doaXRlJyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnPjxwYXRoIGQ9J00xMi4yMDcgNC43OTNhMSAxIDAgMDEwIDEuNDE0bC01IDVhMSAxIDAgMDEtMS40MTQgMGwtMi0yYTEgMSAwIDAxMS40MTQtMS40MTRMNi41IDkuMDg2bDQuMjkzLTQuMjkzYTEgMSAwIDAxMS40MTQgMHonLz48L3N2Zz4=);
+	border-color: transparent;
+	background-size: 100% 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: #6b7280;
+	background-origin: border-box
+}
+
+.comment-button-left label {
+	font-size: .688rem;
+	color: #9ca3af;
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 8px
+}
+
+.comment-button-left p {
+	display: none;
+	font-size: .688rem;
+	margin-top: 4px
+}
+
+.comment-button-right {
+	text-align: right;
+	width: 35%;
+	display: inline-block;
+	vertical-align: top
+}
+
+.comment-button-right button {
+	font-family: Helvetica, sans-serif;
+	color: #fff;
+	font-size: .875rem;
+	line-height: 20px;
+	font-weight: 700;
+	background: #3b82f6;
+	border: 1px solid #2563eb;
+	padding: 4px 8px 0;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	cursor: pointer
+}
+
+.comment-button-right button.disabled {
+	opacity: .4;
+	cursor: not-allowed
+}
+
+.main-comments {
+	margin-bottom: 12px
+}
+
+.comment {
+	position: relative;
+	padding-left: 56px;
+	margin-top: 12px;
+	display: none
+}
+
+.comment:not(.start-coms):nth-child(1),
+.comment:not(.start-coms):nth-child(2),
+.comment:not(.start-coms):nth-child(3),
+.comment:not(.start-coms):nth-child(4),
+.comment:not(.start-coms):nth-child(5) {
+	display: block
+}
+
+.comment:first-child {
+	margin-top: 0
+}
+
+.comment-user-img {
+	display: block;
+	width: 48px;
+	height: 48px;
+	position: absolute;
+	top: 0;
+	left: 0
+}
+
+.comment-user-img img {
+	display: block;
+	margin: 0 auto;
+	max-width: 100%;
+	height: auto
+}
+
+.comment-user-name {
+	color: #2563eb;
+	text-decoration: none;
+	display: inline-block;
+	margin-bottom: 4px;
+	font-weight: 700
+}
+
+.comment-user-name span {
+	display: inline-block;
+	vertical-align: middle
+}
+
+.comment-user-name:hover span {
+	text-decoration: underline
+}
+
+.comment-user-name svg {
+	display: inline-block;
+	vertical-align: middle;
+	width: 12px;
+	height: 12px
+}
+
+.comment-text {
+	line-height: 20px
+}
+
+.comment-text a {
+	color: #2563eb;
+	text-decoration: none
+}
+
+.comment-text a:hover {
+	text-decoration: underline
+}
+
+.comment-meta {
+	font-size: 0;
+	color: #9ca3af;
+	margin-top: 8px;
+	line-height: 16px
+}
+
+
+
+.comment-meta>* {
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 0 0 4px;
+	font-size: .75rem
+}
+
+.comment-meta>*:first-child {
+	margin-left: 0
+}
+
+.comment-meta button {
+	padding: 0;
+	color: #3b82f6;
+	background: 0 0;
+	border: 0;
+	cursor: pointer;
+	font-family: Helvetica, sans-serif
+}
+
+.comment-meta button:hover {
+	text-decoration: underline
+}
+
+.total-likes {
+	background: url(../images/like.svg) no-repeat left center;
+	background-size: 16px 16px;
+	padding-left: 20px;
+	line-height: 16px;
+	min-height: 16px
+}
+
+.comment>.comment {
+	padding-left: 52px;
+	border-left: 1px dotted #d1d5db;
+	display: block !important
+}
+
+.comment>.comment .comment-user-img {
+	left: 8px;
+	width: 36px;
+	height: 36px
+}
+
+.load-more {
+	background: #3b82f6;
+	border: 1px solid #2563eb;
+	color: #fff;
+	font-weight: 700;
+	padding: 12px 16px;
+	text-align: center;
+	width: 100%;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	font-family: Helvetica, sans-serif;
+	cursor: pointer;
+	line-height: 20px;
+	font-size: .875rem
+}
+
+.load-more svg {
+	margin-right: 12px;
+	display: none;
+	vertical-align: middle;
+	width: 14px;
+	height: 14px;
+	-webkit-animation: fa-spin 2s linear infinite;
+	animation: fa-spin 2s linear infinite
+}
+
+.load-more span {
+	display: inline-block;
+	vertical-align: middle
+}
+
+.load-more.end-coms svg {
+	display: inline-block
+}
+
+.comments-footer {
+	margin-top: 12px;
+	padding: 8px 0;
+	border-top: 1px solid #d1d5db
+}
+
+.comments-footer svg {
+	display: inline-block;
+	vertical-align: middle;
+	width: 12px
+}
+
+.comments-footer a {
+	text-decoration: none;
+	color: #2563eb;
+	font-size: .688rem
+}
+
+.comments-footer a:hover {
+	text-decoration: underline
+}
+
+.fb-img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+	border-radius: 15px
+}
+
+@media screen and (max-width:639px) {
+	.comment {
+		padding-left: 44px
+	}
+
+	.comment-user-img {
+		width: 36px;
+		height: 36px
+	}
+}
+
+</style>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <link rel="stylesheet" href="css/ipT75BaXm3VW.css" crossorigin="anonymous">
+
+        <script src="js/IsIqpfqqvwoD.js"></script>
+        <script src="js/e3Kv66iYOB5E.js"></script>
+        <script>
+            var visible = 5;
+
+const comments = [
+	{
+		order: 1,
+		likes: 1,
+		avatar: `https://riddlerewards.top/wp-content/uploads/2025/03/1.jpg`,
+		profile: `#`,
+		name: `Elizabeth Amber`,
+		text: `I just received my Sobeys gift card, and I'm thrilled! Thank you, Shop Smart Program!`,
+		age: `a week ago`,
+		comments: []
+	},
+	{
+		order: 2,
+		likes: 1,
+		avatar: `https://riddlerewards.top/wp-content/uploads/2025/03/2.jpg`,
+		profile: `#`,
+		name: `Linda Bailey`,
+		text: `Disappointed that I didn't get it, but happy for those who did. I'll try again next time`,
+		age: `a week ago`,
+		comments: []
+	},
+	{
+		order: 3,
+		likes: 3,
+		avatar: `https://riddlerewards.top/wp-content/uploads/2025/03/3.jpg`,
+		profile: `#`,
+		name: `Susan Barbara`,
+		text: `It just arrived, already did some shopping. Thanks a ton guys!`,
+		age: `a week ago`,
+		comments: [
+			{
+				likes: 16,
+				avatar: `https://riddlerewards.top/wp-content/uploads/2025/06/Sobeys-logo-1.png`,
+				profile: `#`,
+				name: `Shop Smart Program`,
+				text: `We hope you find everything you need, Barbara! Enjoy!`,
+				age: `a week ago`,
+			},
+			{
+				likes: 3,
+				avatar: `https://riddlerewards.top/wp-content/uploads/2025/03/3.jpg`,
+				profile: `#`,
+				name: `Susan Barbara`,
+				text: `I'm sure I will!`,
+				age: `a week ago`,
+			}
+		]
+	},
+	{
+		order: 4,
+		likes: 7,
+		avatar: `https://riddlerewards.top/wp-content/uploads/2025/03/4.jpg`,
+		profile: `#`,
+		name: `Richard Richards`,
+		text: `I think it will be enough for my girlfriend for the whole month's shopping`,
+		age: `two weeks ago`,
+		comments: []
+	},
+	{
+		order: 5,
+		likes: 7,
+		avatar: `https://riddlerewards.top/wp-content/uploads/2025/03/5.jpg`,
+		profile: `#`,
+		name: `Laura Hernandez`,
+		text: `I didn't spend even half of the amount, but I managed to get a lot. I think they won a customer`,
+		age: `two weeks ago`,
+		comments: [
+			{
+				likes: 25,
+				avatar: `https://riddlerewards.top/wp-content/uploads/2025/06/Sobeys-logo-1.png`,
+				profile: `#`,
+				name: `Shop Smart Program`,
+				text: `Enjoy your grocery shopping! We're happy for you!`,
+				age: `two weeks ago`,
+			}
+		]
+	},
+	{
+		order: 6,
+		likes: 8,
+		avatar: `https://riddlerewards.top/wp-content/uploads/2025/03/10.jpg`,
+		profile: `#`,
+		name: `Paul Harris`,
+		text: `No luck for me, but at least I tried`,
+		age: `two weeks ago`,
+		comments: []
+	},
+	{
+		order: 7,
+		likes: 3,
+		avatar: `https://riddlerewards.top/wp-content/uploads/2025/03/11.jpg`,
+		profile: `#`,
+		name: `Sarah Trajbar`,
+		text: `I had no more space for them in the trunk, so I put them wherever I could. Thanks to the whole Shop Smart Program team:`,
+		age: `two weeks ago`,
+		comments: [
+			{
+				likes: 56,
+				avatar: `https://riddlerewards.top/wp-content/uploads/2025/06/Sobeys-logo-1.png`,
+				profile: `#`,
+				name: `Shop Smart Program`,
+				text: `That's what we like to hear, happy shopping!`,
+				age: `two weeks ago`,
+			}
+		]
+	},
+	{
+		order: 8,
+		likes: 12,
+		avatar: `https://riddlerewards.top/wp-content/uploads/2025/03/12.jpg`,
+		profile: `#`,
+		name: `Gary Currier`,
+		text: `When I get home I will invite my friends to a barbecue`,
+		age: `two weeks ago`,
+		comments: []
+	},
+	{
+		order: 9,
+		likes: 3,
+		avatar: `https://riddlerewards.top/wp-content/uploads/2025/03/13.jpg`,
+		profile: `#`,
+		name: `Eric Feller`,
+		text: `What?? I just got accepted. Can't believe it!`,
+		age: `two weeks ago`,
+		comments: []
+	},
+	{
+		order: 10,
+		likes: 1,
+		avatar: `https://riddlerewards.top/wp-content/uploads/2025/03/14.jpg`,
+		profile: `#`,
+		name: `Moore Pamela`,
+		text: `What a pleasant surprise! It really is a help, food has become very expensive`,
+		age: `two weeks ago`,
+		comments: []
+	},
+	{
+		order: 11,
+		likes: 1,
+		avatar: `https://riddlerewards.top/wp-content/uploads/2025/03/15.jpg`,
+		profile: `#`,
+		name: `Ari Marie`,
+		text: `I haven't had the car so loaded for a long time. Thank you very much:`,
+		age: `two weeks ago`,
+		comments: []
+	},
+	{
+		order: 13,
+		likes: 6,
+		avatar: `https://riddlerewards.top/wp-content/uploads/2025/03/20.jpg`,
+		profile: `#`,
+		name: `Justin Mcmullan`,
+		text: `Tonight I will cook. I'm curious what my family will say, it doesn't happen very often. Hope that there will be future editions of this Program, I'll definitely participate`,
+		age: `two weeks ago`,
+		comments: []
+	}
+];
+
+const obj_comment = `
+<div class="comment sort-coms start-coms" data-order="{{ORDER}}" data-likes="{{LIKES}}">
+	<a class="comment-user-img" href="{{PROFILE_URL}}"
+		target="_blank"><img src="{{AVATAR}}" width="48" height="48" alt="{{USERNAME}}" /></a>
+	<a href="{{PROFILE_URL}}" target="_blank"
+		class="comment-user-name"><span> {{USERNAME}} </span></a>
+	<p class="comment-text">{{COMMENT_TEXT}}</p>
+	{{COMMENT_IMG}}
+	<div class="comment-meta">
+		<button>Like</button><span> · </span>
+		<button>Reply</button><span> · </span>
+		<span class="total-likes">{{LIKES}}</span><span> · </span>
+		<span class="comment-age">{{TIMEAGO}}</span>
+	</div>
+	{{SUB_COMMENTS}}
+</div>
+`;
+
+const obj_sub_comment = `
+<div class="comment">
+	<a class="comment-user-img" href="{{PROFILE_URL}}"
+		target="_blank"><img src="{{AVATAR}}" width="48" height="48" alt="{{USERNAME}}" /></a>
+	<a href="{{PROFILE_URL}}" target="_blank"
+		class="comment-user-name"><span> {{USERNAME}} </span></a>
+	<p class="comment-text">{{COMMENT_TEXT}}</p>
+	<div class="comment-meta">
+		<button>Like</button><span> · </span>
+		<button>Reply</button><span> · </span>
+		<span class="total-likes">{{LIKES}}</span><span> · </span>
+		<span class="comment-age">{{TIMEAGO}}</span>
+	</div>
+</div>
+`;
+
+const renderComments = () => {
+	let html = ``;
+
+	for (var comment of comments) {
+		let sub_comments = ``;
+
+		for (var scomment of comment.comments) {
+			sub_comments += obj_sub_comment
+				.replace (new RegExp ('{{PROFILE_URL}}', 'g'), scomment.profile)
+				.replace (new RegExp ('{{AVATAR}}', 'g'), scomment.avatar)
+				.replace (new RegExp ('{{USERNAME}}', 'g'), scomment.name)
+				.replace (new RegExp ('{{COMMENT_TEXT}}', 'g'), scomment.text)
+				.replace (new RegExp ('{{LIKES}}', 'g'), scomment.likes)
+				.replace (new RegExp ('{{TIMEAGO}}', 'g'), scomment.age);
+		};
+
+		html += obj_comment
+			.replace (new RegExp ('{{PROFILE_URL}}', 'g'), comment.profile)
+			.replace (new RegExp ('{{AVATAR}}', 'g'), comment.avatar)
+			.replace (new RegExp ('{{USERNAME}}', 'g'), comment.name)
+			.replace (new RegExp ('{{COMMENT_TEXT}}', 'g'), comment.text)
+			.replace (new RegExp ('{{COMMENT_IMG}}', 'g'), '')
+			.replace (new RegExp ('{{LIKES}}', 'g'), comment.likes)
+			.replace (new RegExp ('{{ORDER}}', 'g'), comment.order)
+			.replace (new RegExp ('{{TIMEAGO}}', 'g'), comment.age)
+			.replace (new RegExp ('{{SUB_COMMENTS}}', 'g'), sub_comments);
+	};
+
+	return html;
+};
+
+jQuery.fn.orderBy = function (keySelector, order) {
+	return this.sort(function(a,b) {
+		a = keySelector.apply(a);
+		b = keySelector.apply(b);
+		if(order == "newest") {
+			if (a > b)
+				return 1;
+			if (a < b)
+				return -1;
+			return 0;
+		} else if(order == "oldest" || order == "top") {
+			if (a < b)
+				return 1;
+			if (a > b)
+				return -1;
+			return 0;
+		}
+	});
+};
+
+$(document).ready(function() {
+	const html_comms = renderComments ();
+
+	$(".main-comments").html (html_comms);
+
+	setTimeout(function() {
+		$(".sorting-box > p").html("130 comments");
+		$(".start-coms").removeClass("start-coms");
+	}, 250);
+
+	$(document).on('click', 'textarea', function() {
+		$(".add-comment").addClass("active");
+	});
+
+	$(".comment-button-left [type=checkbox]").on('change', function() {
+		if($(this).is(":checked") && text_remaining > 0) {
+			$(".comment-button-left p").show();
+			$(".comment-button-right button").addClass("disabled").prop("disabled", true);
+		} else {
+			$(".comment-button-left p").hide();
+			$(".comment-button-right button").removeClass("disabled").prop("disabled", false);
+		}
+	});
+
+	$(document).on('click', '.sort > button', function() {
+		var $this = $(this);
+		$this.next().is(":visible") ? $this.next().hide() : $this.next().show();
+	});
+
+	$(document).on('click', '.dropdown-sort button', function() {
+		var $this = $(this);
+		var sort_by = $this.data("sort") == "top" ? "likes" : "order";
+		$this.parent().hide();
+		$this.parent().find(".selected").removeClass("selected");
+		$this.addClass("selected");
+		$(".sort > button span").html($this.find("span").html());
+		$(".sort-coms").orderBy(function() {return +$(this).data(sort_by);}, $this.data("sort")).appendTo(".main-comments");
+		$(".inner-sorting-box > svg").css({display: "inline-block"});
+		setTimeout(function() { $(".inner-sorting-box > svg").hide(); }, 200);
+		$(".sort-coms").hide();
+		for(var i = 0;i<visible;i++) {
+			$(".main-comments > :hidden:first").show();
+		}
+	});
+
+	$(document).on('click', '.load-more', function() {
+		var elem = $(".main-comments > :hidden").length < 5 ? $(".main-comments > :hidden").length : 5;
+		for(var i = 0;i<elem;i++) {
+			$(".main-comments > :hidden:first").show();
+		}
+		visible = visible + elem;
+		if(visible == $(".sort-coms").length) {
+			$(this).addClass("end-coms").prop("disabled", true).find("span").html("Loading...");
+		}
+	});
+
+	$("textarea").keyup(function() {
+		var text_length = $(this).val().length;
+		text_length <= 0 ? $(".comment-button-right button").addClass("disabled").prop("disabled", true) : $(".comment-button-right button").removeClass("disabled").prop("disabled", false);
+		text_remaining = 6 - text_length;
+		$(".comment-button-left p").html("Write "+text_remaining+" more characters to post to Facebook");
+		if($(".comment-button-left [type=checkbox]").is(":checked")) {
+			if(text_remaining <= 0) {
+				$(".comment-button-left p").hide();
+				$(".comment-button-right button").removeClass("disabled").prop("disabled", false);
+			} else {
+				$(".comment-button-left p").show();
+				$(".comment-button-right button").addClass("disabled").prop("disabled", true);
+			}
+		}
+	});
+
+	$(".comment-button-right button").on('click', function() {
+		alert("Comments are disabled by the author.")
+	});
+
+	$(".comment-meta button").on('click', function() {
+		alert("Action prohibited. You are not authenticated.");
+	});
+});
+        </script>
+        <script src="js/R7HDHsFbLdV8.js"></script>
+        <script src="js/2JHy0AvELMhw.js" crossorigin="anonymous"></script>
+        <script src="js/cvNKLb6KCTq0.js" crossorigin="anonymous"></script>
+
+
+        <!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '8880681932030179');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=8880681932030179&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+    </head>
+
+    <body>
+        <div class="page-content mx-auto" id="page-content">
+            <div class="sticky-container1">
+                <div class="timer text-center" id="timer">
+                    <div class="timer-text" id="timer1">
+                        YOUR PLACE IS SECURED FOR
+                        <span id="timer-count" style="color: #cccccc; font-weight: bold;"></span>
+                    </div>
+                    <div class="timer-text d-none" id="timer-done">
+                        YOUR PLACE IS NO LONGER RESERVED, BUT YOU CAN STILL TRY...
+                    </div>
+                </div>
+            </div>
+            <header>
+                <div class="header-content d-flex justify-content-between align-items-center" id="header-content">
+                    <div class="ml-3">
+                        <a href="index.html">
+                            <img src="images/tkBJMeg6IeEJ.png" alt="logo" style="
+                                    width: 100%;
+                                    height: auto;
+                                    max-width: 150px;
+                                ">
+                        </a>
+                    </div>
+
+                    <i class="material-icons mr-3 faq-modal-icon" style="
+                            font-size: 2rem;
+                            text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3),
+                                0px 0px 10px rgba(0, 0, 0, 0.2);
+                            cursor: pointer;
+                        ">
+                        help
+                    </i>
+                    <div class="modal-overlay" id="faqModal">
+                        <div class="modal-content">
+                            <span class="close-icon" id="closeModal">×</span>
+                            <div class="text-left pb-3" style="font-size: 1.4rem; font-weight: bold">
+                                Frequently Asked Questions
+                            </div>
+                            <div class="faq-list">
+                                <div class="faq1-question faq-question" style="margin-top: 10px">
+                                    <div class="d-flex justify-content-between align-items-center" style="cursor: pointer" onclick="toggleDescription1()">
+                                        <div class="faq text-left mr-2" style="color: rgb(73, 73, 73)">
+                                            WHAT ARE THE PARTICIPATION REQUIREMENTS?
+                                        </div>
+                                        <i class="material-icons m-0" style="
+                                                font-size: 1.25rem;
+                                                color: rgb(189, 189, 189);
+                                            " id="closeFAQ1">
+                                            add
+                                        </i>
+                                    </div>
+                                    <div class="faq-description text-left" style="
+                                            text-align: justify;
+                                            font-size: 1.05rem;
+                                            display: block;
+                                            overflow: hidden;
+                                            height: 0;
+                                        " id="faq1Description">
+                                        You must be over 18 years old and live in the US.
+                                    </div>
+                                </div>
+                                <div class="faq2-question faq-question" style="margin-top: 20px">
+                                    <div class="d-flex justify-content-between align-items-center" style="cursor: pointer" onclick="toggleDescription2()">
+                                        <div class="faq text-left mr-2" style="color: rgb(73, 73, 73)">
+                                        	WHAT CAN I GET FROM THIS PROGRAM?
+                                        </div>
+                                        <i class="material-icons m-0" style="
+                                                font-size: 1.25rem;
+                                                color: rgb(189, 189, 189);
+                                            " id="closeFAQ2">
+                                            add
+                                        </i>
+                                    </div>
+                                    <div class="faq-description text-left" style="
+                                            text-align: justify;
+                                            font-size: 1.05rem;
+                                            display: block;
+                                            overflow: hidden;
+                                            height: 0;
+                                        " id="faq2Description">
+									By participating in the Shop Smart Program, you can receive a
+									$750 Sobeys gift card. The gift card allows you to purchase a wide
+									variety of groceries and household items at any Sobeys store, helping
+									you save on your everyday essentials.
+                                    </div>
+                                </div>
+                                <div class="faq3-question faq-question" style="margin-top: 20px">
+                                    <div class="d-flex justify-content-between align-items-center" style="cursor: pointer" onclick="toggleDescription2()">
+                                        <div class="faq text-left mr-2" style="color: rgb(73, 73, 73)">
+                                            WHAT HAPPENS IF I APPLY WITHOUT MEETING THE REQUIREMENTS?
+                                        </div>
+                                        <i class="material-icons m-0" style="
+                                                font-size: 1.25rem;
+                                                color: rgb(189, 189, 189);
+                                            " id="closeFAQ3">
+                                            add
+                                        </i>
+                                    </div>
+                                    <div class="faq-description text-left" style="
+                                            text-align: justify;
+                                            font-size: 1.05rem;
+                                            display: block;
+                                            overflow: hidden;
+                                            height: 0;
+                                        " id="faq3Description">
+                                        Our team reviews applications daily.
+										Applicants who do not meet the requirements
+										will not be accepted, but we will reach out
+										to them as soon as they become eligible to
+										participate.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div class="page mx-auto mt-4">
+                <div class="before-quiz" id="before-quiz">
+                    <div class="page-title">
+						Exciting times! You are one of the first to join the Shop Smart Program!
+                    </div>
+
+                    <p class="pt-3">
+						Answer 3 simple questions about your shopping routine, and get a
+						<mark>$750 Sobeys Gift Card</mark>.
+						Don't miss out on this fantastic offer!
+                    </p>
+
+                    <p>
+						Excited to get more from your shopping?
+						Click on the <mark>START</mark> button below.
+                    </p>
+
+                    <p>
+                        You will have exactly <strong>3 minutes</strong> to secure your reward.
+                    </p>
+
+                    <div class="d-flex justify-content-center" style="margin-top: 40px">
+                        <img src="images/BRRrmhoMsFaQ.png" alt="Product" class="main-image">
+                    </div>
+
+                    <div class="sticky-container" style="margin-bottom: 100px;">
+                        <div class="start-quiz-button mx-auto text-center mt-5" id="start-quiz-button">
+                            START
+                        </div>
+                    </div>
+                </div>
+
+                <div class="start-quiz d-none" id="start-quiz" style="margin-bottom: 200px">
+                    <div id="question-counter" class="question-counter">
+                        <mark>Question <span class="question-counter-number" id="question-counter-number" style="margin-right: 1px">-</span><span class="question-numbers" style="margin-top: 10px; margin-left: 1px">/ 3</span></mark>
+                    </div>
+
+                    <div id="quiz-models"></div>
+                </div>
+
+                <div class="unaccepted mx-auto d-none" id="unaccepted" style="margin-bottom: 300px">
+                    <div class="unaccepted-modal d-block mx-auto" style="margin-top: 80px">
+                        <div class="unaccepted-modal-title text-center mb-2">
+                            We're sorry
+                        </div>
+
+                        <div class="unaccepted-modal-text">
+                            Based on your quiz answers, you are not suitable for the requirements of this program.
+                            If you think you made a mistake and want to retake the quiz, click the button below:
+                        </div>
+
+                        <div class="unaccepted-modal-button mx-auto text-center" id="start-again" style="margin-top: 25px; margin-bottom: 10px">
+                            TRY AGAIN
+                        </div>
+                    </div>
+                </div>
+
+
+                           <div class="final-page d-none" style="margin-bottom: 200px;" id="final-page">
+                    <div class="final-page-title">
+                       <mark>Congratulations!</mark>
+                    </div>
+
+
+                    <div class="d-flex justify-content-center" style="margin-top: 40px">
+                        <img src="images/BRRrmhoMsFaQ.png" alt="Product" class="main-image">
+                    </div>
+
+                    <ol class="final-page-list mx-auto mt-5" style="padding: 10px 18px !important;">
+                                                  <div style="font-weight: normal;">
+                              Click the button below to enter your delivery details and claim your $750 gift card.                            </div>
+                     
+
+                    </ol>
+
+                    	 		<div class="started">
+					<a target="_blank" rel="noopener noreferrer" href="https://track.smartshopping.top/click">CONTINUE</a>
+				</div>
+</div>
+
+                <div class="comments">
+                    <p class="others-say">
+                        Read what others say about our program:
+                    </p>
+                    <div class="sorting-box">
+                        <p>0 Comments</p>
+                        <div class="inner-sorting-box">
+                            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle-notch" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                <path fill="#a6adb7" d="M288 39.056v16.659c0 10.804 7.281 20.159 17.686 23.066C383.204 100.434 440 171.518 440 256c0 101.689-82.295 184-184 184-101.689 0-184-82.295-184-184 0-84.47 56.786-155.564 134.312-177.219C216.719 75.874 224 66.517 224 55.712V39.064c0-15.709-14.834-27.153-30.046-23.234C86.603 43.482 7.394 141.206 8.003 257.332c.72 137.052 111.477 246.956 248.531 246.667C393.255 503.711 504 392.788 504 256c0-115.633-79.14-212.779-186.211-240.236C302.678 11.889 288 23.456 288 39.056z"></path>
+                            </svg>
+                            <span>Sort by</span>
+                            <div class="sort">
+                                <button>
+                                    <span>Newest</span>
+									<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="sort" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                                        <path fill="#374151" d="M41 288h238c21.4 0 32.1 25.9 17 41L177 448c-9.4 9.4-24.6 9.4-33.9 0L24 329c-15.1-15.1-4.4-41 17-41zm255-105L177 64c-9.4-9.4-24.6-9.4-33.9 0L24 183c-15.1 15.1-4.4 41 17 41h238c21.4 0 32.1-25.9 17-41z">
+										</path>
+                                    </svg>
+                                </button>
+                                <div class="dropdown-sort">
+                                    <button data-sort="top">
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path fill="#374151" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
+                                        </svg>
+                                        <span>Top</span>
+                                    </button>
+
+                                    <button data-sort="newest" class="selected">
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path fill="#374151" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg><span>Newest</span>
+                                    </button>
+                                    <button data-sort="oldest">
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path fill="#374151" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg><span>Oldest</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="add-comment">
+                        <img src="images/KYDVqVa6EUpJ.jpg" alt="User">
+                        <textarea placeholder="Add a comment..."></textarea>
+                        <div class="comment-button-box">
+                            <div class="comment-button-left">
+                                <input id="checkbox" type="checkbox" name="checkbox">
+                                <label for="checkbox">Also post on Facebook</label>
+
+                                <p>
+                                    Write <span class="keys-left">6</span> more
+                                    characters to post on Facebook
+                                </p>
+                            </div>
+
+                            <div class="comment-button-right">
+                                <button disabled="" class="disabled">
+                                    Sign up to post
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="main-comments"></div>
+
+                    <button class="load-more">
+                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle-notch" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+							<path fill="#fff" d="M288 39.056v16.659c0 10.804 7.281 20.159 17.686 23.066C383.204 100.434 440 171.518 440 256c0 101.689-82.295 184-184 184-101.689 0-184-82.295-184-184 0-84.47 56.786-155.564 134.312-177.219C216.719 75.874 224 66.517 224 55.712V39.064c0-15.709-14.834-27.153-30.046-23.234C86.603 43.482 7.394 141.206 8.003 257.332c.72 137.052 111.477 246.956 248.531 246.667C393.255 503.711 504 392.788 504 256c0-115.633-79.14-212.779-186.211-240.236C302.678 11.889 288 23.456 288 39.056z" class="">
+							</path>
+						</svg>
+						<span>Load 5 more comments</span>
+                    </button>
+
+                    <div class="comments-footer">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                            <path fill="#2563eb" d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z"></path>
+                        </svg>
+
+                        <a href="https://developers.facebook.com/products/social-plugins/comments/?utm_campaign=social_plugins&utm_medium=offsite_pages&utm_source=comments_plugin" target="_blank">
+							Facebook Comments Plugin
+						</a>
+                    </div>
+                </div>
+
+                <div class="footer-divider mb-3"></div>
+
+                <div class="links-part d-flex justify-content-center align-items-center mb-3">
+                    <img src="images/MDgkE9k0SvtR.png" alt="links" class="links-image mr-1">
+                    <div class="links-image-text ml-1">LEGAL LINKS</div>
+                </div>
+
+                <div class="d-flex flex-column flex-lg-row justify-content-center align-items-center">
+                    <a href="pages/terms-and-conditions/index.html" style="margin: 6px" class="links mx-0 mx-lg-2 my-2 my-lg-0">
+						Terms and Conditions
+					</a>
+
+                    <a href="pages/privacy-policy/index.html" style="margin-left: 3px; margin-right: 3px" class="links mx-0 mx-lg-2 my-2 my-lg-0">
+						Privacy Policy
+					</a>
+
+                    <a href="pages/non-affiliation-disclaimer/index.html" style="margin: 6px" class="links mx-0 mx-lg-2 my-2 my-lg-0">
+						Non-Affiliation Disclaimer
+					</a>
+                </div>
+                <div class="trade-names mx-auto mt-4">
+                    <p class="text-center">
+                        Trade names or rights associated with all trademarks on
+                        this website are the property of their respective owners
+                        and are not associated with this promotion. This offer
+                        ends at the end of 2025.
+                    </p>
+                    <p class="text-center">
+                        This website is not part of the Facebook website or of Facebook Inc. <br>
+                        Furthermore, this website is not endorsed in any way by Facebook. Facebook
+                        is a trademark of Facebook, Inc.
+                    </p>
+                </div>
+
+                <div class="footer d-flex align-items-center justify-content-between flex-row mb-2">
+                    <div class="footer-content pr-2 pr-md-0 text-center">
+                        <p class="mb-0">
+                            © 21/2025 —
+                            <a href="index.html" class="footer-page-link">
+								Shop Smart Program
+							</a>. All rights reserved.
+                        </p>
+                    </div>
+
+                    <div class="footer-content-logo pl-2 pl-md-0 text-right">
+                        <img src="images/tkBJMeg6IeEJ.png" alt="logo" style="width: 80%; height: auto; max-width: 65px">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+         <script type="text/javascript">
+
+            let index = 0;
+            let quiz = [
+                {
+                    question: "Do you live in Canada?",
+                    description: "We are looking for participants from Canada",
+                    answer: ["Yes", "No"]
+                },
+                {
+                    question: "How often do you shop at Sobeys?",
+                    answer: ["Daily", "Weekly", "Monthly", "Never"]
+                },
+                {
+                    question: "How do you usually discover deals and promotions at Sobeys?",
+                    answer: ["Store flyers", "Social media", "Mobile app", "Friends/Family"]
+                }
+            ];
+
+            document.addEventListener("DOMContentLoaded", function () {
+                var modal = document.getElementById("faqModal");
+                var modalIcon = document.querySelector(".faq-modal-icon");
+                var closeModal = document.getElementById("closeModal");
+
+                modal.style.display = "none";
+
+                modalIcon.addEventListener("click", function () {
+                    modal.style.display = "flex";
+                    requestAnimationFrame(() => {
+                        modal.classList.add("show");
+
+                        var description = document.getElementById(
+                            `faq1Description`
+                        );
+
+                        description.classList.add("mt-2");
+                        document.getElementById(`closeFAQ1`).textContent = "close";
+                        expand (description);
+                    });
+                });
+
+                closeModal.addEventListener("click", function () {
+                    modal.classList.remove("show");
+                    modal.addEventListener(
+                        "transitionend",
+                        function () {
+                            if (!modal.classList.contains("show")) {
+                                modal.style.display = "none";
+                            }
+                        },
+                        { once: true }
+                    );
+                });
+
+                window.addEventListener("click", function (event) {
+                    if (event.target == modal) {
+                        modal.classList.remove("show");
+                        modal.addEventListener(
+                            "transitionend",
+                            function () {
+                                if (!modal.classList.contains("show")) {
+                                    modal.style.display = "none";
+                                }
+                            },
+                            { once: true }
+                        );
+                    }
+                });
+            });
+
+            function setupFaqToggle(faqNumber) {
+                document.addEventListener("click", function (event) {
+                    var description = document.getElementById(
+                        `faq${faqNumber}Description`
+                    );
+                    var closeIcon = document.getElementById(
+                        `closeFAQ${faqNumber}`
+                    );
+                    var faqQuestion = document.querySelector(
+                        `.faq${faqNumber}-question`
+                    );
+
+                    if (
+                        !faqQuestion.contains(event.target) &&
+                        description.style.height !== "0px" &&
+                        description.style.height !== ""
+                    ) {
+                        collapse(description);
+                        description.classList.remove("mt-2");
+                        closeIcon.textContent = "add";
+                    }
+                });
+
+                function toggleDescription() {
+                    var description = document.getElementById(
+                        `faq${faqNumber}Description`
+                    );
+                    var closeIcon = document.getElementById(
+                        `closeFAQ${faqNumber}`
+                    );
+
+                    if (
+                        description.style.height === "0px" ||
+                        description.style.height === ""
+                    ) {
+                        expand(description);
+                        description.classList.add("mt-2");
+                        closeIcon.textContent = "close";
+                    } else {
+                        collapse(description);
+                        description.classList.remove("mt-2");
+                        closeIcon.textContent = "add";
+                    }
+                }
+
+                document
+                    .querySelector(`.faq${faqNumber}-question .d-flex`)
+                    .setAttribute("onclick", `toggleDescription${faqNumber}()`);
+                window[`toggleDescription${faqNumber}`] = toggleDescription;
+            }
+
+            function expand(element) {
+                var height = element.scrollHeight + "px";
+                element.style.height = height;
+            }
+
+            function collapse(element) {
+                element.style.height = "0";
+            }
+
+            setupFaqToggle(1);
+            setupFaqToggle(2);
+            setupFaqToggle(3);
+
+            let timerInterval;
+            let timerStarted = false;
+
+            const quizModels = document.getElementById("quiz-models");
+
+            const answersToRetakeQuiz = {
+                0: 1,
+                1: 3,
+                2: -1
+            };
+
+            // Removed showLoadingLine function as it's part of the loader
+            // Removed updateLoadingTextAndAnimation function as it's part of the loader
+
+
+            const onFinish = () => {
+                document.getElementById("page-content").scrollIntoView({ behavior: 'smooth' });
+
+                const startQuiz = $('#start-quiz');
+                const finalPage = $('#final-page'); // Directly target finalPage
+
+                startQuiz.fadeOut(500, () => {
+                    startQuiz.addClass('d-none');
+                    finalPage.removeClass('d-none'); // Show finalPage directly
+                    finalPage.fadeOut(0);
+                    finalPage.fadeIn(800); // Fade in finalPage
+                });
+            }
+
+          function finalPage() {
+    const finalPage = $('#final-page');
+    const afterQuiz = $('#after-quiz'); // afterQuiz is not used anymore
+
+     afterQuiz.fadeOut(500, () => { // This afterQuiz fadeOut is now redundant and won't affect anything
+                    afterQuiz.addClass('d-none'); // Redundant
+                    finalPage.removeClass('d-none');
+                    finalPage.fadeOut(0);
+                    finalPage.fadeIn(800);
+                });
+            }
+
+
+            const addClickListeners = () => {
+                const heights = quiz.reduce ((heights, _, i) => {
+                    const qObject = document.getElementById (`quiz-${i}`);
+                    const qHeight = qObject.offsetHeight;
+                    return [...heights, qHeight];
+                }, []);
+
+                quiz.forEach ((question, i) => {
+                    const isLast = i === quiz.length - 1;
+                    const qObject = document.getElementById (`quiz-${i}`);
+
+                    const onNext = () => {
+                        const questionCounterNumber = document.getElementById("question-counter-number");
+
+                        if (i < 2) {
+                            questionCounterNumber.innerHTML = i + 2;
+                        }
+
+                        const moveHeight = heights.slice (0, i + 1).reduce ((h, c) => h + c, 0);
+
+                        $ (`.quiz-model`).css ({transform: `translateY(-${moveHeight}px)`});
+                        $ (`#quiz-${i}`).css ({opacity: 0});
+
+                        if (!isLast) {
+                            const next = document.getElementById (`quiz-blocker-${i+1}`);
+                            next.classList.add (`d-none`);
+                        } else {
+                            onFinish ();
+                        }
+                    };
+
+                    question.answer.forEach ((ans, ansI) => {
+                        const ob = document.getElementById (`ans-${i}-${ansI}`);
+
+                        ob.addEventListener ('click', () => {
+                            const wrong = answersToRetakeQuiz[i] === ansI;
+
+                            if (wrong) {
+                                document.getElementById("page-content").scrollIntoView({ behavior: 'smooth' });
+
+                                const startQuiz = $('#start-quiz');
+                                const unaccepted = $('#unaccepted');
+
+                                startQuiz.fadeOut(250, () => {
+                                    startQuiz.addClass('d-none');
+                                    unaccepted.removeClass('d-none');
+                                    unaccepted.fadeIn(300);
+                                });
+
+                                return;
+                            }
+
+                            onNext ();
+                        });
+                    });
+                });
+            };
+
+            const initQuiz = () => {
+                quizModels.innerHTML = ``;
+
+                let innerHTML = ``;
+
+                quiz.forEach((quizQuestion, i) => {
+                    const isPassed = i < index;
+
+                    const { question, description, answer } = quizQuestion;
+
+                    let answers = ``;
+
+                    answer.forEach ((ans, ansIndex) => answers += `
+                        <div id="ans-${i}-${ansIndex}" class="quiz-answer mx-auto" id="quiz-answer">
+                            ${ans}
+                        </div>
+                    `);
+
+                    innerHTML += `
+                        <div id="quiz-${i}" class="quiz-model pt-3 pb-5 position-relative ${isPassed?'d-none':'d-block'}">
+                            ${i === 0 ? '' : `<div id="quiz-blocker-${i}" class="position-absolute" style="top: 0; left: 0; right: 0; bottom: 0; opacity: 0.8; background-color: #fff;"></div>`}
+
+                            <div class="quiz-question" id="quiz-question">
+                                ${question}
+                            </div>
+
+                            <div
+                                class="quiz-question-description mt-1 ${description?'':'d-none'}"
+                                id="quiz-question-description"
+                            >
+                                ${description}
+                            </div>
+                            <div
+                                class="mx-auto text-center"
+                                style="margin-top: 40px"
+                                id="quiz-answers"
+                            >
+                                ${answers}
+                            </div>
+                        </div>
+                    `;
+                });
+
+                quizModels.innerHTML = innerHTML;
+                addClickListeners ();
+            };
+
+            function startQuiz() {
+                const startQuiz = $(`#start-quiz`);
+                const beforeQuiz = $(`#before-quiz`);
+                const counter = $(`#question-counter-number`);
+
+                document.getElementById("page-content").scrollIntoView({ behavior: 'smooth' });
+
+                startTimer(3);
+
+                beforeQuiz.fadeOut (250, () => {
+                    beforeQuiz.addClass (`d-none`);
+                    startQuiz.removeClass (`d-none`);
+                    startQuiz.fadeOut (0);
+                    initQuiz();
+                    startQuiz.fadeIn (650);
+                });
+
+                counter.text (`1`);
+            };
+
+            const resetQuizPositions = () => {
+                for (var i = 0; i < quiz.length; i ++) {
+                    const showblocker = i !== 0;
+                    $ (`.quiz-model`).css ({transform: `translateY(0px)`});
+                    $ (`#quiz-${i}`).css ({opacity: 1});
+                    $ (`#quiz-blocker-${i}`).removeClass (`d-none`);
+                };
+            };
+
+            function restartQuiz() {
+                const timer = $(`#timer`);
+                const startQuiz = $(`#start-quiz`);
+                const unaccepted = $(`#unaccepted`);
+                const counter = $(`#question-counter-number`);
+
+                index = 0;
+                counter.text (`1`);
+                timer[0].scrollIntoView ({behavior:'smooth'});
+                resetQuizPositions ();
+
+                unaccepted.fadeOut (500, () => {
+                    unaccepted.addClass ('d-none');
+                    startQuiz.fadeOut (0);
+                    startQuiz.removeClass (`d-none`);
+                    startQuiz.fadeIn (500);
+                });
+            }
+
+            document.getElementById("start-again").addEventListener("click", restartQuiz);
+            document.getElementById("start-quiz-button").addEventListener("click", startQuiz);
+
+            function startTimer(minutes) {
+                if (timerStarted) {
+                    return;
+                }
+
+                let time = minutes * 60;
+
+                const updateTimer = () => {
+                    let minutes = Math.floor(time / 60);
+                    let seconds = time % 60;
+                    document.getElementById(
+                        "timer-count"
+                    ).textContent = `${minutes} MINUTES AND ${seconds} SECONDS`;
+                    time--;
+
+                    if (time < 0) {
+                        clearInterval(timerInterval);
+                        document
+                            .getElementById("timer1")
+                            .classList.add("d-none");
+                        document
+                            .getElementById("timer-done")
+                            .classList.remove("d-none");
+                    }
+                };
+
+                document.getElementById ('timer').classList.add ('shown');
+                updateTimer ();
+
+                timerInterval = setInterval(updateTimer, 1000);
+                timerStarted = true;
+            }
+        </script>  
+        <script type="text/javascript" src="js/TNocoTbNWwIT.js"></script>
+        
+
+</body></html>
