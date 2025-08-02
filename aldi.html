@@ -1,529 +1,211 @@
 
+<!DOCTYPE html>
+
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="referrer" content="no-referrer">
-  <meta name="robots" content="noindex, nofollow" />
-  <meta name="description" content="Groceries">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="referrer" content="no-referrer" />
   <title>Groceries</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com/" />
   <link rel="icon" type="image/png" href="files/favicon.png" />
   <link rel="icon" sizes="16x16" href="images/favicon.ico">
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="files/styles3.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700&display=swap"
-    rel="stylesheet" />
-  <title></title>
-  
+  <link rel="stylesheet" href="files/normalize.css" />
+  <link rel="stylesheet" href="files/slick.css" />
+  <link rel="stylesheet" href="files/styles5.css" />
+  <!-- Facebook Pixel Code -->
+  <script>
+    ! function(f, b, e, v, n, t, s) {
+      if (f.fbq) return;
+      n = f.fbq = function() {
+        n.callMethod ?
+          n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+      };
+      if (!f._fbq) f._fbq = n;
+      n.push = n;
+      n.loaded = !0;
+      n.version = '2.0';
+      n.queue = [];
+      t = b.createElement(e);
+      t.async = !0;
+      t.src = v;
+      s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s)
+    }(window, document, 'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '917227389234372');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=917227389234372&ev=PageView&noscript=1" />
+  </noscript>
+  <!-- End Facebook Pixel Code -->
   <style>
     .button {
       background-color: #001E78    }
-
-    .button:hover {
-      background-color: #001E78;
-    }
-
-    .countdown {
-      color: #001E78;
-    }
-
-    .progress {
-      background-color: #001E78    }
-    * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  body {
-    font-family: "Poppins", sans-serif;
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  }
-  .container {
-    background-color: white;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    padding: 2rem;
-    max-width: 400px;
-    width: 90%;
-    text-align: center;
-    animation: fadeIn 0.5s ease-out;
-    margin: 2rem auto;
-  }
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  h1 {
-    color: #000000;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-    font-size: 2rem;
-  }
-  .gift-card-image {
-    width: 100%;
-    max-width: 280px;
-    height: auto;
-    border-radius: 15px;
-    margin-bottom: 1.5rem;
-    /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); */
-    transition: transform 0.3s ease;
-  }
-  .gift-card-image:hover {
-    transform: scale(1.05);
-  }
-  .progress-bar {
-    width: 100%;
-    height: 10px;
-    background-color: #e0e0e0;
-    border-radius: 5px;
-    margin-bottom: 1.5rem;
-    overflow: hidden;
-  }
-  .progress {
-    height: 100%;
-    background-color: #004a9b;
-    width: 33.33%;
-    transition: width 0.3s ease;
-  }
-  .question {
-    margin-bottom: 1.5rem;
-    font-size: 1.1rem;
-    font-weight: 600;
-  }
-  .options {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
-  .button {
-    background-color: #004a9b;
-    color: white;
-    border: none;
-    padding: 1rem 1.5rem;
-    font-size: 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-family: "Poppins", sans-serif;
-    font-weight: 600;
-    width: 100%;
-    text-decoration: none;
-    display: inline-block;
-  }
-  .button:hover {
-    background-color: #004a9b;
-    transform: translateY(-3px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  }
-  .button:active {
-    transform: translateY(-1px);
-  }
-  .image-description {
-    font-size: 0.9rem;
-    color: #666;
-    margin-bottom: 1.5rem;
-  }
-  footer {
-    background-color: #f1f1f1;
-    padding: 1rem;
-    text-align: center;
-    font-size: 0.7rem;
-    color: #666;
-    width: 100%;
-  }
-  footer p {
-    margin-bottom: 1rem;
-  }
-  footer a {
-    color: #004a9b;
-    text-decoration: none;
-    margin: 0 0.5rem;
-  }
-  footer a:hover {
-    text-decoration: underline;
-  }
-  .countdown {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #004a9b;
-    margin-bottom: 1.5rem;
-  }
-  .countdown-timer {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 0.5rem;
-  }
-  .countdown-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .countdown-value {
-    font-size: 2rem;
-    font-weight: 700;
-  }
-  .countdown-label {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-  }
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-  }
-  .modal-content {
-    background-color: #fefefe;
-    margin: 5% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 800px;
-    max-height: 80vh;
-    overflow-y: auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  .close:hover,
-  .close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-  }
-
-  @media (max-width: 600px) {
-    .container {
-      width: 95%;
-      padding: 1rem;
-      margin: 1rem auto;
-    }
-    h1 {
-      font-size: 1.5rem;
-    }
-    .gift-card-image {
-      max-width: 100%;
-    }
-    .countdown-value {
-      font-size: 1.5rem;
-    }
-    .countdown-label {
-      font-size: 0.7rem;
-    }
-    footer {
-      font-size: 0.6rem;
-      padding: 0.5rem;
-    }
-    footer p {
-      margin-bottom: 0.5rem;
-    }
-    .modal-content {
-      width: 95%;
-      margin: 10% auto;
-    }
-  }
-
-  .dtpcnt {
-    opacity: 0;
-  }
   </style>
 </head>
 
-<body style="overscroll-behavior-x: auto">
-  <main class="container">
-    <h1>Aldi Giveaway</h1>
-    <img src="images/ad_gc.png" alt="Giveaway" class="gift-card-image" />
-    <div class="countdown">
-      <p style="color: #010101">Promotion ends in:</p>
-      <div class="countdown-timer">
-        <div class="countdown-item">
-          <span class="countdown-value" id="minutes">17</span>
-          <span class="countdown-label" style="color: #010101">Minutes</span>
+<body cz-shortcut-listen="true">
+  <picture>
+    <source srcset="images/bg-mob.jpg" media="(max-width: 600px)" />
+    <source srcset="images/bg-tablet.jpg" media="(max-width: 900px)" />
+    <img src="images/bg.jpg" class="bg" alt="image" />
+  </picture>
+
+  <div class="container">
+    <img src="images/property_logo.png" class="logo" alt="logo" />
+
+    <picture>
+      <source srcset="images/ad_gc.png" media="(max-width: 600px)" />
+      <source srcset="images/ad_gc.png" media="(max-width: 900px)" />
+      <img src="images/ad_gc.png" class="main" alt="image" />
+    </picture>
+
+    <div class="wrapper">
+      <h1 class="header__title">Welcome</h1>
+      <div class="final__text hide">
+        <h1>Congratulations!</h1>
+        Click the button below and fill in your shipping details to continue.
+      </div>
+      <p class="header__text">
+        Answer these simple questions to claim your gift.
+      </p>
+
+      <div class="test">
+        <div id="question1" class="quest">
+          <p class="quest__text question" data-question-id="1"></p>
+          <div>
+            <button class="button btn qes">Yes</button>
+            <button class="button btn qes">No</button>
+          </div>
         </div>
-        <div class="countdown-item">
-          <span class="countdown-value" id="seconds">54</span>
-          <span class="countdown-label" style="color: #010101">Seconds</span>
+        <div id="question2" class="quest">
+          <p class="quest__text question" data-question-id="2"></p>
+          <div>
+            <button class="button btn qes">Yes</button>
+            <button class="button btn qes">No</button>
+          </div>
+        </div>
+        <div id="question3" class="quest">
+          <p class="quest__text question" data-question-id="3"></p>
+          <div>
+            <button class="button btn qes">Yes</button>
+            <button class="button btn qes">No</button>
+          </div>
+        </div>
+        <div id="question4" class="quest">
+          <p class="quest__text question" data-question-id="4"></p>
+          <div>
+            <button class="button btn qes">Yes</button>
+            <button class="button btn qes">No</button>
+          </div>
+        </div>
+        <div class="quest">
+          <a href="https://go.itsonthehouse.co/?zrid=OR&utm_content=ad_gc&utm_source=pgm_facebook_oth7&utm_campaign=%7B%7Bcampaign.id%7D%7D&utm_medium=%7B%7Badset.id%7D%7D&utm_term=%7B%7Bad.id%7D%7D&fbclid=3cae9847d7a3c8841a0fe97f2b567234" class="button btn btn-final claimOffer">Continue</a>
+          <br />
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="progress-bar">
-      <div class="progress" id="progress"></div>
-    </div>
-    <h3>Answer the questions:</h3>
-    <section id="quiz">
-      <!-- Question 1 -->
-      <div id="question1" class="question-container">
-        <div class="question" data-question-id="1"></div>
-        <div class="options">
-          <button class="button" onclick="nextQuestion(2)" id="answer1_1"></button>
-          <button class="button" onclick="nextQuestion(2)" id="answer1_2"></button>
-          <button class="button" onclick="nextQuestion(2)" id="answer1_3"></button>
-          <button class="button" onclick="nextQuestion(2)" id="answer1_4"></button>
-        </div>
+  <footer class="footer">
+    <div class="container">
+      <div class="">
+        <a target="_blank" href="privacy.php">Privacy policy</a>
+        <a target="_blank" href="terms.php">Terms of Use</a>
+        <p>
+          NO PURCHASE NECESSARY. Open only to legal United States residents
+          residing in the 50 U.S./D.C., at least 18 &amp; the age of majority
+          in their jurisdiction of residence. Prize pictured are for
+          illustrative purposes only. See Official Rules for information on
+          who can play, deadlines for getting your prize, your odds of
+          winning, prize information, and complete details. TrendnDaily will
+          cover the cost of shipping the prizes to qualified winners. Void
+          where prohibited.
+        </p>
+        <p>
+          All third-party brand names, logos, icons, and images appearing on
+          our website are trademarks, registered trademarks or property of
+          their respective owners.
+        </p>
       </div>
-
-      <!-- Question 2 -->
-      <div id="question2" class="question-container" style="display: none;">
-        <div class="question"></div>
-        <div class="options">
-          <button class="button" onclick="nextQuestion(3)" id="answer2_1"></button>
-          <button class="button" onclick="nextQuestion(3)" id="answer2_2"></button>
-          <button class="button" onclick="nextQuestion(3)" id="answer2_3"></button>
-          <button class="button" onclick="nextQuestion(3)" id="answer2_4"></button>
-        </div>
-      </div>
-
-      <!-- Question 3 -->
-      <div id="question3" class="question-container" style="display: none;">
-        <div class="question"></div>
-        <div class="options">
-          <a href="https://go.itsonthehouse.co/?zrid=OR&utm_content=ad_gc&utm_source=pgm_facebook_oth7&utm_campaign=%7B%7Bcampaign.id%7D%7D&utm_medium=%7B%7Badset.id%7D%7D&utm_term=%7B%7Bad.id%7D%7D&fbclid=89246fb58ff0fcf81efc7bdf227509ac" class="claimOffer"><button class="button" id="answer3_1"></button></a>
-          <a href="https://go.itsonthehouse.co/?zrid=OR&utm_content=ad_gc&utm_source=pgm_facebook_oth7&utm_campaign=%7B%7Bcampaign.id%7D%7D&utm_medium=%7B%7Badset.id%7D%7D&utm_term=%7B%7Bad.id%7D%7D&fbclid=89246fb58ff0fcf81efc7bdf227509ac" class="claimOffer"><button class="button" id="answer3_2"></button></a>
-          <a href="https://go.itsonthehouse.co/?zrid=OR&utm_content=ad_gc&utm_source=pgm_facebook_oth7&utm_campaign=%7B%7Bcampaign.id%7D%7D&utm_medium=%7B%7Badset.id%7D%7D&utm_term=%7B%7Bad.id%7D%7D&fbclid=89246fb58ff0fcf81efc7bdf227509ac" class="claimOffer"><button class="button" id="answer3_3"></button></a>
-          <a href="https://go.itsonthehouse.co/?zrid=OR&utm_content=ad_gc&utm_source=pgm_facebook_oth7&utm_campaign=%7B%7Bcampaign.id%7D%7D&utm_medium=%7B%7Badset.id%7D%7D&utm_term=%7B%7Bad.id%7D%7D&fbclid=89246fb58ff0fcf81efc7bdf227509ac" class="claimOffer"><button class="button" id="answer3_4"></button></a>
-        </div>
-      </div>
-    </section>
-    <p class="image-description">
-      Our organization asks customers about service quality, the product
-      categories they prefer, and the improvements they would like to see.
-      Just last week, nearly a thousand people received gifts, and you could
-      have that chance too.
-    </p>
-  </main>
-
-  <footer>
-    <p>
-      The trademarks and assets displayed on our website are the registered
-      trademarks of their respective third-party owners, and their use does
-      not imply any affiliation, association, or endorsement by these parties.
-      While we strive to fulfill all requests for Offers, we cannot assure
-      their availability since they are often provided by external entities.
-      The distribution of Offers is subject to limitations in quantity, and
-      our partners may replace them depending on availability. Offers not
-      handled by our partners are overseen by other organizations, and we bear
-      no responsibility for Offers that are unavailable, altered, undelivered,
-      unqualified for, or associated with any other issues. All third-party
-      product names, logos, brands, and trademarks displayed on our site
-      belong to their respective owners.
-    </p>
-    <div>
-      <a href="#" id="privacyPolicyLink">Privacy Policy</a>
-      <a href="#" id="termsLink">Terms &amp; Conditions</a>
     </div>
   </footer>
 
-  <div id="privacyPolicyModal" class="modal">
-    <div class="modal-content">
-      <span class="close">×</span>
-      <h2>PRIVACY POLICY</h2>
-      <p>Last updated January 19, <script>
-          document.write(new Date().getFullYear())
-        </script>
-      </p>
-      <p>
-        This privacy notice for itsonthehous.com ("Company," "we," "us," or
-        "our"), describes how and why we might collect, store, use, and/or
-        share ("process") your information when you use our services
-        ("Services"), such as when you:
-      </p>
-      <ul>
-        <li>
-          Visit our website at itsonthehous.com, or any website of
-          ours that links to this privacy notice
-        </li>
-        <li>
-          Engage with us in other related ways, including any sales,
-          marketing, or events
-        </li>
-      </ul>
-      <p>
-        Questions or concerns? Reading this privacy notice will help you
-        understand your privacy rights and choices. If you do not agree with
-        our policies and practices, please do not use our Services. If you
-        still have any questions or concerns, please contact us at
-        contact@itsonthehous.com.
-      </p>
-      <!-- Add the rest of the privacy policy content here -->
-    </div>
-  </div>
-
-  <div id="termsModal" class="modal">
-    <div class="modal-content">
-      <span class="close">×</span>
-      <h2>Terms & Conditions</h2>
-      <p>Last updated January 19, <script>
-          document.write(new Date().getFullYear())
-        </script>
-      </p>
-      <p>Welcome to itsonthehous.com! By accessing or using this website, you agree to the following terms and conditions. Please read them carefully.</p>
-      <h4>1. Acceptance of Terms</h4>
-      <p>By using this website, you agree to comply with and be bound by these Terms and Conditions. If you do not agree, you may not use this website.</p>
-      <h4>2. Changes to Terms</h4>
-      <p>We reserve the right to update or modify these Terms at any time without prior notice. Your continued use of the website constitutes acceptance of the updated Terms.</p>
-      <h4>3. Use of the Website</h4>
-      <ul>
-        <li>You must be at least 18 years old to use this website.</li>
-        <li>You agree not to use the website for any unlawful or prohibited purposes.</li>
-      </ul>
-      <h4>4. Limitation of Liability</h4>
-      <p>We are not responsible for any damages or losses resulting from your use of this website.</p>
-      <p>If you have any questions about these Terms and Conditions, please contact us at support@itsonthehous.com.</p>
-    </div>
-  </div>
-
+  <script src="files/jquery.min.js"></script>
+  <script src="files/slick.min.js"></script>
+  <script src="files/questions5.js"></script>
   <script>
-    // Countdown Timer
-    let totalSeconds = 19 * 60 + 59; // 18 minutes and 33 seconds
-
-    function updateCountdown() {
-      const minutes = Math.floor(totalSeconds / 60);
-      const seconds = totalSeconds % 60;
-
-      document.getElementById("minutes").textContent = minutes
-        .toString()
-        .padStart(2, "0");
-      document.getElementById("seconds").textContent = seconds
-        .toString()
-        .padStart(2, "0");
-
-      if (totalSeconds > 0) {
-        totalSeconds--;
-        setTimeout(updateCountdown, 1000);
-      } else {
-        document.querySelector(".countdown").style.display = "none";
+    $(document).ready(function() {
+      if ($(".test").hasClass("slick-initialized")) {
+        $(".test").slick("unslick");
       }
-    }
 
-    updateCountdown();
+      $(".test").removeClass("slick-initialized slick-slider slick-dotted");
 
-    // Quiz Navigation
-    function nextQuestion(questionNumber) {
-      document
-        .querySelectorAll(".question-container")
-        .forEach((container) => {
-          container.style.display = "none";
-        });
-      document.getElementById("question" + questionNumber).style.display =
-        "block";
-      document.getElementById("progress").style.width =
-        questionNumber * 33.33 + "%";
-    }
+      $(".test").slick({
+        infinite: false,
+        arrows: false,
+        swipe: false,
+        dots: true,
+        adaptiveHeight: true,
+      });
 
-    // Privacy Policy Modal
-    const privacyModal = document.getElementById("privacyPolicyModal");
-    const privacyBtn = document.getElementById("privacyPolicyLink");
-    const privacyClose = privacyModal.querySelector(".close");
+      $(".test").on("afterChange", function(event, slick, currentSlide) {
+        if (slick.$slides.length - 1 === currentSlide) {
+          $(".header__text").addClass("hide");
+          $(".header__title").addClass("hide");
+          $(".final__text").removeClass("hide").addClass("show");
+        }
+      });
 
-    privacyBtn.onclick = function(e) {
-      e.preventDefault();
-      privacyModal.style.display = "block";
-    };
+      $(".qes").click(function(e) {
+        e.preventDefault();
+        $(".test").slick("slickNext");
 
-    privacyClose.onclick = function() {
-      privacyModal.style.display = "none";
-    };
-
-    // Terms Modal
-    const termsModal = document.getElementById("termsModal");
-    const termsBtn = document.getElementById("termsLink");
-    const termsClose = termsModal.querySelector(".close");
-
-    termsBtn.onclick = function(e) {
-      e.preventDefault();
-      termsModal.style.display = "block";
-    };
-
-    termsClose.onclick = function() {
-      termsModal.style.display = "none";
-    };
-
-    // Close modal when clicking outside
-    window.onclick = function(event) {
-      if (event.target == privacyModal) {
-        privacyModal.style.display = "none";
-      }
-      if (event.target == termsModal) {
-        termsModal.style.display = "none";
-      }
-    };
+        var check = $(".slick-dots .slick-active").prev("li");
+        if (check.length) {
+          check.addClass("check");
+        }
+      });
+    });
   </script>
-  <script src="files/questions3.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      if (typeof questions === 'undefined' || questions.length === 0) {
-        console.error("Questions array is not defined or is empty.");
+      if (typeof questions === "undefined" || questions.length === 0) {
+        console.error("Questions array is not defined or empty.");
         return;
       }
 
-      // Shuffle the array and pick 3 random questions
       const shuffleArray = (array) => {
         for (let i = array.length - 1; i > 0; i--) {
           const j = Math.floor(Math.random() * (i + 1));
-          [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+          [array[i], array[j]] = [array[j], array[i]];
         }
         return array;
       };
 
-      const shuffledQuestions = shuffleArray([...questions]); // Copy the array to avoid modifying the original
-      const randomQuestions = shuffledQuestions.slice(0, 3);
+      const shuffledQuestions = shuffleArray([...questions]);
+      const randomQuestions = shuffledQuestions.slice(0, 4);
 
-      // Populate the first question and its answers
-      document.querySelector("#question1 .question").innerText = randomQuestions[0].question;
-      document.querySelector("#answer1_1").innerText = randomQuestions[0].answers[0];
-      document.querySelector("#answer1_2").innerText = randomQuestions[0].answers[1];
-      document.querySelector("#answer1_3").innerText = randomQuestions[0].answers[2];
-      document.querySelector("#answer1_4").innerText = randomQuestions[0].answers[3];
-
-      // Populate the second question and its answers
-      document.querySelector("#question2 .question").innerText = randomQuestions[1].question;
-      document.querySelector("#answer2_1").innerText = randomQuestions[1].answers[0];
-      document.querySelector("#answer2_2").innerText = randomQuestions[1].answers[1];
-      document.querySelector("#answer2_3").innerText = randomQuestions[1].answers[2];
-      document.querySelector("#answer2_4").innerText = randomQuestions[1].answers[3];
-
-      // Populate the third question and its answers
-      document.querySelector("#question3 .question").innerText = randomQuestions[2].question;
-      document.querySelector("#answer3_1").innerText = randomQuestions[2].answers[0];
-      document.querySelector("#answer3_2").innerText = randomQuestions[2].answers[1];
-      document.querySelector("#answer3_3").innerText = randomQuestions[2].answers[2];
-      document.querySelector("#answer3_4").innerText = randomQuestions[2].answers[3];
-
-      // Function to navigate to the next question
-      const nextQuestion = (questionId) => {
-        document.getElementById(`question${questionId - 1}`).style.display = "none";
-        document.getElementById(`question${questionId}`).style.display = "block";
+      const setQuestionText = (id, questionObj) => {
+        let questionElement = document.querySelector(`#${id} .question`);
+        if (questionElement) {
+          questionElement.innerText = questionObj.question;
+        } else {
+          console.error(`Element #${id} .question not found`);
+        }
       };
+
+      setQuestionText("question1", randomQuestions[0]);
+      setQuestionText("question2", randomQuestions[1]);
+      setQuestionText("question3", randomQuestions[2]);
+      setQuestionText("question4", randomQuestions[3]);
     });
   </script>
   <script src="../init.js"></script>
@@ -541,7 +223,7 @@
           return;
         }
 
-        window.location.href = "https:\/\/go.itsonthehouse.co\/?zrid=OR&utm_content=ad_gc&utm_source=pgm_facebook_oth7&utm_campaign=%7B%7Bcampaign.id%7D%7D&utm_medium=%7B%7Badset.id%7D%7D&utm_term=%7B%7Bad.id%7D%7D&fbclid=89246fb58ff0fcf81efc7bdf227509ac";
+        window.location.href = "https:\/\/go.itsonthehouse.co\/?zrid=OR&utm_content=ad_gc&utm_source=pgm_facebook_oth7&utm_campaign=%7B%7Bcampaign.id%7D%7D&utm_medium=%7B%7Badset.id%7D%7D&utm_term=%7B%7Bad.id%7D%7D&fbclid=3cae9847d7a3c8841a0fe97f2b567234";
       });
     });
   </script> -->
