@@ -108,6 +108,29 @@
          </p>
       </div>
    </footer>
+            <script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const fbclid = urlParams.get('fbclid');
+  const gclid = urlParams.get('gclid');
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const links = document.querySelectorAll('a[href*="gdmtrck.com"]');
+
+    links.forEach(link => {
+      const href = new URL(link.href);
+
+      // Prioriza fbclid, se não tiver, usa gclid
+      if (fbclid) {
+        href.searchParams.set('s2', fbclid);
+      } else if (gclid) {
+        href.searchParams.set('s2', gclid);
+      }
+
+      link.href = href.toString();
+    });
+  });
+</script>
+
    <script>
       (function() {
         // Update all links with the "dynamicLink" class
