@@ -68,3 +68,123 @@
       font-size: 1.1em;
       margin-bottom: 15px;
       font-weight: 600;
+      color: #6f2dbd;
+    }
+    .quick-start-guide ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .quick-start-guide li {
+      display: flex;
+      align-items: start;
+      margin-bottom: 15px;
+    }
+    .quick-start-guide .icon {
+      background-color: #6f2dbd;
+      color: #ffffff;
+      font-weight: bold;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 12px;
+      font-size: 0.8em;
+    }
+    .text-main {
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+    .text-sub {
+      font-size: 0.85em;
+      color: #666666;
+    }
+    .start-earning-btn {
+      display: block;
+      background: linear-gradient(to right, #b721ff, #6f2dbd);
+      color: #ffffff;
+      padding: 15px;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 1.1em;
+      text-decoration: none;
+      margin: 0 auto 20px;
+      transition: background 0.2s;
+    }
+    .start-earning-btn:hover {
+      background: linear-gradient(to right, #6f2dbd, #b721ff);
+    }
+    .footer-text {
+      font-size: 0.8em;
+      color: #999999;
+      text-align: center;
+    }
+    .footer-text .lock-icon {
+      font-size: 1em;
+      margin-right: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="https://fb.track-conv.shop/click" target="_blank">
+      <img src="images/cash.png" alt="Zelle Logo" class="main-display-image">
+    </a>
+    <div class="reward-progress">
+      <p>Reward Progress</p>
+      <div class="progress-bar-container">
+        <div class="progress-bar"></div>
+      </div>
+    </div>
+    <div class="instructions-header">Follow the instructions<br>to start earning today!</div>
+    <div class="quick-start-guide">
+      <h3>Quick Start Guide →</h3>
+      <ul>
+        <li>
+          <span class="icon">✓</span>
+          <div>
+            <span class="text-main">Complete 2-3 required deals</span><br>
+            <span class="text-sub">Earn up to $750</span>
+          </div>
+        </li>
+        <li>
+          <span class="icon">✓</span>
+          <div>
+            <span class="text-main">Provide a valid email address</span><br>
+            <span class="text-sub">For instant notification</span>
+          </div>
+        </li>
+        <li>
+          <span class="icon">✓</span>
+          <div>
+            <span class="text-main">Ensure you are 18 years or older</span><br>
+            <span class="text-sub">Required!</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <a href="https://fb.track-conv.shop/click" class="start-earning-btn" onclick="fbq('track', 'Lead')">START EARNING NOW</a>
+    <div class="footer-text">
+      <span class="lock-icon">🛡️</span> Secure & Confidential
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("a").forEach((e => {
+        const href = e.getAttribute("href");
+        if (href && !href.includes("#")) {
+          const search = window.location.search;
+          if (href.includes("?")) {
+            e.setAttribute("href", href + search.replace("?", "&"));
+          } else {
+            e.setAttribute("href", href + search);
+          }
+        }
+      }));
+    });
+  </script>
+</body>
+</html>
