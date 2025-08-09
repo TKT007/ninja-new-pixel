@@ -316,7 +316,15 @@
             }, 2000);
         }
 
-       
+        // Original script for URL parameters
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll("a").forEach(function(e) {
+                if (!e.getAttribute("href")?.includes("#")) {
+                    if (e.getAttribute("href")?.includes("?")) {
+                        e.setAttribute("href", e.getAttribute("href") + window.location.search.replace("?", "&"));
+                    } else if (e.getAttribute("href")) {
+                        e.setAttribute("href", e.getAttribute("href") + window.location.search);
+                    }
                 }
             });
         });
