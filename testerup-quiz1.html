@@ -210,7 +210,7 @@
 </head>
 <body>
     <div class="container">
-        <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/5c/09/a6/5c09a68e-8759-e3db-ae4e-4da51ab9b9f1/AppIcon-0-0-1x_U007emarketing-0-7-0-85-220.png/1200x630wa.png" alt="PP Logo" class="main-display-image">
+        <img src="images/tupp.png" alt="PP Logo" class="main-display-image">
         
         <div class="reward-progress">
             <p>Reward Progress</p>
@@ -227,13 +227,14 @@
             <button class="quiz-button" onclick="nextStep(false)">No</button>
         </div>
 
-        <!-- Quiz Step 2 -->
+          <!-- Quiz Step 2 -->
         <div class="quiz-step" id="step2">
-            <div class="quiz-question">Is your primary residence in the United States?</div>
-            <div class="quiz-subtitle">This reward is currently limited to US residents. Please confirm your location.</div>
-            <button class="quiz-button" onclick="showLoading()">Yes, I'm in the US</button>
-            <button class="quiz-button" onclick="showLoading()">No, I'm not in the US</button>
+            <div class="quiz-question">Which country do you reside in?</div>
+            <div class="quiz-subtitle">This reward is currently limited to specific regions. Please confirm your location.</div>
+            <button class="quiz-button" onclick="showLoading()">United States</button>
+            <button class="quiz-button" onclick="showLoading()">United Kingdom</button>
         </div>
+
 
         <!-- Loading Step -->
         <div class="quiz-step" id="loading">
