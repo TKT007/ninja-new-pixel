@@ -96,3 +96,189 @@
             margin-bottom: 8px;
             background-size: 16px;
             font-size: 15px;
+        }
+        .btn {
+            background-color: #FFD700;
+            color: #0050AA;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 12px;
+            transition: background-color 0.3s;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+        }
+        .btn:hover {
+            background-color: #FFC000;
+        }
+        .footer {
+            text-align: center;
+            font-size: 11px;
+            color: #666;
+            padding: 15px;
+            border-top: 1px solid #ddd;
+            margin-top: 15px;
+            background-color: #f9f9f9;
+        }
+        .disclaimer {
+            font-size: 11px;
+            color: #666;
+            margin-top: 15px;
+            line-height: 1.4;
+        }
+        .legal-notice {
+            font-size: 10px;
+            color: #999;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+        .testimonial {
+            background-color: #f0f8ff;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-style: italic;
+            border-left: 3px solid #0050AA;
+        }
+        .testimonial-author {
+            font-weight: bold;
+            text-align: right;
+            margin-top: 5px;
+        }
+        .counter-container {
+            background-color: #0050AA;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            margin: 0;
+            border-radius: 0;
+        }
+        .counter-text {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        .counter-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FFD700;
+        }
+        .counter-bar {
+            height: 10px;
+            background-color: rgba(255,255,255,0.3);
+            margin-top: 10px;
+            overflow: hidden;
+            border-radius: 0;
+        }
+        .counter-progress {
+            height: 100%;
+            background-color: #FFD700;
+            width: 70%;
+            transition: width 0.5s;
+        }
+        .highlight {
+            color: #FFD700;
+            font-weight: bold;
+        }
+        .registration-btn-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-menu">
+        <img src="img/logo.png" alt="Lidl" class="small-logo">
+        <div class="top-menu-icons">
+            <span class="top-menu-icon">🔍</span>
+            <span class="top-menu-icon">🛒</span>
+            <span class="top-menu-icon">👤</span>
+        </div>
+    </div>
+
+    <img src="img/main.png" alt="Babyproducten box" class="product-image">
+
+    <div class="header">
+        <h1>Babyproducten box van Lidl</h1>
+        <p>Om de lancering van onze nieuwe lijn babyproducten te vieren, bieden we een box met essentiële artikelen ter waarde van €50. Doe mee en ontvang uw gratis box!</p>
+    </div>
+
+    <div class="counter-container">
+        <div class="counter-text">Boxen beschikbaar:</div>
+        <div class="counter-number" id="remainingBoxes">132</div>
+        <div class="counter-text">van de 500 boxen in totaal</div>
+        <div class="counter-bar">
+            <div class="counter-progress" id="counterProgress" style="width: 74%;"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="registration-btn-container">
+            <a href="https://testerscenter.com/?_lp=1&amp;_token=uuid_2fm52sc1bb7t_2fm52sc1bb7t689c0d690808f0.72874681" class="btn" id="registrationBtn">Deelnemen aan de actie</a>
+        </div>
+
+        <h2>Inhoud van de box:</h2>
+        <ul class="product-list">
+            <li>Luiers Premium Care (pak van 20 stuks)</li>
+            <li>Potjes babyvoeding (3 stuks van 120g)</li>
+            <li>Billendoekjes met kamille-extract (pak van 72 stuks)</li>
+            <li>Babycrème (tube 50ml)</li>
+            <li>Kortingsbon van €10 voor uw volgende aankoop</li>
+        </ul>
+
+        <div class="testimonial">
+            "De babyproducten van Lidl bieden uitstekende kwaliteit voor een goede prijs. De babycrème is heel zacht en irriteert de huid van mijn baby niet."
+            <div class="testimonial-author">— Anneke V., Amsterdam</div>
+        </div>
+
+        <div class="disclaimer">
+            <p>*Aanbieding geldig voor ouders met kinderen jonger dan 2 jaar. Beperkt tot één box per gezin. Details in deelnemende Lidl winkels.</p>
+        </div>
+
+        <div class="legal-notice">
+            <p>Actie georganiseerd door Lidl Nederland. Alle handelsmerken zijn eigendom van hun respectievelijke eigenaren.</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2023 Lidl Nederland</p>
+        <p><a href="#" onclick="document.location.hash='';return false;" style="color: #0050AA;">Privacybeleid</a> | <a href="#" onclick="document.location.hash='';return false;" style="color: #0050AA;">Algemene Voorwaarden</a></p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const remainingBoxes = document.getElementById('remainingBoxes');
+            const counterProgress = document.getElementById('counterProgress');
+            let boxesLeft = 145;
+            const totalBoxes = 500;
+
+            // Update teller
+            function updateCounter() {
+                // Bereken percentage gereserveerd
+                const claimed = totalBoxes - boxesLeft;
+                const claimedPercent = Math.round((claimed / totalBoxes) * 100);
+                
+                // Update voortgangsbalk
+                counterProgress.style.width = claimedPercent + '%';
+                
+                // Willekeurig verminderen van resterende boxen
+                if (boxesLeft > 0 && Math.random() > 0.7) {
+                    boxesLeft = Math.max(0, boxesLeft - 1);
+                    remainingBoxes.textContent = boxesLeft;
+                }
+                
+                // Plan volgende update
+                setTimeout(updateCounter, 5000 + Math.random() * 5000);
+            }
+            
+            // Start teller
+            setTimeout(updateCounter, 1000);
+        });
+    </script>
+
+</body></html>
