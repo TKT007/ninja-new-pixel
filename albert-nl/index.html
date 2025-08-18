@@ -78,8 +78,8 @@
         <div class="container">
             <h1 style="text-align:center">Gefeliciteerd!<br>Er is een cadeaubon ter waarde van €250 voor je gereserveerd!</h1>
             <h2>Klik om je beloning te claimen — bedankt voor je deelname!</h2>
-            <p class="loading"><a class="dynamicLink" href="https://fb.track-conv.shop/click"><img src="images/capa.png" style="max-width: 350px;margin: 0px auto;display: block;width: 100%;"></a></p>
-            <a class="dynamicLink" href="https://fb.track-conv.shop/click">
+            <p class="loading"><a class="dynamicLink" href="https://go.trackbigdeals.com/click"><img src="images/capa.png" style="max-width: 350px;margin: 0px auto;display: block;width: 100%;"></a></p>
+            <a class="dynamicLink" href="https://go.trackbigdeals.com/click">
                 <div class="button">Verder</div>
             </a>
             <p style="text-align:center">Houd je telefoon bij de hand want de winnaars ontvangen een bonus aanbieding!</p>
@@ -102,9 +102,15 @@
             // Update all links with the "dynamicLink" class
             var links = document.querySelectorAll('.dynamicLink');
             links.forEach(function(link) {
-                link.href = 'https://fb.track-conv.shop/click';
+                link.href = 'https://go.trackbigdeals.com/click';
             });
         })();
     </script>
+    <script>
+document.querySelectorAll('img').forEach(img => {
+  img.addEventListener('dragstart', e => e.preventDefault());
+});
+</script>
+
 </body>
 </html>
