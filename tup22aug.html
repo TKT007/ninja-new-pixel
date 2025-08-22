@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reward Claim</title>
-         <script>
- // Função para adicionar parâmetros conservados à URL
+        <script>
+// Função para adicionar parâmetros conservados à URL
 function addSourceToUrl(baseUrl) {
-
     // Captura os parâmetros da URL atual
     var currentUrl = window.location.href;
     var urlParams = new URLSearchParams(new URL(currentUrl).search);
@@ -40,7 +39,16 @@ function addSourceToUrl(baseUrl) {
     });
 
     return finalUrl;
-} </script>
+}
+
+// Aplica a função ao botão quando a página carregar
+document.addEventListener('DOMContentLoaded', function() {
+    var startButton = document.querySelector('.start-earning-btn');
+    if (startButton) {
+        startButton.href = addSourceToUrl(startButton.href);
+    }
+});
+</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
