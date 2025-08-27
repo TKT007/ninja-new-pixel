@@ -8,10 +8,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <style>
+  <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background: #0d011f;
+            background: #f5f7fa;
             margin: 0;
             padding: 20px;
             display: flex;
@@ -19,46 +19,53 @@
             align-items: center;
             min-height: 100vh;
             box-sizing: border-box;
-            color: #fff;
+            color: #2c3e50;
         }
         .container {
-            background: linear-gradient(180deg, #1a1032 0%, #6d00be 100%);
+            background: linear-gradient(180deg, #f8f8f8 0%, #f8fafc 100%);
             border-radius: 16px;
-            box-shadow: 0 0 15px rgba(160, 82, 255, 0.12);
+            box-shadow: 0 10px 30px rgba(52, 73, 94, 0.1);
+            border: 1px solid #e2e8f0;
             max-width: 420px;
             width: 100%;
             padding: 25px 20px;
             text-align: center;
         }
         .main-display-image {
-            width: 100%;
-            border-radius: 12px;
-            margin-bottom: 20px;
+            width: 80px;
+            height: 80px;
+            border-radius: 16px;
+            margin: 0 auto 20px auto;
+            display: block;
+            object-fit: cover;
         }
         .reward-progress p {
             font-size: 0.95em;
             margin-bottom: 8px;
-            color: #f0f0f0;
+            color: #34495e;
             font-weight: 600;
         }
         .progress-bar-container {
-            background-color: #341c56;
+            background-color: #e8f4f8;
             border-radius: 5px;
             height: 10px;
             overflow: hidden;
         }
         .progress-bar {
-            background-color: #00d47e;
-            width: 33%;
+            background: linear-gradient(to right, #6d00be, #2e006f);
+            width: 70%;
             height: 100%;
+            transition: width 0.8s ease-in-out;
         }
         .instructions-header {
             font-size: 1.4em;
             font-weight: 700;
             margin: 25px 0 20px;
+            color: #2c3e50;
         }
         .quick-start-guide {
-            background: #2e1e5c;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
             border-radius: 12px;
             padding: 20px;
             margin-bottom: 25px;
@@ -68,6 +75,7 @@
             font-size: 1.1em;
             margin-bottom: 15px;
             font-weight: 600;
+            color: #2c3e50;
         }
         .quick-start-guide ul {
             list-style: none;
@@ -80,40 +88,49 @@
             margin-bottom: 15px;
         }
         .quick-start-guide .icon {
-            background-color: #00d47e;
-            color: #2e006f;
+            background: linear-gradient(to right, #6d00be, #2e006f);
+            color: #ffffff;
             font-weight: bold;
             border-radius: 50%;
             width: 24px;
             height: 24px;
+            min-width: 24px;
+            min-height: 24px;
             display: flex;
             justify-content: center;
             align-items: center;
             margin-right: 12px;
             font-size: 0.8em;
+            flex-shrink: 0;
         }
         .text-main {
             font-weight: 600;
+            color: #2c3e50;
         }
         .text-sub {
             font-size: 0.85em;
-            color: #d1cfe0;
+            color: #7f8c8d;
         }
         .start-earning-btn {
             display: block;
-            background: linear-gradient(to right, #00d47e, #1ee3af);
-            color: #2e006f;
+            background: linear-gradient(to right, #6d00be, #2e006f);
+            color: #ffffff;
             padding: 15px;
             border-radius: 30px;
             font-weight: bold;
             font-size: 1.1em;
             text-decoration: none;
             margin: 0 auto 20px;
-            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .start-earning-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(109, 0, 190, 0.3);
+            background: linear-gradient(to right, #2e006f, #1a0044);
         }
         .footer-text {
             font-size: 0.8em;
-            color: #b4add1;
+            color: #95a5a6;
             text-align: center;
         }
         .footer-text .lock-icon {
@@ -124,14 +141,14 @@
 </head>
 <body>
     <div class="container">
-        <img src="https://www.fitlife-tips.shop/playful/images/playful.png" alt="PP Logo" class="main-display-image">
+        <img src="https://play-lh.googleusercontent.com/Lx-lkUUlaa-VfYYO_bgxW4Cp5a-4X3nfjnEHXt1iHn2FZW15s3ewUH5PT-kq9MrI5vs" alt="PP Logo" class="main-display-image">
         <div class="reward-progress">
             <p>Reward Progress</p>
             <div class="progress-bar-container">
                 <div class="progress-bar"></div>
             </div>
         </div>
-        <div class="instructions-header">Follow the instructions<br>to start earning today!</div>
+        <div class="instructions-header">Follow the instructions<br>to start earning today:</div>
         <div class="quick-start-guide">
             <h3>Quick Start Guide →</h3>
             <ul>
