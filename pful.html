@@ -1,46 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-     <script>
- // Função para adicionar parâmetros conservados à URL
-function addSourceToUrl(baseUrl) {
-
-    // Captura os parâmetros da URL atual
-    var currentUrl = window.location.href;
-    var urlParams = new URLSearchParams(new URL(currentUrl).search);
-
-    // Cria um objeto com os parâmetros que você quer transferir
-    var desiredParams = {
-        'ttclid': '__CLICKID__',
-        'utm_campaign': '__CAMPAIGN_NAME__',
-        'utm_content': '__CID_NAME__',
-        'mc_campaign_id': '__CAMPAIGN_ID__',
-        'mc_adset_name': '__AID_NAME__',
-        'mc_adset_id': '__AID__',
-        'mc_ad_id': '__CID__',
-        'mc_pub': '__PLACEMENT__'
-    };
-
-    // Adiciona os parâmetros encontrados na URL atual ao URL base
-    var finalUrl = baseUrl;
-    var separator = finalUrl.includes('?') ? '&' : '?';
-    
-    Object.keys(desiredParams).forEach(function(key) {
-        if (urlParams.has(key)) {
-            finalUrl += separator + key + '=' + encodeURIComponent(urlParams.get(key));
-            separator = '&';
-        } else if (desiredParams[key] && desiredParams[key] !== '') {
-            // Se o parâmetro não estiver na URL atual, usa o valor padrão
-            finalUrl += separator + key + '=' + encodeURIComponent(desiredParams[key]);
-            separator = '&';
-        }
-    });
-
-    return finalUrl;
-} </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pful Claim</title>
+    <title>Reward Claim</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -88,38 +51,6 @@ function addSourceToUrl(baseUrl) {
             background-color: #00d47e;
             width: 33%;
             height: 100%;
-            transition: width 0.8s ease-in-out;
-        }
-        .quiz-question {
-            font-size: 1.4em;
-            font-weight: 700;
-            margin: 25px 0 10px;
-            line-height: 1.3;
-        }
-        .quiz-subtitle {
-            font-size: 1em;
-            color: #d1cfe0;
-            margin-bottom: 25px;
-            font-weight: 500;
-        }
-        .quiz-button {
-            display: block;
-            background: linear-gradient(to right, #00d47e, #1ee3af);
-            color: #2e006f;
-            padding: 15px;
-            border-radius: 30px;
-            font-weight: bold;
-            font-size: 1.1em;
-            text-decoration: none;
-            margin: 15px auto;
-            cursor: pointer;
-            border: none;
-            width: 80%;
-            transition: all 0.3s ease;
-        }
-        .quiz-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 212, 126, 0.3);
         }
         .instructions-header {
             font-size: 1.4em;
@@ -155,14 +86,11 @@ function addSourceToUrl(baseUrl) {
             border-radius: 50%;
             width: 24px;
             height: 24px;
-            min-width: 24px;
-            min-height: 24px;
             display: flex;
             justify-content: center;
             align-items: center;
             margin-right: 12px;
             font-size: 0.8em;
-            flex-shrink: 0;
         }
         .text-main {
             font-weight: 600;
@@ -181,6 +109,7 @@ function addSourceToUrl(baseUrl) {
             font-size: 1.1em;
             text-decoration: none;
             margin: 0 auto 20px;
+            cursor: pointer;
         }
         .footer-text {
             font-size: 0.8em;
@@ -191,97 +120,111 @@ function addSourceToUrl(baseUrl) {
             font-size: 1em;
             margin-right: 5px;
         }
-        .quiz-step {
-            display: none;
-        }
-        .quiz-step.active {
-            display: block;
-        }
-        .final-content {
-            display: none;
-        }
-        .final-content.show {
-            display: block;
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        
+        <img id="main-image" src="" alt="PP Logo" class="main-display-image">
         <div class="reward-progress">
-        
+            <p>Reward Progress</p>
             <div class="progress-bar-container">
                 <div class="progress-bar"></div>
             </div>
         </div>
-
-        <!-- Quiz Step 1 -->
-        <div class="quiz-step active" id="step1">
-            <div class="quiz-question">What type of device are you using?</div>
-            <div class="quiz-subtitle">Please select your device so we can optimize for you.</div>
-            <button class="quiz-button" onclick="showFinalContent()">iOS</button>
-            <button class="quiz-button" onclick="showFinalContent()">Android</button>
+        <div class="instructions-header">Follow the instructions<br>to start earning today!</div>
+        <div class="quick-start-guide">
+            <h3>Quick Start Guide →</h3>
+            <ul>
+                <li>
+                    <span class="icon">✓</span>
+                    <div>
+                        <span class="text-main">Download the Playful app</span><br>
+                        <span class="text-sub">Click the button below</span>
+                    </div>
+                </li>
+                <li>
+                    <span class="icon">✓</span>
+                    <div>
+                        <span class="text-main">Earn More by Testing Multiple Games</span><br>
+                        <span class="text-sub">Make over $100/day</span>
+                    </div>
+                </li>
+                <li>
+                    <span class="icon">✓</span>
+                    <div>
+                        <span class="text-main">Pro tip: Make in-app purchases on <br>the games to earn faster</span><br>
+                        <span class="text-sub">They reimburse you for anything you spend!</span>
+                    </div>
+                </li>
+            </ul>
         </div>
-
-        <!-- Final Content -->
-        <div class="final-content" id="finalContent">
-            <div class="instructions-header" style="margin-bottom: 5px;">Almost there!</div>
-            <div style="font-size: 1em; color: #d1cfe0; margin-bottom: 25px; font-weight: 500;">Just a few more steps to start earning</div>
-            <div class="quick-start-guide">
-                <h3>Follow the instructions: →</h3>
-                <ul>
-                    <li>
-                        <span class="icon">✓</span>
-                        <div>
-                            <span class="text-main">Download the Playful app</span><br>
-                            <span class="text-sub">Click the button below</span>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="icon">✓</span>
-                        <div>
-                            <span class="text-main">Earn More by Testing Multiple Games</span><br>
-                            <span class="text-sub">Make over $100/day</span>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="icon">✓</span>
-                        <div>
-                            <span class="text-main">Pro tip: Make in-app purchases on <br>the games to earn faster</span><br>
-                            <span class="text-sub">They reimburse you for anything you spend!</span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <a href="https://fb.track-conv.shop/visit/23a74250-dd72-4a4c-90ab-ba5780015362" class="start-earning-btn">START EARNING NOW</a>
-            <div class="footer-text">
-                <span class="lock-icon">🛡️</span> Secure & Confidential
-            </div>
+        <a id="start-earning-link" href="#" class="start-earning-btn">START EARNING NOW</a>
+        <div class="footer-text">
+            <span class="lock-icon">🛡️</span> Secure & Confidential
         </div>
     </div>
 
     <script>
-        function showFinalContent() {
-            // Hide first step
-            document.getElementById('step1').classList.remove('active');
-            // Show final content
-            document.getElementById('finalContent').classList.add('show');
+        // Função para capturar o primeiro parâmetro da URL (qualquer parâmetro)
+        const getFirstUrlParameterValue = () => {
+            const urlParams = new URLSearchParams(window.location.search);
             
-            // Update progress bar to 93%
-            document.querySelector('.progress-bar').style.width = '93%';
-        }
-
-        // Original script for URL parameters
-        document.addEventListener("DOMContentLoaded", function() {
-            document.querySelectorAll("a").forEach(function(e) {
-                if (!e.getAttribute("href")?.includes("#")) {
-                    if (e.getAttribute("href")?.includes("?")) {
-                        e.setAttribute("href", e.getAttribute("href") + window.location.search.replace("?", "&"));
-                    } else if (e.getAttribute("href")) {
-                        e.setAttribute("href", e.getAttribute("href") + window.location.search);
-                    }
+            // Pega o primeiro parâmetro disponível, independente do nome
+            for (const [key, value] of urlParams.entries()) {
+                if (value && value.trim() !== '') {
+                    return value;
                 }
-            });
+            }
+            
+            return null;
+        };
+
+        // Função para adicionar valor ao parâmetro source na URL final
+        const addSourceToUrl = (baseUrl) => {
+            const paramValue = getFirstUrlParameterValue();
+            
+            if (paramValue) {
+                // Como o link já tem o parâmetro source=, apenas adiciona o valor
+                return `${baseUrl}${encodeURIComponent(paramValue)}`;
+            }
+            
+            return baseUrl;
+        };
+
+        // Função para atualizar os links da página
+        const updatePageLinks = () => {
+            const baseUrl = "https://glitchy.go2cloud.org/aff_c?offer_id=2863&aff_id=1497&source=";
+            const finalUrl = addSourceToUrl(baseUrl);
+            
+            // Atualiza o link do botão
+            const startEarningLink = document.getElementById('start-earning-link');
+            if (startEarningLink) {
+                startEarningLink.href = finalUrl;
+            }
+            
+            // Atualiza a imagem
+            const mainImage = document.getElementById('main-image');
+            if (mainImage) {
+                mainImage.src = finalUrl;
+            }
+        };
+
+        // Executa quando a página carrega
+        document.addEventListener('DOMContentLoaded', function() {
+            updatePageLinks();
+            
+            // Adiciona evento de clique no botão para tracking (se necessário)
+            const startEarningLink = document.getElementById('start-earning-link');
+            if (startEarningLink) {
+                startEarningLink.addEventListener('click', function(e) {
+                    // Tracking TikTok (se disponível)
+                    if (typeof window !== 'undefined' && window.ttq) {
+                        window.ttq.track('CompleteRegistration');
+                    }
+                    
+                    // O link já está correto, então deixa o comportamento padrão acontecer
+                });
+            }
         });
     </script>
 </body>
