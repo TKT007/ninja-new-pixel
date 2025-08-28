@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earn By Playing!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            background: linear-gradient(180deg, #1b2e4b 0%, #0d203e 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: white;
+        }
+
+        .container {
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .venmo-logo {
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 30px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .progress-section {
+            margin-bottom: 30px;
+        }
+
+        .progress-label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .progress-fill {
+            width: 75%;
+            height: 100%;
+            background: linear-gradient(90deg, #14b8e8 0%, #0a84c1 100%);
+            border-radius: 4px;
+        }
+
+        .progress-text {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .main-header {
+            font-size: 22px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 30px;
+            line-height: 1.3;
+        }
+
+        .guide-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .guide-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .guide-steps {
+            text-align: left;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            gap: 12px;
+        }
+
+        .step:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-icon {
+            font-size: 18px;
+            min-width: 24px;
+            margin-top: 2px;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .step-description {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.4;
+        }
+
+        .pro-tip {
+            background: rgba(255, 193, 7, 0.1);
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 20px;
+        }
+
+        .pro-tip-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .pro-tip-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #ffc107;
+        }
+
+        .pro-tip-text {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.4;
+        }
+
+        .cta-button {
+            width: 100%;
+            background: linear-gradient(135deg, #14b8e8 0%, #0a84c1 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 16px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(20, 184, 232, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(20, 184, 232, 0.4);
+        }
+
+        .security-text {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 12px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                max-width: 350px;
+            }
+            
+            .venmo-logo {
+                font-size: 28px;
+                padding: 12px 24px;
+            }
+            
+            .main-header {
+                font-size: 20px;
+            }
+            
+            .guide-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="venmo-logo">venmo</div>
+        
+        <div class="progress-section">
+            <div class="progress-label">Reward Progress</div>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <div class="progress-text">Complete setup to unlock your earning potential</div>
+        </div>
+
+        <div class="main-header">
+            Follow the instructions to start earning today!
+        </div>
+
+        <div class="guide-card">
+            <div class="guide-title">
+                Quick Start Guide
+                <span>→</span>
+            </div>
+            
+            <div class="guide-steps">
+                <div class="step">
+                    <div class="step-icon">✅</div>
+                    <div class="step-content">
+                        <div class="step-title">Click on 'Request My Transaction'</div>
+                        <div class="step-description">(The button below)</div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-icon">💸</div>
+                    <div class="step-content">
+                        <div class="step-title">Answer questions and set up your profile</div>
+                        <div class="step-description">(It takes 35 seconds)</div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-icon">🔁</div>
+                    <div class="step-content">
+                        <div class="step-title">Complete at least TWO to FIVE of the suggested deals</div>
+                        <div class="step-description">(Most people get to at least $100 in cashable payouts with just 3 deals!)</div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-icon">⏱️</div>
+                    <div class="step-content">
+                        <div class="step-title">Claim your transaction & repeat as many times as you want!</div>
+                        <div class="step-description">(Fun fact: 63% of our daily highest-earning members usually quit their jobs by their 4th week of consistently completing deals every day!)</div>
+                    </div>
+                </div>
+
+                <div class="pro-tip">
+                    <div class="pro-tip-header">
+                        <span>💡</span>
+                        <span class="pro-tip-title">PRO TIP:</span>
+                    </div>
+                    <div class="pro-tip-text">
+                        Doing more than 5 suggested deals can boost your payout by an extra $500 to $1000.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="cta-button">REQUEST MY TRANSACTION</button>
+        
+        <div class="security-text">
+            <span>🔒</span>
+            <span>Secure & Confidential</span>
+        </div>
+    </div>
+</body>
+</html>
