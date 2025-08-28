@@ -1,0 +1,505 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head><base href="//hopsmart.shop/landers/de_hipp_api_fb/hipp/">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HIPP</title>
+    <link
+      rel="shortcut icon"
+      href="./assets/img/favicon.png"
+      type="image/x-icon"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/magnific-popup.css" />
+
+    <script src="./assets/js/jquery-3.6.0.min.js"></script>
+
+    <script>
+      const _adviser = decodeURI(
+        (RegExp("adviser=(.*?)(&|$)").exec(location.search) || [, null])[1] ||
+          ""
+      );
+
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js"
+      );
+
+      async function _sendWebToServer(sendEventName) {
+        const _url = window.location.href;
+        const generateEventId = Math.floor(Math.random() * 100000000001);
+        try {
+          function getCookie(name) {
+            let matches = document.cookie.match(
+              new RegExp(
+                "(?:^|; )" +
+                  name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
+                  "=([^;]*)"
+              )
+            );
+            return matches ? decodeURIComponent(matches[1]) : undefined;
+          }
+          await fbq("consent", "grant");
+          await fbq("dataProcessingOptions", []);
+          await fbq("init", _adviser, { external_id: "d2nptm57sv0s73bt33bg" });
+          await fbq("track", sendEventName, {}, { eventID: generateEventId });
+          await fetch("https://prosperwave.info/webtoserver", {
+            method: "POST",
+            body: JSON.stringify({
+              fbc: getCookie("_fbc") || 1,
+              url: _url,
+              fbp: getCookie("_fbp") || 1,
+              clickId: "d2nptm57sv0s73bt33bg",
+              eventName: sendEventName,
+              eventId: generateEventId,
+              userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36",
+              ip: "2804:14d:7280:87b8:4d0:599f:1835:585a",
+              pixel: _adviser,
+            }),
+            headers: {
+              "Content-Type": "application/json;charset=utf-8",
+            },
+          });
+        } catch (e) {
+          throw new Error(e);
+        }
+      }
+
+      _sendWebToServer("PageView");
+
+      async function _sendData() {
+        const _url = window.location.href;
+        try {
+          function getCookie(name) {
+            let matches = document.cookie.match(
+              new RegExp(
+                "(?:^|; )" +
+                  name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
+                  "=([^;]*)"
+              )
+            );
+            return matches ? decodeURIComponent(matches[1]) : undefined;
+          }
+          await fetch("https://prosperwave.info/land", {
+            method: "POST",
+            body: JSON.stringify({
+              fbc: getCookie("_fbc") || 1,
+              url: _url,
+              fbp: getCookie("_fbp") || 1,
+              clickId: "d2nptm57sv0s73bt33bg",
+              userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36",
+              ip: "2804:14d:7280:87b8:4d0:599f:1835:585a",
+              pixel: _adviser,
+            }),
+            headers: {
+              "Content-Type": "application/json;charset=utf-8",
+            },
+          });
+        } catch (e) {
+          throw new Error(e);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <img class="left_img_pc" src="./assets/img/left_bg.png" alt="" />
+    <div class="mob_main">
+      <div class="mob_img_wrapper">
+        <img src="./assets/img/mob_bg.png" alt="" />
+      </div>
+
+      <div class="container">
+        <div class="logo_wrapper">
+          <img class="logo" src="./assets/img/logo.png" alt="" />
+        </div>
+        <p class="header">Holen Sie sich Ihr exklusives Promo-Set von HiPP!</p>
+        <p class="header-txt">
+          Die ersten 500 Teilnehmer, die diesen kurzen Fragebogen ausfüllen,
+          erhalten Promo-Boxen mit Kinderprodukten von HiPP! Bitte beantworten
+          Sie einige Fragen und erhalten Sie eine angenehme Überraschung!
+        </p>
+
+        <div class="dots">
+          <div class="dot dot1 dot-active">
+            <span>1</span>
+            <img class="dot-img" src="./assets/img/done.png" alt="" />
+          </div>
+          <div class="dots-line line1-2"></div>
+          <div class="dot dot2">
+            <span>2</span>
+            <img class="dot-img" src="./assets/img/done.png" alt="" />
+          </div>
+          <div class="dots-line line2-3"></div>
+          <div class="dot dot3">
+            <span>3</span>
+            <img class="dot-img" src="./assets/img/done.png" alt="" />
+          </div>
+          <!-- <div class="dots-line line3-4"></div>
+            <div class="dot dot4">
+              <span>4</span>
+              <img class="dot-img" src="./assets/img/done.png" alt="" />
+            </div>
+            <div class="dots-line line4-5"></div>
+            <div class="dot dot5">
+              <span>5</span>
+              <img class="dot-img" src="./assets/img/done.png" alt="" />
+            </div> -->
+        </div>
+        <div class="body-wrapper">
+          <div class="all-q">
+            <div class="q1 quest">
+              <p class="quest-txt">
+                Haben Sie bereits Produkte von HiPP gekauft?
+              </p>
+              <div class="btn_wrapper">
+                <button class="b1">Ja</button>
+                <button class="b1">Nein</button>
+              </div>
+            </div>
+            <div class="q2 quest">
+              <p class="quest-txt">
+                Sind Sie mit der Qualität der HiPP-Produkte zufrieden?
+              </p>
+              <div class="btn_wrapper" id="btn_wrapper_b2">
+                <button class="b2">Ja, ich bin vollkommen zufrieden</button>
+                <button class="b2">Nein, ich habe einige Anmerkungen</button>
+              </div>
+            </div>
+            <div class="q3 quest">
+              <p class="quest-txt">
+                Würden Sie HiPP anderen Eltern weiterempfehlen?
+              </p>
+              <div class="btn_wrapper">
+                <button class="b3">Ja</button>
+                <button class="b3">Nein</button>
+              </div>
+            </div>
+            <!-- <div class="q4 quest">
+                <p class="quest-txt">
+                  Möchten Sie ein Spielzeug zusammen mit dem Combo erhalten?
+                </p>
+                <button class="b4">Ja</button>
+                <button class="b4">Nein</button>
+                <button class="b4">Ist mir egal</button>
+              </div>
+              <div class="q5 quest">
+                <p class="quest-txt">
+                  Welche Accessoires oder Verpackungselemente möchten Sie im
+                  Weihnachtscombo sehen?
+                </p>
+                <button class="b5">Weihnachtsmannmütze</button>
+                <button class="b5">Leuchtendes Weihnachtsspielzeug</button>
+                <button class="b5">McDonald's-Tasche</button>
+                <button class="b5">Weihnachtsaufkleber</button>
+              </div> -->
+            <div class="final quest">
+              <div class="final-txt">
+                Vielen Dank für Ihre Rückmeldung!<br /><br />
+
+                Um Ihr Geschenk zu erhalten, bitten wir Sie, das Antragsformular
+                auf der folgenden Seite auszufüllen und Ihre Teilnahme per
+                E-Mail zu bestätigen!
+              </div>
+              <button onclick="goToOffer()" class="final-btn ujfpxjheypt">
+                DEN PROMO-BOX ERHALTEN
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal" id="modal-1" style="display: none"></div>
+    <div
+      class="modal"
+      id="staticBackdrop"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header" style="color: #000">
+            <h5 class="modal-title" id="staticBackdropLabel">
+              ALLGEMEINE INFORMATIONEN
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div style="padding: 15px; color: #000; font-size: 15px">
+            ALLGEMEINE INFORMATIONEN
+            <br />
+            <br />
+            Wir erheben personenbezogene Daten ('Informationen'), die wir von
+            Ihnen per E-Mail und aus den von Ihnen ausgefüllten
+            Anmeldefragebogen erhalten. Diese Datenschutzrichtlinie ist
+            integrierender Bestandteil der Nutzungsvereinbarung und der
+            Einwilligung in die Verarbeitung personenbezogener Daten. Wir
+            erheben auch Daten, wenn Sie sich freiwillig an Umfragen beteiligen,
+            zu denen wir Sie einladen, oder wenn Sie Feedback, Kommentare oder
+            andere Informationen auf unserer Webseite der Panelteilnehmer
+            hinterlassen. Wenn der Anmeldevorgang nicht erfolgreich
+            abgeschlossen wurde, speichern wir keine Informationen über Sie, mit
+            Ausnahme der begrenzten Informationen, die notwendig sind, um Betrug
+            oder missbräuchliche Verwendung zu verhindern. Sie sind nicht
+            verpflichtet, alle Fragen zu beantworten; in solchen Fällen besteht
+            immer die Option 'Ich enthalte mich der Antwort'. Die Antworten auf
+            diese Fragen werden vertraulich behandelt, es sei denn, Sie erklären
+            sich offen und ausdrücklich damit einverstanden, dass Ihre Antworten
+            auf diese Fragen zusammen mit Ihren persönlichen Daten an die
+            Auftraggeber der Studie zur weiteren eingehenden Analyse
+            weitergeleitet werden.
+            <br /><br />
+            WARUM WIR INFORMATIONEN ÜBER SIE ERHEBEN
+            <br /><br />
+            Der Hauptzweck der Erhebung von Informationen über Sie ist die
+            Marktforschung. Wenn Sie uns beitreten, schließen wir einen Vertrag
+            mit Ihnen ab, der dieser Datenschutzrichtlinie sowie unseren Regeln
+            unterliegt. Um diesen Vertrag zu erfüllen, indem wir Sie zu
+            relevanten Fragen einladen, müssen wir Informationen sammeln,
+            verarbeiten und klassifizieren, die zum Zeitpunkt der Anwerbung
+            neuer Teilnehmer angefordert werden oder die Sie zu einem späteren
+            Zeitpunkt Ihrem Profil auf der Webseite der Panelteilnehmer
+            hinzufügen können oder die wir in Übereinstimmung mit dieser
+            Datenschutzrichtlinie sammeln und mit automatischen Mitteln
+            verarbeiten. Diese Informationen werden auch benötigt, um Ihnen
+            Auszeichnungen zukommen zu lassen und um Sie bezüglich von Umfragen
+            zu kontaktieren. Diese Frage wird auch in unseren Regeln ausführlich
+            erläutert.
+            <br /><br />
+            Darüber hinaus erheben wir Informationen von Ihnen mit Ihrer
+            Zustimmung, insbesondere wenn Sie auf Einladungen zur Teilnahme an
+            Umfragen antworten, die wir Ihnen zusenden können, oder wenn Sie sie
+            in anderen Fällen freiwillig zur Verfügung stellen. Ihre Antworten
+            auf solche Umfragen sind Ihre Entscheidung. In einigen Situationen
+            können wir Ihre zusätzliche oder sogar ausdrückliche Zustimmung
+            verlangen, wenn dies angemessen oder notwendig ist. Die Tätigkeit im
+            Allgemeinen und die Funktionsweise des Panels werden in unseren
+            Regeln näher beschrieben. Wie verwenden wir die Informationen, die
+            wir von Ihnen erhalten?
+            <br /><br />
+            Wir verwenden die Informationen, die wir von Ihnen erhalten, um<br />
+            - um alle Panelteilnehmer zu erfassen und anonyme Profile auf der
+            Grundlage der von Ihnen bereitgestellten Informationen zu erstellen.
+            <br />- um Ihnen Einladungen zur Teilnahme an Umfragen zu schicken,
+            denen Sie gemäß den Informationen entsprechen, die Sie in Ihrem
+            Anmeldefragebogen angegeben oder eventuell zu einem späteren
+            Zeitpunkt aktualisiert haben;<br />
+            - Wenn Sie ausdrücklich und gesondert zugestimmt haben, bevor Ihre
+            Daten an den Auftraggeber weitergegeben werden, kann der
+            Auftraggeber diese Daten auch dazu verwenden, Sie zu kontaktieren,
+            um Sie zur Teilnahme an weiteren von ihm durchzuführenden
+            Forschungen einzuladen<br />
+            - Wenn Ihre Zustimmung vorliegt, Ihre Daten an andere Partner von
+            "OL EG media" weiterzugeben<br />
+            - Wir werden alle angemessenen Maßnahmen ergreifen, um zu
+            gewährleisten, dass alle von uns verarbeiteten personenbezogenen
+            Daten richtig, angemessen, relevant und nicht übermäßig sind, unter
+            Berücksichtigung des Zwecks, für den sie erhoben wurden. Wir werden
+            die für einen bestimmten Zweck erhobenen personenbezogenen Daten
+            nicht für andere, nicht damit zusammenhängende Zwecke verwenden, es
+            sei denn, Sie haben Ihre Zustimmung gegeben. <br /><br />
+            - Wir verwenden Ihre Daten IMMER nur zu Forschungszwecken und in
+            Übereinstimmung mit diesen Regeln. Wir werden NICHT versuchen, Ihnen
+            etwas zu verkaufen oder Sie betreffende Informationen für
+            Marketingzwecke zu verwenden, es sei denn, dies steht im
+            Zusammenhang mit dem Zweck dieses Panels (z. B. Teilnahme an
+            weiteren Umfragen). Unter keinen Umständen werden Informationen über
+            Sie zu Marketing- oder Werbezwecken an Dritte weitergegeben.
+            Verwendung von Cookies oder ähnlichem Code?
+            <br /><br />
+            Indem Sie unserem Panel beitreten und an unserer Online-Forschung
+            teilnehmen, erklären Sie sich damit einverstanden, dass wir Cookies
+            und ähnliche Technologien ('Cookies') verwenden und für die Dauer
+            Ihrer Teilnahme an unseren Online-Forschungen Informationen von
+            Ihrem Computer/Laptop oder einem anderen Computergerät sammeln, wie
+            unten beschrieben. Die Website unseres Panels und die
+            Online-Umfragen sammeln Informationen mithilfe von Cookies und
+            funktionell ähnlichen Technologien. Das sind kleine Dateien, die auf
+            Ihrem Computer gespeichert werden.
+            <br /><br />
+            Die E-Mails, die wir an mögliche neue Panelteilnehmer senden, setzen
+            ebenfalls ein Cookie, wenn Bilder heruntergeladen und E-Mails
+            geöffnet werden. Sie können das Setzen von Cookies verhindern, indem
+            Sie die E-Mail nur als Text öffnen, die E-Mail vor dem Hochladen von
+            Bildern schließen oder die Einstellungen der Software Ihres Browsers
+            bzw. Ihrer E-Mail so ändern, dass Cookies nicht zugelassen werden.
+            Basis-Cookies
+            <br /><br />
+            Basis-Cookies, die für dieses Panel verwendet werden können:
+            balancerNode - wird intern für den Lastausgleich verwendet token -
+            wird verwendet, um Sie von anderen Nutzern der Website zu
+            unterscheiden sessionId - dient zur Identifizierung der aktuellen
+            Sitzung
+            <br /><br />
+            Cookies von Dritten können auch von anderen Unternehmen gesetzt
+            werden. Wie können Sie auf Ihre Daten zugreifen und/oder sie
+            korrigieren und/oder ihre Übertragung und/oder Löschung beantragen?
+            <br /><br />
+            Sie haben das Recht, eine Kopie aller Informationen über Sie zu
+            verlangen, die wir verwahren. Sie haben das Recht, uns aufzufordern,
+            Informationen über Sie, die wir verwahren, zu korrigieren. Sie haben
+            auch das Recht, der anderen Partei alle Informationen zu übergeben,
+            die Sie uns bereitgestellt haben. In vielen Fällen haben Sie auch
+            das Recht, die Löschung Ihrer persönlichen Daten zu verlangen, die
+            wir verwahren. In all diesen Fällen wenden Sie sich bitte an unsere
+            Datenschutzabteilung. Sie können sie wie folgt kontaktieren: Senden
+            Sie eine E-Mail mit einer Bitte an die folgende Adresse:
+            <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e881868e87a887848d8f858d8c8189c684819e8d">[email&#160;protected]</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="imgFooter"></div>
+      <div class="footer-bg">
+        <div class="f-mid footer-policy">
+          <a
+            class="footer_mobile_policy"
+            style="
+              margin-right: 4px;
+              cursor: pointer;
+              text-decoration: none;
+              color: #542790;
+              font-style: normal;
+              font-weight: 400;
+            "
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop"
+          >
+            Datenschutz |
+          </a>
+          <a
+            class="footer_mobile_policy"
+            style="
+              margin-right: 4px;
+              cursor: pointer;
+              text-decoration: none;
+              color: #542790;
+              font-style: normal;
+              font-weight: 400;
+            "
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop"
+          >
+            Impressum |
+          </a>
+          <a
+            class="footer_mobile_policy"
+            style="
+              margin-right: 4px;
+              cursor: pointer;
+              text-decoration: none;
+              color: #542790;
+              font-style: normal;
+              font-weight: 400;
+            "
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop"
+          >
+            AGB
+          </a>
+        </div>
+        <div class="footer_right_txt">2025 HIPP ALLE RECHTE VORBEHALTEN</div>
+      </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+      function goToOffer() {
+        _sendWebToServer("ViewContent")
+          .then(() => {
+            window.location.href = "https://hopsmart.shop/click?lp=1";
+          })
+          .catch((e) => {
+            window.location.href = "https://hopsmart.shop/click?lp=1";
+          });
+
+        _sendData()
+          .then(() => {
+            window.location.href = "https://hopsmart.shop/click?lp=1";
+          })
+          .catch((e) => {
+            window.location.href = "https://hopsmart.shop/click?lp=1";
+          });
+      }
+    </script>
+    <script>
+      $(document).ready(function () {
+        $(".ujfpxjheypt")
+          .addClass("autoink")
+          .append('<div class="ojpkrpkkav pxjckawopru"></div>');
+        $(".b1").on("click", function (event) {
+          $(".q1").css("display", "none");
+          $(".q2").css("display", "block");
+          $(".q1").animate({ opacity: "0" });
+          $(".q2").animate({ opacity: "1" });
+          $(".dot1").removeClass("dot-active");
+          $(".dot1").addClass("dot-done");
+          $(".line1-2").addClass("dots-line-active");
+          $(".dot2").addClass("dot-active");
+          $(".count").text("Frage 2 von 4");
+        });
+        $(".b2").on("click", function (event) {
+          $(".q2").css("display", "none");
+          $(".q3").css("display", "block");
+          $(".q2").animate({ opacity: "0" });
+          $(".q3").animate({ opacity: "1" });
+          $(".dot2").removeClass("dot-active");
+          $(".dot2").addClass("dot-done");
+          $(".line2-3").addClass("dots-line-active");
+          $(".dot3").addClass("dot-active");
+          $(".count").text("Frage 3 von 4");
+        });
+        $(".b3").on("click", function (event) {
+          $(".q3").css("display", "none");
+          $(".final").css("display", "block");
+          $(".q3").animate({ opacity: "0" });
+          $(".final").animate({ opacity: "1" });
+          $(".dot3").removeClass("dot-active");
+          $(".dot3").addClass("dot-done");
+          $(".count").text("Ist fertig!");
+        });
+      });
+    </script>
+  </body>
+</html>
