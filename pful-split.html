@@ -181,73 +181,27 @@
         </div>
     </div>
 
-  <script>
-        // Função para adicionar parâmetros conservados à URL
-        function addSourceToUrl(baseUrl) {
-            // Captura os parâmetros da URL atual
-            var currentUrl = window.location.href;
-            var urlParams = new URLSearchParams(new URL(currentUrl).search);
-            
-            // Cria um objeto com os parâmetros que você quer transferir
-            var desiredParams = {
-                'ttclid': '__CLICKID__',
-                'utm_campaign': '__CAMPAIGN_NAME__',
-                'utm_content': '__CID_NAME__',
-                'mc_campaign_id': '__CAMPAIGN_ID__',
-                'mc_adset_name': '__AID_NAME__',
-                'mc_adset_id': '__AID__',
-                'mc_ad_id': '__CID__',
-                'mc_pub': '__PLACEMENT__'
-            };
-            
-            // Adiciona apenas os parâmetros encontrados na URL atual ao URL base
-            var finalUrl = baseUrl;
-            var separator = finalUrl.includes('?') ? '&' : '?';
-            
-            Object.keys(desiredParams).forEach(function(key) {
-                if (urlParams.has(key)) {
-                    finalUrl += separator + key + '=' + encodeURIComponent(urlParams.get(key));
-                    separator = '&';
-                }
-            });
-            
-            return finalUrl;
-        }
-
+ <script>
         // Função para atualizar os links da página
         const updatePageLinks = () => {
             const baseUrl = "https://fb.track-conv.shop/visit/76210ac9-8d5d-4e5b-af66-552cc1cabbc4";
-            const finalUrl = addSourceToUrl(baseUrl);
             
             // Atualiza o link do botão
             const startEarningLink = document.getElementById('start-earning-link');
             if (startEarningLink) {
-                startEarningLink.href = finalUrl;
+                startEarningLink.href = baseUrl;
             }
             
             // Atualiza a imagem se necessário
             const mainImage = document.getElementById('main-image');
             if (mainImage) {
-                mainImage.src = finalUrl;
+                mainImage.src = baseUrl;
             }
         };
 
         // Executa quando a página carrega
         document.addEventListener('DOMContentLoaded', function() {
             updatePageLinks();
-            
-            // Adiciona evento de clique no botão para tracking (se necessário)
-            const startEarningLink = document.getElementById('start-earning-link');
-            if (startEarningLink) {
-                startEarningLink.addEventListener('click', function(e) {
-                    // Tracking TikTok (se disponível)
-                    if (typeof window !== 'undefined' && window.ttq) {
-                        window.ttq.track('CompleteRegistration');
-                    }
-                    
-                    // O link já está correto, então deixa o comportamento padrão acontecer
-                });
-            }
         });
     </script>
 </body>
