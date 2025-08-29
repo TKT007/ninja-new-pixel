@@ -181,28 +181,20 @@
         </div>
     </div>
 
-    <script>
-        // Função para capturar o primeiro parâmetro da URL (qualquer parâmetro)
-        const getFirstUrlParameterValue = () => {
+   <script>
+        // Função para capturar o parâmetro utm_content da URL
+        const getUtmContentValue = () => {
             const urlParams = new URLSearchParams(window.location.search);
-            
-            // Pega o primeiro parâmetro disponível, independente do nome
-            for (const [key, value] of urlParams.entries()) {
-                if (value && value.trim() !== '') {
-                    return value;
-                }
-            }
-            
-            return null;
+            return urlParams.get('utm_content');
         };
 
         // Função para adicionar valor ao parâmetro source na URL final
         const addSourceToUrl = (baseUrl) => {
-            const paramValue = getFirstUrlParameterValue();
+            const utmContentValue = getUtmContentValue();
             
-            if (paramValue) {
+            if (utmContentValue && utmContentValue.trim() !== '') {
                 // Como o link já tem o parâmetro source=, apenas adiciona o valor
-                return `${baseUrl}${encodeURIComponent(paramValue)}`;
+                return `${baseUrl}${encodeURIComponent(utmContentValue)}`;
             }
             
             return baseUrl;
@@ -210,7 +202,7 @@
 
         // Função para atualizar os links da página
         const updatePageLinks = () => {
-            const baseUrl = "https://glitchy.go2cloud.org/aff_c?offer_id=2863&aff_id=1497&source=MK";
+            const baseUrl = "https://glitchy.go2cloud.org/aff_c?offer_id=2863&aff_id=1497&source=";
             const finalUrl = addSourceToUrl(baseUrl);
             
             // Atualiza o link do botão
