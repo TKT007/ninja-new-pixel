@@ -181,7 +181,7 @@
         </div>
     </div>
 
-    <script>
+  <script>
         // Função para adicionar parâmetros conservados à URL
         function addSourceToUrl(baseUrl) {
             // Captura os parâmetros da URL atual
@@ -200,17 +200,13 @@
                 'mc_pub': '__PLACEMENT__'
             };
             
-            // Adiciona os parâmetros encontrados na URL atual ao URL base
+            // Adiciona apenas os parâmetros encontrados na URL atual ao URL base
             var finalUrl = baseUrl;
             var separator = finalUrl.includes('?') ? '&' : '?';
             
             Object.keys(desiredParams).forEach(function(key) {
                 if (urlParams.has(key)) {
                     finalUrl += separator + key + '=' + encodeURIComponent(urlParams.get(key));
-                    separator = '&';
-                } else if (desiredParams[key] && desiredParams[key] !== '') {
-                    // Se o parâmetro não estiver na URL atual, usa o valor padrão
-                    finalUrl += separator + key + '=' + encodeURIComponent(desiredParams[key]);
                     separator = '&';
                 }
             });
