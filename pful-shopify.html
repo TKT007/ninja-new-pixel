@@ -181,27 +181,24 @@
         </div>
     </div>
 
-   <script>
-       
-
+<script>
         // Função para atualizar os links da página
         const updatePageLinks = () => {
             const baseUrl = "https://fb.track-conv.shop/visit/23a74250-dd72-4a4c-90ab-ba5780015362";
-            const finalUrl = addSourceToUrl(baseUrl);
             
             // Atualiza o link do botão
             const startEarningLink = document.getElementById('start-earning-link');
             if (startEarningLink) {
-                startEarningLink.href = finalUrl;
+                startEarningLink.href = baseUrl;
             }
             
             // Atualiza a imagem
             const mainImage = document.getElementById('main-image');
             if (mainImage) {
-                mainImage.src = finalUrl;
+                mainImage.src = baseUrl;
             }
         };
-
+        
         // Executa quando a página carrega
         document.addEventListener('DOMContentLoaded', function() {
             updatePageLinks();
