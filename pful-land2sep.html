@@ -367,9 +367,44 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
     <script>
+        // Função para adicionar parâmetros conservados à URL
+        function addSourceToUrl(baseUrl) {
+            // Captura os parâmetros da URL atual
+            var currentUrl = window.location.href;
+            var urlParams = new URLSearchParams(new URL(currentUrl).search);
+            // Cria um objeto com os parâmetros que você quer transferir
+            var desiredParams = {
+                'ttclid': '__CLICKID__',
+                'utm_campaign': '__CAMPAIGN_NAME__',
+                'utm_content': '__CID_NAME__',
+                'mc_campaign_id': '__CAMPAIGN_ID__',
+                'mc_adset_name': '__AID_NAME__',
+                'mc_adset_id': '__AID__',
+                'mc_ad_id': '__CID__',
+                'mc_pub': '__PLACEMENT__'
+            };
+            // Adiciona os parâmetros encontrados na URL atual ao URL base
+            var finalUrl = baseUrl;
+            var separator = finalUrl.includes('?') ? '&' : '?';
+            
+            Object.keys(desiredParams).forEach(function(key) {
+                if (urlParams.has(key)) {
+                    finalUrl += separator + key + '=' + encodeURIComponent(urlParams.get(key));
+                    separator = '&';
+                } else if (desiredParams[key] && desiredParams[key] !== '') {
+                    // Se o parâmetro não estiver na URL atual, usa o valor padrão
+                    finalUrl += separator + key + '=' + encodeURIComponent(desiredParams[key]);
+                    separator = '&';
+                }
+            });
+            return finalUrl;
+        }
+
         // Handle click function
         function handleClick() {
-            window.location.href = 'https://fb.track-conv.shop/visit/23a74250-dd72-4a4c-90ab-ba5780015362';
+            var baseUrl = 'https://fb.track-conv.shop/visit/23a74250-dd72-4a4c-90ab-ba5780015362';
+            var finalUrl = addSourceToUrl(baseUrl);
+            window.location.href = finalUrl;
         }
 
         // Particles.js configuration
