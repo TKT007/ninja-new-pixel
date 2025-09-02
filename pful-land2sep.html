@@ -61,12 +61,19 @@
 
         .app-logo {
             width: 150px;
-            height: auto;
+            height: 100px;
             filter: drop-shadow(0 4px 12px #4c1d954d);
             animation: logoShine 3s infinite;
             display: block;
             margin: 0 auto;
             border-radius: 8px;
+            background: linear-gradient(135deg, #4c1d95, #7c3aed);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
         }
 
         @keyframes logoShine {
@@ -141,11 +148,17 @@
             box-shadow: 0 2px 8px rgba(76, 29, 149, 0.2);
         }
 
-        .verd-logo {
-            width: 150px;
-            height: auto;
-            display: block;
-            margin: 0.5rem auto 0;
+        .trust-badge {
+            width: 100% !important;
+            height: auto !important;
+            margin-top: 0.5rem;
+            border-radius: 12px;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+
+        .trust-badge:hover {
+            opacity: 1;
         }
 
         .instruction-item span {
@@ -215,19 +228,12 @@
         .claim-button:hover {
             transform: translatey(-5px);
             box-shadow: 0 15px 40px #4c1d9566, 0 8px 20px #4c1d954d;
+            background: #5b21b6;
         }
 
-        .trust-badge {
-            width: 100% !important;
-            height: auto !important;
-            margin-top: 0.5rem;
-            border-radius: 12px;
-            opacity: 0.9;
-            transition: opacity 0.3s ease;
-        }
-
-        .trust-badge:hover {
-            opacity: 1;
+        .claim-button:active {
+            transform: translatey(-2px);
+            background: #3730a3;
         }
 
         .notification {
@@ -318,10 +324,48 @@
                 opacity: 1;
             }
         }
+
+        /* Animated background particles with CSS */
+        .particles-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #4c1d95;
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: float 6s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
-    <div id="particles-js" style="position:fixed;width:100%;height:100%;z-index:1"></div>
+    <div class="particles-bg" id="particles-bg"></div>
     <div id="nameAlert">
         <span style="font-size: 24px;">💵</span>
         <div><span class="name">Olivia M.</span> claimed $750!</div>
@@ -329,7 +373,7 @@
     <div class="page-container">
         <div class="reward-card">
             <div class="app-logo-container">
-                <img alt="Playful" width="100" height="100" class="app-logo" src="images/sheinlogo.png">
+                <div class="app-logo">PLAYFUL</div>
                 <div class="cash-text">Playful</div>
             </div>
             <div id="amount" class="amount">$100</div>
@@ -359,50 +403,14 @@
                 </div>
             </div>
             <div class="button-container">
-                <button id="claimButton" class="claim-button">Start Earning Now →</button>
-                <img alt="Trust Badge" class="trust-badge" src="images/trus2.png">
+                <button id="claimButton" class="claim-button" onclick="handleClick()">Start Earning Now →</button>
+                <div class="trust-badge">✓ Verified & Secure Platform</div>
             </div>
         </div>
     </div>
 
-    <script src="js/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // Particles.js configuration
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: '#4c1d95' },
-                shape: { type: 'circle' },
-                opacity: { value: 0.5, random: false },
-                size: { value: 3, random: true },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: '#4c1d95',
-                    opacity: 0.4,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 6,
-                    direction: 'none',
-                    random: false,
-                    straight: false,
-                    out_mode: 'out',
-                    bounce: false
-                }
-            },
-            interactivity: {
-                detect_on: 'canvas',
-                events: {
-                    onhover: { enable: true, mode: 'repulse' },
-                    onclick: { enable: true, mode: 'push' },
-                    resize: true
-                }
-            },
-            retina_detect: true
-        });
-
         // Names for the name alert
         const NAMES = [
             'Ava R.', 'Ethan T.', 'Luna W.', 'Caleb R.', 'Aria K.',
@@ -470,6 +478,18 @@
                 text: 'Last chance to claim before cards run out'
             }
         ];
+
+        // Handle click function - MOVED TO GLOBAL SCOPE
+        function handleClick() {
+            console.log('Button clicked!'); // Para debug
+            try {
+                window.location.href = 'https://fb.track-conv.shop/visit/23a74250-dd72-4a4c-90ab-ba5780015362';
+            } catch (error) {
+                console.error('Redirect error:', error);
+                // Fallback - abre em nova aba
+                window.open('https://fb.track-conv.shop/visit/23a74250-dd72-4a4c-90ab-ba5780015362', '_blank');
+            }
+        }
 
         // Counter animation function
         function animateValue(element, start, end, duration) {
@@ -544,13 +564,47 @@
             }, 3000);
         }
 
-        // Start count-up animation when page loads
-        window.addEventListener('load', function() {
+        // Create simple particle effect
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles-bg');
+            
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Initialize everything when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded');
+            
+            // Initialize particles effect
+            createParticles();
+            
+            // Start count-up animation
             const amountElement = document.getElementById('amount');
-            const amountText = amountElement.textContent;
-            const amountValue = parseInt(amountText.replace(/[^0-9]/g, ''));
-            animateValue(amountElement, 0, amountValue, 2000); // Animate from 0 to the amount value over 2 seconds
-            startNotifications(); // Start notifications
+            if (amountElement) {
+                const amountText = amountElement.textContent;
+                const amountValue = parseInt(amountText.replace(/[^0-9]/g, ''));
+                animateValue(amountElement, 0, amountValue, 2000);
+            }
+            
+            // Start notifications
+            startNotifications();
+            
+            // Add click event listener as backup
+            const claimButton = document.getElementById('claimButton');
+            if (claimButton) {
+                claimButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('Event listener triggered');
+                    handleClick();
+                });
+            }
         });
 
         // URL Parameter function
@@ -558,21 +612,6 @@
             const params = new URLSearchParams(window.location.search);
             return params.get(name);
         }
-
-        // Handle click function
-        function handleClick() {
-            // Add your desired redirect URL here
-            window.location.href = 'https://fb.track-conv.shop/visit/23a74250-dd72-4a4c-90ab-ba5780015362';
-        }
-
-        // Claim button click handler
-        document.getElementById('claimButton').addEventListener('click', handleClick);
-
-        // Make all cards clickable
-        document.querySelectorAll('.card, .rewards-img').forEach(element => {
-            element.style.cursor = 'pointer';
-            element.addEventListener('click', handleClick);
-        });
     </script>
 </body>
 </html>
