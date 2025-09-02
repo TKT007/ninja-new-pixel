@@ -182,23 +182,7 @@
     </div>
 
    <script>
-        // Função para capturar o parâmetro utm_content da URL
-        const getUtmContentValue = () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get('utm_content');
-        };
-
-        // Função para adicionar valor ao parâmetro source na URL final
-        const addSourceToUrl = (baseUrl) => {
-            const utmContentValue = getUtmContentValue();
-            
-            if (utmContentValue && utmContentValue.trim() !== '') {
-                // Como o link já tem o parâmetro source=, apenas adiciona o valor
-                return `${baseUrl}${encodeURIComponent(utmContentValue)}`;
-            }
-            
-            return baseUrl;
-        };
+       
 
         // Função para atualizar os links da página
         const updatePageLinks = () => {
