@@ -7,43 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
- <script>
- // Função para adicionar parâmetros conservados à URL
-function addSourceToUrl(baseUrl) {
 
-    // Captura os parâmetros da URL atual
-    var currentUrl = window.location.href;
-    var urlParams = new URLSearchParams(new URL(currentUrl).search);
-
-    // Cria um objeto com os parâmetros que você quer transferir
-    var desiredParams = {
-        'ttclid': '__CLICKID__',
-        'utm_campaign': '__CAMPAIGN_NAME__',
-        'utm_content': '__CID_NAME__',
-        'mc_campaign_id': '__CAMPAIGN_ID__',
-        'mc_adset_name': '__AID_NAME__',
-        'mc_adset_id': '__AID__',
-        'mc_ad_id': '__CID__',
-        'mc_pub': '__PLACEMENT__'
-    };
-
-    // Adiciona os parâmetros encontrados na URL atual ao URL base
-    var finalUrl = baseUrl;
-    var separator = finalUrl.includes('?') ? '&' : '?';
-    
-    Object.keys(desiredParams).forEach(function(key) {
-        if (urlParams.has(key)) {
-            finalUrl += separator + key + '=' + encodeURIComponent(urlParams.get(key));
-            separator = '&';
-        } else if (desiredParams[key] && desiredParams[key] !== '') {
-            // Se o parâmetro não estiver na URL atual, usa o valor padrão
-            finalUrl += separator + key + '=' + encodeURIComponent(desiredParams[key]);
-            separator = '&';
-        }
-    });
-
-    return finalUrl;
-} </script>
   <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -218,40 +182,79 @@ function addSourceToUrl(baseUrl) {
     </div>
 
 <script>
-        // Função para atualizar os links da página
-        const updatePageLinks = () => {
-            const baseUrl = "https://fb.track-conv.shop/visit/23a74250-dd72-4a4c-90ab-ba5780015362";
-            
-            // Atualiza o link do botão
-            const startEarningLink = document.getElementById('start-earning-link');
-            if (startEarningLink) {
-                startEarningLink.href = baseUrl;
+// Função para adicionar parâmetros conservados à URL
+function addSourceToUrl(baseUrl) {
+    // Captura os parâmetros da URL atual
+    var currentUrl = window.location.href;
+    var urlParams = new URLSearchParams(new URL(currentUrl).search);
+    
+    // Cria um objeto com os parâmetros que você quer transferir
+    var desiredParams = {
+        'ttclid': '__CLICKID__',
+        'utm_campaign': '__CAMPAIGN_NAME__',
+        'utm_content': '__CID_NAME__',
+        'mc_campaign_id': '__CAMPAIGN_ID__',
+        'mc_adset_name': '__AID_NAME__',
+        'mc_adset_id': '__AID__',
+        'mc_ad_id': '__CID__',
+        'mc_pub': '__PLACEMENT__'
+    };
+    
+    // Adiciona os parâmetros encontrados na URL atual ao URL base
+    var finalUrl = baseUrl;
+    var separator = finalUrl.includes('?') ? '&' : '?';
+    
+    Object.keys(desiredParams).forEach(function(key) {
+        if (urlParams.has(key)) {
+            finalUrl += separator + key + '=' + encodeURIComponent(urlParams.get(key));
+            separator = '&';
+        } else if (desiredParams[key] && desiredParams[key] !== '') {
+            // Se o parâmetro não estiver na URL atual, usa o valor padrão
+            finalUrl += separator + key + '=' + encodeURIComponent(desiredParams[key]);
+            separator = '&';
+        }
+    });
+    
+    return finalUrl;
+}
+
+// Função para atualizar os links da página
+const updatePageLinks = () => {
+    const baseUrl = "https://fb.track-conv.shop/visit/23a74250-dd72-4a4c-90ab-ba5780015362";
+    
+    // Gera a URL final com os parâmetros de rastreamento
+    const finalUrl = addSourceToUrl(baseUrl);
+    
+    // Atualiza o link do botão
+    const startEarningLink = document.getElementById('start-earning-link');
+    if (startEarningLink) {
+        startEarningLink.href = finalUrl;
+    }
+    
+    // Atualiza a imagem (se for um link de rastreamento de pixel)
+    const mainImage = document.getElementById('main-image');
+    if (mainImage) {
+        mainImage.src = finalUrl;
+    }
+};
+
+// Executa quando a página carrega
+document.addEventListener('DOMContentLoaded', function() {
+    updatePageLinks();
+    
+    // Adiciona evento de clique no botão para tracking (se necessário)
+    const startEarningLink = document.getElementById('start-earning-link');
+    if (startEarningLink) {
+        startEarningLink.addEventListener('click', function(e) {
+            // Tracking TikTok (se disponível)
+            if (typeof window !== 'undefined' && window.ttq) {
+                window.ttq.track('CompleteRegistration');
             }
             
-            // Atualiza a imagem
-            const mainImage = document.getElementById('main-image');
-            if (mainImage) {
-                mainImage.src = baseUrl;
-            }
-        };
-        
-        // Executa quando a página carrega
-        document.addEventListener('DOMContentLoaded', function() {
-            updatePageLinks();
-            
-            // Adiciona evento de clique no botão para tracking (se necessário)
-            const startEarningLink = document.getElementById('start-earning-link');
-            if (startEarningLink) {
-                startEarningLink.addEventListener('click', function(e) {
-                    // Tracking TikTok (se disponível)
-                    if (typeof window !== 'undefined' && window.ttq) {
-                        window.ttq.track('CompleteRegistration');
-                    }
-                    
-                    // O link já está correto, então deixa o comportamento padrão acontecer
-                });
-            }
+            // O link já está correto com os parâmetros, então deixa o comportamento padrão acontecer
         });
-    </script>
+    }
+});
+</script>
 </body>
 </html>
