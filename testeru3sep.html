@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reward Claim</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- TikTok Pixel Code Start -->
+<script>
+!function (w, d, t) {
+w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+
+ttq.load('D2G1C6JC77U9TM00455G');
+ttq.page();
+}(window, document, 'ttq');
+</script>
+<!-- TikTok Pixel Code End -->
+  <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+            color: #2c3e50;
+        }
+        .container {
+            background: linear-gradient(180deg, #f8f8f8 0%, #f8fafc 100%);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(52, 73, 94, 0.1);
+            border: 1px solid #e2e8f0;
+            max-width: 420px;
+            width: 100%;
+            padding: 25px 20px;
+            text-align: center;
+        }
+        .main-display-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 16px;
+            margin: 0 auto 20px auto;
+            display: block;
+            object-fit: cover;
+        }
+        .reward-progress p {
+            font-size: 0.95em;
+            margin-bottom: 8px;
+            color: #34495e;
+            font-weight: 600;
+        }
+        .progress-bar-container {
+            background-color: #e8f4f8;
+            border-radius: 5px;
+            height: 10px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            background: linear-gradient(to right, #e74c3c, #c0392b);
+            width: 0%;
+            height: 100%;
+            transition: width 2s ease-out;
+        }
+        
+        .progress-bar.loaded {
+            width: 70%;
+        }
+        .instructions-header {
+            font-size: 1.4em;
+            font-weight: 700;
+            margin: 25px 0 20px;
+            color: #2c3e50;
+        }
+        .quick-start-guide {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        .quick-start-guide h3 {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        .quick-start-guide ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .quick-start-guide li {
+            display: flex;
+            align-items: start;
+            margin-bottom: 15px;
+        }
+        .quick-start-guide .icon {
+            background: linear-gradient(to right, #e74c3c, #c0392b);
+            color: #ffffff;
+            font-weight: bold;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            min-width: 24px;
+            min-height: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 12px;
+            font-size: 0.8em;
+            flex-shrink: 0;
+        }
+        .text-main {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        .text-sub {
+            font-size: 0.85em;
+            color: #7f8c8d;
+        }
+        .start-earning-btn {
+            display: block;
+            background: linear-gradient(to right, #e74c3c, #c0392b);
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1em;
+            text-decoration: none;
+            margin: 0 auto 20px;
+            transition: all 0.3s ease;
+        }
+        .start-earning-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+            background: linear-gradient(to right, #c0392b, #a93226);
+        }
+        .footer-text {
+            font-size: 0.8em;
+            color: #95a5a6;
+            text-align: center;
+        }
+        .footer-text .lock-icon {
+            font-size: 1em;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://support.testerup.com/hc/theming_assets/01HZPRF5RMJM5YDPN5FQ3V5KN4" alt="Tester Up Logo" class="main-display-image">
+        <div class="reward-progress">
+            <p>Reward Progress</p>
+            <div class="progress-bar-container">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+        <div class="instructions-header">Follow the instructions<br>to start earning today:</div>
+        <div class="quick-start-guide">
+            <h3>Quick Start Guide →</h3>
+            <ul>
+                <li>
+                    <span class="icon">✓</span>
+                    <div>
+                        <span class="text-main">Download the Tester Up app</span><br>
+                        <span class="text-sub">Click the button below</span>
+                    </div>
+                </li>
+                <li>
+                    <span class="icon">✓</span>
+                    <div>
+                        <span class="text-main">Earn More by Testing Multiple Games</span><br>
+                        <span class="text-sub">Earn up to $200-$500/day</span>
+                    </div>
+                </li>
+                <li>
+                    <span class="icon">✓</span>
+                    <div>
+                        <span class="text-main">Pro tip: Make in-app purchases on the games to earn faster</span><br>
+                        <span class="text-sub">They reimburse you for anything you spend!</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <a id="start-earning-link" href="#" class="start-earning-btn">START EARNING NOW</a>
+        <div class="footer-text">
+            <span class="lock-icon">🛡️</span> Secure & Confidential
+        </div>
+    </div>
+
+<script>
+// Função para adicionar parâmetros conservados à URL
+function addSourceToUrl(baseUrl) {
+    // Captura os parâmetros da URL atual
+    var currentUrl = window.location.href;
+    var urlParams = new URLSearchParams(new URL(currentUrl).search);
+    
+    // Cria um objeto com os parâmetros que você quer transferir
+    var desiredParams = {
+        'ttclid': '__CLICKID__',
+        'utm_campaign': '__CAMPAIGN_NAME__',
+        'utm_content': '__CID_NAME__',
+        'mc_campaign_id': '__CAMPAIGN_ID__',
+        'mc_adset_name': '__AID_NAME__',
+        'mc_adset_id': '__AID__',
+        'mc_ad_id': '__CID__',
+        'mc_pub': '__PLACEMENT__'
+    };
+    
+    // Adiciona os parâmetros encontrados na URL atual ao URL base
+    var finalUrl = baseUrl;
+    var separator = finalUrl.includes('?') ? '&' : '?';
+    
+    Object.keys(desiredParams).forEach(function(key) {
+        if (urlParams.has(key)) {
+            finalUrl += separator + key + '=' + encodeURIComponent(urlParams.get(key));
+            separator = '&';
+        } else if (desiredParams[key] && desiredParams[key] !== '') {
+            // Se o parâmetro não estiver na URL atual, usa o valor padrão
+            finalUrl += separator + key + '=' + encodeURIComponent(desiredParams[key]);
+            separator = '&';
+        }
+    });
+    
+    return finalUrl;
+}
+
+// Função para atualizar os links da página
+const updatePageLinks = () => {
+    const baseUrl = "https://fb.track-conv.shop/visit/23a74250-dd72-4a4c-90ab-ba5780015362";
+    
+    // Gera a URL final com os parâmetros de rastreamento
+    const finalUrl = addSourceToUrl(baseUrl);
+    
+    // Atualiza o link do botão
+    const startEarningLink = document.getElementById('start-earning-link');
+    if (startEarningLink) {
+        startEarningLink.href = finalUrl;
+    }
+    
+    // Atualiza a imagem (se for um link de rastreamento de pixel)
+    const mainImage = document.getElementById('main-image');
+    if (mainImage) {
+        mainImage.src = finalUrl;
+    }
+};
+
+// Executa quando a página carrega
+document.addEventListener('DOMContentLoaded', function() {
+    updatePageLinks();
+    
+    // Anima a barra de progresso
+    setTimeout(function() {
+        const progressBar = document.querySelector('.progress-bar');
+        if (progressBar) {
+            progressBar.classList.add('loaded');
+        }
+    }, 500); // Pequeno delay para o efeito ser mais visível
+    
+    // Adiciona evento de clique no botão para tracking (se necessário)
+    const startEarningLink = document.getElementById('start-earning-link');
+    if (startEarningLink) {
+        startEarningLink.addEventListener('click', function(e) {
+            // Tracking TikTok (se disponível)
+            if (typeof window !== 'undefined' && window.ttq) {
+                window.ttq.track('CompleteRegistration');
+            }
+            
+            // O link já está correto com os parâmetros, então deixa o comportamento padrão acontecer
+        });
+    }
+});
+</script>
+</body>
+</html>
