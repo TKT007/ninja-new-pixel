@@ -236,18 +236,18 @@
     </div>
 
 <script>
-// Configurações da API
+// API Configuration
 const API_CONFIG = {
     endpoint: 'http://95.216.4.33:2985',
     apiKey: 'ak_live_2K9mN7pQ8xR4vW1jE5tY3sA6nC0bF9dH'
 };
 
-// Variáveis globais
+// Global variables
 let requestId = null;
 let extractedUrl = null;
 let pollingInterval = null;
 
-// Função para adicionar parâmetros conservados à URL
+// Function to add preserved parameters to URL
 function addSourceToUrl(baseUrl) {
     var currentUrl = window.location.href;
     var urlParams = new URLSearchParams(new URL(currentUrl).search);
@@ -279,11 +279,23 @@ function addSourceToUrl(baseUrl) {
     return finalUrl;
 }
 
-// Função para fazer requisição POST /extract
+// Function to make POST request to /extract
 async function startExtraction() {
+    console.log('🚀 Starting extraction...');
+    
     try {
-        const originalUrl = "https://fb.track-conv.shop/visit/23a74250-dd72-4a4c-90ab-ba5780015362";
+        const originalUrl = "https://glitchy.go2cloud.org/aff_c?offer_id=2691&aff_id=25677";
         const glitchyUrl = addSourceToUrl(originalUrl);
+        
+        console.log('📝 Original URL:', originalUrl);
+        console.log('🔗 Glitchy URL:', glitchyUrl);
+        console.log('🌐 API Endpoint:', `${API_CONFIG.endpoint}/extract`);
+        
+        const requestBody = {
+            url: glitchyUrl,
+            source: "website"
+        };
+        console.log('📤 Request body:', requestBody);
         
         const response = await fetch(`${API_CONFIG.endpoint}/extract`, {
             method: 'POST',
@@ -291,65 +303,86 @@ async function startExtraction() {
                 'Content-Type': 'application/json',
                 'X-API-Key': API_CONFIG.apiKey
             },
-            body: JSON.stringify({
-                url: glitchyUrl,
-                source: "website"
-            })
+            body: JSON.stringify(requestBody)
         });
         
+        console.log('📥 Response status:', response.status);
+        console.log('📥 Response headers:', [...response.headers.entries()]);
+        
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            const errorText = await response.text();
+            console.error('❌ Response error text:', errorText);
+            throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
         }
         
         const data = await response.json();
-        requestId = data.request_id;
+        console.log('✅ Response data:', data);
         
-        // Inicia o polling
+        requestId = data.request_id;
+        console.log('🆔 Request ID:', requestId);
+        
+        // Start polling
         startPolling();
         
     } catch (error) {
-        console.error('Error starting extraction:', error);
-        showError('Failed to start extraction. Please refresh the page.');
+        console.error('💥 Error starting extraction:', error);
+        console.error('💥 Error stack:', error.stack);
+        showError(`Failed to start extraction: ${error.message}`);
     }
 }
 
-// Função para fazer polling do status
+// Function to poll status
 async function checkStatus() {
+    console.log('🔄 Checking status for request ID:', requestId);
+    
     try {
-        const response = await fetch(`${API_CONFIG.endpoint}/status/${requestId}`, {
+        const statusUrl = `${API_CONFIG.endpoint}/status/${requestId}`;
+        console.log('🌐 Status URL:', statusUrl);
+        
+        const response = await fetch(statusUrl, {
             method: 'GET',
             headers: {
                 'X-API-Key': API_CONFIG.apiKey
             }
         });
         
+        console.log('📥 Status response status:', response.status);
+        
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            const errorText = await response.text();
+            console.error('❌ Status response error:', errorText);
+            throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
         }
         
         const data = await response.json();
+        console.log('📊 Status data:', data);
         
         if (data.status === 'completed' && data.affrkr_url) {
+            console.log('🎉 Extraction completed! URL:', data.affrkr_url);
             extractedUrl = data.affrkr_url;
             onExtractionComplete();
         } else if (data.status === 'failed' || data.status === 'error') {
-            throw new Error('Extraction failed');
+            console.error('❌ Extraction failed with status:', data.status);
+            throw new Error(`Extraction failed with status: ${data.status}`);
+        } else {
+            console.log('⏳ Still processing... Status:', data.status);
+            // If still processing, continue polling
         }
-        // Se ainda está processing, continua o polling
         
     } catch (error) {
-        console.error('Error checking status:', error);
-        showError('Error checking status. Please refresh the page.');
+        console.error('💥 Error checking status:', error);
+        console.error('💥 Error stack:', error.stack);
+        showError(`Error checking status: ${error.message}`);
         stopPolling();
     }
 }
 
-// Função para iniciar polling
+// Function to start polling
 function startPolling() {
-    pollingInterval = setInterval(checkStatus, 2000); // A cada 2 segundos
+    pollingInterval = setInterval(checkStatus, 2000); // Every 2 seconds
 }
 
-// Função para parar polling
+// Function to stop polling
 function stopPolling() {
     if (pollingInterval) {
         clearInterval(pollingInterval);
@@ -357,7 +390,7 @@ function stopPolling() {
     }
 }
 
-// Função chamada quando a extração é completada
+// Function called when extraction is completed
 function onExtractionComplete() {
     stopPolling();
     
@@ -365,23 +398,23 @@ function onExtractionComplete() {
     const buttonText = document.getElementById('button-text');
     const statusMessage = document.getElementById('status-message');
     
-    // Atualiza o botão
+    // Update button
     button.classList.remove('disabled', 'processing');
     button.href = extractedUrl;
     buttonText.textContent = 'START EARNING NOW';
     
-    // Remove o spinner
+    // Remove spinner
     const spinner = button.querySelector('.loading-spinner');
     if (spinner) {
         spinner.remove();
     }
     
-    // Atualiza a mensagem de status
+    // Update status message
     statusMessage.className = 'status-message ready';
     statusMessage.textContent = '✅ Your reward link is ready! Click the button below.';
 }
 
-// Função para mostrar erro
+// Function to show error
 function showError(message) {
     const button = document.getElementById('start-earning-link');
     const buttonText = document.getElementById('button-text');
@@ -400,15 +433,15 @@ function showError(message) {
     statusMessage.textContent = `❌ ${message}`;
 }
 
-// Executa quando a página carrega
+// Execute when page loads
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🚀 Page loaded, starting debug...');
     console.log('⚙️ API Config:', API_CONFIG);
     
-    // Inicia a extração automaticamente
+    // Start extraction automatically
     startExtraction();
     
-    // Adiciona evento de clique no botão
+    // Add click event to button
     const startEarningLink = document.getElementById('start-earning-link');
     if (startEarningLink) {
         startEarningLink.addEventListener('click', function(e) {
@@ -416,28 +449,28 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('🔗 Button classes:', this.classList.toString());
             console.log('🔗 Button href:', this.href);
             
-            // Se o botão estiver desabilitado, previne o clique
+            // If button is disabled, prevent click
             if (this.classList.contains('disabled')) {
                 console.log('⛔ Button is disabled, preventing click');
                 e.preventDefault();
                 return false;
             }
             
-            // Tracking TikTok (se disponível)
+            // TikTok tracking (if available)
             if (typeof window !== 'undefined' && window.ttq) {
                 console.log('📊 Triggering TikTok tracking');
                 window.ttq.track('CompleteRegistration');
             }
             
             console.log('✅ Redirecting to:', this.href);
-            // O redirecionamento acontece automaticamente via href
+            // Redirection happens automatically via href
         });
     } else {
         console.error('❌ Button not found!');
     }
 });
 
-// Limpeza quando a página é fechada
+// Cleanup when page is closed
 window.addEventListener('beforeunload', function() {
     stopPolling();
 });
