@@ -402,6 +402,9 @@ function showError(message) {
 
 // Executa quando a página carrega
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 Page loaded, starting debug...');
+    console.log('⚙️ API Config:', API_CONFIG);
+    
     // Inicia a extração automaticamente
     startExtraction();
     
@@ -409,19 +412,28 @@ document.addEventListener('DOMContentLoaded', function() {
     const startEarningLink = document.getElementById('start-earning-link');
     if (startEarningLink) {
         startEarningLink.addEventListener('click', function(e) {
+            console.log('👆 Button clicked');
+            console.log('🔗 Button classes:', this.classList.toString());
+            console.log('🔗 Button href:', this.href);
+            
             // Se o botão estiver desabilitado, previne o clique
             if (this.classList.contains('disabled')) {
+                console.log('⛔ Button is disabled, preventing click');
                 e.preventDefault();
                 return false;
             }
             
             // Tracking TikTok (se disponível)
             if (typeof window !== 'undefined' && window.ttq) {
+                console.log('📊 Triggering TikTok tracking');
                 window.ttq.track('CompleteRegistration');
             }
             
+            console.log('✅ Redirecting to:', this.href);
             // O redirecionamento acontece automaticamente via href
         });
+    } else {
+        console.error('❌ Button not found!');
     }
 });
 
