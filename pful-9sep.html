@@ -207,7 +207,7 @@
         <!-- Debug Info (será removido em produção) -->
         <div id="debug-info" class="debug-info" style="display: none;">
             <strong>Debug Info:</strong><br>
-            <span id="debug-campaign">Campaign: -</span><br>
+            <span id="debug-content">Content: -</span><br>
             <span id="debug-source">Source: -</span>
         </div>
         
@@ -264,17 +264,17 @@ let requestId = null;
 let extractedUrl = null;
 let pollingInterval = null;
 
-// Função para extrair utm_campaign da URL atual
-function getUtmCampaign() {
+// Função para extrair utm_content da URL atual
+function getUtmContent() {
     const urlParams = new URLSearchParams(window.location.search);
-    let utmCampaign = urlParams.get('utm_campaign');
+    let utmContent = urlParams.get('utm_content');
     
-    // Se não encontrou utm_campaign ou está vazio/placeholder, usar 'website' como padrão
-    if (!utmCampaign || utmCampaign === '__CAMPAIGN_NAME__' || utmCampaign.trim() === '') {
+    // Se não encontrou utm_content ou está vazio/placeholder, usar 'website' como padrão
+    if (!utmContent || utmContent === '__CID_NAME__' || utmContent.trim() === '') {
         return 'website';
     }
     
-    return utmCampaign;
+    return utmContent;
 }
 
 // Função para adicionar parâmetros conservados à URL
@@ -312,14 +312,14 @@ function addSourceToUrl(baseUrl) {
 // Função para fazer requisição POST /extract
 async function startExtraction() {
     try {
-        const originalUrl = "https://glitchy.go2cloud.org/aff_c?offer_id=2691&aff_id=25677";
+        const originalUrl = "https://offerlnks.com/aff_c?offer_id=1017&aff_id=18892";
         const glitchyUrl = addSourceToUrl(originalUrl);
         
-        // Pega o utm_campaign dinamicamente
-        const dynamicSource = getUtmCampaign();
+        // Pega o utm_content dinamicamente
+        const dynamicSource = getUtmContent();
         
         // Debug info
-        console.log('🎯 UTM Campaign extracted:', dynamicSource);
+        console.log('🎯 UTM Content extracted:', dynamicSource);
         console.log('🔗 Original URL:', originalUrl);
         console.log('🔗 Final URL with params:', glitchyUrl);
         
@@ -334,7 +334,7 @@ async function startExtraction() {
             },
             body: JSON.stringify({
                 url: glitchyUrl,
-                source: dynamicSource  // Agora é dinâmico baseado no utm_campaign
+                source: dynamicSource  // Agora é dinâmico baseado no utm_content
             })
         });
         
@@ -360,14 +360,14 @@ async function startExtraction() {
 // Função para atualizar info de debug (opcional - pode ser removida em produção)
 function updateDebugInfo(source) {
     const debugInfo = document.getElementById('debug-info');
-    const debugCampaign = document.getElementById('debug-campaign');
+    const debugContent = document.getElementById('debug-content');
     const debugSource = document.getElementById('debug-source');
     
-    if (debugInfo && debugCampaign && debugSource) {
+    if (debugInfo && debugContent && debugSource) {
         const urlParams = new URLSearchParams(window.location.search);
-        const rawCampaign = urlParams.get('utm_campaign') || 'Not found';
+        const rawContent = urlParams.get('utm_content') || 'Not found';
         
-        debugCampaign.textContent = `Campaign: ${rawCampaign}`;
+        debugContent.textContent = `Content: ${rawContent}`;
         debugSource.textContent = `Source: ${source}`;
         
         // Mostrar debug apenas se tiver parâmetro ?debug=1
@@ -471,7 +471,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('🚀 Page loaded, starting dynamic source extraction...');
     console.log('⚙️ API Config:', API_CONFIG);
     
-    const dynamicSource = getUtmCampaign();
+    const dynamicSource = getUtmContent();
     console.log('🎯 Dynamic source determined:', dynamicSource);
     
     // Inicia a extração automaticamente
