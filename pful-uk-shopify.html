@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -122,11 +123,56 @@
             text-decoration: none;
             margin: 0 auto 20px;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
-        .start-earning-btn:hover {
+        .start-earning-btn:hover:not(.disabled) {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(109, 0, 190, 0.3);
             background: linear-gradient(to right, #2e006f, #1a0044);
+        }
+        .start-earning-btn.disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+        .start-earning-btn.processing {
+            background: #f39c12;
+        }
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #ffffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .status-message {
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        .status-message.processing {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        .status-message.ready {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status-message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
         }
         .footer-text {
             font-size: 0.8em;
@@ -136,6 +182,16 @@
         .footer-text .lock-icon {
             font-size: 1em;
             margin-right: 5px;
+        }
+        .debug-info {
+            background: #e8f4f8;
+            border: 1px solid #b3d9ff;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 0.8em;
+            color: #2c3e50;
+            text-align: left;
         }
     </style>
 </head>
@@ -148,6 +204,19 @@
                 <div class="progress-bar"></div>
             </div>
         </div>
+        
+        <!-- Debug Info (será removido em produção) -->
+        <div id="debug-info" class="debug-info" style="display: none;">
+            <strong>Debug Info:</strong><br>
+            <span id="debug-content">Content: -</span><br>
+            <span id="debug-source">Source: -</span>
+        </div>
+        
+        <!-- Status Message -->
+        <div id="status-message" class="status-message processing">
+            🔄 Preparing your reward link...
+        </div>
+        
         <div class="instructions-header">Follow the instructions<br>to start earning today:</div>
         <div class="quick-start-guide">
             <h3>Quick Start Guide →</h3>
@@ -163,7 +232,7 @@
                     <span class="icon">✓</span>
                     <div>
                         <span class="text-main">Earn More by Testing Multiple Games</span><br>
-                        <span class="text-sub">Earn up to £200-£500/day</span>
+                        <span class="text-sub">Earn up to $200-$500/day</span>
                     </div>
                 </li>
                 <li>
@@ -175,74 +244,273 @@
                 </li>
             </ul>
         </div>
-        <a id="start-earning-link" href="#" class="start-earning-btn">START EARNING NOW</a>
+        <a id="start-earning-link" href="#" class="start-earning-btn disabled">
+            <span class="loading-spinner"></span>
+            <span id="button-text">Generating link...</span>
+        </a>
         <div class="footer-text">
             <span class="lock-icon">🛡️</span> Secure & Confidential
         </div>
     </div>
 
-    <script>
-        // Função para capturar o primeiro parâmetro da URL (qualquer parâmetro)
-        const getFirstUrlParameterValue = () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            
-            // Pega o primeiro parâmetro disponível, independente do nome
-            for (const [key, value] of urlParams.entries()) {
-                if (value && value.trim() !== '') {
-                    return value;
-                }
-            }
-            
-            return null;
-        };
+<script>
+// Configurações da API
+const API_CONFIG = {
+    endpoint: 'https://collected-estimates-hair-commission.trycloudflare.com',
+    apiKey: 'ak_live_2K9mN7pQ8xR4vW1jE5tY3sA6nC0bF9dH'
+};
 
-        // Função para adicionar valor ao parâmetro source na URL final
-        const addSourceToUrl = (baseUrl) => {
-            const paramValue = getFirstUrlParameterValue();
-            
-            if (paramValue) {
-                // Como o link já tem o parâmetro source=, apenas adiciona o valor
-                return `${baseUrl}${encodeURIComponent(paramValue)}`;
-            }
-            
-            return baseUrl;
-        };
+// Variáveis globais
+let requestId = null;
+let extractedUrl = null;
+let pollingInterval = null;
 
-        // Função para atualizar os links da página
-        const updatePageLinks = () => {
-            const baseUrl = "https://glitchy.go2cloud.org/aff_c?offer_id=2211&aff_id=1497&source=SHPFY-MAXC-";
-            const finalUrl = addSourceToUrl(baseUrl);
-            
-            // Atualiza o link do botão
-            const startEarningLink = document.getElementById('start-earning-link');
-            if (startEarningLink) {
-                startEarningLink.href = finalUrl;
-            }
-            
-            // Atualiza a imagem
-            const mainImage = document.getElementById('main-image');
-            if (mainImage) {
-                mainImage.src = finalUrl;
-            }
-        };
+// Função para extrair utm_content da URL atual
+function getUtmContent() {
+    const urlParams = new URLSearchParams(window.location.search);
+    let utmContent = urlParams.get('utm_content');
+    
+    // Se não encontrou utm_content ou está vazio/placeholder, usar 'website' como padrão
+    if (!utmContent || utmContent === '__CID_NAME__' || utmContent.trim() === '') {
+        return 'website';
+    }
+    
+    return utmContent;
+}
 
-        // Executa quando a página carrega
-        document.addEventListener('DOMContentLoaded', function() {
-            updatePageLinks();
-            
-            // Adiciona evento de clique no botão para tracking (se necessário)
-            const startEarningLink = document.getElementById('start-earning-link');
-            if (startEarningLink) {
-                startEarningLink.addEventListener('click', function(e) {
-                    // Tracking TikTok (se disponível)
-                    if (typeof window !== 'undefined' && window.ttq) {
-                        window.ttq.track('CompleteRegistration');
-                    }
-                    
-                    // O link já está correto, então deixa o comportamento padrão acontecer
-                });
+// Função para adicionar parâmetros conservados à URL
+function addSourceToUrl(baseUrl) {
+    var currentUrl = window.location.href;
+    var urlParams = new URLSearchParams(new URL(currentUrl).search);
+    
+    var desiredParams = {
+        'ttclid': '__CLICKID__',
+        'utm_campaign': '__CAMPAIGN_NAME__',
+        'utm_content': '__CID_NAME__',
+        'mc_campaign_id': '__CAMPAIGN_ID__',
+        'mc_adset_name': '__AID_NAME__',
+        'mc_adset_id': '__AID__',
+        'mc_ad_id': '__CID__',
+        'mc_pub': '__PLACEMENT__'
+    };
+    
+    var finalUrl = baseUrl;
+    var separator = finalUrl.includes('?') ? '&' : '?';
+    
+    Object.keys(desiredParams).forEach(function(key) {
+        if (urlParams.has(key)) {
+            finalUrl += separator + key + '=' + encodeURIComponent(urlParams.get(key));
+            separator = '&';
+        } else if (desiredParams[key] && desiredParams[key] !== '') {
+            finalUrl += separator + key + '=' + encodeURIComponent(desiredParams[key]);
+            separator = '&';
+        }
+    });
+    
+    return finalUrl;
+}
+
+// Função para fazer requisição POST /extract
+async function startExtraction() {
+    try {
+        const originalUrl = "https://glitchy.go2cloud.org/aff_c?offer_id=2691&aff_id=25677";
+        const glitchyUrl = addSourceToUrl(originalUrl);
+        
+        // Pega o utm_content dinamicamente
+        const dynamicSource = getUtmContent();
+        
+        // Debug info
+        console.log('🎯 UTM Content extracted:', dynamicSource);
+        console.log('🔗 Original URL:', originalUrl);
+        console.log('🔗 Final URL with params:', glitchyUrl);
+        
+        // Atualiza o debug visual (se habilitado)
+        updateDebugInfo(dynamicSource);
+        
+        const response = await fetch(`${API_CONFIG.endpoint}/extract`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-API-Key': API_CONFIG.apiKey
+            },
+            body: JSON.stringify({
+                url: glitchyUrl,
+                source: dynamicSource  // Agora é dinâmico baseado no utm_content
+            })
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        requestId = data.request_id;
+        
+        console.log('✅ Extraction started with request ID:', requestId);
+        console.log('📊 Source used:', dynamicSource);
+        
+        // Inicia o polling
+        startPolling();
+        
+    } catch (error) {
+        console.error('Error starting extraction:', error);
+        showError('Failed to start extraction. Please refresh the page.');
+    }
+}
+
+// Função para atualizar info de debug (opcional - pode ser removida em produção)
+function updateDebugInfo(source) {
+    const debugInfo = document.getElementById('debug-info');
+    const debugContent = document.getElementById('debug-content');
+    const debugSource = document.getElementById('debug-source');
+    
+    if (debugInfo && debugContent && debugSource) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const rawContent = urlParams.get('utm_content') || 'Not found';
+        
+        debugContent.textContent = `Content: ${rawContent}`;
+        debugSource.textContent = `Source: ${source}`;
+        
+        // Mostrar debug apenas se tiver parâmetro ?debug=1
+        if (urlParams.get('debug') === '1') {
+            debugInfo.style.display = 'block';
+        }
+    }
+}
+
+// Função para fazer polling do status
+async function checkStatus() {
+    try {
+        const response = await fetch(`${API_CONFIG.endpoint}/status/${requestId}`, {
+            method: 'GET',
+            headers: {
+                'X-API-Key': API_CONFIG.apiKey
             }
         });
-    </script>
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        if (data.status === 'completed' && data.affrkr_url) {
+            extractedUrl = data.affrkr_url;
+            onExtractionComplete();
+        } else if (data.status === 'failed' || data.status === 'error') {
+            throw new Error('Extraction failed');
+        }
+        // Se ainda está processing, continua o polling
+        
+    } catch (error) {
+        console.error('Error checking status:', error);
+        showError('Error checking status. Please refresh the page.');
+        stopPolling();
+    }
+}
+
+// Função para iniciar polling
+function startPolling() {
+    pollingInterval = setInterval(checkStatus, 2000); // A cada 2 segundos
+}
+
+// Função para parar polling
+function stopPolling() {
+    if (pollingInterval) {
+        clearInterval(pollingInterval);
+        pollingInterval = null;
+    }
+}
+
+// Função chamada quando a extração é completada
+function onExtractionComplete() {
+    stopPolling();
+    
+    const button = document.getElementById('start-earning-link');
+    const buttonText = document.getElementById('button-text');
+    const statusMessage = document.getElementById('status-message');
+    
+    // Atualiza o botão
+    button.classList.remove('disabled', 'processing');
+    button.href = extractedUrl;
+    buttonText.textContent = 'START EARNING NOW';
+    
+    // Remove o spinner
+    const spinner = button.querySelector('.loading-spinner');
+    if (spinner) {
+        spinner.remove();
+    }
+    
+    // Atualiza a mensagem de status
+    statusMessage.className = 'status-message ready';
+    statusMessage.textContent = '✅ Your reward link is ready! Click the button below.';
+    
+    console.log('🎉 Extraction completed! Final URL:', extractedUrl);
+}
+
+// Função para mostrar erro
+function showError(message) {
+    const button = document.getElementById('start-earning-link');
+    const buttonText = document.getElementById('button-text');
+    const statusMessage = document.getElementById('status-message');
+    
+    button.classList.remove('processing');
+    button.classList.add('disabled');
+    buttonText.textContent = 'Error - Please Refresh';
+    
+    const spinner = button.querySelector('.loading-spinner');
+    if (spinner) {
+        spinner.remove();
+    }
+    
+    statusMessage.className = 'status-message error';
+    statusMessage.textContent = `❌ ${message}`;
+}
+
+// Executa quando a página carrega
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 Page loaded, starting dynamic source extraction...');
+    console.log('⚙️ API Config:', API_CONFIG);
+    
+    const dynamicSource = getUtmContent();
+    console.log('🎯 Dynamic source determined:', dynamicSource);
+    
+    // Inicia a extração automaticamente
+    startExtraction();
+    
+    // Adiciona evento de clique no botão
+    const startEarningLink = document.getElementById('start-earning-link');
+    if (startEarningLink) {
+        startEarningLink.addEventListener('click', function(e) {
+            console.log('👆 Button clicked');
+            console.log('🔗 Button classes:', this.classList.toString());
+            console.log('🔗 Button href:', this.href);
+            
+            // Se o botão estiver desabilitado, previne o clique
+            if (this.classList.contains('disabled')) {
+                console.log('⛔ Button is disabled, preventing click');
+                e.preventDefault();
+                return false;
+            }
+            
+            // Tracking TikTok (se disponível)
+            if (typeof window !== 'undefined' && window.ttq) {
+                console.log('📊 Triggering TikTok tracking');
+                window.ttq.track('CompleteRegistration');
+            }
+            
+            console.log('✅ Redirecting to:', this.href);
+            // O redirecionamento acontece automaticamente via href
+        });
+    } else {
+        console.error('❌ Button not found!');
+    }
+});
+
+// Limpeza quando a página é fechada
+window.addEventListener('beforeunload', function() {
+    stopPolling();
+});
+</script>
 </body>
 </html>
