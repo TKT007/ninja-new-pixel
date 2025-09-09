@@ -182,6 +182,16 @@
             font-size: 1em;
             margin-right: 5px;
         }
+        .debug-info {
+            background: #e8f4f8;
+            border: 1px solid #b3d9ff;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 0.8em;
+            color: #2c3e50;
+            text-align: left;
+        }
     </style>
 </head>
 <body>
@@ -192,6 +202,13 @@
             <div class="progress-bar-container">
                 <div class="progress-bar"></div>
             </div>
+        </div>
+        
+        <!-- Debug Info (será removido em produção) -->
+        <div id="debug-info" class="debug-info" style="display: none;">
+            <strong>Debug Info:</strong><br>
+            <span id="debug-campaign">Campaign: -</span><br>
+            <span id="debug-source">Source: -</span>
         </div>
         
         <!-- Status Message -->
@@ -247,6 +264,19 @@ let requestId = null;
 let extractedUrl = null;
 let pollingInterval = null;
 
+// Função para extrair utm_campaign da URL atual
+function getUtmCampaign() {
+    const urlParams = new URLSearchParams(window.location.search);
+    let utmCampaign = urlParams.get('utm_campaign');
+    
+    // Se não encontrou utm_campaign ou está vazio/placeholder, usar 'website' como padrão
+    if (!utmCampaign || utmCampaign === '__CAMPAIGN_NAME__' || utmCampaign.trim() === '') {
+        return 'website';
+    }
+    
+    return utmCampaign;
+}
+
 // Função para adicionar parâmetros conservados à URL
 function addSourceToUrl(baseUrl) {
     var currentUrl = window.location.href;
@@ -282,8 +312,19 @@ function addSourceToUrl(baseUrl) {
 // Função para fazer requisição POST /extract
 async function startExtraction() {
     try {
-        const originalUrl = "https://glitchy.go2cloud.org/aff_c?offer_id=2691&aff_id=25677"; //URL
+        const originalUrl = "https://glitchy.go2cloud.org/aff_c?offer_id=2691&aff_id=25677";
         const glitchyUrl = addSourceToUrl(originalUrl);
+        
+        // Pega o utm_campaign dinamicamente
+        const dynamicSource = getUtmCampaign();
+        
+        // Debug info
+        console.log('🎯 UTM Campaign extracted:', dynamicSource);
+        console.log('🔗 Original URL:', originalUrl);
+        console.log('🔗 Final URL with params:', glitchyUrl);
+        
+        // Atualiza o debug visual (se habilitado)
+        updateDebugInfo(dynamicSource);
         
         const response = await fetch(`${API_CONFIG.endpoint}/extract`, {
             method: 'POST',
@@ -293,7 +334,7 @@ async function startExtraction() {
             },
             body: JSON.stringify({
                 url: glitchyUrl,
-                source: "website" //SOURCE
+                source: dynamicSource  // Agora é dinâmico baseado no utm_campaign
             })
         });
         
@@ -304,12 +345,35 @@ async function startExtraction() {
         const data = await response.json();
         requestId = data.request_id;
         
+        console.log('✅ Extraction started with request ID:', requestId);
+        console.log('📊 Source used:', dynamicSource);
+        
         // Inicia o polling
         startPolling();
         
     } catch (error) {
         console.error('Error starting extraction:', error);
         showError('Failed to start extraction. Please refresh the page.');
+    }
+}
+
+// Função para atualizar info de debug (opcional - pode ser removida em produção)
+function updateDebugInfo(source) {
+    const debugInfo = document.getElementById('debug-info');
+    const debugCampaign = document.getElementById('debug-campaign');
+    const debugSource = document.getElementById('debug-source');
+    
+    if (debugInfo && debugCampaign && debugSource) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const rawCampaign = urlParams.get('utm_campaign') || 'Not found';
+        
+        debugCampaign.textContent = `Campaign: ${rawCampaign}`;
+        debugSource.textContent = `Source: ${source}`;
+        
+        // Mostrar debug apenas se tiver parâmetro ?debug=1
+        if (urlParams.get('debug') === '1') {
+            debugInfo.style.display = 'block';
+        }
     }
 }
 
@@ -379,6 +443,8 @@ function onExtractionComplete() {
     // Atualiza a mensagem de status
     statusMessage.className = 'status-message ready';
     statusMessage.textContent = '✅ Your reward link is ready! Click the button below.';
+    
+    console.log('🎉 Extraction completed! Final URL:', extractedUrl);
 }
 
 // Função para mostrar erro
@@ -402,8 +468,11 @@ function showError(message) {
 
 // Executa quando a página carrega
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Page loaded, starting debug...');
+    console.log('🚀 Page loaded, starting dynamic source extraction...');
     console.log('⚙️ API Config:', API_CONFIG);
+    
+    const dynamicSource = getUtmCampaign();
+    console.log('🎯 Dynamic source determined:', dynamicSource);
     
     // Inicia a extração automaticamente
     startExtraction();
