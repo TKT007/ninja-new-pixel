@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Quick Start</title>
+<style>
+  /* ===== Freecash-style palette ===== */
+  :root{
+    --bg:#0e1116;         /* deep slate */
+    --panel:#101620;      /* header/panel */
+    --card:#0f1623;       /* cards */
+    --line:#1b2838;       /* borders */
+    --text:#e8f3ff;       /* primary text */
+    --muted:#8aa0b5;      /* secondary text */
+    --brand:#00e685;      /* neon green */
+    --brand2:#00c97a;     /* deeper green for gradients */
+    --brandGlow: rgba(0,230,133,.25);
+  }
+
+.cta-sub {
+  display:block;
+  font-size:12px;
+  font-weight:500;
+  margin-top:4px;
+  color:#062114; /* darker text to contrast on neon button */
+  opacity:.9;
+}
+.cta-sub .red {
+  color:#ff4d5a !important; /* noticeable red */
+  font-weight:700;
+}
+
+
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{
+    background: radial-gradient(900px 380px at 50% -10%, #0f1a22 0%, #0e1116 55%), #0e1116;
+    color:var(--text);
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    overflow-x:hidden;
+  }
+
+  /* Layout */
+  .wrap{
+    max-width:520px;
+    margin:0 auto;
+    padding:88px 20px 24px; /* top pad so notifs don't overlap */
+    text-align:center;
+  }
+
+  /* Logo */
+  .logo{
+    width:72px;height:72px;
+    margin:0 auto 12px;
+    object-fit:cover;border-radius:16px;display:block;
+    box-shadow:0 6px 18px rgba(0,0,0,.35);
+  }
+
+  /* Headline */
+  .headline{
+    font-size:22px;font-weight:800;line-height:1.2;margin:8px 0 20px;
+    color:var(--text);
+  }
+
+  /* Progress */
+  .progress{
+    height:26px;background:#0b1118;border:1px solid var(--line);
+    border-radius:999px;overflow:hidden;margin:0 auto 20px;max-width:420px;position:relative;
+  }
+  .fill{
+    height:100%;width:0;
+    background:linear-gradient(90deg,var(--brand),var(--brand2));
+    box-shadow: inset 0 0 10px rgba(0,0,0,.25);
+    transition:width 2.2s ease;
+  }
+  .progress-text{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    font-size:13px;font-weight:800;color:#07150f; /* dark-on-green look */
+    background:rgba(255,255,255,.85);
+    border-radius:10px;padding:2px 8px;letter-spacing:.2px;
+  }
+  .goal{
+    position:absolute;right:8px;top:50%;transform:translateY(-50%);
+    font-size:13px;font-weight:800;color:#eafff6;
+    text-shadow:0 0 10px var(--brandGlow);
+  }
+
+  /* Card */
+  .card{
+    background:linear-gradient(180deg,#101a27 0%, #0f1623 100%);
+    border:1px solid var(--line);
+    border-radius:18px;padding:16px;text-align:left;margin-top:20px;
+    box-shadow:0 10px 28px rgba(0,0,0,.35);
+  }
+  .li{
+    display:flex;gap:10px;padding:12px 0;border-bottom:1px dashed #213044;align-items:flex-start;
+  }
+  .li:last-child{border-bottom:0}
+  .check{
+    display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;
+    border-radius:6px;background:linear-gradient(180deg,var(--brand),var(--brand2));
+    font-size:13px;font-weight:900;color:#042015;flex-shrink:0;
+    box-shadow:0 6px 16px var(--brandGlow);
+  }
+  .li b{display:block;color:#eaf9ff}
+  .muted{color:var(--muted);font-size:12px}
+
+  /* Offer block */
+  .offer{
+    background:#0c1420;border:1px solid #203045;border-radius:14px;padding:14px;margin-top:14px;text-align:left
+  }
+  .timer{font-weight:800;color:#aaf0c8;margin-bottom:6px}
+  .divider{border-top:1px dashed #203045;margin:10px 0}
+
+  /* CTA */
+  .cta{
+    display:block;text-align:center;
+    background:linear-gradient(90deg,var(--brand),var(--brand2));
+    color:#062114;font-weight:900;border-radius:14px;padding:16px;margin-top:16px;font-size:16px;
+    text-decoration:none;
+    box-shadow:0 10px 26px var(--brandGlow);
+  }
+  .cta:hover{filter:brightness(.98)}
+  .foot{color:var(--muted);font-size:12px;text-align:center;margin-top:10px}
+
+  /* Notifications */
+  .notif-container{
+    position:fixed;top:10px;left:50%;transform:translateX(-50%);
+    width:92%;max-width:420px;z-index:9999;pointer-events:none
+  }
+  .notif{
+    background:#0d141f;border:1px solid #1f2d40;border-radius:10px;
+    padding:10px 12px;font-size:13px;display:flex;align-items:center;gap:10px;
+    box-shadow:0 6px 18px rgba(0,0,0,.45);
+    opacity:0;transform:translateY(-30px);transition:all .45s ease;
+    color:#e8f3ff; /* readable on dark */
+  }
+  .notif.show{opacity:1;transform:translateY(0)}
+  .notif .earned{font-weight:800;color:var(--brand)}
+
+  @media (max-width:360px){
+    .headline{font-size:20px}
+    .progress{max-width:100%}
+  }
+</style>
+</head>
+<body>
+  <!-- Notifications container -->
+  <div class="notif-container" id="notifBox"></div>
+
+  <div class="wrap">
+    <!-- Logo -->
+    <img class="logo" src="https://i.imgur.com/d4rEH4U.png" alt="Logo" />
+
+    <!-- Headline -->
+    <div class="headline">Follow the instructions to start earning today</div>
+
+    <!-- Progress -->
+    <div class="progress">
+      <div class="fill" id="progressBar"></div>
+      <div class="progress-text">Reward Progress</div>
+      <div class="goal">$200</div>
+    </div>
+
+    <!-- Card -->
+    <div class="card">
+      <div class="li">
+        <span class="check">✓</span>
+        <div>
+          <b>Create account on Freecash.com</b>
+          <div class="muted">(Click the button below)</div>
+        </div>
+      </div>
+      <div class="li">
+        <span class="check">✓</span>
+        <div>
+          <b>Pick your favorite 3–5 games and level up</b>
+          <div class="muted">(Make $100+/ day by leveling up in at least 2 games daily)</div>
+        </div>
+      </div>
+      <div class="li">
+        <span class="check">✓</span>
+        <div>
+          <b>Request your payout anytime & keep playing</b>
+          <div class="muted">(Fast withdrawals when your balance is available)</div>
+        </div>
+      </div>
+
+      <!-- Offer -->
+      <div class="offer">
+        <div class="timer">⏳ Offer ends in <span id="countdown">02:27</span></div>
+        <div><b>Secret Offer!</b> If you upgrade <u>3 times</u> in one game you receive a <b>$200 cash bonus</b> — today only!</div>
+        <div class="divider"></div>
+        <div class="muted">💎 <b>Cheat code:</b> Bonus missions (like upgrading in game) boost your payout by $200–$300 a week.</div>
+      </div>
+
+   <!-- CTA -->
+<a id="cta" class="cta" href="CTA_URL">
+  START EARNING NOW
+  <div class="cta-sub">Enter <span class="red">21+</span> as age or you will not be paid</div>
+</a>
+
+
+<script>
+  // Replace with your deep link
+  const CTA_URL = "https://rewarrdsgiant.com/aff_c?offer_id=2593&aff_id=62111&source=9453";
+  document.getElementById("cta").href = CTA_URL;
+
+  // Animate progress bar to ~67%
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      document.getElementById("progressBar").style.width = "67%";
+    }, 400);
+  });
+
+  // Countdown 2:27 (fixed template string bug)
+  let remain = 2*60 + 27;
+  const cd = document.getElementById("countdown");
+  setInterval(()=>{
+    if(remain>0){
+      remain--;
+      const m = String(Math.floor(remain/60)).padStart(2,"0");
+      const s = String(remain%60).padStart(2,"0");
+      cd.textContent = `${m}:${s}`;
+    }
+  },1000);
+
+  // Pop-down notifications (visible ~5s, new every 5–7s)
+  const notifications = [
+    "Mia just reached level 15 in Bingo Blitz and <span class='earned'>earned $59</span> · 22 minutes ago",
+    "Aaron just reached level 8 in Monopoly Go and <span class='earned'>earned $48</span> · 13 minutes ago",
+    "Dennis just bought an upgrade in Dice Dreams and <span class='earned'>earned $89</span> · 17 minutes ago",
+    "Sarah just reached level 2 in Grab Toy and <span class='earned'>earned $13</span> · 32 minutes ago",
+    "Michael just bought an upgrade in Bingo Blitz and <span class='earned'>earned $64</span> · 24 minutes ago"
+  ];
+
+  let notifIndex = 0;
+  function showNotif(){
+    const box = document.getElementById("notifBox");
+    const n = document.createElement("div");
+    n.className = "notif";
+    n.innerHTML = notifications[notifIndex];
+    box.appendChild(n);
+    // animate in
+    requestAnimationFrame(()=> n.classList.add("show"));
+    // keep visible ~5s, then hide/remove
+    setTimeout(()=> {
+      n.classList.remove("show");
+      setTimeout(()=> box.removeChild(n), 450);
+    }, 5000);
+    // schedule next 5–7s
+    notifIndex = (notifIndex + 1) % notifications.length;
+    const nextDelay = 5000 + Math.random()*2000; // 5–7 sec
+    setTimeout(showNotif, nextDelay);
+  }
+  // start stream after short delay
+  setTimeout(showNotif, 1500);
+</script>
+</body>
+</html>
