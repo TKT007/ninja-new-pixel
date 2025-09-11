@@ -697,7 +697,7 @@
     const finalUrl = addSourceToUrl(baseUrl);
     
     // Atualiza o link do botão
-    const startEarningLink = document.getElementById('start-earning-link');
+    const startEarningLink = document.getElementById('cta');
     if (startEarningLink) {
       startEarningLink.href = finalUrl;
     }
@@ -834,7 +834,7 @@
     updatePageLinks();
     
     // Adiciona evento de clique no botão para tracking (se necessário)
-    const startEarningLink = document.getElementById('start-earning-link');
+    const startEarningLink = document.getElementById('cta');
     if (startEarningLink) {
       startEarningLink.addEventListener('click', function(e) {
         // Tracking TikTok (se disponível)
