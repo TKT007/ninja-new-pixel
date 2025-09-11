@@ -351,35 +351,42 @@
   ];
 
   let notifIndex = 0;
+  let isShowingNotif = false;
+  
   function showNotif(){
+    // Não mostrar nova notificação se já tem uma sendo exibida
+    if(isShowingNotif) return;
+    
+    isShowingNotif = true;
     const box = document.getElementById("notifBox");
+    
+    // Limpar notificações anteriores
+    box.innerHTML = '';
+    
     const n = document.createElement("div");
     n.className = "notif";
     n.innerHTML = notifications[notifIndex];
     box.appendChild(n);
     
-    // Stagger multiple notifications
-    if(box.children.length > 3){
-      box.removeChild(box.firstChild);
-    }
-    
-    // animate in
+    // Animar entrada
     requestAnimationFrame(()=> n.classList.add("show"));
-    // keep visible ~6s, then hide/remove
+    
+    // Manter visível por 3 segundos, depois esconder
     setTimeout(()=> {
       n.classList.remove("show");
       setTimeout(()=> {
         if(box.contains(n)) box.removeChild(n);
+        isShowingNotif = false;
+        
+        // Agendar próxima notificação em 1-2 segundos
+        notifIndex = (notifIndex + 1) % notifications.length;
+        const nextDelay = 1000 + Math.random() * 1000; // 1–2 sec
+        setTimeout(showNotif, nextDelay);
       }, 500);
-    }, 6000);
-    
-    // schedule next 4–6s for more frequent notifications
-    notifIndex = (notifIndex + 1) % notifications.length;
-    const nextDelay = 4000 + Math.random()*2000; // 4–6 sec
-    setTimeout(showNotif, nextDelay);
+    }, 3000);
   }
   
-  // start notification stream
+  // Iniciar stream de notificações
   setTimeout(showNotif, 1000);
   
   // Add some interactive micro-animations
