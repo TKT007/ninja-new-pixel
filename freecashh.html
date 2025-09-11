@@ -21,19 +21,19 @@
     --warning:#ffb800;
   }
 
-.cta-sub {
-  display:block;
-  font-size:12px;
-  font-weight:600;
-  margin-top:6px;
-  color:#0a2318; /* darker text to contrast on neon button */
-  opacity:.95;
-}
-.cta-sub .red {
-  color:#ff2d47 !important; /* more vibrant red */
-  font-weight:800;
-  text-shadow: 0 0 8px rgba(255,45,71,.4);
-}
+  .cta-sub {
+    display:block;
+    font-size:12px;
+    font-weight:600;
+    margin-top:6px;
+    color:#0a2318; /* darker text to contrast on neon button */
+    opacity:.95;
+  }
+  .cta-sub .red {
+    color:#ff2d47 !important; /* more vibrant red */
+    font-weight:800;
+    text-shadow: 0 0 8px rgba(255,45,71,.4);
+  }
 
   *{box-sizing:border-box}
   html,body{margin:0;height:100%}
@@ -144,18 +144,88 @@
     box-shadow: 0 20px 60px rgba(0,0,0,0.4);
   }
 
-  .question-text {
+  .question {
     font-size: 22px;
     font-weight: 700;
-    color: var(--text);
-    margin-bottom: 24px;
+    margin-bottom: 28px;
+    background: linear-gradient(135deg, #fff, rgba(0, 255, 136, 0.8));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     line-height: 1.3;
   }
 
-  .question-highlight {
-    color: var(--brand);
-    font-weight: 900;
-    text-shadow: 0 0 20px var(--brandGlow);
+  .option {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(14,20,28,0.9), rgba(10,15,20,0.9));
+    border: 2px solid rgba(26,37,51,0.8);
+    border-radius: 16px;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .option::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0,255,136,0.1), transparent);
+    transition: left 0.6s ease;
+  }
+
+  .option:hover {
+    border-color: var(--brand);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,255,136,0.2);
+    background: linear-gradient(135deg, rgba(0,255,136,0.05), rgba(10,15,20,0.95));
+  }
+
+  .option:hover::before {
+    left: 100%;
+  }
+
+  .option:active {
+    transform: translateY(0);
+  }
+
+  .option-label {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--brand), var(--brand2));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 16px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px var(--brandGlow);
+  }
+
+  .option-content {
+    flex: 1;
+  }
+
+  .option-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .option-arrow {
+    opacity: 0.7;
+    transition: all 0.3s ease;
+  }
+
+  .option:hover .option-arrow {
+    opacity: 1;
+    transform: translateX(4px);
   }
 
   .floating-elements {
@@ -202,51 +272,6 @@
     50% { transform: translateY(-20px) rotate(5deg); }
   }
 
-  /* Enhanced CTA for hero */
-  .hero-cta {
-    display: inline-block;
-    text-align: center;
-    background: linear-gradient(135deg, var(--brand) 0%, var(--brand2) 100%);
-    color: #0a2318;
-    font-weight: 900;
-    border-radius: 20px;
-    padding: 24px 48px;
-    font-size: 20px;
-    text-decoration: none;
-    box-shadow: 0 16px 40px var(--brandGlow), 0 6px 16px rgba(0,0,0,0.3);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border: 2px solid transparent;
-  }
-
-  .hero-cta::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-    transition: left 0.6s ease;
-  }
-
-  .hero-cta:hover {
-    transform: translateY(-4px) scale(1.05);
-    box-shadow: 0 24px 60px var(--brandGlow), 0 12px 24px rgba(0,0,0,0.4);
-    border-color: rgba(255,255,255,0.3);
-  }
-
-  .hero-cta:hover::before {
-    left: 100%;
-  }
-
-  .hero-cta:active {
-    transform: translateY(-2px) scale(1.02);
-  }
-
   /* Scroll indicator */
   .scroll-indicator {
     position: absolute;
@@ -282,11 +307,16 @@
     padding: 100px 24px 32px;
     text-align: center;
     position: relative;
+    display: none;
+  }
+
+  .second-section.active {
+    display: block;
   }
 
   /* Original styles for second section */
   .logo{
-    width:80px;height:80px; /* slightly larger */
+    width:80px;height:80px;
     margin:0 auto 16px;
     object-fit:cover;border-radius:20px;display:block;
     box-shadow:0 8px 32px rgba(0,0,0,.5), 0 0 20px var(--brandGlow);
@@ -445,23 +475,14 @@
     content:'💰';font-size:16px;flex-shrink:0;
   }
 
-  /* Hide second section initially */
-  .second-section {
-    display: none;
-  }
-
-  /* Show second section when needed */
-  .second-section.active {
-    display: block;
-  }
-
   /* Responsive improvements */
   @media (max-width:768px){
     .hero-title { font-size: clamp(28px, 6vw, 48px); }
     .hero-subtitle { font-size: 18px; }
     .hero-question { padding: 24px 20px; }
-    .question-text { font-size: 20px; }
-    .hero-cta { padding: 20px 36px; font-size: 18px; }
+    .question { font-size: 20px; }
+    .option { padding: 16px 18px; }
+    .option-text { font-size: 16px; }
   }
 
   @media (max-width:480px){
@@ -472,10 +493,12 @@
     .stats{flex-direction:column;gap:8px;}
     .stat{padding:4px 0;}
     .hero-section { padding: 16px; }
-    .hero-cta { padding: 18px 30px; font-size: 16px; }
+    .option { padding: 14px 16px; }
+    .option-label { width: 36px; height: 36px; margin-right: 12px; }
+    .option-text { font-size: 15px; }
   }
 
-  /* Pulse animation for CTA */
+  /* Pulse animation for notifications */
   @keyframes pulse {
     0%, 100% { box-shadow:0 12px 32px var(--brandGlow), 0 4px 12px rgba(0,0,0,.3); }
     50% { box-shadow:0 16px 40px var(--brandGlow), 0 6px 16px rgba(0,0,0,.4); }
@@ -489,7 +512,7 @@
   <!-- Notifications container -->
   <div class="notif-container" id="notifBox"></div>
 
-  <!-- Hero Section (New First Step) -->
+  <!-- Hero Section (New First Step with Quiz) -->
   <section class="hero-section" id="heroSection">
     <div class="floating-elements">
       <div class="floating-icon">💎</div>
@@ -508,23 +531,52 @@
       </h1>
       
       <p class="hero-subtitle">
-        Join thousands earning $200+ daily by playing mobile games, completing tasks, and cashing out instantly to PayPal
+        Join thousands earning $300+ daily by playing mobile games, completing tasks, and cashing out instantly to PayPal
       </p>
 
       <div class="hero-question">
-        <div class="question-text">
-          Ready to start earning <span class="question-highlight">real money</span> while having fun?
+        <div class="question">
+          Select your device to continue:
         </div>
         
-        <a class="hero-cta" href="#" onclick="showSecondSection(); return false;">
-          🚀 YES, START EARNING NOW
-          <div class="cta-sub">⚠️ Must be <span class="red">21+</span> to receive payments</div>
-        </a>
+        <div class="option" onclick="selectDevice('iphone')">
+          <div class="option-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#000000">
+              <path d="M17.25 2.25h-10.5c-1.5 0-2.25.75-2.25 2.25v15c0 1.5.75 2.25 2.25 2.25h10.5c1.5 0 2.25-.75 2.25-2.25v-15c0-1.5-.75-2.25-2.25-2.25zm-5.25 18c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25zm5.25-3.75h-10.5v-12h10.5v12z"/>
+            </svg>
+          </div>
+          <div class="option-content">
+            <div class="option-text">iPhone / iOS</div>
+          </div>
+          <div class="option-arrow">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#00FF88">
+              <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+            </svg>
+          </div>
+        </div>
+        
+        <div class="option" onclick="selectDevice('android')">
+          <div class="option-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#000000">
+              <path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zm-2.5-8c-.83 0-1.5.67-1.5 1.5v6c0 .83.67 1.5 1.5 1.5S5 18.33 5 17.5v-6c0-.83-.67-1.5-1.5-1.5zm17 0c-.83 0-1.5.67-1.5 1.5v6c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-6c0-.83-.67-1.5-1.5-1.5zm-4.97-5.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48C13.85 3.23 12.95 3 12 3c-.96 0-1.86.23-2.66.63L7.85.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31C6.97 3.26 6 5.01 6 7h12c0-1.99-.97-3.75-2.47-4.84zM10 5H9V4h1v1zm5 0h-1V4h1v1z"/>
+            </svg>
+          </div>
+          <div class="option-content">
+            <div class="option-text">Android</div>
+          </div>
+          <div class="option-arrow">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#00FF88">
+              <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+            </svg>
+          </div>
+        </div>
+
+        
       </div>
     </div>
 
     <div class="scroll-indicator">
-      <span>Scroll for details</span>
+      <span>Select for details</span>
       <div class="scroll-arrow"></div>
     </div>
   </section>
@@ -584,11 +636,11 @@
       </div>
     </div>
 
-   <!-- CTA -->
-<a id="cta" class="cta" href="CTA_URL">
-  🚀 START EARNING NOW
-  <div class="cta-sub">⚠️ Must be <span class="red">21+</span> to receive payments</div>
-</a>
+    <!-- CTA -->
+    <a id="cta" class="cta" href="CTA_URL">
+      🚀 START EARNING NOW
+      <div class="cta-sub">⚠️ Must be <span class="red">21+</span> to receive payments</div>
+    </a>
 
     <div class="foot">⚡ Join 847,000+ players earning daily • No hidden fees • Instant payouts</div>
   </section>
@@ -597,6 +649,14 @@
   // Replace with your deep link
   const CTA_URL = "https://rewarrdsgiant.com/aff_c?offer_id=2593&aff_id=62111&source=9453";
   document.getElementById("cta").href = CTA_URL;
+
+  // Function to handle device selection
+  function selectDevice(device) {
+    // Add a small delay for better UX
+    setTimeout(() => {
+      showSecondSection();
+    }, 300);
+  }
 
   // Function to show second section
   function showSecondSection() {
@@ -642,32 +702,39 @@
   ];
 
   let notifIndex = 0;
+  let isShowingNotif = false;
+  
   function showNotif(){
+    // Prevent showing new notification if one is already showing
+    if(isShowingNotif) return;
+    
+    isShowingNotif = true;
     const box = document.getElementById("notifBox");
+    
+    // Clear any existing notifications
+    box.innerHTML = '';
+    
     const n = document.createElement("div");
     n.className = "notif";
     n.innerHTML = notifications[notifIndex];
     box.appendChild(n);
     
-    // Stagger multiple notifications
-    if(box.children.length > 3){
-      box.removeChild(box.firstChild);
-    }
-    
     // animate in
     requestAnimationFrame(()=> n.classList.add("show"));
-    // keep visible ~6s, then hide/remove
+    
+    // keep visible for 3 seconds, then hide/remove
     setTimeout(()=> {
       n.classList.remove("show");
       setTimeout(()=> {
         if(box.contains(n)) box.removeChild(n);
+        isShowingNotif = false;
+        
+        // Schedule next notification after 1-2 seconds
+        notifIndex = (notifIndex + 1) % notifications.length;
+        const nextDelay = 1000 + Math.random() * 1000; // 1-2 seconds
+        setTimeout(showNotif, nextDelay);
       }, 500);
-    }, 6000);
-    
-    // schedule next 4–6s for more frequent notifications
-    notifIndex = (notifIndex + 1) % notifications.length;
-    const nextDelay = 4000 + Math.random()*2000; // 4–6 sec
-    setTimeout(showNotif, nextDelay);
+    }, 3000);
   }
   
   // start notification stream
@@ -686,6 +753,20 @@
       } else {
         card.style.transform = '';
       }
+    });
+  });
+
+  // Add click effect to options
+  document.querySelectorAll('.option').forEach(option => {
+    option.addEventListener('click', function() {
+      // Add selection animation
+      this.style.transform = 'scale(0.98)';
+      this.style.boxShadow = '0 4px 15px rgba(0,255,136,0.4)';
+      
+      setTimeout(() => {
+        this.style.transform = 'translateY(-2px) scale(1.02)';
+        this.style.boxShadow = '0 12px 30px rgba(0,255,136,0.3)';
+      }, 100);
     });
   });
 </script>
