@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earn By Playing!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            background: linear-gradient(180deg, #018cff 0%, #0167b8 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: white;
+        }
+
+        .container {
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            padding: 0 10px;
+        }
+
+        .unified-container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .blue-header {
+            background: linear-gradient(135deg, #26a3ff 0%, #018cff 50%, #0167b8 100%);
+            padding: 30px 24px 16px 24px;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .venmo-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .venmo-logo img {
+            height: 70px;
+            width: auto;
+        }
+
+        .white-container {
+            background: white;
+            padding: 0 12px 24px 12px;
+        }
+
+        .progress-section {
+            margin-bottom: 30px;
+            margin-top: 5px;
+        }
+
+        .progress-label {
+            font-size: 14px;
+            color: #018cff;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(1, 140, 255, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #26a3ff 0%, #018cff 100%);
+            border-radius: 4px;
+            animation: fillProgress 2s ease-out 0.5s forwards;
+        }
+
+        @keyframes fillProgress {
+            from {
+                width: 0%;
+            }
+            to {
+                width: 75%;
+            }
+        }
+
+        .progress-text {
+            font-size: 12px;
+            color: rgba(1, 140, 255, 0.7);
+        }
+
+        .main-header {
+            font-size: 22px;
+            font-weight: 600;
+            color: #0167b8;
+            margin-bottom: 30px;
+            line-height: 1.3;
+        }
+
+        .guide-card {
+            background: rgba(248, 249, 250, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 0;
+            border: 1px solid rgba(1, 140, 255, 0.1);
+            box-shadow: 0 4px 15px rgba(1, 140, 255, 0.08);
+        }
+
+        .guide-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #018cff;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .guide-steps {
+            text-align: left;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            gap: 12px;
+        }
+
+        .step:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-icon {
+            font-size: 18px;
+            min-width: 24px;
+            margin-top: 2px;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #0167b8;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .step-description {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .pro-tip {
+            background: rgba(1, 140, 255, 0.1);
+            border: 1px solid rgba(1, 140, 255, 0.3);
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .pro-tip-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .pro-tip-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #018cff;
+        }
+
+        .pro-tip-text {
+            font-size: 12px;
+            color: #0167b8;
+            line-height: 1.4;
+        }
+
+        .cta-button {
+            width: 100%;
+            background: linear-gradient(135deg, #26a3ff 0%, #018cff 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 16px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(1, 140, 255, 0.3);
+            margin-bottom: 12px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(1, 140, 255, 0.4);
+        }
+
+        .security-text {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 12px;
+            color: rgba(1, 103, 184, 0.7);
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                max-width: 100%;
+                padding: 0 2px;
+            }
+            
+            .main-header {
+                font-size: 20px;
+            }
+            
+            .guide-card {
+                padding: 20px;
+            }
+
+            .unified-container {
+                margin: 0 1px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="unified-container">
+            <div class="blue-header">
+                <div class="venmo-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Venmo_logo.png/1024px-Venmo_logo.png" alt="Venmo">
+                </div>
+            </div>
+            
+            <div class="white-container">
+                <div class="progress-section">
+                    <div class="progress-label">Reward Progress</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <div class="progress-text">Complete setup to unlock your earning potential</div>
+                </div>
+
+                <div class="main-header">
+                    Follow the instructions to start<br> earning today!
+                </div>
+
+                <div class="guide-card">
+                    <div class="guide-title">
+                        Quick Start Guide
+                        <span>→</span>
+                    </div>
+                    
+                    <div class="guide-steps">
+                        <div class="step">
+                            <div class="step-icon">✅</div>
+                            <div class="step-content">
+                                <div class="step-title">Click on 'Request My Transaction'</div>
+                                <div class="step-description">(The button below)</div>
+                            </div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-icon">💸</div>
+                            <div class="step-content">
+                                <div class="step-title">Answer questions and set up your profile</div>
+                                <div class="step-description">(It takes 35 seconds)</div>
+                            </div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-icon">🔁</div>
+                            <div class="step-content">
+                                <div class="step-title">Complete at least TWO to FIVE of the suggested deals</div>
+                                <div class="step-description">(Most people get to at least $100 in cashable payouts with just 3 deals!)</div>
+                            </div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-icon">⏱️</div>
+                            <div class="step-content">
+                                <div class="step-title">Claim your transaction & repeat as many times as you want!</div>
+                                <div class="step-description">(Fun fact: 63% of our daily highest-earning members usually quit their jobs by their 4th week of consistently completing deals every day!)</div>
+                            </div>
+                        </div>
+
+                        <div class="pro-tip">
+                            <div class="pro-tip-header">
+                                <span>💡</span>
+                                <span class="pro-tip-title">PRO TIP:</span>
+                            </div>
+                            <div class="pro-tip-text">
+                                Doing more than 5 suggested deals can boost your payout by an extra $500 to $1000.
+                            </div>
+                        </div>
+
+                        <button class="cta-button" onclick="window.location.href='https://fb.track-conv.shop/click'">REQUEST MY TRANSACTION</button>
+                        
+                        <div class="security-text">
+                            <span>🔒</span>
+                            <span>Secure & Confidential</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
