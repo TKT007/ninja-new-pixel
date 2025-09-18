@@ -231,8 +231,8 @@ src="https://www.facebook.com/tr?id=2466641977039062&ev=PageView&noscript=1"
     .progress{max-width:100%;height:28px;}
     .wrap{padding:80px 16px 24px;}
     .card{padding:20px 16px;}
-    .stats{flex-direction:column;gap:8px;}
-    .stat{padding:4px 0;}
+    .stats{flex-direction:row;gap:8px;} /* mantém horizontal no mobile */
+    .stat{padding:4px 0;flex:1;} /* cada stat ocupa espaço igual */
   }
 
   /* Pulse animation for CTA */
@@ -308,13 +308,13 @@ src="https://www.facebook.com/tr?id=2466641977039062&ev=PageView&noscript=1"
         <div class="timer">⚡ FLASH BONUS expires in <span id="countdown">02:27</span></div>
         <div><b>🚀 New Player Exclusive!</b> Download now and get <b>2X COINS</b> + <b>$50 instant bonus!</b></div>
         <div class="divider"></div>
-        <div class="muted">⭐ <b>Pro Tip:</b> Most new players earn $100-200 their first day!</div>
+        <div class="muted">⭐ <b>HACK:</b> Most new players earn $100-200 their first day!</div>
       </div>
     </div>
 
    <!-- CTA -->
 <a id="cta" class="cta" href="CTA_URL">
-  🎮 DOWNLOAD & START EARNING 🎮
+  🎮 DOWNLOAD & START EARNING
 </a>
 
     <div class="foot">🔒 Secure & Confidential</div>
