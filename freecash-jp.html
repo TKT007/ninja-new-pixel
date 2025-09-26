@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Freecash - ゲームで毎日¥30,000以上稼ごう</title>
+<style>
+  /* ===== Enhanced Freecash-style palette ===== */
+  :root{
+    --bg:#0a0f14;         /* deeper slate */
+    --panel:#0e1419;      /* header/panel */
+    --card:#0c1218;       /* cards */
+    --line:#1a2533;       /* borders */
+    --text:#f0f6ff;       /* brighter primary text */
+    --muted:#7d94a8;      /* secondary text */
+    --brand:#00ff88;      /* brighter neon green */
+    --brand2:#00d175;     /* deeper green for gradients */
+    --brandGlow: rgba(0,255,136,.3);
+    --accent:#ff6b35;     /* orange accent for urgency */
+    --success:#00ff88;
+    --warning:#ffb800;
+  }
+
+  .cta-sub {
+    display:block;
+    font-size:12px;
+    font-weight:600;
+    margin-top:6px;
+    color:#0a2318; /* darker text to contrast on neon button */
+    opacity:.95;
+  }
+  .cta-sub .red {
+    color:#ff2d47 !important; /* more vibrant red */
+    font-weight:800;
+    text-shadow: 0 0 8px rgba(255,45,71,.4);
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{
+    background: 
+      radial-gradient(circle at 20% 80%, rgba(0,255,136,.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(0,209,117,.06) 0%, transparent 50%),
+      radial-gradient(900px 380px at 50% -10%, #0e1a25 0%, #0a0f14 60%), 
+      #0a0f14;
+    color:var(--text);
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    overflow-x:hidden;
+    min-height:100vh;
+  }
+
+  /* New Hero Section */
+  .hero-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: 
+      conic-gradient(from 0deg at 50% 50%, 
+        transparent 0deg, 
+        rgba(0,255,136,0.1) 60deg, 
+        transparent 120deg,
+        rgba(0,209,117,0.08) 180deg,
+        transparent 240deg,
+        rgba(0,255,136,0.1) 300deg,
+        transparent 360deg
+      );
+    animation: rotate 20s linear infinite;
+    opacity: 0.6;
+  }
+
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .hero-content {
+    max-width: 600px;
+    text-align: center;
+    z-index: 1;
+    position: relative;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,255,136,0.1);
+    border: 1px solid rgba(0,255,136,0.3);
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--brand);
+    margin-bottom: 24px;
+    backdrop-filter: blur(10px);
+  }
+
+  .hero-badge::before {
+    content: '';
+    font-size: 14px;
+  }
+
+  .hero-title {
+    font-size: clamp(32px, 8vw, 64px);
+    font-weight: 900;
+    line-height: 1.1;
+    margin: 0 0 16px 0;
+    background: linear-gradient(135deg, #ffffff, var(--brand), #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 40px rgba(0,255,136,0.3);
+  }
+
+  .hero-subtitle {
+    font-size: 20px;
+    color: var(--muted);
+    margin: 0 0 32px 0;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  .hero-question {
+    background: linear-gradient(145deg, rgba(14,26,40,0.8), rgba(12,18,24,0.8));
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 32px;
+    margin: 0 0 32px 0;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+
+  .question {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 28px;
+    background: linear-gradient(135deg, #fff, rgba(0, 255, 136, 0.8));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.3;
+  }
+
+  .option {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(14,20,28,0.9), rgba(10,15,20,0.9));
+    border: 2px solid rgba(26,37,51,0.8);
+    border-radius: 16px;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .option::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0,255,136,0.1), transparent);
+    transition: left 0.6s ease;
+  }
+
+  .option:hover {
+    border-color: var(--brand);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,255,136,0.2);
+    background: linear-gradient(135deg, rgba(0,255,136,0.05), rgba(10,15,20,0.95));
+  }
+
+  .option:hover::before {
+    left: 100%;
+  }
+
+  .option:active {
+    transform: translateY(0);
+  }
+
+  .option-label {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--brand), var(--brand2));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 16px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px var(--brandGlow);
+  }
+
+  .option-content {
+    flex: 1;
+  }
+
+  .option-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .option-arrow {
+    opacity: 0.7;
+    transition: all 0.3s ease;
+  }
+
+  .option:hover .option-arrow {
+    opacity: 1;
+    transform: translateX(4px);
+  }
+
+  .floating-elements {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .floating-icon {
+    position: absolute;
+    font-size: 24px;
+    opacity: 0.3;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .floating-icon:nth-child(1) {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+  }
+
+  .floating-icon:nth-child(2) {
+    top: 30%;
+    right: 15%;
+    animation-delay: 2s;
+  }
+
+  .floating-icon:nth-child(3) {
+    bottom: 30%;
+    left: 20%;
+    animation-delay: 4s;
+  }
+
+  .floating-icon:nth-child(4) {
+    bottom: 20%;
+    right: 10%;
+    animation-delay: 1s;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+  }
+
+  /* Scroll indicator */
+  .scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--muted);
+    font-size: 12px;
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+    40% { transform: translateX(-50%) translateY(-10px); }
+    60% { transform: translateX(-50%) translateY(-5px); }
+  }
+
+  .scroll-arrow {
+    width: 2px;
+    height: 30px;
+    background: linear-gradient(to bottom, var(--brand), transparent);
+    margin-top: 8px;
+    border-radius: 2px;
+  }
+
+  /* Second section (keeping original) */
+  .second-section {
+    max-width: 540px;
+    margin: 0 auto;
+    padding: 100px 24px 32px;
+    text-align: center;
+    position: relative;
+    display: none;
+  }
+
+  .second-section.active {
+    display: block;
+  }
+
+  /* Original styles for second section */
+  .logo{
+    width:80px;height:80px;
+    margin:0 auto 16px;
+    object-fit:cover;border-radius:20px;display:block;
+    box-shadow:0 8px 32px rgba(0,0,0,.5), 0 0 20px var(--brandGlow);
+    transition: transform 0.3s ease;
+  }
+  .logo:hover{
+    transform: scale(1.05);
+  }
+
+  /* Headline */
+  .headline{
+    font-size:26px;font-weight:900;line-height:1.15;margin:12px 0 24px;
+    color:var(--text);
+    background: linear-gradient(135deg, var(--text), var(--brand));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 2px 4px rgba(0,0,0,.3);
+  }
+
+  /* Stats bar */
+  .stats{
+    display:flex;justify-content:space-between;margin:20px 0;
+    background:rgba(0,255,136,.05);border:1px solid rgba(0,255,136,.2);
+    border-radius:16px;padding:12px 16px;
+  }
+  .stat{
+    text-align:center;flex:1;
+  }
+  .stat-num{
+    font-size:18px;font-weight:800;color:var(--brand);display:block;
+  }
+  .stat-label{
+    font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;
+  }
+
+  /* Progress */
+  .progress{
+    height:32px;background:#060b0f;border:2px solid var(--line);
+    border-radius:999px;overflow:hidden;margin:24px auto;max-width:440px;position:relative;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,.4);
+  }
+  .fill{
+    height:100%;width:0;
+    background:linear-gradient(90deg,var(--brand),var(--brand2));
+    box-shadow: 0 0 20px var(--brandGlow);
+    transition:width 2.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position:relative;
+  }
+  .fill::after{
+    content:'';position:absolute;top:0;left:0;right:0;bottom:0;
+    background:linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent);
+    animation: shimmer 2s infinite;
+  }
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  .goal{
+    position:absolute;right:12px;top:50%;transform:translateY(-50%);
+    font-size:14px;font-weight:800;color:#eafff6;
+    text-shadow:0 0 12px var(--brandGlow);
+    background:rgba(0,255,136,.1);padding:2px 8px;border-radius:8px;
+  }
+
+  /* Card */
+  .card{
+    background:linear-gradient(145deg,#0e1a28 0%, #0c1218 100%);
+    border:1px solid var(--line);
+    border-radius:24px;padding:24px;text-align:left;margin-top:24px;
+    box-shadow:0 16px 40px rgba(0,0,0,.4), 0 0 0 1px rgba(0,255,136,.1);
+    position:relative;
+    overflow:hidden;
+  }
+  .card::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg, transparent, var(--brand), transparent);
+    opacity:.6;
+  }
+  .li{
+    display:flex;gap:14px;padding:16px 0;border-bottom:1px dashed #243548;align-items:flex-start;
+    transition: all 0.3s ease;
+  }
+  .li:last-child{border-bottom:0}
+  .li:hover{
+    background:rgba(0,255,136,.02);margin:0 -8px;padding-left:24px;padding-right:24px;
+    border-radius:12px;
+  }
+  .check{
+    display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;
+    border-radius:8px;background:linear-gradient(135deg,var(--brand),var(--brand2));
+    font-size:14px;font-weight:900;color:#0a2318;flex-shrink:0;
+    box-shadow:0 4px 12px var(--brandGlow), 0 0 0 2px rgba(0,255,136,.2);
+  }
+  .li b{display:block;color:#f0f8ff;font-size:15px;margin-bottom:4px;}
+  .muted{color:var(--muted);font-size:13px;line-height:1.4;}
+
+  /* Offer block */
+  .offer{
+    background:linear-gradient(135deg, #1a0f0a 0%, #0f1419 100%);
+    border:2px solid var(--accent);border-radius:18px;padding:18px;margin-top:20px;text-align:left;
+    position:relative;overflow:hidden;
+    box-shadow: 0 0 30px rgba(255,107,53,.2);
+  }
+  .offer::before{
+    content:'🔥 期間限定';position:absolute;top:-1px;right:20px;
+    background:var(--accent);color:#fff;font-size:10px;font-weight:800;
+    padding:4px 12px;border-radius:0 0 8px 8px;letter-spacing:.5px;
+  }
+  .timer{font-weight:800;color:#ffcc66;margin-bottom:8px;font-size:15px;}
+  .timer::before{content:'⏰ ';font-size:16px;}
+  .divider{border-top:1px dashed #3a4555;margin:14px 0}
+
+  /* CTA */
+  .cta{
+    display:block;text-align:center;
+    background:linear-gradient(135deg,var(--brand) 0%,var(--brand2) 100%);
+    color:#0a2318;font-weight:900;border-radius:18px;padding:20px;margin-top:24px;font-size:18px;
+    text-decoration:none;
+    box-shadow:0 12px 32px var(--brandGlow), 0 4px 12px rgba(0,0,0,.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position:relative;overflow:hidden;
+    text-transform:uppercase;letter-spacing:.5px;
+  }
+  .cta::before{
+    content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
+    background:linear-gradient(90deg, transparent, rgba(255,255,255,.3), transparent);
+    transition:left 0.6s ease;
+  }
+  .cta:hover{
+    transform:translateY(-2px);
+    box-shadow:0 16px 40px var(--brandGlow), 0 8px 16px rgba(0,0,0,.4);
+  }
+  .cta:hover::before{left:100%;}
+  .cta:active{transform:translateY(0);}
+
+  .foot{color:var(--muted);font-size:12px;text-align:center;margin-top:16px;opacity:.8;}
+
+  /* Enhanced Notifications */
+  .notif-container{
+    position:fixed;top:16px;left:50%;transform:translateX(-50%);
+    width:94%;max-width:440px;z-index:9999;pointer-events:none;
+  }
+  .notif{
+    background:linear-gradient(135deg, #0e1a28, #0a0f14);
+    border:1px solid #2a4058;border-radius:14px;
+    padding:14px 16px;font-size:13px;display:flex;align-items:center;gap:12px;
+    box-shadow:0 8px 24px rgba(0,0,0,.6), 0 0 0 1px rgba(0,255,136,.1);
+    opacity:0;transform:translateY(-40px);transition:all .5s cubic-bezier(0.4, 0, 0.2, 1);
+    color:#f0f6ff;margin-bottom:8px;
+    backdrop-filter: blur(10px);
+  }
+  .notif.show{opacity:1;transform:translateY(0)}
+  .notif .earned{font-weight:800;color:var(--brand);text-shadow:0 0 8px var(--brandGlow);}
+  .notif::before{
+    content:'💰';font-size:16px;flex-shrink:0;
+  }
+
+  /* Responsive improvements */
+  @media (max-width:768px){
+    .hero-title { font-size: clamp(28px, 6vw, 48px); }
+    .hero-subtitle { font-size: 18px; }
+    .hero-question { padding: 24px 20px; }
+    .question { font-size: 20px; }
+    .option { padding: 16px 18px; }
+    .option-text { font-size: 16px; }
+  }
+
+  @media (max-width:480px){
+    .headline{font-size:22px}
+    .progress{max-width:100%;height:28px;}
+    .second-section{padding:80px 16px 24px;}
+    .card{padding:20px 16px;}
+    .stats{flex-direction:column;gap:8px;}
+    .stat{padding:4px 0;}
+    .hero-section { 
+      padding: 16px;
+      justify-content: flex-start;
+      padding-top: 80px;
+    }
+    .option { padding: 14px 16px; }
+    .option-label { width: 36px; height: 36px; margin-right: 12px; }
+    .option-text { font-size: 15px; }
+    .scroll-indicator {
+      bottom: 15px;
+    }
+  }
+
+  /* Pulse animation for notifications */
+  @keyframes pulse {
+    0%, 100% { box-shadow:0 12px 32px var(--brandGlow), 0 4px 12px rgba(0,0,0,.3); }
+    50% { box-shadow:0 16px 40px var(--brandGlow), 0 6px 16px rgba(0,0,0,.4); }
+  }
+  .cta{
+    animation: pulse 3s ease-in-out infinite;
+  }
+</style>
+</head>
+<body>
+  <!-- Notifications container -->
+  <div class="notif-container" id="notifBox"></div>
+
+  <!-- Hero Section (New First Step with Quiz) -->
+  <section class="hero-section" id="heroSection">
+    <div class="floating-elements">
+      <div class="floating-icon">💎</div>
+      <div class="floating-icon">🎮</div>
+      <div class="floating-icon">💰</div>
+      <div class="floating-icon">🏆</div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        限定特典
+      </div>
+      
+      <h1 class="hero-title">
+        自宅でプレイして<br>リアルマネーを稼ごう！
+      </h1>
+      
+      <p class="hero-subtitle">
+        モバイルゲームをプレイし、タスクを完了し、即座に現金化して毎日¥45,000以上稼ぐ何千人もの仲間に加わろう
+      </p>
+
+      <div class="hero-question">
+        <div class="question">
+          続行するデバイスを選択してください：
+        </div>
+        
+        <div class="option" onclick="selectDevice('iphone')">
+          <div class="option-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#000000">
+              <path d="M17.25 2.25h-10.5c-1.5 0-2.25.75-2.25 2.25v15c0 1.5.75 2.25 2.25 2.25h10.5c1.5 0 2.25-.75 2.25-2.25v-15c0-1.5-.75-2.25-2.25-2.25zm-5.25 18c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25zm5.25-3.75h-10.5v-12h10.5v12z"/>
+            </svg>
+          </div>
+          <div class="option-content">
+            <div class="option-text">iPhone / iOS</div>
+          </div>
+          <div class="option-arrow">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#00FF88">
+              <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+            </svg>
+          </div>
+        </div>
+        
+        <div class="option" onclick="selectDevice('android')">
+          <div class="option-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#000000">
+              <path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zm-2.5-8c-.83 0-1.5.67-1.5 1.5v6c0 .83.67 1.5 1.5 1.5S5 18.33 5 17.5v-6c0-.83-.67-1.5-1.5-1.5zm17 0c-.83 0-1.5.67-1.5 1.5v6c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-6c0-.83-.67-1.5-1.5-1.5zm-4.97-5.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48C13.85 3.23 12.95 3 12 3c-.96 0-1.86.23-2.66.63L7.85.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31C6.97 3.26 6 5.01 6 7h12c0-1.99-.97-3.75-2.47-4.84zM10 5H9V4h1v1zm5 0h-1V4h1v1z"/>
+            </svg>
+          </div>
+          <div class="option-content">
+            <div class="option-text">Android</div>
+          </div>
+          <div class="option-arrow">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#00FF88">
+              <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <span>詳細を選択</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- Second Section (Original Content) -->
+  <section class="second-section" id="secondSection">
+    <!-- Logo -->
+    <img class="logo" src="https://i.imgur.com/d4rEH4U.png" alt="Freecash Logo" />
+
+    <!-- Headline -->
+    <div class="headline">指示に従って今日から収益を開始しましょう</div>
+
+    <!-- Progress -->
+    <div class="progress">
+      <div class="fill" id="progressBar"></div>
+      <div class="progress-text">ボーナス進行状況</div>
+      <div class="goal">¥45,000</div>
+    </div>
+
+    <!-- Card -->
+    <div class="card">
+      <div class="li">
+        <span class="check">✓</span>
+        <div>
+          <b>FreeCashアカウントを即座に作成</b>
+          <div class="muted">30秒で完了 • クレジットカード不要</div>
+        </div>
+      </div>
+      <div class="li">
+        <span class="check">✓</span>
+        <div>
+          <b>複数のゲームをテストして稼ぐ</b>
+          <div class="muted">ゲームオファー、アンケート、アプリダウンロード、タスクを完了してコインを獲得</div>
+        </div>
+      </div>
+      <div class="li">
+        <span class="check">✓</span>
+        <div>
+          <b>プロのヒント：ゲーム内購入で早く稼ぐ</b>
+          <div class="muted">支出したものは何でも払い戻してくれます！</div>
+        </div>
+      </div>
+      <div class="li">
+        <span class="check">✓</span>
+        <div>
+          <b>PayPal、暗号通貨、ギフトカードに即座に現金化</b>
+          <div class="muted">最小引き出し額：¥750 • 平均処理時間：2分</div>
+        </div>
+      </div>
+
+      <!-- Offer -->
+      <div class="offer">
+        <div class="timer">限定オファーの残り時間 <span id="countdown">02:27</span></div>
+        <div><b>🎯 初日ボーナス！</b> 最初の24時間内に<u>任意の3つのゲーム目標</u>をインストールして完了し、最大<b>¥45,000のボーナス</b>をアンロックしましょう！</div>
+        <div class="divider"></div>
+        <div class="muted">💡 <b>プロ戦略：</b> 最初は初心者向けゲームに集中しましょう。多くの新規プレイヤーがチュートリアルミッションを完了することで初日に¥15,000以上を稼いでいます。</div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <a id="cta" class="cta" href="#">
+      🚀 今すぐ稼ぎ始める
+      <div class="cta-sub">⚠️ 支払いを受けるには<span class="red">20歳以上</span>である必要があります</div>
+    </a>
+
+    <div class="foot">⚡ 毎日稼ぐ847,000人以上のプレイヤーに参加 • 隠れた手数料なし • 即座の支払い</div>
+  </section>
+
+<script>
+  // Função para adicionar parâmetros conservados à URL
+  function addSourceToUrl(baseUrl) {
+    // Captura os parâmetros da URL atual
+    var currentUrl = window.location.href;
+    var urlParams = new URLSearchParams(new URL(currentUrl).search);
+    
+    // Cria um objeto com os parâmetros que você quer transferir
+    var desiredParams = {
+      'ttclid': '__CLICKID__',
+      'utm_campaign': '__CAMPAIGN_NAME__',
+      'utm_content': '__CID_NAME__',
+      'mc_campaign_id': '__CAMPAIGN_ID__',
+      'mc_adset_name': '__AID_NAME__',
+      'mc_adset_id': '__AID__',
+      'mc_ad_id': '__CID__',
+      'mc_pub': '__PLACEMENT__'
+    };
+    
+    // Adiciona os parâmetros encontrados na URL atual ao URL base
+    var finalUrl = baseUrl;
+    var separator = finalUrl.includes('?') ? '&' : '?';
+    
+    Object.keys(desiredParams).forEach(function(key) {
+      if (urlParams.has(key)) {
+        finalUrl += separator + key + '=' + encodeURIComponent(urlParams.get(key));
+        separator = '&';
+      } else if (desiredParams[key] && desiredParams[key] !== '') {
+        // Se o parâmetro não estiver na URL atual, usa o valor padrão
+        finalUrl += separator + key + '=' + encodeURIComponent(desiredParams[key]);
+        separator = '&';
+      }
+    });
+    
+    return finalUrl;
+  }
+
+  // Função para atualizar os links da página
+  const updatePageLinks = () => {
+    const baseUrl = "https://fb.track-conv.shop/visit/81877a4f-9b5a-4053-b484-a0bdceef6285";
+    
+    // Gera a URL final com os parâmetros de rastreamento
+    const finalUrl = addSourceToUrl(baseUrl);
+    
+    // Atualiza o link do botão
+    const startEarningLink = document.getElementById('cta');
+    if (startEarningLink) {
+      startEarningLink.href = finalUrl;
+    }
+    
+    // Atualiza a imagem (se for um link de rastreamento de pixel)
+    const mainImage = document.getElementById('main-image');
+    if (mainImage) {
+      mainImage.src = finalUrl;
+    }
+  };
+
+  // Function to handle device selection
+  function selectDevice(device) {
+    // Add a small delay for better UX
+    setTimeout(() => {
+      showSecondSection();
+    }, 300);
+  }
+
+  // Function to show second section
+  function showSecondSection() {
+    document.getElementById('heroSection').style.display = 'none';
+    document.getElementById('secondSection').classList.add('active');
+    
+    // Animate progress bar when second section is shown
+    setTimeout(() => {
+      document.getElementById("progressBar").style.width = "73%";
+    }, 600);
+  }
+
+  // Enhanced countdown with more urgency
+  let remain = 2*60 + 27;
+  const cd = document.getElementById("countdown");
+  setInterval(()=>{
+    if(remain>0){
+      remain--;
+      const m = String(Math.floor(remain/60)).padStart(2,"0");
+      const s = String(remain%60).padStart(2,"0");
+      cd.textContent = `${m}:${s}`;
+      
+      // Add urgency styling when time is low
+      if(remain < 60){
+        cd.style.color = '#ff6b35';
+        cd.style.fontWeight = '900';
+      }
+    } else {
+      // Reset timer to create urgency loop
+      remain = 2*60 + 27;
+    }
+  },1000);
+
+  // Enhanced notifications with more variety (in Japanese)
+  const notifications = [
+    "ジェシカさんがビンゴチャレンジを完了し、<span class='earned'>¥11,000を獲得</span> · 8分前",
+    "マーカスさんがソリティアキャッシュでレベル20に到達し、<span class='earned'>¥23,400を獲得</span> · 15分前", 
+    "サラさんが3つのスロット目標を完了し、<span class='earned'>¥13,650を獲得</span> · 3分前",
+    "アレックスさんが毎日のパズルタスクを完了し、<span class='earned'>¥10,050を獲得</span> · 22分前",
+    "エマさんがVIPステータスに到達し、<span class='earned'>¥30,450を獲得</span> · 12分前",
+    "デイビッドさんがマッチ3トーナメントで勝利し、<span class='earned'>¥20,100を獲得</span> · 28分前",
+    "リサさんが初回¥30,000を現金化し、<span class='earned'>¥13,350のボーナスを獲得</span> · 6分前"
+  ];
+
+  let notifIndex = 0;
+  let isShowingNotif = false;
+  
+  function showNotif(){
+    // Prevent showing new notification if one is already showing
+    if(isShowingNotif) return;
+    
+    isShowingNotif = true;
+    const box = document.getElementById("notifBox");
+    
+    // Clear any existing notifications
+    box.innerHTML = '';
+    
+    const n = document.createElement("div");
+    n.className = "notif";
+    n.innerHTML = notifications[notifIndex];
+    box.appendChild(n);
+    
+    // animate in
+    requestAnimationFrame(()=> n.classList.add("show"));
+    
+    // keep visible for 3 seconds, then hide/remove
+    setTimeout(()=> {
+      n.classList.remove("show");
+      setTimeout(()=> {
+        if(box.contains(n)) box.removeChild(n);
+        isShowingNotif = false;
+        
+        // Schedule next notification after 1-2 seconds
+        notifIndex = (notifIndex + 1) % notifications.length;
+        const nextDelay = 1000 + Math.random() * 1000; // 1-2 seconds
+        setTimeout(showNotif, nextDelay);
+      }, 500);
+    }, 3000);
+  }
+  
+  // start notification stream
+  setTimeout(showNotif, 1000);
+  
+  // Add some interactive micro-animations
+  document.addEventListener('mousemove', (e) => {
+    const cards = document.querySelectorAll('.card, .offer');
+    cards.forEach(card => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
+        card.style.transform = `perspective(1000px) rotateX(${(y - rect.height/2) * 0.01}deg) rotateY(${(x - rect.width/2) * 0.01}deg)`;
+      } else {
+        card.style.transform = '';
+      }
+    });
+  });
+
+  // Add click effect to options
+  document.querySelectorAll('.option').forEach(option => {
+    option.addEventListener('click', function() {
+      // Add selection animation
+      this.style.transform = 'scale(0.98)';
+      this.style.boxShadow = '0 4px 15px rgba(0,255,136,0.4)';
+      
+      setTimeout(() => {
+        this.style.transform = 'translateY(-2px) scale(1.02)';
+        this.style.boxShadow = '0 12px 30px rgba(0,255,136,0.3)';
+      }, 100);
+    });
+  });
+
+  // Executa quando a página carregada
+  document.addEventListener('DOMContentLoaded', function() {
+    updatePageLinks();
+    
+    // Adiciona evento de clique no botão para tracking (se necessário)
+    const startEarningLink = document.getElementById('cta');
+    if (startEarningLink) {
+      startEarningLink.addEventListener('click', function(e) {
+        // Tracking TikTok (se disponível)
+        if (typeof window !== 'undefined' && window.ttq) {
+          window.ttq.track('CompleteRegistration');
+        }
+        // O link já está correto com os parâmetros, então deixa o comportamento padrão acontecer
+      });
+    }
+  });
+</script>
+</body>
+</html>
