@@ -167,7 +167,7 @@
         const role = 'game tester';
         if(answers.us === 'yes'){
           const qualify = `Great news! 🎉 You qualify to become a <b>${role}</b>. Tap below and download the app to get started — each game only takes <b>2 minutes</b>!`;
-          const cta = `<div class="chips"><a class="chip" href="${AFF}" target="_blank" rel="nofollow noopener" onclick="trackClick()">Start here</a></div>`;
+          const cta = `<div class="chips"><a class="chip" href="${AFF}" rel="nofollow noopener" onclick="trackClick()">Start here</a></div>`;
           addRow('bot', qualify + '<br/>' + cta);
         } else {
           const msg = `Thanks for checking! At the moment, this program is focused on the United States. We're expanding soon — check back later for availability in your region.`;
