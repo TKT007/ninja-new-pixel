@@ -1,0 +1,322 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>TesterUp Rewards Chat — Quick Qualification</title>
+  <meta name="description" content="Fast 2-step check to qualify as a game/app tester." />
+  <style>
+    :root{
+      --bg:#221C36;         /* TesterUp purple base */
+      --panel:#2a2542;      /* darker purple for panels */
+      --card:#2d274a;       /* card background */
+      --line:#3a3458;       /* borders */
+      --text:#ffffff;       /* white text */
+      --muted:#b8a7d9;      /* lighter purple for secondary text */
+      --brand:#DB1E14;      /* TesterUp red */
+      --brand2:#a5150c;     /* deeper red for gradients */
+      --brandGlow: rgba(219,30,20,.4);
+      --accent:#ff6b35;     /* orange accent */
+      --bot:#3a3458;
+      --you:#4a4168;
+      --chip:#3d3560;
+      --online:#21d07a;
+      --shadow:0 18px 60px rgba(0,0,0,.45);
+      --card-bg:linear-gradient(145deg,#2d274a 0%, #252040 100%);
+      --card-brd:rgba(219,30,20,.15);
+    }
+    *{box-sizing:border-box} html,body{height:100%}
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--text);
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(219,30,20,.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(165,21,12,.06) 0%, transparent 50%),
+        radial-gradient(900px 380px at 50% -10%, #2a2542 0%, #221C36 60%), 
+        var(--bg);
+      overflow:hidden}
+    
+    /* Animated background elements */
+    .glow{position:fixed;border-radius:50%;filter:blur(28px);opacity:.18;pointer-events:none;z-index:0;animation:float 7s ease-in-out infinite}
+    .g1{width:140px;height:140px;left:40px;top:100px;background:var(--brand)}
+    .g2{width:100px;height:100px;right:60px;top:160px;background:var(--brand2);animation-delay:1.2s;opacity:.15}
+    .g3{width:80px;height:80px;left:80px;bottom:120px;background:var(--accent);animation-delay:2s;opacity:.12}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    
+    main{position:relative;z-index:1;height:100%;display:grid;place-items:center;padding:16px}
+    .card{width:min(560px,94vw);height:min(720px,92vh);
+      background:var(--card-bg);border:1px solid var(--card-brd);
+      border-radius:24px;box-shadow:var(--shadow), 0 0 0 1px rgba(219,30,20,.1);display:flex;flex-direction:column;overflow:hidden;
+      position:relative;}
+    
+    .card::before{
+      content:'';position:absolute;top:0;left:0;right:0;height:1px;
+      background:linear-gradient(90deg, transparent, var(--brand), transparent);
+      opacity:.6;
+    }
+    
+    .top{display:flex;align-items:center;gap:12px;padding:16px 20px;
+      border-bottom:1px solid var(--line);backdrop-filter:blur(6px);
+      background:rgba(42,37,66,.6);}
+    .logo{width:40px;height:40px;border-radius:12px;overflow:hidden;
+      background:linear-gradient(135deg,var(--brand),var(--brand2));display:grid;place-items:center;position:relative;
+      box-shadow:0 4px 12px var(--brandGlow), 0 0 0 2px rgba(219,30,20,.25);}
+    .logo img{width:100%;height:100%;object-fit:cover;border-radius:8px;}
+    .status{position:absolute;bottom:2px;right:2px;width:12px;height:12px;border-radius:50%;background:var(--online);border:2px solid var(--card);
+      box-shadow:0 0 8px rgba(33,208,122,.6);}
+    .title{font-weight:900;letter-spacing:.2px;color:var(--text);
+      background: linear-gradient(135deg, var(--text), var(--brand));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;}
+    .title small{display:block;color:var(--muted);font-weight:600;font-size:12px;
+      -webkit-text-fill-color: var(--muted);background:none;}
+    
+    .chat{flex:1;overflow:auto;padding:20px;display:flex;flex-direction:column;gap:12px;scroll-behavior:smooth;
+      background:rgba(34,28,54,.3);}
+    .row{display:flex;gap:12px}.row.you{justify-content:flex-end}
+    .bubble{max-width:82%;padding:12px 16px;border-radius:16px;line-height:1.45;font-size:14px;position:relative;}
+    .you .bubble{background:linear-gradient(135deg, var(--you), #5a4d78);
+      border:1px solid rgba(219,30,20,.15);color:var(--text);}
+    .bot .bubble{background:linear-gradient(145deg,#2d274a 0%, #252040 100%);
+      border:1px solid var(--line);color:var(--text);}
+    
+    .chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .chip{background:linear-gradient(135deg,var(--chip),#4a4168);color:#fff;
+      border:1px solid rgba(219,30,20,.2);border-radius:999px;padding:12px 18px;font-weight:800;font-size:13px;cursor:pointer;text-decoration:none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow:0 4px 12px rgba(0,0,0,.3);}
+    .chip:hover{
+      background:linear-gradient(135deg,var(--brand),var(--brand2));
+      color:#ffffff;
+      transform:translateY(-2px);
+      box-shadow:0 8px 20px var(--brandGlow);}
+    
+    .typing{display:inline-flex;gap:5px;align-items:center}
+    .typing span{width:7px;height:7px;border-radius:50%;background:var(--brand);opacity:.7;animation:blink 1.2s infinite;
+      box-shadow:0 0 8px var(--brandGlow);}
+    .typing span:nth-child(2){animation-delay:.2s}.typing span:nth-child(3){animation-delay:.4s}
+    @keyframes blink{0%,80%,100%{opacity:.2}40%{opacity:1}}
+    .fine{font-size:11px;color:var(--muted);margin-top:8px;opacity:.8;}
+    
+    /* CTA styling enhanced */
+    .cta-chip{
+      background:linear-gradient(135deg,var(--brand) 0%,var(--brand2) 100%) !important;
+      color:#ffffff !important;font-weight:900 !important;
+      box-shadow:0 8px 24px var(--brandGlow), 0 4px 12px rgba(0,0,0,.3) !important;
+      text-transform:uppercase;letter-spacing:.5px;
+      position:relative;overflow:hidden;
+      text-shadow:0 1px 2px rgba(0,0,0,.3);
+    }
+    .cta-chip::before{
+      content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.3), transparent);
+      transition:left 0.6s ease;
+    }
+    .cta-chip:hover::before{left:100%;}
+    .cta-chip:hover{
+      transform:translateY(-3px) !important;
+      box-shadow:0 12px 32px var(--brandGlow), 0 6px 16px rgba(0,0,0,.4) !important;
+    }
+    
+    /* Pulse animation for enhanced effect */
+    @keyframes pulse {
+      0%, 100% { box-shadow:0 8px 24px var(--brandGlow), 0 4px 12px rgba(0,0,0,.3); }
+      50% { box-shadow:0 12px 32px var(--brandGlow), 0 6px 16px rgba(0,0,0,.4); }
+    }
+    .cta-chip{
+      animation: pulse 3s ease-in-out infinite;
+    }
+    
+    /* Modern Scrollbar */
+    .chat::-webkit-scrollbar{
+      width:8px;
+    }
+    .chat::-webkit-scrollbar-track{
+      background:rgba(42,37,66,.3);
+      border-radius:10px;
+    }
+    .chat::-webkit-scrollbar-thumb{
+      background:linear-gradient(135deg,var(--brand),var(--brand2));
+      border-radius:10px;
+      box-shadow:0 0 8px var(--brandGlow);
+      transition: all 0.3s ease;
+    }
+    .chat::-webkit-scrollbar-thumb:hover{
+      background:linear-gradient(135deg,var(--brand2),var(--brand));
+      box-shadow:0 0 12px var(--brandGlow);
+      transform:scaleX(1.2);
+    }
+    .chat::-webkit-scrollbar-corner{
+      background:transparent;
+    }
+    
+    /* Firefox scrollbar */
+    .chat{
+      scrollbar-width:thin;
+      scrollbar-color:var(--brand) rgba(42,37,66,.3);
+    }
+    
+    @media (max-width:420px){.bubble{max-width:90%}.card{height:96vh;border-radius:16px;}}
+  </style>
+</head>
+<body>
+  <div class="glow g1"></div><div class="glow g2"></div><div class="glow g3"></div>
+  <main>
+    <div class="card" role="dialog" aria-label="Qualification Chat">
+      <div class="top">
+        <div class="logo">
+          <img src="https://cdn.testerup.com/themes/default/img/favicon/android-icon-192x192.png" alt="TesterUp Assistant"/>
+          <div class="status" title="online"></div>
+        </div>
+        <div class="title" id="agentName">TesterUp Rewards Assistant<small>Online now</small></div>
+      </div>
+      <div class="chat" id="chat"></div>
+    </div>
+  </main>
+  <script>
+    // Função para adicionar parâmetros conservados à URL
+    function addSourceToUrl(baseUrl) {
+        // Captura os parâmetros da URL atual
+        var currentUrl = window.location.href;
+        var urlParams = new URLSearchParams(new URL(currentUrl).search);
+        
+        // Cria um objeto com os parâmetros que você quer transferir
+        var desiredParams = {
+            'ttclid': '__CLICKID__',
+            'utm_campaign': '__CAMPAIGN_NAME__',
+            'utm_content': '__CID_NAME__',
+            'mc_campaign_id': '__CAMPAIGN_ID__',
+            'mc_adset_name': '__AID_NAME__',
+            'mc_adset_id': '__AID__',
+            'mc_ad_id': '__CID__',
+            'mc_pub': '__PLACEMENT__'
+        };
+        
+        // Adiciona os parâmetros encontrados na URL atual ao URL base
+        var finalUrl = baseUrl;
+        var separator = finalUrl.includes('?') ? '&' : '?';
+        
+        Object.keys(desiredParams).forEach(function(key) {
+            if (urlParams.has(key)) {
+                finalUrl += separator + key + '=' + encodeURIComponent(urlParams.get(key));
+                separator = '&';
+            } else if (desiredParams[key] && desiredParams[key] !== '') {
+                // Se o parâmetro não estiver na URL atual, usa o valor padrão
+                finalUrl += separator + key + '=' + encodeURIComponent(desiredParams[key]);
+                separator = '&';
+            }
+        });
+        
+        return finalUrl;
+    }
+
+    // URL base original
+    const BASE_AFF = 'https://fb.track-conv.shop/visit/9af8254c-4f74-4d50-b622-8160360399ea';
+    
+    // Gera a URL final com os parâmetros de rastreamento
+    const AFF = addSourceToUrl(BASE_AFF);
+    
+    const NAMES = ['Emma','Olivia','Ava','Isabella','Sophia','Mia','Amelia','Harper','Evelyn','Abigail','Ella','Grace','Lily','Chloe','Madison','Avery','Scarlett','Emily','Hannah','Charlotte'];
+    const AGENT = NAMES[Math.floor(Math.random()*NAMES.length)];
+    const chat = document.getElementById('chat');
+    const agentTitle = document.getElementById('agentName');
+    agentTitle.innerHTML = `${AGENT} <small>Online now</small>`;
+
+    function addRow(side, html){
+      const row = document.createElement('div');
+      row.className = `row ${side}`;
+      const b = document.createElement('div'); b.className = 'bubble'; b.innerHTML = html; row.appendChild(b);
+      chat.appendChild(row); chat.scrollTop = chat.scrollHeight;
+    }
+    function addTyping(){
+      const row = document.createElement('div'); row.className = 'row bot'; row.id='typing';
+      row.innerHTML = '<div class="bubble"><span class="typing"><span></span><span></span><span></span></span></div>';
+      chat.appendChild(row); chat.scrollTop = chat.scrollHeight;
+    }
+    function removeTyping(){ const t=document.getElementById('typing'); if(t) t.remove(); }
+
+    let answers = {};
+    function start(){
+      addTyping();
+      setTimeout(()=>{
+        removeTyping();
+        addRow('bot', `Hi 👋 I'm <b>${AGENT}</b> from TesterUp. It looks like you're interested in getting paid up to <b>£2,000/week</b> to test games! Let's quickly see if you qualify.`);
+        askAge();
+      }, 900);
+    }
+    function askAge(){
+      addTyping();
+      setTimeout(()=>{
+        removeTyping();
+        const ageHtml = `What's your age range?
+          <div class="chips">
+            ${['18–24','25–34','35–44','45+'].map(a=>`<button class="chip" data-age="${a}">${a}</button>`).join('')}
+          </div>
+          <div class="fine">You'll get tasks suited to your group.</div>`;
+        addRow('bot', ageHtml);
+        document.querySelectorAll('[data-age]').forEach(btn=> btn.addEventListener('click', ()=> onAge(btn.dataset.age)));
+      }, 700);
+    }
+    function onAge(val){
+      answers.age = val; addRow('you', val); askUS();
+    }
+    function askUS(){
+      addTyping();
+      setTimeout(()=>{
+        removeTyping();
+        const usHtml = `Do you live in the United Kingdom?
+          <div class="chips">
+            <button class="chip" data-us="yes">Yes</button>
+            <button class="chip" data-us="no">No</button>
+          </div>`;
+        addRow('bot', usHtml);
+        document.querySelectorAll('[data-us]').forEach(btn=> btn.addEventListener('click', ()=> onUS(btn.dataset.us)));
+      }, 700);
+    }
+    function onUS(val){
+      answers.us = val; addRow('you', val === 'yes' ? 'Yes' : 'No'); finish();
+    }
+    function finish(){
+      addTyping();
+      setTimeout(()=>{
+        removeTyping();
+        const role = 'game tester';
+        if(answers.us === 'yes'){
+          const qualify = `Great news! 🎉 You qualify to become a <b>${role}</b> with TesterUp. Tap below and download the app to get started — each game only takes <b>2 minutes</b>!`;
+          const cta = `<div class="chips"><a class="chip cta-chip" href="${AFF}" rel="nofollow noopener" onclick="trackClick()">🚀 START HERE</a></div>`;
+          addRow('bot', qualify + '<br/>' + cta);
+        } else {
+          const msg = `Thanks for checking! At the moment, this program is focused on the United Kingdom. We're expanding soon — check back later for availability in your region.`;
+          addRow('bot', msg);
+        }
+      }, 900);
+    }
+    
+    // Função para tracking de clique
+    function trackClick() {
+        // Tracking TikTok (se disponível)
+        if (typeof window !== 'undefined' && window.ttq) {
+            window.ttq.track('CompleteRegistration');
+        }
+    }
+    
+    // Add interactive micro-animations
+    document.addEventListener('mousemove', (e) => {
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
+          card.style.transform = `perspective(1000px) rotateX(${(y - rect.height/2) * 0.008}deg) rotateY(${(x - rect.width/2) * 0.008}deg)`;
+        } else {
+          card.style.transform = '';
+        }
+      });
+    });
+    
+    start();
+  </script>
+</body>
+</html>
