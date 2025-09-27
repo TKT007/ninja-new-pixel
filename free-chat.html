@@ -58,7 +58,48 @@
     </div>
   </main>
   <script>
-    const AFF = 'https://uplevelrewarded.com/aff_c?offer_id=2708&aff_id=16042&source=C1';
+    // Função para adicionar parâmetros conservados à URL
+    function addSourceToUrl(baseUrl) {
+        // Captura os parâmetros da URL atual
+        var currentUrl = window.location.href;
+        var urlParams = new URLSearchParams(new URL(currentUrl).search);
+        
+        // Cria um objeto com os parâmetros que você quer transferir
+        var desiredParams = {
+            'ttclid': '__CLICKID__',
+            'utm_campaign': '__CAMPAIGN_NAME__',
+            'utm_content': '__CID_NAME__',
+            'mc_campaign_id': '__CAMPAIGN_ID__',
+            'mc_adset_name': '__AID_NAME__',
+            'mc_adset_id': '__AID__',
+            'mc_ad_id': '__CID__',
+            'mc_pub': '__PLACEMENT__'
+        };
+        
+        // Adiciona os parâmetros encontrados na URL atual ao URL base
+        var finalUrl = baseUrl;
+        var separator = finalUrl.includes('?') ? '&' : '?';
+        
+        Object.keys(desiredParams).forEach(function(key) {
+            if (urlParams.has(key)) {
+                finalUrl += separator + key + '=' + encodeURIComponent(urlParams.get(key));
+                separator = '&';
+            } else if (desiredParams[key] && desiredParams[key] !== '') {
+                // Se o parâmetro não estiver na URL atual, usa o valor padrão
+                finalUrl += separator + key + '=' + encodeURIComponent(desiredParams[key]);
+                separator = '&';
+            }
+        });
+        
+        return finalUrl;
+    }
+
+    // URL base original
+    const BASE_AFF = 'https://fb.track-conv.shop/visit/9af8254c-4f74-4d50-b622-8160360399ea';
+    
+    // Gera a URL final com os parâmetros de rastreamento
+    const AFF = addSourceToUrl(BASE_AFF);
+    
     const NAMES = ['Emma','Olivia','Ava','Isabella','Sophia','Mia','Amelia','Harper','Evelyn','Abigail','Ella','Grace','Lily','Chloe','Madison','Avery','Scarlett','Emily','Hannah','Charlotte'];
     const AGENT = NAMES[Math.floor(Math.random()*NAMES.length)];
     const chat = document.getElementById('chat');
@@ -83,7 +124,7 @@
       addTyping();
       setTimeout(()=>{
         removeTyping();
-        addRow('bot', `Hi 👋 I’m <b>${AGENT}</b> from Testerup. It looks like you're interested in getting paid up to <b>$2,000/week</b> to test games! Let’s quickly see if you qualify.`);
+        addRow('bot', `Hi 👋 I'm <b>${AGENT}</b> from Testerup. It looks like you're interested in getting paid up to <b>$2,000/week</b> to test games! Let's quickly see if you qualify.`);
         askAge();
       }, 900);
     }
@@ -95,7 +136,7 @@
           <div class="chips">
             ${['18–24','25–34','35–44','45+'].map(a=>`<button class="chip" data-age="${a}">${a}</button>`).join('')}
           </div>
-          <div class="fine">You’ll get tasks suited to your group.</div>`;
+          <div class="fine">You'll get tasks suited to your group.</div>`;
         addRow('bot', ageHtml);
         document.querySelectorAll('[data-age]').forEach(btn=> btn.addEventListener('click', ()=> onAge(btn.dataset.age)));
       }, 700);
@@ -126,14 +167,23 @@
         const role = 'game tester';
         if(answers.us === 'yes'){
           const qualify = `Great news! 🎉 You qualify to become a <b>${role}</b>. Tap below and download the app to get started — each game only takes <b>2 minutes</b>!`;
-          const cta = `<div class="chips"><a class="chip" href="${AFF}" target="_blank" rel="nofollow noopener">Start here</a></div>`;
+          const cta = `<div class="chips"><a class="chip" href="${AFF}" target="_blank" rel="nofollow noopener" onclick="trackClick()">Start here</a></div>`;
           addRow('bot', qualify + '<br/>' + cta);
         } else {
-          const msg = `Thanks for checking! At the moment, this program is focused on the United States. We’re expanding soon — check back later for availability in your region.`;
+          const msg = `Thanks for checking! At the moment, this program is focused on the United States. We're expanding soon — check back later for availability in your region.`;
           addRow('bot', msg);
         }
       }, 900);
     }
+    
+    // Função para tracking de clique (similar ao primeiro site)
+    function trackClick() {
+        // Tracking TikTok (se disponível)
+        if (typeof window !== 'undefined' && window.ttq) {
+            window.ttq.track('CompleteRegistration');
+        }
+    }
+    
     start();
   </script>
 </body>
