@@ -1,0 +1,280 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Optional, send client hints to get accurate device data-->
+<meta http-equiv="delegate-ch" content="sec-ch-ua https://fb.track-conv.shop; sec-ch-ua-mobile https://fb.track-conv.shop; sec-ch-ua-arch https://fb.track-conv.shop; sec-ch-ua-model https://fb.track-conv.shop; sec-ch-ua-platform https://fb.track-conv.shop; sec-ch-ua-platform-version https://fb.track-conv.shop; sec-ch-ua-bitness https://fb.track-conv.shop; sec-ch-ua-full-version-list https://fb.track-conv.shop; sec-ch-ua-full-version https://fb.track-conv.shop" />
+
+<!-- MaxConv Tracking Script Base Code-->
+<script>!function(w,d,o,n,c){w[o]=w[o]||function(){(w[o].q=w[o].q||[]).push(arguments)};var s=d.createElement(n),t=d.getElementsByTagName(n)[0];s.async=!0;s.defer=!0;s.src="https://fb.track-conv.shop/t/t.js";t.parentNode.insertBefore(s,t);}(window,document,"maxconv","script");</script>
+<noscript><link rel="stylesheet" href="https://fb.track-conv.shop/t/t.css?mc_ns=1" /></noscript>
+<!-- End MaxConv Tracking Script Base Code-->
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no">
+    <meta name="description" content="Your Daily Guide To Good Health">
+    <meta name="author" content="">
+
+    <title>FitLife Tips</title>
+
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/base.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/jquery.rateyo.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital@0;1&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.rateyo.js"></script>
+    <script type="text/javascript" src="js/jquery.appear.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+    <script>
+        function populateModal(title, sourceUrl)
+        {
+            $('#modalTitle').html(title);
+            $('#modalCopy').html('');
+
+            $.get(sourceUrl, function (data)
+            {
+                $('#modalCopy').html(data);
+            });
+        }
+    </script>
+
+    <script>
+        function getOS() {
+            var userAgent = window.navigator.userAgent,
+                platform = window.navigator.platform,
+                macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
+                windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
+                iosPlatforms = ['iPhone', 'iPad', 'iPod'],
+                os = "";
+
+            if (macosPlatforms.indexOf(platform) !== -1) {
+                os = 'Mac';
+            } else if (iosPlatforms.indexOf(platform) !== -1) {
+                os = 'iOS';
+            } else if (windowsPlatforms.indexOf(platform) !== -1) {
+                os = 'Windows';
+            } else if (/Android/.test(userAgent)) {
+                os = 'Android';
+            } else if (/Linux/.test(platform)) {
+                os = 'Linux';
+            }
+
+            return os;
+        }
+    </script>
+
+    <style>
+        .container-fluid {
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            max-width: 800px;
+        }
+
+        header {
+            display: none;
+        }
+
+        h2 {
+            color: #38312c;
+            margin: 0 0 30px;
+            text-align: center;
+        }
+
+        .logo {
+            height: auto;
+            margin-bottom: 15px;
+            width: 150px;
+        }
+
+        .quizContainer {
+            background-color: #f7f4ef;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            padding: 30px 50px;
+        }
+
+        .quizContainer button {
+            background-color: #fff;
+            border: 1px solid #38312c;
+            border-radius: 10px;
+            color: #38312c;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            padding: 15px;
+            width: 100%;
+        }
+
+        .quizContainer button:hover {
+            background-color: #6b9373;
+            color: #fff;
+        }
+
+        .testimonial {
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 600px;
+        }
+
+        .testimonialInfo {
+            line-height: 1.3em;
+            width: 150px;
+        }
+
+        .testimonialText {
+            font-family: 'Merriweather', serif;
+            font-style: italic;
+            margin-top: 15px;
+        }
+
+        .headshot {
+            width: 80px;
+        }
+
+        .headshot img {
+            height: 60px;
+            width: 60px;
+        }
+
+        .rating {
+            text-align: right;
+        }
+
+        .transColor {
+            -webkit-transition: color 200ms ease-in-out;
+            -moz-transition: color 200ms ease-in-out;
+            -o-transition: color 200ms ease-in-out;
+            transition: color 200ms ease-in-out;
+        }
+
+        .transBGColor {
+            -webkit-transition: background-color 200ms ease-in-out;
+            -moz-transition: background-color 200ms ease-in-out;
+            -o-transition: background-color 200ms ease-in-out;
+            transition: background-color 200ms ease-in-out;
+        }
+    </style>
+
+    <style type="text/css">
+        /* ADVERTORIAL-POLICIES-HEAD */
+        .sponsorText { display: none; }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="advertisement" class="col-sm-12">
+            <div class="advertorialText">Advertisement</div>
+            <div class="sponsorText">    Sponsored Content Provided By daily-healthtips.com</div>
+        </div>
+
+        <div class="sectionContainer">
+            <img class="logo" src="images/logo.png">
+        </div>
+    </header>
+
+    <div class="contentContainer">
+        <div class="sectionContainer articleContent">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <img class="img-responsive logo" src="images/67ebf6988cc052717101a822.webp">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="quizContainer">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <h2>What Is Your Weight Loss Goal?</h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-12">
+                                    <a href="https://fb.track-conv.shop/click" target="_blank">
+                                        <button class="transColor transBGColor">Lose 0-40 Pounds</button>
+                                    </a>
+                                </div>
+                                <div class="col-sm-6 col-xs-12">
+                                    <a href="https://fb.track-conv.shop/click" target="_blank">
+                                        <button class="transColor transBGColor">Lose 40-100 Pounds</button>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-12">
+                                    <a href="https://fb.track-conv.shop/click" target="_blank">
+                                        <button class="transColor transBGColor">Lose 100-200 Pounds</button>
+                                    </a>
+                                </div>
+                                <div class="col-sm-6 col-xs-12">
+                                    <a href="https://fb.track-conv.shop/click" target="_blank">
+                                        <button class="transColor transBGColor">Lose 200+ Pounds</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="testimonial">
+                            <table>
+                                <tbody><tr>
+                                    <td class="headshot">
+                                        <img class="img-circle" src="images/67ec09c11a35e189ab097782.webp">
+                                    </td>
+                                    <td class="testimonialInfo">
+                                        <strong>Terri</strong><br>
+                                        Lost 34 lbs
+                                    </td>
+                                    <td class="rating">
+                                        <img src="images/67ec09c817326bbf26091b22.webp">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">
+                                        <div class="testimonialText">"Losing weight without a crazy diet, without cardio...it just felt like magic. I was a snacker, but not anymore. I feel so much better.</div>
+                                    </td>
+                                </tr>
+                            </tbody></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="sectionContainer">      
+            <ul class="list-inline copyright">               
+                <li><a href="https://www.medvi.org/terms-and-conditions.html" target="_blank">Terms of Use</a></li>
+                <li><a href="https://www.medvi.org/privacy-policy.html" target="_blank">Privacy Policy</a></li>
+                <li class="privacyCalifornia"><a href="https://www.medvi.org/privacy-statement-california.html" target="_blank">Privacy Notice for California Residents</a></li>
+            </ul>
+            Trademarks utilized on our website belong to their respective owners and no implied or expressed endorsement of our website or services is intended. Through in-depth research and experienced editors we provide feedback about products and services. We are independently owned, and opinions expressed here are our own. This website is an independent professional comparison and review site supported by referral fees from the sites and products featured.<br><br>©2025 FitLife Tips. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>$(function() { $('.os-text').text(getOS()); } )</script>
+
+    <div id="infoModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 id="modalTitle" class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <div id="modalCopy" class="mfModalCopy left">					
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
