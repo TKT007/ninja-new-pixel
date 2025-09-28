@@ -1,753 +1,526 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!--Optional, send client hints to get accurate device data-->
-<meta http-equiv="delegate-ch" content="sec-ch-ua https://fb.track-conv.shop; sec-ch-ua-mobile https://fb.track-conv.shop; sec-ch-ua-arch https://fb.track-conv.shop; sec-ch-ua-model https://fb.track-conv.shop; sec-ch-ua-platform https://fb.track-conv.shop; sec-ch-ua-platform-version https://fb.track-conv.shop; sec-ch-ua-bitness https://fb.track-conv.shop; sec-ch-ua-full-version-list https://fb.track-conv.shop; sec-ch-ua-full-version https://fb.track-conv.shop" />
-
-<!-- MaxConv Tracking Script Base Code-->
-<script>!function(w,d,o,n,c){w[o]=w[o]||function(){(w[o].q=w[o].q||[]).push(arguments)};var s=d.createElement(n),t=d.getElementsByTagName(n)[0];s.async=!0;s.defer=!0;s.src="https://fb.track-conv.shop/t/t.js";t.parentNode.insertBefore(s,t);}(window,document,"maxconv","script");</script>
-<noscript><link rel="stylesheet" href="https://fb.track-conv.shop/t/t.css?mc_ns=1" /></noscript>
-<!-- End MaxConv Tracking Script Base Code-->
-   <style>
-	   .jq-ry-container{position:relative;padding:0 5px;line-height:0;display:block;cursor:pointer;-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box}.jq-ry-container[readonly=readonly]{cursor:default}.jq-ry-container>.jq-ry-group-wrapper{position:relative;width:100%}.jq-ry-container>.jq-ry-group-wrapper>.jq-ry-group{position:relative;line-height:0;z-index:10;white-space:nowrap}.jq-ry-container>.jq-ry-group-wrapper>.jq-ry-group>svg{display:inline-block}.jq-ry-container>.jq-ry-group-wrapper>.jq-ry-group.jq-ry-normal-group{width:100%}.jq-ry-container>.jq-ry-group-wrapper>.jq-ry-group.jq-ry-rated-group{width:0;z-index:11;position:absolute;top:0;left:0;overflow:hidden}
-       @charset "UTF-8";
-
-/*---------------------------------------- UNIVERSAL STYLES ----------------------------------------*/		
-
-html, body {
-	font-family: 'Merriweather', serif;
-	font-size: 100%;
-	font-weight: 400;
-	height: 100%;
-	line-height: 1.75;
-	margin-left: auto;
-	margin-right: auto;
-    -webkit-font-smoothing: antialiased;
-}
-
-.sectionContainer {
-	margin-left: auto;
-	margin-right: auto;
-	max-width: 1000px;
-	padding-left: 30px;
-	padding-right: 30px;
-}
-
-h1 {
-	font-size: 2.8rem;
-	letter-spacing: -0.05rem;
-	margin-top: 0;
-}
-
-h1, h2, h3, h4, h5 {
-	font-weight: 700;
-}
-
-h2 {
-	font-size: 1.8rem;
-}
-
-h3 {
-	font-size: 1.5rem;
-}
-
-h4 {
-	font-size: 1.25rem;
-}
-
-p {
-	margin: 0 0 1.25rem;
-}
-
-blockquote, ol, ul, .articleImageContainer {
-	margin: 0 0 20px;
-}
-
-blockquote {
-	background-color: #eee;
-	border-left: 5px solid #cc0000;
-	font-size: inherit;
-	font-style: italic;
-}
-
-.faux-button {
-	background: #7dc049;
-	border: none;
-	border-radius: 5px;
-	color: #fff;
-	font-family: 'Lato', sans-serif;
-	font-size: 18px;
-	outline: none;
-	margin: 5px 0;
-	padding: 8px 25px;
-}
-
-.footnote {
-	font-size: 0.75rem;
-}
-
-/*----- Extra Small -----*/
-@media(max-width: 767px){
-	
-	html, body {
-		background-color: #fff;
-	}
-
-	.sectionContainer {
-		padding-left: 15px;
-		padding-right: 15px;
-	}
-	
-	h1 {
-		font-size: 1.8rem;
-	}
-	
-	h2 {
-		font-size: 1.5rem;
-	}
-	
-	h3 {
-		font-size: 1.25rem;
-	}
- 
-	h4 {
-		font-size: 1.15rem;
-	}
-
-}
-
-/*---------------------------------------- LINKS & BUTTONS ----------------------------------------*/
-
-a, button {
-	outline: none;
-}
-
-a {
-	color: #cc0000;
-	cursor: pointer;
-	text-decoration: none;
-}
-a:hover {
-	color: #990000;
-	text-decoration: none;
-}
-
-button.cta {
-	background-color: #cc0000;
-	border-radius: 5px;
-	color: #fff;
-	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-	font-size: 1.8em;
-	font-weight: bold;
-	letter-spacing: -0.025em;
-	line-height: 1.8em;
-	margin: 5px 0;
-	min-width: 250px;
-	outline: none;
-	padding: 5px 25px;
-}
-button.cta:hover {
-	background: #990000;
-}
-
-.outboundLink {
-	cursor: pointer;
-}
-
-.multiBrandAdvertorial button.cta {
-	width: 100%;
-}
-
-button.btnBody {
-	background-color: #7dc049;
-	border: none;
-	color: #fff;
-	font-size: 1.15rem;
-	font-weight: 700;
-	margin: 0 8px 8px 0;
-	padding: 10px 5px;
-	width: 100%;
-}
-button.btnBody:hover {
-	background-color: #006699;
-}
-
-/*----- Extra Small -----*/
-@media(max-width: 767px){
-
-	button.cta {
-		font-size: 1.5em;
-		line-height: 1.5em;
-		padding: 10px;
-	}
-	
-	.tapAge button {
-		font-size: 100%;
-	}
-
-}
-
-/*---------------------------------------- HEADER ----------------------------------------*/
-
-header {
-	background-color: rgb(247, 247, 247);
-	box-shadow: 0 1px 3px rgba(0,0,0,.2);
-	width: 100%;
-    padding-bottom: 12px;
-}
-
-header .sectionContainer {
-	padding-left: 0;
-	padding-right: 0;
-}
-
-#advertisement {
-	color: #999;
-	font-family: 'Noto Sans TC', sans-serif;
-	font-size: 0.75rem;
-	margin: 0;
-	text-align: center;
-}
-
-header .logo {
-	height: 60px;
-	margin-left: 30px;
-	width: 202px;
-}
-
-/*----- Extra Small -----*/
-@media(max-width: 767px){
-
-	header {
-		margin-bottom: 10px;
-	}
-	
-	header .sectionContainer {
-		padding-left: 15px;
-		padding-right: 15px;
-	}
-	
-	header .logo {
-		height: 34px;
-		margin-left: 0;
-		margin-top: 5px;
-		width: 114px;
-	}
-
-}
-
-/*----- Small -----*/
-@media(min-width: 768px) and (max-width: 991px){
-	
-	header .sectionContainer {
-		padding-left: 30px;
-		padding-right: 30px;
-	}
-
-	header .logo {
-		margin-left: 0;
-	}
-	
-}
-
-/*----- Medium -----*/
-@media(min-width: 992px) and (max-width: 1199px){
-
-	header .sectionContainer {
-		padding-left: 30px;
-		padding-right: 30px;
-	}
-
-	header .logo {
-		margin-left: 0;
-	}
-	
-}
-
-/*---------------------------------------- ARTICLE CONTENT ----------------------------------------*/
-
-.articleContent {
-	border-bottom: 1px solid #000;
-	margin-bottom: 30px;
-	margin-top: 20px;
-	padding-bottom: 75px;
-	padding-top: 20px;
-}
-
-.articleInfo {
-	color: #999;
-	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-	font-size: 100%;
-	margin-bottom: 15px;
-}
-
-.sharethis-inline-share-buttons {
-	margin-bottom: 15px;
-}
-
-.articleAuthor {
-	color: #005dae;
-	font-weight: bold;
-	margin-right: 8px;
-}
-
-.photoAuthor {
-	height: 40px;
-	margin-right: 12px;
-	width: 40px;
-}
-
-.viewerLocation {
-	text-transform: uppercase;
-}
-
-.highlight {
-	background-color: yellow;
-}
-
-/*----- Extra Small -----*/
-@media(max-width: 767px){
-	
-	.articleContent {
-		margin-top: 0;
-		padding-top: 10px;
-	}
-	
-	.articleInfo {
-		font-size: 0.85rem;
-	}
-
-}
-
-/*----- responsive video  -----*/
-
-@media (max-width: 800px) {iframe {height:420px !important;}}
-@media (max-width: 600px) {iframe {height:320px !important;}}
-@media (max-width: 420px) {iframe {height:220px !important;}}
-
-/*---------------------------------------- MULTIBRAND ADVERTORIAL ----------------------------------------*/
-
-.multiBrandAdvertorial h2 {
-    margin-top: 50px;
-}
-
-/*---------------------------------------- FOOTER ----------------------------------------*/
-
-footer {
-	color: #999;
-	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-	font-size: 10px;
-	padding-bottom: 100px;
-	text-align: center;
-}
-
-footer a {
-	color: #000;
-	font-family: 'Merriweather', serif;
-	font-size: 0.85rem;
-	text-decoration: none;
-}
-footer a:hover {
-	color: #cc0000;
-	text-decoration: none;
-}
-
-footer ul {
-	margin-bottom: 10px;
-}
-
-footer .logo {
-	height: 34px;
-	margin-bottom: 25px;
-	width: 117px;
-}
-
-/*---------------------------------------- SVG MAP ----------------------------------------*/
-
-.stateText {
-	fill: #FFFFFF;
-	pointer-events: none;
-}
-
-.stateImage {
-	fill: #F8991D;
-}
-
-.stateButton {
-	fill: #000;
-}
-
-.stateImage,
-.stateButton {
-	cursor: pointer;
-	transition: 0.4s;
-}
-
-.stateImage:hover,
-.stateButton:hover {
-	fill: #cc0000;
-}
-
-/*---------------------------------------- AGE SELECT ----------------------------------------*/
-
-.containerAge {
-	margin-bottom: 20px;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 30px;
-	max-width: 600px;
-}
-
-.containerAge .buttonAge {
-	background-color: #00a8f2;
-	border: 2px solid #fff;
-	color: #fff;
-	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-	font-size: 1.25em;
-	padding: 25px 0;
-	text-align: center;
-}
-.containerAge .buttonAge:hover {
-	background-color: #005cad;
-}
-
-/*----- Extra Small -----*/
-@media(max-width: 767px){
-
-	.containerAge {
-		max-width: 300px;
-	}
-
-}
-
-
-
-
-
-
-
-
-/*----- Extra Small -----*/
-@media(max-width: 767px){
-
-}
-
-/*----- Small -----*/
-@media(min-width: 768px) and (max-width: 991px){
-
-}
-
-/*----- Medium -----*/
-@media(min-width: 992px) and (max-width: 1199px){
-
-}
-
-/*----- Large -----*/
-@media (min-width: 1000px){
-	
-}
-
-
-/********** POPOVER STYLES **********/
-.popover {
-    background-color: #fef5c3;
-    color: #666;
-    border: 2px solid #fad611;
-    font-size: 12px;
-    line-height: 1.3em;
-    max-width: 225px;
-    padding: 5px;
-}
-
-.popover > .arrow {
-    border-width: 12px;
-}
-.popover > .arrow:after {
-    content: "";
-    border-width: 10px;
-}
-
-.popover.bottom > .arrow {
-    top: -12px;
-    left: 50%;
-    margin-left: -11px;
-    border-top-width: 0;
-    border-bottom-color: #fad611;
-}
-.popover.bottom > .arrow:after {
-    top: 3px;
-    margin-left: -10px;
-    border-top-width: 0;
-    border-bottom-color: #fef5c3;
-}
-/********** END POPOVER STYLES **********/
-</style>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no">
-    <meta name="description" content="Your Daily Guide To Good Health">
-    <meta name="author" content="">
-
-    <title>FitLife Tips</title>
-
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/base.css" rel="stylesheet">
-    <link href="css/custom.css" rel="stylesheet">
-    <link href="css/jquery.rateyo.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital@0;1&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
-    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-    <script type="text/javascript" src="js/jquery.rateyo.js"></script>
-    <script type="text/javascript" src="js/jquery.appear.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-
-    <script>
-        function populateModal(title, sourceUrl)
-        {
-            $('#modalTitle').html(title);
-            $('#modalCopy').html('');
-
-            $.get(sourceUrl, function (data)
-            {
-                $('#modalCopy').html(data);
-            });
-        }
-    </script>
-
-    <script>
-        function getOS() {
-            var userAgent = window.navigator.userAgent,
-                platform = window.navigator.platform,
-                macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
-                windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
-                iosPlatforms = ['iPhone', 'iPad', 'iPod'],
-                os = "";
-
-            if (macosPlatforms.indexOf(platform) !== -1) {
-                os = 'Mac';
-            } else if (iosPlatforms.indexOf(platform) !== -1) {
-                os = 'iOS';
-            } else if (windowsPlatforms.indexOf(platform) !== -1) {
-                os = 'Windows';
-            } else if (/Android/.test(userAgent)) {
-                os = 'Android';
-            } else if (/Linux/.test(platform)) {
-                os = 'Linux';
-            }
-
-            return os;
-        }
-    </script>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your Daily Guide To Good Health - Discover the revolutionary method to lose weight without crazy diets">
+    <title>FitLife Tips - Transform Your Life</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        .container-fluid {
-            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-            max-width: 800px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        header {
-            display: none;
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        h2 {
-            color: #38312c;
-            margin: 0 0 30px;
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .shape:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            top: 80%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+
+        .hero-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 60px 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb, #667eea);
+            background-size: 300% 300%;
+            animation: gradient 3s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .logo {
+            width: 180px;
             height: auto;
-            margin-bottom: 15px;
-            width: 150px;
-        }
-
-        .quizContainer {
-            background-color: #f7f4ef;
-            border-radius: 20px;
             margin-bottom: 30px;
-            padding: 30px 50px;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
         }
 
-        .quizContainer button {
-            background-color: #fff;
-            border: 1px solid #38312c;
-            border-radius: 10px;
-            color: #38312c;
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            padding: 15px;
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem;
+            font-weight: 600;
+            color: #1a202c;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: #4a5568;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .quiz-container {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .quiz-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 500;
+            color: #2d3748;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .quiz-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .quiz-button {
+            display: block;
             width: 100%;
+            padding: 20px 25px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            color: #2d3748;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
 
-        .quizContainer button:hover {
-            background-color: #6b9373;
-            color: #fff;
+        .quiz-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .quiz-button:hover {
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(102, 126, 234, 0.4);
+            border-color: transparent;
+        }
+
+        .quiz-button:hover::before {
+            left: 0;
+        }
+
+        .quiz-button:active {
+            transform: translateY(0);
+        }
+
+        .testimonial-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.1);
         }
 
         .testimonial {
-            margin-left: auto;
-            margin-right: auto;
             max-width: 600px;
+            margin: 0 auto;
         }
 
-        .testimonialInfo {
-            line-height: 1.3em;
-            width: 150px;
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 0;
         }
 
-        .testimonialText {
-            font-family: 'Merriweather', serif;
-            font-style: italic;
-            margin-top: 15px;
+        .testimonial-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #667eea;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            flex-shrink: 0;
         }
 
-        .headshot {
-            width: 80px;
+        .testimonial-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
-        .headshot img {
-            height: 60px;
-            width: 60px;
+        .testimonial-info {
+            margin-bottom: 15px;
+        }
+
+        .testimonial-info h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 5px;
+        }
+
+        .testimonial-info p {
+            color: #4a5568;
+            font-size: 1rem;
+            margin-bottom: 10px;
         }
 
         .rating {
-            text-align: right;
+            margin-bottom: 15px;
         }
 
-        .transColor {
-            -webkit-transition: color 200ms ease-in-out;
-            -moz-transition: color 200ms ease-in-out;
-            -o-transition: color 200ms ease-in-out;
-            transition: color 200ms ease-in-out;
+        .stars {
+            color: #fbbf24;
+            font-size: 1.2rem;
         }
 
-        .transBGColor {
-            -webkit-transition: background-color 200ms ease-in-out;
-            -moz-transition: background-color 200ms ease-in-out;
-            -o-transition: background-color 200ms ease-in-out;
-            transition: background-color 200ms ease-in-out;
+        .testimonial-text {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: #2d3748;
+            line-height: 1.7;
+            position: relative;
+            margin: 0;
         }
-    </style>
 
-    <style type="text/css">
-        /* ADVERTORIAL-POLICIES-HEAD */
-        .sponsorText { display: none; }
+        .testimonial-text::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: -30px;
+            font-size: 4rem;
+            color: #667eea;
+            opacity: 0.3;
+        }
+
+        .footer {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #f093fb;
+        }
+
+        .footer-text {
+            color: #e2e8f0;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .hero-section {
+                padding: 40px 25px;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .quiz-container {
+                padding: 25px 20px;
+            }
+
+            .quiz-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonial-section {
+                padding: 25px 20px;
+            }
+
+            .testimonial-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+
+            .rating {
+                margin-left: 0;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .quiz-title {
+                font-size: 1.5rem;
+            }
+
+            .testimonial-text {
+                font-size: 1.1rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <header>
-        <div id="advertisement" class="col-sm-12">
-            <div class="advertorialText">Advertisement</div>
-            <div class="sponsorText">    Sponsored Content Provided By daily-healthtips.com</div>
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="container">
+
+
+        <div class="quiz-container">
+            <h2 class="quiz-title">What Is Your Weight Loss Goal?</h2>
+            <div class="quiz-buttons">
+                <a href="#" class="quiz-button" onclick="handleWeightLossGoal('0-40')">
+                    🎯 Lose 0-40 Pounds
+                </a>
+                <a href="#" class="quiz-button" onclick="handleWeightLossGoal('40-100')">
+                    🔥 Lose 40-100 Pounds
+                </a>
+                <a href="#" class="quiz-button" onclick="handleWeightLossGoal('100-200')">
+                    💪 Lose 100-200 Pounds
+                </a>
+                <a href="#" class="quiz-button" onclick="handleWeightLossGoal('200+')">
+                    🚀 Lose 200+ Pounds
+                </a>
+            </div>
         </div>
 
-        <div class="sectionContainer">
-            <img class="logo" src="images/logo.png">
-        </div>
-    </header>
-
-    <div class="contentContainer">
-        <div class="sectionContainer articleContent">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <img class="img-responsive logo" src="images/67ebf6988cc052717101a822.webp">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="quizContainer">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <h2>What Is Your Weight Loss Goal?</h2>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6 col-xs-12">
-                                    <a href="https://fb.track-conv.shop/click" target="_blank">
-                                        <button class="transColor transBGColor">Lose 0-40 Pounds</button>
-                                    </a>
-                                </div>
-                                <div class="col-sm-6 col-xs-12">
-                                    <a href="https://fb.track-conv.shop/click" target="_blank">
-                                        <button class="transColor transBGColor">Lose 40-100 Pounds</button>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6 col-xs-12">
-                                    <a href="https://fb.track-conv.shop/click" target="_blank">
-                                        <button class="transColor transBGColor">Lose 100-200 Pounds</button>
-                                    </a>
-                                </div>
-                                <div class="col-sm-6 col-xs-12">
-                                    <a href="https://fb.track-conv.shop/click" target="_blank">
-                                        <button class="transColor transBGColor">Lose 200+ Pounds</button>
-                                    </a>
-                                </div>
-                            </div>
+        <div class="testimonial-section">
+            <div class="testimonial">
+                <div class="testimonial-header">
+                    <img src="data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23667eea'/%3E%3Ccircle cx='50' cy='40' r='15' fill='white'/%3E%3Cpath d='M25 80c0-13.8 11.2-25 25-25s25 11.2 25 25' fill='white'/%3E%3C/svg%3E" alt="Terri" class="testimonial-avatar">
+                    <div class="testimonial-content">
+                        <div class="testimonial-info">
+                            <h3>Terri M.</h3>
+                            <p>Lost 34 lbs in 3 months</p>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="testimonial">
-                            <table>
-                                <tbody><tr>
-                                    <td class="headshot">
-                                        <img class="img-circle" src="images/67ec09c11a35e189ab097782.webp">
-                                    </td>
-                                    <td class="testimonialInfo">
-                                        <strong>Terri</strong><br>
-                                        Lost 34 lbs
-                                    </td>
-                                    <td class="rating">
-                                        <img src="images/67ec09c817326bbf26091b22.webp">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="3">
-                                        <div class="testimonialText">"Losing weight without a crazy diet, without cardio...it just felt like magic. I was a snacker, but not anymore. I feel so much better.</div>
-                                    </td>
-                                </tr>
-                            </tbody></table>
+                        <div class="rating">
+                            <div class="stars">★★★★★</div>
+                        </div>
+                        <div class="testimonial-text">
+                            Losing weight without a crazy diet, without cardio... it just felt like magic. I was a snacker, but not anymore. I feel so much better and more confident than ever before.
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <footer>
-        <div class="sectionContainer">      
-            <ul class="list-inline copyright">               
-                <li><a href="https://www.medvi.org/terms-and-conditions.html" target="_blank">Terms of Use</a></li>
-                <li><a href="https://www.medvi.org/privacy-policy.html" target="_blank">Privacy Policy</a></li>
-                <li class="privacyCalifornia"><a href="https://www.medvi.org/privacy-statement-california.html" target="_blank">Privacy Notice for California Residents</a></li>
-            </ul>
-            Trademarks utilized on our website belong to their respective owners and no implied or expressed endorsement of our website or services is intended. Through in-depth research and experienced editors we provide feedback about products and services. We are independently owned, and opinions expressed here are our own. This website is an independent professional comparison and review site supported by referral fees from the sites and products featured.<br><br>©2025 FitLife Tips. All Rights Reserved.
-        </div>
-    </footer>
-
-    <script>$(function() { $('.os-text').text(getOS()); } )</script>
-
-    <div id="infoModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">×</button>
-                    <h4 id="modalTitle" class="modal-title"></h4>
-                </div>
-                <div class="modal-body">
-                    <div id="modalCopy" class="mfModalCopy left">					
-                    </div>
-                </div>
+        <div class="footer">
+            <div class="footer-links">
+                <a href="#">Terms of Use</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Privacy Notice for California Residents</a>
+                <a href="#">Contact Us</a>
+            </div>
+            <div class="footer-text">
+                Trademarks utilized on our website belong to their respective owners and no implied or expressed endorsement of our website or services is intended. Through in-depth research and experienced editors we provide feedback about products and services. We are independently owned, and opinions expressed here are our own.<br><br>
+                ©2025 FitLife Tips. All Rights Reserved.
             </div>
         </div>
     </div>
+
+    <script>
+        // Enhanced click tracking
+        function handleWeightLossGoal(goal) {
+            console.log('Weight loss goal selected:', goal);
+            
+            // Add visual feedback
+            event.target.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                event.target.style.transform = 'scale(1)';
+            }, 150);
+            
+            // Simulate redirect after animation
+            setTimeout(() => {
+                alert(`Great choice! Your ${goal} pounds weight loss journey starts now. This would normally redirect to the next step.`);
+                // window.location.href = 'next-step.html?goal=' + goal;
+            }, 200);
+        }
+
+        // Add smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const animateElements = document.querySelectorAll('.quiz-container, .testimonial-section');
+            animateElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                observer.observe(el);
+            });
+        });
+
+        // Add hover effects for testimonial
+        const testimonialSection = document.querySelector('.testimonial-section');
+        testimonialSection.addEventListener('mouseenter', () => {
+            testimonialSection.style.transform = 'translateY(-5px)';
+        });
+        
+        testimonialSection.addEventListener('mouseleave', () => {
+            testimonialSection.style.transform = 'translateY(0)';
+        });
+    </script>
 </body>
 </html>
