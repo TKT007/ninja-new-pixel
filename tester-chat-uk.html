@@ -133,35 +133,7 @@
     .step b{display:block;color:#ffffff;font-size:15px;margin-bottom:4px;}
     .step-desc{color:var(--muted);font-size:13px;line-height:1.4;}
 
-    /* Progress */
-    .progress{
-      height:32px;background:#1a1530;border:2px solid var(--line);
-      border-radius:999px;overflow:hidden;margin:16px 0;position:relative;
-      box-shadow: inset 0 2px 8px rgba(0,0,0,.4);
-    }
-    .fill{
-      height:100%;width:0;
-      background:linear-gradient(90deg,var(--brand),var(--brand2));
-      box-shadow: 0 0 20px var(--brandGlow);
-      transition:width 2.5s cubic-bezier(0.4, 0, 0.2, 1);
-      position:relative;
-    }
-    .fill::after{
-      content:'';position:absolute;top:0;left:0;right:0;bottom:0;
-      background:linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent);
-      animation: shimmer 2s infinite;
-    }
-    @keyframes shimmer {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
-    }
-    .goal{
-      position:absolute;right:12px;top:50%;transform:translateY(-50%);
-      font-size:14px;font-weight:800;color:#ffffff;
-      text-shadow:0 0 12px var(--brandGlow);
-      background:rgba(219,30,20,.1);padding:2px 8px;border-radius:8px;
-    }
-
+    
     /* Offer block */
     .offer{
       background:linear-gradient(135deg, #3a1a0a 0%, #2d274a 100%);
@@ -381,10 +353,7 @@
 
     function getStepsHTML() {
       return `
-        <div class="progress">
-          <div class="fill" id="progressBar"></div>
-          <div class="goal">£200</div>
-        </div>
+     
         
         <div class="steps-container">
           <div class="step">
@@ -458,15 +427,7 @@
       },1000);
     }
     
-    // Start progress bar animation when steps are shown
-    function animateProgressBar() {
-      setTimeout(() => {
-        const progressBar = document.getElementById("progressBar");
-        if (progressBar) {
-          progressBar.style.width = "73%";
-        }
-      }, 600);
-    }
+   
     
     // Observer to detect when steps are added
     const observer = new MutationObserver((mutations) => {
@@ -475,7 +436,6 @@
           mutation.addedNodes.forEach((node) => {
             if (node.nodeType === 1 && node.querySelector && node.querySelector('#countdown')) {
               startCountdown();
-              animateProgressBar();
             }
           });
         }
