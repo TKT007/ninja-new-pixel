@@ -274,7 +274,7 @@
       addTyping();
       setTimeout(()=>{
         removeTyping();
-        addRow('bot', `Hi 👋 I'm <b>${AGENT}</b> from Freecash. It looks like you're interested in getting paid up to <b>$1,500/week</b> to test games! Let's quickly see if you qualify.`);
+        addRow('bot', `Hi 👋 I'm <b>${AGENT}</b> from FreeCash. It looks like you're interested in getting paid up to <b>$1,500/week</b> to test games! Let's quickly see if you qualify.`);
         askAge();
       }, 900);
     }
@@ -316,7 +316,7 @@
         removeTyping();
         const role = 'game tester';
         if(answers.us === 'yes'){
-          const qualify = `Great news! 🎉 You qualify to become a <b>${role}</b> on Freecash. Follow the steps below to start earning:`;
+          const qualify = `Great news! 🎉 You qualify to become a <b>${role}</b> on FreeCash. Follow the steps below to start earning:`;
           addRow('bot', qualify);
           
           // Adicionar intervalo antes de mostrar os steps
@@ -327,7 +327,7 @@
           }, 2000);
           
         } else {
-          const msg = `Thanks for checking! At the moment, Freecash is focused on the United States. We're expanding soon — check back later for availability in your region.`;
+          const msg = `Thanks for checking! At the moment, FreeCash is focused on the United States. We're expanding soon — check back later for availability in your region.`;
           addRow('bot', msg);
         }
       }, 900);
