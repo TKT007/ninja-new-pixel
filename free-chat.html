@@ -222,40 +222,18 @@
     </div>
   </main>
   <script>
-    // Função para adicionar parâmetros conservados à URL
-    function addSourceToUrl(baseUrl) {
-        var currentUrl = window.location.href;
-        var urlParams = new URLSearchParams(new URL(currentUrl).search);
+    // Função para obter o valor do utm_content
+    function getUtmContent() {
+        var urlParams = new URLSearchParams(window.location.search);
+        var utmContent = urlParams.get('utm_content');
         
-        var desiredParams = {
-            'ttclid': '__CLICKID__',
-            'utm_campaign': '__CAMPAIGN_NAME__',
-            'utm_content': '__CID_NAME__',
-            'mc_campaign_id': '__CAMPAIGN_ID__',
-            'mc_adset_name': '__AID_NAME__',
-            'mc_adset_id': '__AID__',
-            'mc_ad_id': '__CID__',
-            'mc_pub': '__PLACEMENT__'
-        };
-        
-        var finalUrl = baseUrl;
-        var separator = finalUrl.includes('?') ? '&' : '?';
-        
-        Object.keys(desiredParams).forEach(function(key) {
-            if (urlParams.has(key)) {
-                finalUrl += separator + key + '=' + encodeURIComponent(urlParams.get(key));
-                separator = '&';
-            } else if (desiredParams[key] && desiredParams[key] !== '') {
-                finalUrl += separator + key + '=' + encodeURIComponent(desiredParams[key]);
-                separator = '&';
-            }
-        });
-        
-        return finalUrl;
+        // Se utm_content existir e não for vazio, usar ele, senão usar 'DEFAULT'
+        return utmContent && utmContent !== '' ? utmContent : 'DEFAULT';
     }
 
-    const BASE_AFF = 'https://glitchy.go2cloud.org/aff_c?offer_id=2593&aff_id=1497&source=CHAT-';
-    const AFF = addSourceToUrl(BASE_AFF);
+    // Link final apenas com utm_content após CHAT-
+    const utmContentValue = getUtmContent();
+    const AFF = `https://glitchy.go2cloud.org/aff_c?offer_id=2593&aff_id=1497&source=CHAT-${utmContentValue}`;
     
     const NAMES = ['Emma','Olivia','Ava','Isabella','Sophia','Mia','Amelia','Harper','Evelyn','Abigail','Ella','Grace','Lily','Chloe','Madison','Avery','Scarlett','Emily','Hannah','Charlotte'];
     const AGENT = NAMES[Math.floor(Math.random()*NAMES.length)];
