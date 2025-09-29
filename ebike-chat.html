@@ -27,17 +27,17 @@
     .top{display:flex;align-items:center;gap:14px;padding:16px 18px;border-bottom:2px solid #d1fae5;backdrop-filter:blur(8px);background:rgba(255,255,255,.7)}
     .logo{width:42px;height:42px;border-radius:12px;overflow:hidden;background:linear-gradient(135deg,#10b981,#34d399);display:grid;place-items:center;position:relative;font-size:24px}
     .status{position:absolute;bottom:2px;right:2px;width:11px;height:11px;border-radius:50%;background:var(--online);border:2.5px solid #ffffff;box-shadow:0 0 8px rgba(16,185,129,.6)}
-    .title{font-weight:900;letter-spacing:.3px;color:var(--text);font-size:15px}
-    .title small{display:block;color:var(--muted);font-weight:600;font-size:12px;margin-top:2px}
+    .title{font-weight:900;letter-spacing:.3px;color:var(--text);font-size:16px}
+    .title small{display:block;color:var(--muted);font-weight:600;font-size:13px;margin-top:2px}
     .chat{flex:1;overflow:auto;padding:18px;display:flex;flex-direction:column;gap:12px;scroll-behavior:smooth}
     .row{display:flex;gap:10px}.row.you{justify-content:flex-end}
-    .bubble{max-width:82%;padding:12px 15px;border-radius:16px;line-height:1.5;font-size:14px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+    .bubble{max-width:82%;padding:12px 15px;border-radius:16px;line-height:1.5;font-size:15px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
     .you .bubble{background:var(--you);border:1px solid #bbf7d0} 
     .bot .bubble{background:var(--bot);border:1px solid #d1fae5}
     .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
-    .chip{background:var(--chip);color:var(--text);border:2px solid var(--primary);border-radius:999px;padding:11px 18px;font-weight:800;font-size:13px;cursor:pointer;text-decoration:none;transition:all .2s;box-shadow:0 2px 6px rgba(16,185,129,.15)}
+    .chip{background:var(--chip);color:var(--text);border:2px solid var(--primary);border-radius:999px;padding:11px 18px;font-weight:800;font-size:14px;cursor:pointer;text-decoration:none;transition:all .2s;box-shadow:0 2px 6px rgba(16,185,129,.15)}
     .chip:hover{background:var(--primary);color:#fff;transform:translateY(-2px);box-shadow:0 4px 12px rgba(16,185,129,.3)}
-    .chip.cta{background:var(--primary);color:#fff;font-size:15px;padding:13px 24px;animation:pulse 2s infinite}
+    .chip.cta{background:var(--primary);color:#fff;font-size:16px;padding:13px 24px;animation:pulse 2s infinite}
     .chip.cta:hover{background:var(--primary-dark)}
     @keyframes pulse{0%,100%{box-shadow:0 4px 12px rgba(16,185,129,.3)}50%{box-shadow:0 4px 20px rgba(16,185,129,.5)}}
     .typing{display:inline-flex;gap:5px;align-items:center}
@@ -120,14 +120,14 @@
         Ready to enjoy your new e-bike? Click the <b>START</b> button below.`);
         
         const startHtml = `<div class="chips">
-          <button class="chip cta" onclick="onStart()">🚀 START NOW</button>
+          <button class="chip cta" onclick="onStart()">START NOW</button>
         </div>`;
         addRow('bot', startHtml);
       }, 1000);
     }
 
     window.onStart = function(){
-      addRow('you', '🚀 START NOW');
+      addRow('you', 'START NOW');
       startTimer();
       addTyping();
       setTimeout(()=>{
@@ -144,8 +144,8 @@
         const usHtml = `<b>Question 1 of 3:</b> Do you live in the US?
           <div class="fine">We are looking for participants from the US.</div>
           <div class="chips">
-            <button class="chip" data-us="yes">✅ Yes</button>
-            <button class="chip" data-us="no">❌ No</button>
+            <button class="chip" data-us="yes">Yes</button>
+            <button class="chip" data-us="no">No</button>
           </div>`;
         addRow('bot', usHtml);
         document.querySelectorAll('[data-us]').forEach(btn=> btn.addEventListener('click', ()=> onUS(btn.dataset.us)));
@@ -154,7 +154,7 @@
 
     function onUS(val){
       answers.us = val; 
-      addRow('you', val === 'yes' ? '✅ Yes' : '❌ No');
+      addRow('you', val === 'yes' ? 'Yes' : 'No');
       if(val === 'no'){
         finishNonUS();
       } else {
@@ -168,9 +168,9 @@
         removeTyping();
         const commuteHtml = `<b>Question 2 of 3:</b> How often do you use a bicycle for commuting?
           <div class="chips">
-            <button class="chip" data-commute="daily">🌞 Daily</button>
-            <button class="chip" data-commute="weekly">📅 Weekly</button>
-            <button class="chip" data-commute="never">🆕 Never, but I will</button>
+            <button class="chip" data-commute="daily">Daily</button>
+            <button class="chip" data-commute="weekly">Weekly</button>
+            <button class="chip" data-commute="never">Never, but I will</button>
           </div>`;
         addRow('bot', commuteHtml);
         document.querySelectorAll('[data-commute]').forEach(btn=> btn.addEventListener('click', ()=> onCommute(btn.dataset.commute)));
@@ -179,7 +179,7 @@
 
     function onCommute(val){
       answers.commute = val;
-      const labels = {daily:'🌞 Daily', weekly:'📅 Weekly', never:'🆕 Never, but I will'};
+      const labels = {daily:'Daily', weekly:'Weekly', never:'Never, but I will'};
       addRow('you', labels[val]);
       askReason();
     }
@@ -190,9 +190,9 @@
         removeTyping();
         const reasonHtml = `<b>Question 3 of 3:</b> What is your primary reason for wanting an e-bike?
           <div class="chips">
-            <button class="chip" data-reason="carbon">🌱 Reduce carbon footprint</button>
-            <button class="chip" data-reason="cost">💰 Save on transportation costs</button>
-            <button class="chip" data-reason="fun">🎉 Just for fun</button>
+            <button class="chip" data-reason="carbon">Reduce carbon footprint</button>
+            <button class="chip" data-reason="cost">Save on transportation costs</button>
+            <button class="chip" data-reason="fun">Just for fun</button>
           </div>`;
         addRow('bot', reasonHtml);
         document.querySelectorAll('[data-reason]').forEach(btn=> btn.addEventListener('click', ()=> onReason(btn.dataset.reason)));
@@ -201,7 +201,7 @@
 
     function onReason(val){
       answers.reason = val;
-      const labels = {carbon:'🌱 Reduce carbon footprint', cost:'💰 Save on transportation costs', fun:'🎉 Just for fun'};
+      const labels = {carbon:'Reduce carbon footprint', cost:'Save on transportation costs', fun:'Just for fun'};
       addRow('you', labels[val]);
       finish();
     }
@@ -260,7 +260,7 @@
                       addRow('bot', congrats);
                       
                       const ctaHtml = `<div class="chips">
-                        <a class="chip cta" href="${AFF}" target="_blank" rel="nofollow noopener">🚴 CONTINUE TO CLAIM</a>
+                        <a class="chip cta" href="${AFF}" target="_blank" rel="nofollow noopener">CONTINUE TO CLAIM</a>
                       </div>`;
                       addRow('bot', ctaHtml);
                     }, 800);
