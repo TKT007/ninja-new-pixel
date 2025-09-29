@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Green E-Bike Program — Quick Qualification</title>
+  <meta name="description" content="Get a free Electric Bike - Answer 3 simple questions" />
+  <style>
+    :root{
+      --bg:#f0f9f4; --primary:#10b981; --primary-dark:#059669; --text:#1f2937; --muted:#6b7280;
+      --card:linear-gradient(180deg, #ffffff, #f8fdf9); --card-brd:#d1fae5;
+      --bot:#ecfdf5; --you:#dcfce7; --chip:#ffffff; --online:#10b981; --shadow:0 20px 70px rgba(16,185,129,.12);
+      --accent:#34d399;
+    }
+    *{box-sizing:border-box} html,body{height:100%}
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--text);
+      background:radial-gradient(1200px 600px at 50% -200px, #d1fae5 0%, transparent 65%),linear-gradient(135deg,var(--bg),#fef3c7);
+      overflow:hidden}
+    .glow{position:fixed;border-radius:50%;filter:blur(40px);opacity:.28;pointer-events:none;z-index:0;animation:float 8s ease-in-out infinite}
+    .g1{width:180px;height:180px;left:60px;top:80px;background:#10b981}
+    .g2{width:120px;height:120px;right:80px;top:140px;background:#34d399;animation-delay:1.5s;opacity:.22}
+    .g3{width:100px;height:100px;left:100px;bottom:100px;background:#059669;animation-delay:2.5s}
+    @keyframes float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-15px) scale(1.05)}}
+    main{position:relative;z-index:1;height:100%;display:grid;place-items:center;padding:16px}
+    .card{width:min(580px,94vw);height:min(740px,92vh);background:var(--card);border:2px solid var(--card-brd);
+      border-radius:24px;box-shadow:var(--shadow);display:flex;flex-direction:column;overflow:hidden}
+    .top{display:flex;align-items:center;gap:14px;padding:16px 18px;border-bottom:2px solid #d1fae5;backdrop-filter:blur(8px);background:rgba(255,255,255,.7)}
+    .logo{width:42px;height:42px;border-radius:12px;overflow:hidden;background:linear-gradient(135deg,#10b981,#34d399);display:grid;place-items:center;position:relative;font-size:24px}
+    .status{position:absolute;bottom:2px;right:2px;width:11px;height:11px;border-radius:50%;background:var(--online);border:2.5px solid #ffffff;box-shadow:0 0 8px rgba(16,185,129,.6)}
+    .title{font-weight:900;letter-spacing:.3px;color:var(--text);font-size:15px}
+    .title small{display:block;color:var(--muted);font-weight:600;font-size:12px;margin-top:2px}
+    .chat{flex:1;overflow:auto;padding:18px;display:flex;flex-direction:column;gap:12px;scroll-behavior:smooth}
+    .row{display:flex;gap:10px}.row.you{justify-content:flex-end}
+    .bubble{max-width:82%;padding:12px 15px;border-radius:16px;line-height:1.5;font-size:14px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+    .you .bubble{background:var(--you);border:1px solid #bbf7d0} 
+    .bot .bubble{background:var(--bot);border:1px solid #d1fae5}
+    .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .chip{background:var(--chip);color:var(--text);border:2px solid var(--primary);border-radius:999px;padding:11px 18px;font-weight:800;font-size:13px;cursor:pointer;text-decoration:none;transition:all .2s;box-shadow:0 2px 6px rgba(16,185,129,.15)}
+    .chip:hover{background:var(--primary);color:#fff;transform:translateY(-2px);box-shadow:0 4px 12px rgba(16,185,129,.3)}
+    .chip.cta{background:var(--primary);color:#fff;font-size:15px;padding:13px 24px;animation:pulse 2s infinite}
+    .chip.cta:hover{background:var(--primary-dark)}
+    @keyframes pulse{0%,100%{box-shadow:0 4px 12px rgba(16,185,129,.3)}50%{box-shadow:0 4px 20px rgba(16,185,129,.5)}}
+    .typing{display:inline-flex;gap:5px;align-items:center}
+    .typing span{width:7px;height:7px;border-radius:50%;background:var(--primary);opacity:.7;animation:blink 1.2s infinite}
+    .typing span:nth-child(2){animation-delay:.2s}.typing span:nth-child(3){animation-delay:.4s}
+    @keyframes blink{0%,80%,100%{opacity:.3}40%{opacity:1}}
+    .fine{font-size:11px;color:var(--muted);margin-top:6px;font-weight:500}
+    .timer{display:inline-block;background:linear-gradient(135deg,#fef3c7,#fde68a);color:#92400e;padding:6px 12px;border-radius:8px;font-weight:800;font-size:13px;margin-top:8px;border:1px solid #fcd34d}
+    .loader{display:flex;align-items:center;gap:8px;margin-top:10px}
+    .spinner{width:20px;height:20px;border:3px solid #d1fae5;border-top-color:var(--primary);border-radius:50%;animation:spin 0.8s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .progress-bar{width:100%;height:8px;background:#e5e7eb;border-radius:999px;overflow:hidden;margin-top:8px}
+    .progress-fill{height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:999px;animation:progress 3s ease-out forwards}
+    @keyframes progress{from{width:0%}to{width:100%}}
+    @media (max-width:420px){.bubble{max-width:90%}.card{height:96vh}}
+  </style>
+</head>
+<body>
+  <div class="glow g1"></div><div class="glow g2"></div><div class="glow g3"></div>
+  <main>
+    <div class="card" role="dialog" aria-label="E-Bike Qualification Chat">
+      <div class="top">
+        <div class="logo">
+          🚴
+          <div class="status" title="online"></div>
+        </div>
+        <div class="title" id="agentName">Green E-Bike Assistant<small>Online now</small></div>
+      </div>
+      <div class="chat" id="chat"></div>
+    </div>
+  </main>
+  <script>
+    const AFF = 'https://your-affiliate-link-here.com';
+    const NAMES = ['Alex','Jordan','Taylor','Morgan','Casey','Riley','Avery','Quinn','Dakota','Cameron'];
+    const AGENT = NAMES[Math.floor(Math.random()*NAMES.length)];
+    const chat = document.getElementById('chat');
+    const agentTitle = document.getElementById('agentName');
+    agentTitle.innerHTML = `${AGENT} <small>Online now</small>`;
+
+    let timerInterval;
+    let timeLeft = 180;
+
+    function addRow(side, html){
+      const row = document.createElement('div');
+      row.className = `row ${side}`;
+      const b = document.createElement('div'); b.className = 'bubble'; b.innerHTML = html; row.appendChild(b);
+      chat.appendChild(row); chat.scrollTop = chat.scrollHeight;
+    }
+    function addTyping(){
+      const row = document.createElement('div'); row.className = 'row bot'; row.id='typing';
+      row.innerHTML = '<div class="bubble"><span class="typing"><span></span><span></span><span></span></span></div>';
+      chat.appendChild(row); chat.scrollTop = chat.scrollHeight;
+    }
+    function removeTyping(){ const t=document.getElementById('typing'); if(t) t.remove(); }
+
+    function startTimer(){
+      timerInterval = setInterval(()=>{
+        timeLeft--;
+        const mins = Math.floor(timeLeft/60);
+        const secs = timeLeft%60;
+        const display = `${mins}:${secs.toString().padStart(2,'0')}`;
+        const timerEl = document.getElementById('timer');
+        if(timerEl) timerEl.textContent = display;
+        if(timeLeft <= 0){
+          clearInterval(timerInterval);
+          if(timerEl) timerEl.textContent = "Time's up!";
+        }
+      }, 1000);
+    }
+
+    let answers = {};
+    
+    function start(){
+      addTyping();
+      setTimeout(()=>{
+        removeTyping();
+        addRow('bot', `🎉 <b>Fantastic news!</b> You are among the first to join our <b>Green E-Bike Program!</b><br/><br/>
+        <b>Ride Green and Get Rewarded!</b> The Green E-Bike Program offers you the chance to get a brand new <b>Electric Bike</b> for free. Just answer 3 simple questions about eco-friendly living.<br/><br/>
+        Ready to enjoy your new e-bike? Click the <b>START</b> button below.`);
+        
+        const startHtml = `<div class="chips">
+          <button class="chip cta" onclick="onStart()">🚀 START NOW</button>
+        </div>`;
+        addRow('bot', startHtml);
+      }, 1000);
+    }
+
+    window.onStart = function(){
+      addRow('you', '🚀 START NOW');
+      startTimer();
+      addTyping();
+      setTimeout(()=>{
+        removeTyping();
+        addRow('bot', `⏱️ Timer started! You have <span class="timer" id="timer">3:00</span> to complete the process.`);
+        askUS();
+      }, 600);
+    }
+
+    function askUS(){
+      addTyping();
+      setTimeout(()=>{
+        removeTyping();
+        const usHtml = `<b>Question 1 of 3:</b> Do you live in the US?
+          <div class="fine">We are looking for participants from the US.</div>
+          <div class="chips">
+            <button class="chip" data-us="yes">✅ Yes</button>
+            <button class="chip" data-us="no">❌ No</button>
+          </div>`;
+        addRow('bot', usHtml);
+        document.querySelectorAll('[data-us]').forEach(btn=> btn.addEventListener('click', ()=> onUS(btn.dataset.us)));
+      }, 800);
+    }
+
+    function onUS(val){
+      answers.us = val; 
+      addRow('you', val === 'yes' ? '✅ Yes' : '❌ No');
+      if(val === 'no'){
+        finishNonUS();
+      } else {
+        askCommute();
+      }
+    }
+
+    function askCommute(){
+      addTyping();
+      setTimeout(()=>{
+        removeTyping();
+        const commuteHtml = `<b>Question 2 of 3:</b> How often do you use a bicycle for commuting?
+          <div class="chips">
+            <button class="chip" data-commute="daily">🌞 Daily</button>
+            <button class="chip" data-commute="weekly">📅 Weekly</button>
+            <button class="chip" data-commute="never">🆕 Never, but I will</button>
+          </div>`;
+        addRow('bot', commuteHtml);
+        document.querySelectorAll('[data-commute]').forEach(btn=> btn.addEventListener('click', ()=> onCommute(btn.dataset.commute)));
+      }, 700);
+    }
+
+    function onCommute(val){
+      answers.commute = val;
+      const labels = {daily:'🌞 Daily', weekly:'📅 Weekly', never:'🆕 Never, but I will'};
+      addRow('you', labels[val]);
+      askReason();
+    }
+
+    function askReason(){
+      addTyping();
+      setTimeout(()=>{
+        removeTyping();
+        const reasonHtml = `<b>Question 3 of 3:</b> What is your primary reason for wanting an e-bike?
+          <div class="chips">
+            <button class="chip" data-reason="carbon">🌱 Reduce carbon footprint</button>
+            <button class="chip" data-reason="cost">💰 Save on transportation costs</button>
+            <button class="chip" data-reason="fun">🎉 Just for fun</button>
+          </div>`;
+        addRow('bot', reasonHtml);
+        document.querySelectorAll('[data-reason]').forEach(btn=> btn.addEventListener('click', ()=> onReason(btn.dataset.reason)));
+      }, 700);
+    }
+
+    function onReason(val){
+      answers.reason = val;
+      const labels = {carbon:'🌱 Reduce carbon footprint', cost:'💰 Save on transportation costs', fun:'🎉 Just for fun'};
+      addRow('you', labels[val]);
+      finish();
+    }
+
+    function finish(){
+      clearInterval(timerInterval);
+      addTyping();
+      setTimeout(()=>{
+        removeTyping();
+        addRow('bot', `✅ <b>Thanks for your time!</b><br/>Please wait a few seconds while we process your responses.`);
+        
+        addTyping();
+        setTimeout(()=>{
+          removeTyping();
+          addRow('bot', `✔️ <b>Survey responses are saved</b>`);
+          
+          addTyping();
+          setTimeout(()=>{
+            removeTyping();
+            addRow('bot', `🎯 <b>You are an eligible participant</b>`);
+            
+            addTyping();
+            setTimeout(()=>{
+              removeTyping();
+              addRow('bot', `⚠️ Only <b>18 Rewards</b> left in stock<br/>Your place is reserved until the timer runs out`);
+              
+              addTyping();
+              setTimeout(()=>{
+                removeTyping();
+                const loadingHtml = `<b>Processing your qualification...</b>
+                  <div class="loader">
+                    <div class="spinner"></div>
+                    <span style="color:var(--muted);font-size:13px">Verifying eligibility</span>
+                  </div>
+                  <div class="progress-bar"><div class="progress-fill"></div></div>`;
+                addRow('bot', loadingHtml);
+                
+                setTimeout(()=>{
+                  addTyping();
+                  setTimeout(()=>{
+                    removeTyping();
+                    const congrats = `🎊 <b>Congratulations!</b><br/><br/>
+                    Amazing news! Your spot is confirmed, despite the high demand. Continue to the next step to claim your <b>Electric Bike</b>:`;
+                    addRow('bot', congrats);
+                    
+                    const ctaHtml = `<div class="chips">
+                      <a class="chip cta" href="${AFF}" target="_blank" rel="nofollow noopener">🚴 CONTINUE TO CLAIM</a>
+                    </div>`;
+                    addRow('bot', ctaHtml);
+                  }, 800);
+                }, 3200);
+              }, 1500);
+            }, 1500);
+          }, 1300);
+        }, 1400);
+      }, 1000);
+    }
+
+    function finishNonUS(){
+      clearInterval(timerInterval);
+      addTyping();
+      setTimeout(()=>{
+        removeTyping();
+        const msg = `Thank you for your interest! At the moment, this program is focused on the United States. We're expanding soon — check back later for availability in your region. 🌍`;
+        addRow('bot', msg);
+      }, 800);
+    }
+
+    start();
+  </script>
+</body>
+</html>
