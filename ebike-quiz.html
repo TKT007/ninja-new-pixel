@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,8 +14,8 @@
       --accent:#34d399;
     }
     *{box-sizing:border-box} html,body{height:100%}
-     body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--text);
-      background: #f0f9f4;
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--text);
+      background: linear-gradient(180deg, #059669 0%, #047857 500px, #f0f9f4 500px, #e0f2e9 100%);      min-height: 100vh;
       overflow-x:hidden}
     
     .container {
@@ -26,15 +27,10 @@
     }
     
     .hero {
-      background: linear-gradient(180deg, #059669 0%, #047857 100%);
+      background: transparent;
       color: #ffffff;
       text-align: center;
-      padding: 3rem 1rem 2.5rem;
-    }
-    
-    .hero-content {
-      max-width: 600px;
-      margin: 0 auto;
+      padding: 3rem 0 2.5rem;
     }
     
     .hero h1 {
@@ -653,10 +649,6 @@
     }
     
     @media (max-width: 600px) {
-      .hero {
-        padding: 2rem 1rem;
-      }
-      
       .hero h1 {
         font-size: 1.75rem;
       }
@@ -665,9 +657,13 @@
         font-size: 1rem;
       }
       
+      .hero {
+        padding: 2rem 0 2rem;
+      }
+      
       .hero-image {
         max-width: 100%;
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
         border-radius: 12px;
       }
       
@@ -726,11 +722,9 @@
   <main>
     <div class="container">
       <section class="hero">
-        <div class="hero-content">
-          <h1>Green E-Bike Program</h1>
-          <p>Answer 3 quick questions to see if you qualify for a free Electric Bike</p>
-          <img src="https://www.discountssphere.com/electric-bike/assets/img/image.png" alt="Electric Bike" class="hero-image">
-        </div>
+        <h1>Green E-Bike Program</h1>
+        <p>Answer 3 quick questions to see if you qualify for a free Electric Bike</p>
+        <img src="https://www.discountssphere.com/electric-bike/assets/img/image.png" alt="Electric Bike" class="hero-image">
       </section>
       
       <section class="card" role="dialog" aria-label="E-Bike Qualification Quiz">
@@ -830,16 +824,14 @@
             </div>
             
             <div class="final-cta">
-              <div style="color: #1b5e20; font-size: 1.125rem; font-weight: 600; margin-bottom: 0.25rem; letter-spacing: 0.02em;">Congratulations</div>
-              <h3>You are pre-approved!</h3>
-              <p>Based on your answers, you may be eligible for a free Electric Bike through the Green E-Bike Program.</p>
+              <h3>🎊 Congratulations!</h3>
+              <p>Amazing news! Your spot is confirmed, despite the high demand. Continue to the next step to claim your Electric Bike:</p>
               <p style="font-size: 1.0625rem; font-weight: 700; margin-bottom: 0.75rem;">
-                Click the button below to claim your e-bike:
               </p>
               
               <button class="lead-cta-btn" id="finalActionBtn">
                 <div>
-                  <div class="main-text">CLAIM YOUR FREE E-BIKE</div>
+                  <div class="main-text">CONTINUE TO CLAIM</div>
                   <div class="sub-text">Limited Time Offer - Click to Apply</div>
                 </div>
               </button>
