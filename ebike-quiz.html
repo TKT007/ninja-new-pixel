@@ -7,10 +7,7 @@
   <meta name="description" content="Find out if you're eligible for our Green E-Bike Program">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-    }
-    
+    * { box-sizing: border-box; }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       margin: 0;
@@ -20,7 +17,6 @@
       line-height: 1.5;
       min-height: 100vh;
     }
-    
     .main-hero {
       background: linear-gradient(180deg, #059669 0%, #047857 100%);
       color: #ffffff;
@@ -28,13 +24,7 @@
       text-align: center;
       position: relative;
     }
-    
-    .hero-wrapper {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 1.25rem;
-    }
-    
+    .hero-wrapper { max-width: 900px; margin: 0 auto; padding: 0 1.25rem; }
     .main-hero h1 {
       font-size: 2.75rem;
       font-weight: 800;
@@ -42,7 +32,6 @@
       line-height: 1.1;
       letter-spacing: -0.02em;
     }
-    
     .main-hero .hero-subtitle {
       font-size: 1.125rem;
       color: #d1fae5;
@@ -50,7 +39,6 @@
       font-weight: 500;
       line-height: 1.4;
     }
-    
     .hero-image {
       max-width: 500px;
       width: 100%;
@@ -60,7 +48,6 @@
       border-radius: 12px;
       box-shadow: 0 10px 40px rgba(0,0,0,0.2);
     }
-    
     .quiz-container {
       background: #ffffff;
       border-radius: 20px;
@@ -71,7 +58,6 @@
       position: relative;
       z-index: 10;
     }
-    
     .progress-bar {
       width: 100%;
       height: 8px;
@@ -80,7 +66,6 @@
       margin-bottom: 2rem;
       overflow: hidden;
     }
-    
     .progress-fill {
       height: 100%;
       background: linear-gradient(90deg, #10b981 0%, #059669 100%);
@@ -88,7 +73,6 @@
       transition: width 0.6s ease;
       width: 33%;
     }
-    
     .progress-text {
       text-align: center;
       font-size: 0.875rem;
@@ -96,16 +80,8 @@
       margin-bottom: 1rem;
       font-weight: 600;
     }
-    
-    .question-step {
-      display: none;
-      animation: fadeInUp 0.5s ease;
-    }
-    
-    .question-step.active {
-      display: block;
-    }
-    
+    .question-step { display: none; animation: fadeInUp 0.5s ease; }
+    .question-step.active { display: block; }
     .question-step h3 {
       font-size: 1.5rem;
       font-weight: 700;
@@ -114,14 +90,7 @@
       text-align: center;
       line-height: 1.3;
     }
-    
-    .answer-options {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-    
+    .answer-options { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem; }
     .answer-btn {
       background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
       color: #1e293b;
@@ -138,43 +107,17 @@
       align-items: center;
       justify-content: space-between;
     }
-    
     .answer-btn:hover {
       border-color: #10b981;
       background: linear-gradient(180deg, #ecfdf5 0%, #d1fae5 100%);
       transform: translateY(-2px);
       box-shadow: 0 8px 25px rgba(16,185,129,0.2);
     }
-    
-    .answer-btn:active {
-      transform: translateY(0);
-    }
-    
-    .answer-btn .arrow {
-      color: #10b981;
-      font-size: 1.25rem;
-      font-weight: bold;
-    }
-    
-    .final-step {
-      text-align: center;
-      padding: 1rem 0;
-    }
-    
-    .final-step h3 {
-      font-size: 1.75rem;
-      margin-bottom: 1rem;
-      color: #059669;
-      font-weight: 800;
-    }
-    
-    .final-step p {
-      font-size: 1.125rem;
-      color: #374151;
-      margin-bottom: 2rem;
-      line-height: 1.6;
-    }
-    
+    .answer-btn:active { transform: translateY(0); }
+    .answer-btn .arrow { color: #10b981; font-size: 1.25rem; font-weight: bold; }
+    .final-step { text-align: center; padding: 1rem 0; }
+    .final-step h3 { font-size: 1.75rem; margin-bottom: 1rem; color: #059669; font-weight: 800; }
+    .final-step p { font-size: 1.125rem; color: #374151; margin-bottom: 2rem; line-height: 1.6; }
     .cta-btn {
       background: linear-gradient(180deg, #10b981 0%, #059669 100%);
       color: #ffffff;
@@ -190,17 +133,12 @@
       text-decoration: none;
       display: inline-block;
     }
-    
     .cta-btn:hover {
       transform: translateY(-3px);
       box-shadow: 0 16px 50px rgba(16,185,129,0.4), 0 8px 25px rgba(16,185,129,0.25);
       background: linear-gradient(180deg, #059669 0%, #047857 100%);
     }
-    
-    .cta-btn:active {
-      transform: translateY(-1px);
-    }
-    
+    .cta-btn:active { transform: translateY(-1px); }
     .benefit-list {
       background: linear-gradient(90deg, #ecfdf5 0%, #d1fae5 100%);
       border-radius: 12px;
@@ -209,20 +147,8 @@
       border-left: 4px solid #10b981;
       text-align: left;
     }
-    
-    .benefit-list h4 {
-      color: #059669;
-      font-size: 1.125rem;
-      margin-bottom: 1rem;
-      font-weight: 700;
-    }
-    
-    .benefit-list ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    
+    .benefit-list h4 { color: #059669; font-size: 1.125rem; margin-bottom: 1rem; font-weight: 700; }
+    .benefit-list ul { list-style: none; padding: 0; margin: 0; }
     .benefit-list li {
       color: #047857;
       margin-bottom: 0.5rem;
@@ -230,7 +156,6 @@
       position: relative;
       font-weight: 500;
     }
-    
     .benefit-list li:before {
       content: "✓";
       position: absolute;
@@ -239,19 +164,13 @@
       font-weight: bold;
       font-size: 1.125rem;
     }
-    
-    .loader-container {
-      text-align: center;
-      padding: 2rem 0;
-    }
-    
+    .loader-container { text-align: center; padding: 2rem 0; }
     .loader-spinner {
       position: relative;
       width: 80px;
       height: 80px;
       margin: 0 auto 2rem auto;
     }
-    
     .spinner-ring {
       position: absolute;
       width: 100%;
@@ -261,260 +180,170 @@
       border-radius: 50%;
       animation: spin 1.5s linear infinite;
     }
-    
-    .spinner-ring:nth-child(2) {
-      width: 70%;
-      height: 70%;
-      top: 15%;
-      left: 15%;
-      border-top-color: #059669;
-      animation-delay: 0.5s;
-    }
-    
-    .spinner-ring:nth-child(3) {
-      width: 40%;
-      height: 40%;
-      top: 30%;
-      left: 30%;
-      border-top-color: #047857;
-      animation-delay: 1s;
-    }
-    
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
+    .spinner-ring:nth-child(2) { width: 70%; height: 70%; top: 15%; left: 15%; border-top-color: #059669; animation-delay: 0.5s; }
+    .spinner-ring:nth-child(3) { width: 40%; height: 40%; top: 30%; left: 30%; border-top-color: #047857; animation-delay: 1s; }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     @media (max-width: 600px) {
-      .quiz-container {
-        margin: 0.5rem 0.5rem 2rem 0.5rem;
-        padding: 2rem 1.5rem;
-        border-radius: 16px;
-      }
-      
-      .main-hero h1 {
-        font-size: 1.75rem;
-        line-height: 1.1;
-      }
-      
-      .main-hero .hero-subtitle {
-        font-size: 1rem;
-        margin-bottom: 1.5rem;
-      }
-      
-      .question-step h3 {
-        font-size: 1.25rem;
-        margin-bottom: 1rem;
-      }
-      
-      .answer-btn {
-        font-size: 1rem;
-        padding: 1rem 1.25rem;
-      }
-      
-      .final-step h3 {
-        font-size: 1.5rem;
-      }
-      
-      .final-step p {
-        font-size: 1rem;
-      }
-      
-      .cta-btn {
-        font-size: 1.125rem;
-        padding: 1.25rem 1.75rem;
-      }
+      .quiz-container { margin: 0.5rem 0.5rem 2rem 0.5rem; padding: 2rem 1.5rem; border-radius: 16px; }
+      .main-hero h1 { font-size: 1.75rem; line-height: 1.1; }
+      .main-hero .hero-subtitle { font-size: 1rem; margin-bottom: 1.5rem; }
+      .question-step h3 { font-size: 1.25rem; margin-bottom: 1rem; }
+      .answer-btn { font-size: 1rem; padding: 1rem 1.25rem; }
+      .final-step h3 { font-size: 1.5rem; }
+      .final-step p { font-size: 1rem; }
+      .cta-btn { font-size: 1.125rem; padding: 1.25rem 1.75rem; }
     }
-    
-    .footer {
-      background: #1f2937;
-      color: #d1d5db;
-      padding: 2rem 1rem;
-      text-align: center;
-      font-size: 0.875rem;
-      line-height: 1.6;
-    }
-    
-    .footer-links {
-      margin-top: 1rem;
-    }
-    
-    .footer-links a {
-      color: #10b981;
-      text-decoration: none;
-      margin: 0 0.75rem;
-    }
-    
-    .footer-links a:hover {
-      text-decoration: underline;
-    }
+    .footer { background: #1f2937; color: #d1d5db; padding: 2rem 1rem; text-align: center; font-size: 0.875rem; line-height: 1.6; }
+    .footer-links { margin-top: 1rem; }
+    .footer-links a { color: #10b981; text-decoration: none; margin: 0 0.75rem; }
+    .footer-links a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
-  
-  <section class="main-hero">
-    <div class="hero-wrapper">
-      <h1>🚴 Green E-Bike Program</h1>
-      <p class="hero-subtitle">Answer 3 quick questions to see if you qualify for our eco-friendly e-bike program</p>
-      <img src="https://www.discountssphere.com/electric-bike/assets/img/image.png" alt="E-Bike" class="hero-image">
+
+<section class="main-hero">
+  <div class="hero-wrapper">
+    <h1>🚴 Green E-Bike Program</h1>
+    <p class="hero-subtitle">Answer 3 quick questions to see if you qualify for our eco-friendly e-bike program</p>
+    <img src="https://www.discountssphere.com/electric-bike/assets/img/image.png" alt="E-Bike" class="hero-image">
+  </div>
+</section>
+
+<div class="quiz-container">
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+  <p class="progress-text" id="progressText">Question 1 of 3</p>
+
+  <!-- Question 1 -->
+  <div class="question-step active" id="step1">
+    <h3>Do you live in the United States?</h3>
+    <div class="answer-options">
+      <button class="answer-btn" onclick="nextQuestion(1,'yes')">Yes, I do <span class="arrow">→</span></button>
+      <button class="answer-btn" onclick="nextQuestion(1,'no')">No, I don't <span class="arrow">→</span></button>
     </div>
-  </section>
-  
-  <div class="quiz-container">
-    <div class="progress-bar">
-      <div class="progress-fill" id="progressFill"></div>
+  </div>
+
+  <!-- Question 2 -->
+  <div class="question-step" id="step2">
+    <h3>How do you currently commute?</h3>
+    <div class="answer-options">
+      <button class="answer-btn" onclick="nextQuestion(2,'car')">By car <span class="arrow">→</span></button>
+      <button class="answer-btn" onclick="nextQuestion(2,'public')">Public transportation <span class="arrow">→</span></button>
+      <button class="answer-btn" onclick="nextQuestion(2,'bike')">Bicycle or walking <span class="arrow">→</span></button>
     </div>
-    <p class="progress-text" id="progressText">Question 1 of 3</p>
-    
-    <!-- Question 1 -->
-    <div class="question-step active" id="step1">
-      <h3>Do you live in the United States?</h3>
-      <div class="answer-options">
-        <button class="answer-btn" onclick="nextQuestion(1, 'yes')">
-          Yes, I do
-          <span class="arrow">→</span>
-        </button>
-        <button class="answer-btn" onclick="nextQuestion(1, 'no')">
-          No, I don't
-          <span class="arrow">→</span>
-        </button>
-      </div>
+  </div>
+
+  <!-- Question 3 -->
+  <div class="question-step" id="step3">
+    <h3>What's your main reason for wanting an e-bike?</h3>
+    <div class="answer-options">
+      <button class="answer-btn" onclick="nextQuestion(3,'environment')">Environmental impact <span class="arrow">→</span></button>
+      <button class="answer-btn" onclick="nextQuestion(3,'savings')">Save money on transportation <span class="arrow">→</span></button>
+      <button class="answer-btn" onclick="nextQuestion(3,'fitness')">Health and fitness <span class="arrow">→</span></button>
     </div>
-    
-    <!-- Question 2 -->
-    <div class="question-step" id="step2">
-      <h3>How do you currently commute?</h3>
-      <div class="answer-options">
-        <button class="answer-btn" onclick="nextQuestion(2, 'car')">
-          By car
-          <span class="arrow">→</span>
-        </button>
-        <button class="answer-btn" onclick="nextQuestion(2, 'public')">
-          Public transportation
-          <span class="arrow">→</span>
-        </button>
-        <button class="answer-btn" onclick="nextQuestion(2, 'bike')">
-          Bicycle or walking
-          <span class="arrow">→</span>
-        </button>
-      </div>
-    </div>
-    
-    <!-- Question 3 -->
-    <div class="question-step" id="step3">
-      <h3>What's your main reason for wanting an e-bike?</h3>
-      <div class="answer-options">
-        <button class="answer-btn" onclick="nextQuestion(3, 'environment')">
-          Environmental impact
-          <span class="arrow">→</span>
-        </button>
-        <button class="answer-btn" onclick="nextQuestion(3, 'savings')">
-          Save money on transportation
-          <span class="arrow">→</span>
-        </button>
-        <button class="answer-btn" onclick="nextQuestion(3, 'fitness')">
-          Health and fitness
-          <span class="arrow">→</span>
-        </button>
-      </div>
-    </div>
-    
-    <!-- Loading Step -->
-    <div class="question-step" id="loadingStep">
-      <div class="final-step">
-        <div class="loader-container">
-          <div class="loader-spinner">
-            <div class="spinner-ring"></div>
-            <div class="spinner-ring"></div>
-            <div class="spinner-ring"></div>
-          </div>
-          <h3 style="font-size: 1.5rem; color: #059669; margin-bottom: 1rem;">Processing your answers...</h3>
-          <p style="color: #6b7280; font-size: 1rem;">Please wait a moment</p>
+  </div>
+
+  <!-- Loading Step -->
+  <div class="question-step" id="loadingStep">
+    <div class="final-step">
+      <div class="loader-container">
+        <div class="loader-spinner">
+          <div class="spinner-ring"></div>
+          <div class="spinner-ring"></div>
+          <div class="spinner-ring"></div>
         </div>
-      </div>
-    </div>
-    
-    <!-- Final Step -->
-    <div class="question-step" id="finalStep">
-      <div class="final-step">
-        <h3>🎉 Great News!</h3>
-        <p>Based on your answers, you're a perfect candidate for our Green E-Bike Program. Click below to explore available e-bike options and special offers.</p>
-        
-        <a href="https://your-affiliate-link-here.com" class="cta-btn" target="_blank" rel="noopener">
-          View E-Bike Options
-        </a>
-        
-        <div class="benefit-list">
-          <h4>Why Choose an E-Bike?</h4>
-          <ul>
-            <li>Reduce your carbon footprint</li>
-            <li>Save money on gas and parking</li>
-            <li>Enjoy assisted pedaling for easier rides</li>
-            <li>Perfect for commuting and recreation</li>
-          </ul>
+        <div id="loadingMessages" style="text-align:center; color:#059669; font-weight:600; font-size:1rem; line-height:1.6;">
+          Checking your eligibility...
         </div>
       </div>
     </div>
   </div>
-  
-  <footer class="footer">
-    <p>The Green E-Bike Program connects you with quality e-bike retailers. We may receive a commission from purchases made through our links.</p>
-    <div class="footer-links">
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms of Service</a>
-      <a href="#">Contact</a>
-    </div>
-    <p style="margin-top: 1rem; opacity: 0.8;">© 2025 Green E-Bike Program</p>
-  </footer>
 
-  <script>
-    let currentStep = 1;
-    const totalSteps = 3;
-    let answers = {};
-    
-    function nextQuestion(stepNumber, answer) {
-      answers[`question${stepNumber}`] = answer;
-      
-      // Hide current step
-      document.getElementById(`step${stepNumber}`).classList.remove('active');
-      
-      // Show next step or final
-      if (stepNumber < totalSteps) {
-        document.getElementById(`step${stepNumber + 1}`).classList.add('active');
-        currentStep = stepNumber + 1;
-        updateProgress();
-      } else {
-        // Show loading step first
-        document.getElementById('loadingStep').classList.add('active');
-        document.getElementById('progressText').textContent = 'Processing...';
-        document.getElementById('progressFill').style.width = '90%';
-        
-        // After 2.5 seconds, show final step
+  <!-- Final Step -->
+  <div class="question-step" id="finalStep">
+    <div class="final-step">
+      <h3>🎉 Great News!</h3>
+      <p>Based on your answers, you're a perfect candidate for our Green E-Bike Program. Click below to explore available e-bike options and special offers.</p>
+      <a href="https://your-affiliate-link-here.com" class="cta-btn" target="_blank" rel="noopener">View E-Bike Options</a>
+      <div class="benefit-list">
+        <h4>Why Choose an E-Bike?</h4>
+        <ul>
+          <li>Reduce your carbon footprint</li>
+          <li>Save money on gas and parking</li>
+          <li>Enjoy assisted pedaling for easier rides</li>
+          <li>Perfect for commuting and recreation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <p>The Green E-Bike Program connects you with quality e-bike retailers. We may receive a commission from purchases made through our links.</p>
+  <div class="footer-links">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Service</a>
+    <a href="#">Contact</a>
+  </div>
+  <p style="margin-top: 1rem; opacity: 0.8;">© 2025 Green E-Bike Program</p>
+</footer>
+
+<script>
+let currentStep = 1;
+const totalSteps = 3;
+let answers = {};
+
+function nextQuestion(stepNumber, answer) {
+  answers[`question${stepNumber}`] = answer;
+  document.getElementById(`step${stepNumber}`).classList.remove('active');
+
+  if (stepNumber < totalSteps) {
+    document.getElementById(`step${stepNumber + 1}`).classList.add('active');
+    currentStep = stepNumber + 1;
+    updateProgress();
+  } else {
+    // Show loading step
+    document.getElementById('loadingStep').classList.add('active');
+    document.getElementById('progressText').textContent = 'Processing...';
+    document.getElementById('progressFill').style.width = '10%';
+
+    const messages = [
+      "⏳ Thanks for your time!",
+      "⏳ Please wait a few seconds while we process your responses...",
+      "⏳ Survey responses are saved",
+      "⏳ You are an eligible participant",
+      "⏳ Only 18 Rewards left in stock",
+      "⏳ Your place is reserved until the timer runs out"
+    ];
+
+    let index = 0;
+    const messageDiv = document.getElementById('loadingMessages');
+
+    const interval = setInterval(() => {
+      messageDiv.textContent = messages[index];
+      document.getElementById('progressFill').style.width = `${10 + (index + 1) * 15}%`;
+      index++;
+      if (index >= messages.length) {
+        clearInterval(interval);
         setTimeout(() => {
           document.getElementById('loadingStep').classList.remove('active');
           document.getElementById('finalStep').classList.add('active');
           document.getElementById('progressText').textContent = 'Complete!';
           document.getElementById('progressFill').style.width = '100%';
-        }, 2500);
+        }, 1000);
       }
-    }
-    
-    function updateProgress() {
-      const progressPercentage = (currentStep / totalSteps) * 100;
-      document.getElementById('progressFill').style.width = progressPercentage + '%';
-      document.getElementById('progressText').textContent = `Question ${currentStep} of ${totalSteps}`;
-    }
-  </script>
+    }, 1500);
+  }
+}
+
+function updateProgress() {
+  const progressPercentage = (currentStep / totalSteps) * 100;
+  document.getElementById('progressFill').style.width = progressPercentage + '%';
+  document.getElementById('progressText').textContent = `Question ${currentStep} of ${totalSteps}`;
+}
+</script>
+
 </body>
 </html>
