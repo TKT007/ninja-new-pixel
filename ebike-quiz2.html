@@ -963,7 +963,10 @@
         setTimeout(startCountdown, 500);
       }, 4000);
     }
-    
+    document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(updateAvailabilityCount, 2000);
+  initializeAvailabilityChart();
+});
     
     function startCountdown() {
       const countdownElement = document.getElementById('countdownTimer');
