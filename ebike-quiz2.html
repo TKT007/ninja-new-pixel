@@ -968,10 +968,11 @@
       setTimeout(updateAvailabilityCount, 2000);
       initializeAvailabilityChart();
       
-      document.getElementById('finalActionBtn').addEventListener('click', function(e) {
-  e.preventDefault();
-  alert('Congratulations! You will be redirected to claim your free E-Bike.');
-});
+     document.getElementById('finalActionBtn').addEventListener('click', function(e) {
+        e.preventDefault();
+        alert('Congratulations! You will be redirected to claim your free E-Bike.');
+      });
+    });
     
     function startCountdown() {
       const countdownElement = document.getElementById('countdownTimer');
