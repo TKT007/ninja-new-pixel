@@ -1278,29 +1278,9 @@ button.load-more {
             }
         });
     
-        $("textarea").keyup(function() {
-            var text_length = $(this).val().length;
-            text_length <= 0 ? $(".comment-button-right button").addClass("disabled").prop("disabled", true) : $(".comment-button-right button").removeClass("disabled").prop("disabled", false);
-            text_remaining = 6 - text_length;
-            $(".comment-button-left p").html("Write "+text_remaining+" more characters to post to Facebook");
-            if($(".comment-button-left [type=checkbox]").is(":checked")) {
-                if(text_remaining <= 0) {
-                    $(".comment-button-left p").hide();
-                    $(".comment-button-right button").removeClass("disabled").prop("disabled", false);
-                } else {
-                    $(".comment-button-left p").show();
-                    $(".comment-button-right button").addClass("disabled").prop("disabled", true);
-                }
-            }
-        });
+       
     
-        $(".comment-button-right button").on('click', function() {
-            alert("Comments are disabled by the author.")
-        });
-    
-        $(".comment-meta button").on('click', function() {
-            alert("Action prohibited. You are not authenticated.");
-        });
+     
     
         $(".started button").on('click', function() {
             $(".stp1").fadeOut(300, function() {
