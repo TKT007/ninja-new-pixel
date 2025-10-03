@@ -1134,8 +1134,28 @@ button.load-more {
         </div>      
      
 
-    <script type="text/javascript">
-   
+   <script type="text/javascript">
+    var text_remaining = 6;
+    var visible = 5;
+    var slide_question = 0;
+    var height_question = 0;
+    var stp2flag = false;
+    function timer(a,b) {
+            var min = Math.round((a-30)/60);
+            var sec = a%60;
+            $(b).html('YOUR SPOT IS RESERVED FOR <span class="top-timer">'+min+' MINUTES AND '+sec+' SECONDS</span>');
+            var t = setInterval(function() {
+                a--;
+                min = Math.round((a-30)/60);
+                sec = a%60;
+                $(b).html('YOUR SPOT IS RESERVED FOR <span class="top-timer">'+min+' MINUTES AND '+sec+' SECONDS</span>');	
+                if(a == 0) {
+                    clearInterval(t);
+                    $(b).html("YOUR SPOT IS NO LONGER RESERVED, BUT YOU CAN STILL TRY...");	
+                }
+            }, 1000);
+            return false;
+        }
     jQuery.fn.orderBy = function(keySelector, order) {
         return this.sort(function(a,b) {
             a = keySelector.apply(a);
@@ -1211,6 +1231,9 @@ button.load-more {
             }
         });
     
+       
+    
+     
     
         $(".started button").on('click', function() {
             $(".stp1").fadeOut(300, function() {
@@ -1240,13 +1263,41 @@ button.load-more {
             }
         });
     
+        $(".faq-overlay, .faq-close").on('click', function() {
+            $(".faq-screen").fadeOut(200, function() {
+                $(".faq-box").css({opacity: "0"});
+            });
+        });
+    
         $(".tophead button").on('click', function() {
             $(".faq-screen").fadeIn(200, function() {
                 $(".faq-box").css({opacity: "1"});
             });
         });
     
-       
+        $(".question button").on('click', function() {
+            var $this = $(this);
+            if($this.parent().next().hasClass("question")) {
+                $(".question-number span").html(parseInt($(".question-number span").html()) + 1)
+                slide_question = slide_question + $this.parent().outerHeight();
+                height_question = height_question - $this.parent().outerHeight();
+                $this.parent().next().removeClass("inactive");
+                $this.parent().addClass("scrolled-up");
+                $(".question-box").css({transform: "translateY(-"+slide_question+"px)", height: height_question+"px"});
+                $this.parent().css({opacity: 0, transform: "translateY(-50%)"});
+            } else {
+                $(".stp2").fadeOut(300, function() {
+                    $(".stp3").fadeIn(300, function() {
+                        setTimeout(function() { $(".loading-list li:nth-child(1)").removeClass("work").addClass("done"); $(".loading-list li:nth-child(2)").addClass("work"); }, 2900);
+                        setTimeout(function() { $(".loading-list li:nth-child(2)").removeClass("work").addClass("done"); $(".loading-list li:nth-child(3)").addClass("work"); }, 5000);
+                        setTimeout(function() { $(".loading-list li:nth-child(3)").removeClass("work").addClass("done"); $(".loading-list li:nth-child(4)").addClass("work"); }, 7750);
+                        setTimeout(function() { $(".loading-list li:nth-child(4)").removeClass("work").addClass("done"); }, 9700);
+                         setTimeout(function() {
+                                    var params = window.location.search; // Get current URL parameters
+                                    var continueURL = "./continue.html" + params; // Append parameters to new URL
+                                    window.location.href = continueURL;
+                                }, 10500);
+                            });
                         });
                     }
                 });
