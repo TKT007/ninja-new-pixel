@@ -1142,12 +1142,14 @@
         .comment {
             padding: 15px 0;
             border-bottom: 1px solid #e4e6eb;
-            display: none;
         }
 
         .comment.start-coms {
-            display: block;
             animation: fadeIn 0.3s ease-in;
+        }
+
+        .comment.hidden {
+            display: none;
         }
 
         @keyframes fadeIn {
@@ -1500,12 +1502,16 @@
             });
         }
 
-        // Initialize comments count
+        // Initialize comments count and show first 5 comments
         setTimeout(function() {
             document.querySelector(".sorting-box > p").innerHTML = "130 comments";
-            var startComs = document.querySelectorAll(".start-coms");
-            startComs.forEach(function(el) {
-                el.classList.remove("start-coms");
+            
+            // Hide all comments except first 5
+            var allComments = document.querySelectorAll(".sort-coms");
+            allComments.forEach(function(el, index) {
+                if (index >= 5) {
+                    el.classList.add("hidden");
+                }
             });
         }, 250);
 
@@ -1582,24 +1588,24 @@
                 
                 // Hide all comments then show first 'visible' number
                 comments.forEach(function(comment) {
-                    comment.style.display = "none";
+                    comment.classList.add("hidden");
                 });
                 
                 var visibleComments = document.querySelectorAll('.mcomments > .comment');
                 for(var i = 0; i < visible && i < visibleComments.length; i++) {
-                    visibleComments[i].style.display = "block";
+                    visibleComments[i].classList.remove("hidden");
                 }
             });
         });
 
         // Load more button
         document.querySelector('.load-more').addEventListener('click', function() {
-            var hiddenComments = document.querySelectorAll('.mcomments > .comment:not([style*="display: block"])');
+            var hiddenComments = document.querySelectorAll('.mcomments > .comment.hidden');
             var elem = hiddenComments.length < 5 ? hiddenComments.length : 5;
             
             for(var i = 0; i < elem; i++) {
                 if(hiddenComments[i]) {
-                    hiddenComments[i].style.display = "block";
+                    hiddenComments[i].classList.remove("hidden");
                 }
             }
             
@@ -1609,7 +1615,7 @@
             if(visible >= allComments.length) {
                 this.classList.add("end-coms");
                 this.disabled = true;
-                this.querySelector("span").innerHTML = "Loading...";
+                this.querySelector("span").innerHTML = "No more comments";
             }
         });
 
