@@ -1238,21 +1238,10 @@ button.load-more {
             $this.next().is(":visible") ? $this.next().hide() : $this.next().show();
         });
     
-        $(document).on('click', '.dropdown-sort button', function() {
-            var $this = $(this);
-            var sort_by = $this.data("sort") == "top" ? "likes" : "order";
-            $this.parent().hide();
-            $this.parent().find(".selected").removeClass("selected");
-            $this.addClass("selected");
-            $(".sort > button span").html($this.find("span").html());
-            $(".sort-coms").orderBy(function() {return +$(this).data(sort_by);}, $this.data("sort")).appendTo(".mcomments");
-            $(".inner-sorting-box > svg").css({display: "inline-block"});
-            setTimeout(function() { $(".inner-sorting-box > svg").hide(); }, 200);
-            $(".sort-coms").hide();
-            for(var i = 0;i<visible;i++) {
-                $(".mcomments > :hidden:first").show();
-            }
-        });
+
+
+
+      //////////
     
         $(document).on('click', '.load-more', function() {
             var elem = $(".mcomments > :hidden").length < 5 ? $(".mcomments > :hidden").length : 5;
