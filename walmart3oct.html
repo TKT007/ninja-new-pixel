@@ -1134,7 +1134,138 @@ button.load-more {
         </div>      
      
 
+    <script type="text/javascript">
+   
+    jQuery.fn.orderBy = function(keySelector, order) {
+        return this.sort(function(a,b) {
+            a = keySelector.apply(a);
+            b = keySelector.apply(b);
+            if(order == "newest") {
+                if (a > b)
+                    return 1;
+                if (a < b)
+                    return -1;
+                return 0;
+            } else if(order == "oldest" || order == "top") {
+                if (a < b)
+                    return 1;
+                if (a > b)
+                    return -1;
+                return 0;
+            }
+        });
+    };
+    $(document).ready(function() {
+    
+        $(".question-number i").html($(".question").length);
+    
+        setTimeout(function() {
+            $(".sorting-box > p").html("130 comments");
+            $(".start-coms").removeClass("start-coms");
+        }, 250);
+    
+        $(document).on('click', 'textarea', function() {
+            $(".add-comment").addClass("active");
+        });
+    
+        $(".comment-button-left [type=checkbox]").on('change', function() {
+            if($(this).is(":checked") && text_remaining > 0) {
+                $(".comment-button-left p").show();
+                $(".comment-button-right button").addClass("disabled").prop("disabled", true);
+            } else {
+                $(".comment-button-left p").hide();
+                $(".comment-button-right button").removeClass("disabled").prop("disabled", false);
+            }
+        });
+    
+        $(document).on('click', '.sort > button', function() {
+            var $this = $(this);
+            $this.next().is(":visible") ? $this.next().hide() : $this.next().show();
+        });
+    
 
+ $(document).on('click', '.dropdown-sort button', function() {
+            var $this = $(this);
+            var sort_by = $this.data("sort") == "top" ? "likes" : "order";
+            $this.parent().hide();
+            $this.parent().find(".selected").removeClass("selected");
+            $this.addClass("selected");
+            $(".sort > button span").html($this.find("span").html());
+            $(".sort-coms").orderBy(function() {return +$(this).data(sort_by);}, $this.data("sort")).appendTo(".mcomments");
+            $(".inner-sorting-box > svg").css({display: "inline-block"});
+            setTimeout(function() { $(".inner-sorting-box > svg").hide(); }, 200);
+            $(".sort-coms").hide();
+            for(var i = 0;i<visible;i++) {
+                $(".mcomments > :hidden:first").show();
+            }
+        });
+    
+        $(document).on('click', '.load-more', function() {
+            var elem = $(".mcomments > :hidden").length < 5 ? $(".mcomments > :hidden").length : 5;
+            for(var i = 0;i<elem;i++) {
+                $(".mcomments > :hidden:first").show();
+            }
+            visible = visible + elem;
+            if(visible == $(".sort-coms").length) {
+                $(this).addClass("end-coms").prop("disabled", true).find("span").html("Loading...");
+            }
+        });
+    
+    
+        $(".started button").on('click', function() {
+            $(".stp1").fadeOut(300, function() {
+                $("html, body").scrollTop(0);
+                $(".stp2").fadeIn(300, function() {
+                    $(".timer-top").slideDown(300, function() {
+                        timer(180,".timer-top");
+                    });
+                    stp2flag = true;
+                    $(".question").each(function() {
+                        height_question = height_question + $(this).outerHeight();
+                    });
+                });
+            });
+        });
+    
+        $(".card button").on('click', function() {
+            $this = $(this);
+            if($this.hasClass("active")) {
+                $this.removeClass("active");
+                $this.next().slideUp(200);
+            } else {
+                $this.parent().parent().find(".card button").removeClass("active");
+                $this.parent().parent().find(".card p").slideUp(200);
+                $this.toggleClass("active");
+                $this.next().slideToggle(200);
+            }
+        });
+    
+        $(".tophead button").on('click', function() {
+            $(".faq-screen").fadeIn(200, function() {
+                $(".faq-box").css({opacity: "1"});
+            });
+        });
+    
+       
+                        });
+                    }
+                });
+        $(window).on('resize', function() {
+            if(stp2flag) {
+                var height_question_resize = 0;
+                var slide_question_resize = 0;
+                $(".question:not(.scrolled-up)").each(function() {
+                    height_question_resize = height_question_resize + $(this).outerHeight();
+                });
+                $(".question.scrolled-up").each(function() {
+                    slide_question_resize = slide_question_resize - $(this).outerHeight();
+                });
+                $(".question-box").css({transform: "translateY("+slide_question_resize+"px)", height: height_question_resize+"px"});
+            }
+        });
+    
+    });
+    </script>
 
   <br>
  
