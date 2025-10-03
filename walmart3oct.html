@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Walmart Rewards Program - Quick Qualification Quiz</title>
+  <meta name="description" content="Take our quick quiz to see if you qualify for a free Electric Bike">
+  <style>
+    :root{
+      --bg:#f0f9f4; --primary:#135EC7; --primary-dark:#0d4a9f; --text:#1f2937; --muted:#6b7280;
+      --card:#ffffff; --card-brd:#c9dff8;
+      --bot:#e8f1fc; --you:#dceafc; --chip:#ffffff; --online:#135EC7; --shadow:0 8px 24px rgba(19,94,199,.08);
+      --accent:#3b82f6;
+    }
+    *{box-sizing:border-box} html,body{height:100%}
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--text);
+      background: #ffffff;
+      overflow-x:hidden}
+    
+    .header {
+      background: linear-gradient(180deg, #135EC7 0%, #0d4a9f 100%);
+      color: #ffffff;
+      padding: 1rem 1.5rem;
+      width: 100%;
+      display: flex;
+      align-items: center;
+    }
+    
+    .header-logo {
+      height: 40px;
+      width: auto;
+    }
+    
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .hero {
+      color: var(--text);
+      text-align: center;
+      padding: 1rem 1rem 1rem;
+      width: 100%;
+    }
+    
+    .hero-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .hero h2 {
+      font-size: 2.7rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+    
+    .hero p {
+      font-size: 1.125rem;
+      color: var(--muted);
+      max-width: 500px;
+      margin: 0 auto 1.5rem;
+    }
+    
+    .hero-image {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      margin: 0 auto 1rem;
+      display: block;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+    
+    .card {
+      width: 100%;
+      background: var(--card);
+      border: 2px solid var(--card-brd);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      margin: 0.5rem auto 2rem auto;
+      max-width: 600px;
+      position: relative;
+      z-index: 10;
+    }
+    
+    .top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 18px;
+      border-bottom: 2px solid #c9dff8;
+      backdrop-filter: blur(8px);
+      background: rgba(255,255,255,.7);
+    }
+    
+    .logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--primary);
+      display: grid;
+      place-items: center;
+      position: relative;
+      font-size: 24px;
+    }
+    
+    .status {
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--online);
+      border: 2.5px solid #ffffff;
+      box-shadow: 0 0 8px rgba(19,94,199,.6);
+    }
+    
+    .title {
+      font-weight: 900;
+      letter-spacing: .3px;
+      color: var(--text);
+      font-size: 16px;
+    }
+    
+    .title small {
+      display: block;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 13px;
+      margin-top: 2px;
+    }
+    
+    .quiz-content {
+      padding: 2rem;
+      flex: 1;
+    }
+    
+    .progress-section {
+      margin-bottom: 2rem;
+    }
+    
+    .progress-text {
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 4px;
+      transition: width 0.6s ease;
+      width: 0%;
+    }
+    
+    .question-step {
+      display: none;
+      animation: fadeInUp 0.5s ease;
+    }
+    
+    .question-step.active {
+      display: block;
+    }
+    
+    .question-step h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+      text-align: center;
+      line-height: 1.3;
+    }
+    
+    .answer-options {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .answer-btn {
+      background: #ffffff;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 1.125rem;
+      font-weight: 600;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      outline: none;
+      text-align: left;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .answer-btn:hover {
+      border-color: var(--primary);
+      background: #eff6ff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(19,94,199,0.12);
+    }
+    
+    .answer-btn:active {
+      transform: translateY(0);
+    }
+    
+    .answer-btn .arrow {
+      color: var(--primary);
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+    
+    .chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    
+    .chip {
+      background: var(--chip);
+      color: var(--text);
+      border: 2px solid var(--primary);
+      border-radius: 999px;
+      padding: 11px 18px;
+      font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all .2s;
+      box-shadow: 0 2px 6px rgba(19,94,199,.15);
+    }
+    
+    .chip:hover {
+      background: var(--primary);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(19,94,199,.3);
+    }
+    
+    .chip.cta {
+      background: var(--primary);
+      color: #fff;
+      font-size: 16px;
+      padding: 13px 24px;
+      animation: pulse 2s infinite;
+    }
+    
+    .chip.cta:hover {
+      background: var(--primary-dark);
+    }
+    
+    @keyframes pulse {
+      0%,100%{box-shadow:0 4px 12px rgba(19,94,199,.3)}
+      50%{box-shadow:0 4px 20px rgba(19,94,199,.5)}
+    }
+    
+    .final-cta {
+      text-align: center;
+      padding: 0rem 0;
+    }
+    
+    .final-cta h3 {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+      color: var(--primary-dark);
+    }
+    
+    .final-cta p {
+      font-size: 1.125rem;
+      color: #374151;
+      margin-bottom: 2rem;
+      line-height: 1.5;
+    }
+    
+    .urgency-banner {
+      background: #fef3c7;
+      border: 2px solid #f59e0b;
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      animation: pulse 2s infinite;
+    }
+    
+    .urgency-banner .timer {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #d97706;
+      margin-bottom: 0.5rem;
+    }
+    
+    .urgency-banner .message {
+      font-size: 0.875rem;
+      color: #92400e;
+      font-weight: 600;
+    }
+    
+    .countdown-banner {
+      background: rgba(254, 243, 199, 0.3);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      text-align: center;
+      font-size: 0.875rem;
+      color: #92400e;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      margin-top: -1rem;
+    }
+    
+    .countdown-text {
+      font-size: 0.875rem;
+      color: #92400e;
+      font-weight: 600;
+    }
+    
+    .countdown-timer {
+      font-size: 0.875rem;
+      color: #d97706;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .lead-cta-btn {
+      background: var(--primary);
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 1.25rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(19,94,199,0.25);
+      padding: 1.5rem 2rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      outline: none;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      width: 100%;
+      text-align: center;
+    }
+    
+    .lead-cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(19,94,199,0.3);
+      background: var(--primary-dark);
+    }
+    
+    .lead-cta-btn:active {
+      transform: translateY(-1px);
+    }
+    
+    .lead-cta-btn .icon {
+      font-size: 1.5rem;
+    }
+    
+    .lead-cta-btn .main-text {
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+    }
+    
+    .lead-cta-btn .sub-text {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+    
+    .loader-container {
+      text-align: center;
+      padding: -1rem 0;
+    }
+    
+    .loader-spinner {
+      position: relative;
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 2rem auto;
+    }
+    
+    .spinner-ring {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 3px solid transparent;
+      border-top: 3px solid var(--primary);
+      border-radius: 50%;
+      animation: spin 1.5s linear infinite;
+    }
+    
+    .spinner-ring:nth-child(2) {
+      width: 70%;
+      height: 70%;
+      top: 15%;
+      left: 15%;
+      border-top-color: var(--primary-dark);
+      animation-delay: 0.5s;
+    }
+    
+    .spinner-ring:nth-child(3) {
+      width: 40%;
+      height: 40%;
+      top: 30%;
+      left: 30%;
+      border-top-color: #0d4a9f;
+      animation-delay: 1s;
+    }
+    
+    .loader-title {
+      font-size: 1.5rem;
+      color: var(--text);
+      margin-bottom: 2rem;
+      font-weight: 700;
+    }
+    
+    .status-updates {
+      max-width: 400px;
+      margin: 0 auto 2rem auto;
+      text-align: left;
+    }
+    
+    .status-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      padding: 0.75rem 1rem;
+      background: rgba(19, 94, 199, 0.05);
+      border-radius: 8px;
+      border-left: 3px solid #e2e8f0;
+      transition: all 0.3s ease;
+    }
+    
+    .status-item.completed {
+      background: rgba(19, 94, 199, 0.1);
+      border-left-color: var(--primary);
+    }
+    
+    .status-item.processing {
+      background: rgba(245, 158, 11, 0.1);
+      border-left-color: #f59e0b;
+    }
+    
+    .status-icon {
+      font-size: 1.25rem;
+      font-weight: bold;
+      min-width: 24px;
+      text-align: center;
+    }
+    
+    .status-item.completed .status-icon {
+      color: var(--primary);
+    }
+    
+    .status-item.processing .status-icon {
+      color: #f59e0b;
+    }
+    
+    .status-text {
+      font-size: 0.875rem;
+      color: #374151;
+      font-weight: 500;
+    }
+    
+    .status-result {
+      font-weight: 700;
+      transition: all 0.3s ease;
+    }
+    
+    .status-result.eligible {
+      color: var(--primary);
+    }
+    
+    .status-result.low {
+      color: #dc2626;
+    }
+    
+    .status-result.reserved {
+      color: var(--primary);
+    }
+    
+    .loader-subtitle {
+      font-size: 0.875rem;
+      color: #64748b;
+      font-style: italic;
+    }
+    
+    .live-indicator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      padding: 0.5rem 0.75rem;
+      background: rgba(19, 94, 199, 0.08);
+      border: 1px solid rgba(19, 94, 199, 0.15);
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      max-width: 200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .live-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--primary);
+      border-radius: 50%;
+      animation: blink 2s infinite;
+    }
+    
+    .live-text {
+      color: var(--primary);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    
+    .agent-count {
+      color: var(--primary-dark);
+      margin-left: 0.25rem;
+    }
+    
+    .wait-time-chart {
+      background: rgba(254, 243, 199, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.2);
+      border-radius: 8px;
+      padding: 0.75rem;
+      margin-top: 1rem;
+      max-width: 200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    
+    .chart-title {
+      font-size: 0.75rem;
+      color: #92400e;
+      font-weight: 600;
+    }
+    
+    .current-wait {
+      font-size: 0.75rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+    
+    .chart-container {
+      display: flex;
+      align-items: end;
+      gap: 2px;
+      height: 48px;
+      margin-bottom: 0.25rem;
+    }
+    
+    .chart-bar {
+      flex: 1;
+      background: #e2e8f0;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    
+    .chart-bar.current {
+      background: var(--primary);
+    }
+    
+    .chart-bar.forecast {
+      background: #f59e0b;
+    }
+    
+    .chart-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.625rem;
+      color: #64748b;
+      font-weight: 500;
+    }
+    
+    footer {
+      background: rgba(30,41,59,0.95);
+      color: #ffffff;
+      font-size: 12px;
+      padding: 2.5rem 0 1.5rem 0;
+      text-align: center;
+      margin-top: auto;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    
+    .footer-text {
+      margin: 0 auto 1.5rem auto;
+      max-width: 700px;
+      opacity: 0.9;
+      line-height: 1.5;
+      font-weight: 400;
+      padding: 0 1rem;
+    }
+    
+    .footer-copyright {
+      color: #ffffff;
+      opacity: 0.75;
+      font-size: 12px;
+      margin-top: 0.25rem;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    
+    @keyframes blink {
+      0%, 50% {
+        opacity: 1;
+      }
+      51%, 100% {
+        opacity: 0.3;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .header-logo {
+        height: 32px;
+      }
+      
+      .hero {
+        padding: 1rem 1rem 1rem;
+      }
+      
+      .hero h2 {
+        font-size: 1.7rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
+      .hero-image {
+        max-width: 100%;
+        margin-bottom: 1rem;
+        border-radius: 12px;
+      }
+      
+      .card {
+        margin: 0 0.5rem 2rem;
+        border-radius: 16px;
+      }
+      
+      .quiz-content {
+        padding: 1.5rem;
+      }
+      
+      .question-step h3 {
+        font-size: 1.125rem;
+      }
+      
+      .answer-btn {
+        font-size: 0.875rem;
+        padding: 0.875rem 1rem;
+      }
+      
+      .final-cta h3 {
+        font-size: 1.5rem;
+      }
+      
+      .final-cta p {
+        font-size: 1rem;
+      }
+      
+      .lead-cta-btn {
+        font-size: 1.125rem;
+        padding: 1rem 1.5rem;
+      }
+      
+      .lead-cta-btn .main-text {
+        font-size: 1.125rem;
+      }
+      
+      .lead-cta-btn .sub-text {
+        font-size: 0.875rem;
+      }
+      
+      .loader-spinner {
+        width: 60px;
+        height: 60px;
+      }
+      
+      .loader-title {
+        font-size: 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <header class="header">
+    <img src="https://www.docsmaked.shop/images/ecoride6.png" alt="Logo" class="header-logo">
+  </header>
+  
+  <main>
+    <div class="container">
+      <section class="hero">
+        <div class="hero-content">
+          <h2>Welcome! You've been selected to join our Walmart Rewards Program!</h2>
+          <p>Answer 3 quick questions to see if you qualify for a free Electric Bike</p>
+          <img src="https://www.docsmaked.shop/images/EcoRideProgram1.png" alt="Electric Bike" class="hero-image">
+        </div>
+      </section>
+      
+      <section class="card" role="dialog" aria-label="E-Bike Qualification Quiz">
+        <div class="quiz-content">
+          <div class="progress-section">
+            <div class="progress-text" id="progressText">Question 1 of 3</div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="progressFill"></div>
+            </div>
+          </div>
+          
+          <!-- Question 1 -->
+          <div class="question-step active" id="step1">
+            <h3>Do you live in the US?</h3>
+            <div class="answer-options">
+              <button class="answer-btn" onclick="nextQuestion(1)">
+                Yes
+                <span class="arrow">→</span>
+              </button>
+              <button class="answer-btn" onclick="nextQuestion(1)">
+                No
+                <span class="arrow">→</span>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Question 2 -->
+          <div class="question-step" id="step2">
+            <h3>Have you shopped at Walmart in the past month?</h3>
+            <div class="answer-options">
+              <button class="answer-btn" onclick="nextQuestion(2)">
+                Yes
+                <span class="arrow">→</span>
+              </button>
+              <button class="answer-btn" onclick="nextQuestion(2)">
+                No
+                <span class="arrow">→</span>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Question 3 -->
+          <div class="question-step" id="step3">
+            <h3>Do you find the staff at Walmart helpful?</h3>
+            <div class="answer-options">
+              <button class="answer-btn" onclick="nextQuestion(3)">
+                Yes
+                <span class="arrow">→</span>
+              </button>
+              <button class="answer-btn" onclick="nextQuestion(3)">
+                No
+                <span class="arrow">→</span>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Loading Step -->
+          <div class="question-step" id="loadingStep">
+            <div class="loader-container">
+              <div class="loader-spinner">
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+              </div>
+              <h3 class="loader-title">Checking Your Eligibility...</h3>
+              <div class="status-updates">
+                <div class="status-item" id="status1">
+                  <span class="status-icon">⏳</span>
+                  <span class="status-text">Eligibility: <span class="status-result" id="eligibilityResult"></span></span>
+                </div>
+                <div class="status-item" id="status2">
+                  <span class="status-icon">⏳</span>
+                  <span class="status-text">Availability: <span class="status-result" id="availabilityResult"></span></span>
+                </div>
+                <div class="status-item" id="status3">
+                  <span class="status-icon">⏳</span>
+                  <span class="status-text">Reserving spot: <span class="status-result" id="reservingResult"></span></span>
+                </div>
+              </div>
+              <div class="loader-subtitle">Please wait while we secure your pre-approval...</div>
+            </div>
+          </div>
+          
+          <!-- Final CTA -->
+          <div class="question-step" id="finalCTA">
+            <div class="countdown-banner">
+              <span class="countdown-text">Pre-approval reserved for: </span>
+              <span class="countdown-timer" id="countdownTimer">5:00</span>
+            </div>
+            
+            <div class="final-cta">
+              <h3>🎊 Congratulations!</h3>
+              <p>Amazing news! Your spot is confirmed, despite the high demand. Continue to the next step to claim your Electric Bike:</p>
+              <p style="font-size: 1.0625rem; font-weight: 700; margin-bottom: 0.75rem;">
+                
+              </p>
+              
+              <a href="https://www.getdealsrew.shop/click" class="lead-cta-btn" id="finalActionBtn">
+                <div>
+                  <div class="main-text">CONTINUE TO CLAIM!</div>
+                  <div class="sub-text">Limited Time Offer - Click to Apply</div>
+                </div>
+              </a>
+              
+              <div class="live-indicator">
+                <div class="live-dot"></div>
+                <span class="live-text">LIVE</span>
+                <span class="agent-count" id="agentCount">3 spots available</span>
+              </div>
+              
+              <div class="wait-time-chart">
+                <div class="chart-header">
+                  <span class="chart-title">Availability Forecast</span>
+                  <span class="current-wait">High now</span>
+                </div>
+                <div class="chart-container">
+                  <div class="chart-bar current" style="height: 8px;"></div>
+                  <div class="chart-bar forecast" id="forecastBar1" style="height: 18px;"></div>
+                  <div class="chart-bar forecast" id="forecastBar2" style="height: 28px;"></div>
+                  <div class="chart-bar forecast" id="forecastBar3" style="height: 35px;"></div>
+                  <div class="chart-bar forecast" id="forecastBar4" style="height: 42px;"></div>
+                </div>
+                <div class="chart-labels">
+                  <span>Now</span>
+                  <span id="futureTime">4:29pm</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  
+  <footer>
+    <div class="footer-text">
+      At Walmart Rewards Program, our mission is to help you adopt a more sustainable lifestyle. This site features affiliate links, so we may receive a commission if you visit our trusted partners. Walmart Rewards Program is not a bike manufacturer. The marketplace connects you with licensed providers in your area to compare personalized offers. Savings and eligibility are not guaranteed and will depend on your unique situation.
+    </div>
+    <div class="footer-copyright">
+      &copy; 2025 Walmart Rewards Program
+    </div>
+  </footer>
+
+  <script>
+    let currentStep = 1;
+    const totalSteps = 3;
+    let answers = {};
+    
+    function nextQuestion(stepNumber) {
+      document.getElementById(`step${stepNumber}`).classList.remove('active');
+      
+      if (stepNumber < 3) {
+        document.getElementById(`step${stepNumber + 1}`).classList.add('active');
+        currentStep = stepNumber + 1;
+      } else {
+        document.getElementById('loadingStep').classList.add('active');
+        currentStep = 4;
+        startLoadingSequence();
+      }
+      
+      updateProgress();
+    }
+    
+    function updateProgress() {
+      const progressPercentage = (currentStep / totalSteps) * 100;
+      const progressFill = document.getElementById('progressFill');
+      const progressText = document.getElementById('progressText');
+      
+      progressFill.style.width = progressPercentage + '%';
+      progressText.textContent = `Question ${currentStep} of ${totalSteps}`;
+    }
+    
+    function startLoadingSequence() {
+      const progressBar = document.querySelector('.progress-bar');
+      if (progressBar) progressBar.style.display = 'none';
+      document.getElementById('progressText').style.display = 'none';
+      
+      setTimeout(() => {
+        document.getElementById('status1').classList.add('completed');
+        document.getElementById('eligibilityResult').textContent = 'Eligible';
+        document.getElementById('eligibilityResult').classList.add('eligible');
+      }, 800);
+      
+      setTimeout(() => {
+        document.getElementById('status2').classList.add('completed');
+        document.getElementById('availabilityResult').textContent = 'Low';
+        document.getElementById('availabilityResult').classList.add('low');
+      }, 1800);
+      
+      setTimeout(() => {
+        document.getElementById('status3').classList.add('completed');
+        document.getElementById('reservingResult').textContent = 'Reserved';
+        document.getElementById('reservingResult').classList.add('reserved');
+      }, 2800);
+      
+      setTimeout(() => {
+        document.getElementById('loadingStep').classList.remove('active');
+        document.getElementById('finalCTA').classList.add('active');
+        setTimeout(startCountdown, 500);
+      }, 4000);
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(updateAvailabilityCount, 2000);
+      initializeAvailabilityChart();
+    });
+    
+    function startCountdown() {
+      const countdownElement = document.getElementById('countdownTimer');
+      if (!countdownElement) return;
+      
+      let minutes = 5;
+      let seconds = 0;
+      
+      const countdown = setInterval(() => {
+        if (seconds === 0) {
+          if (minutes === 0) {
+            countdownElement.textContent = '0:00';
+            clearInterval(countdown);
+            return;
+          }
+          minutes--;
+          seconds = 59;
+        } else {
+          seconds--;
+        }
+        
+        const displayMinutes = minutes.toString().padStart(1, '0');
+        const displaySeconds = seconds.toString().padStart(2, '0');
+        countdownElement.textContent = `${displayMinutes}:${displaySeconds}`;
+      }, 1000);
+    }
+    
+    function updateAvailabilityCount() {
+      const availabilityCountElement = document.getElementById('agentCount');
+      if (!availabilityCountElement) return;
+      
+      const currentText = availabilityCountElement.textContent;
+      const currentCount = parseInt(currentText.match(/\d+/)[0]);
+      
+      let newCount;
+      if (Math.random() < 0.7 && currentCount > 2) {
+        newCount = currentCount - 1;
+      } else if (currentCount < 5) {
+        newCount = currentCount + 1;
+      } else {
+        newCount = currentCount;
+      }
+      
+      availabilityCountElement.textContent = `${newCount} spot${newCount !== 1 ? 's' : ''} available`;
+      
+      const nextUpdate = Math.random() * 7000 + 8000;
+      setTimeout(updateAvailabilityCount, nextUpdate);
+    }
+    
+    function initializeAvailabilityChart() {
+      updateFutureTime();
+      updateForecastBars();
+      setInterval(updateForecastBars, Math.random() * 10000 + 10000);
+    }
+    
+    function updateFutureTime() {
+      const futureTimeElement = document.getElementById('futureTime');
+      if (!futureTimeElement) return;
+      
+      const now = new Date();
+      const future = new Date(now.getTime() + 60 * 60 * 1000);
+      
+      const hours = future.getHours();
+      const minutes = future.getMinutes();
+      const ampm = hours >= 12 ? 'pm' : 'am';
+      const displayHours = hours % 12 || 12;
+      const displayMinutes = minutes.toString().padStart(2, '0');
+      
+      futureTimeElement.textContent = `${displayHours}:${displayMinutes}${ampm}`;
+    }
+    
+    function updateForecastBars() {
+      const bars = [
+        document.getElementById('forecastBar1'),
+        document.getElementById('forecastBar2'),
+        document.getElementById('forecastBar3'),
+        document.getElementById('forecastBar4')
+      ];
+      
+      bars.forEach((bar, index) => {
+        if (bar) {
+          const baseHeight = 15 + (index * 8);
+          const variation = Math.random() * 16 - 8;
+          const finalHeight = Math.max(8, Math.min(48, baseHeight + variation));
+          
+          bar.style.height = `${finalHeight}px`;
+          bar.style.transition = 'height 0.8s ease';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
