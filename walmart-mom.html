@@ -1,0 +1,1543 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Walmart Rewards Program - Quick Qualification Quiz</title>
+  <meta name="description" content="Take our quick quiz to see if you qualify for a free Electric Bike">
+    <script src="js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/albert-nl/css/styles.css">
+   
+  <style>
+    :root{
+      --bg:#f0f9f4; --primary:#135EC7; --primary-dark:#0d4a9f; --text:#1f2937; --muted:#6b7280;
+      --card:#ffffff; --card-brd:#c9dff8;
+      --bot:#e8f1fc; --you:#dceafc; --chip:#ffffff; --online:#135EC7; --shadow:0 8px 24px rgba(19,94,199,.08);
+      --accent:#3b82f6;
+    }
+    *{box-sizing:border-box} html,body{height:100%}
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--text);
+      background: #ffffff;
+      overflow-x:hidden}
+    
+    .header {
+      background: linear-gradient(180deg, #135EC7 0%, #0d4a9f 100%);
+      color: #ffffff;
+      padding: 1rem 1.5rem;
+      width: 100%;
+      display: flex;
+      align-items: center;
+    }
+    
+    .header-logo {
+      height: 40px;
+      width: auto;
+    }
+    
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .hero {
+      color: var(--text);
+      text-align: center;
+      padding: 1rem 1rem 1rem;
+      width: 100%;
+    }
+    
+    .hero-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .hero h2 {
+      font-size: 2.7rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+    
+    .hero p {
+      font-size: 1.125rem;
+      color: var(--muted);
+      max-width: 500px;
+      margin: 0 auto 1.5rem;
+    }
+    
+    .hero-image {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      margin: 0 auto 1rem;
+      display: block;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+    
+    .card {
+      width: 100%;
+      background: var(--card);
+      border: 2px solid var(--card-brd);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      margin: 0.5rem auto 2rem auto;
+      max-width: 600px;
+      position: relative;
+      z-index: 10;
+    }
+    
+    .top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 18px;
+      border-bottom: 2px solid #c9dff8;
+      backdrop-filter: blur(8px);
+      background: rgba(255,255,255,.7);
+    }
+    
+    .logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--primary);
+      display: grid;
+      place-items: center;
+      position: relative;
+      font-size: 24px;
+    }
+    
+    .status {
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--online);
+      border: 2.5px solid #ffffff;
+      box-shadow: 0 0 8px rgba(19,94,199,.6);
+    }
+    
+    .title {
+      font-weight: 900;
+      letter-spacing: .3px;
+      color: var(--text);
+      font-size: 16px;
+    }
+    
+    .title small {
+      display: block;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 13px;
+      margin-top: 2px;
+    }
+    
+    .quiz-content {
+      padding: 2rem;
+      flex: 1;
+    }
+    
+    .progress-section {
+      margin-bottom: 2rem;
+    }
+    
+    .progress-text {
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 4px;
+      transition: width 0.6s ease;
+      width: 0%;
+    }
+    
+    .question-step {
+      display: none;
+      animation: fadeInUp 0.5s ease;
+    }
+    
+    .question-step.active {
+      display: block;
+    }
+    
+    .question-step h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+      text-align: center;
+      line-height: 1.3;
+    }
+    
+    .answer-options {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .answer-btn {
+      background: #ffffff;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 1.125rem;
+      font-weight: 600;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      outline: none;
+      text-align: left;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .answer-btn:hover {
+      border-color: var(--primary);
+      background: #eff6ff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(19,94,199,0.12);
+    }
+    
+    .answer-btn:active {
+      transform: translateY(0);
+    }
+    
+    .answer-btn .arrow {
+      color: var(--primary);
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+    
+    .chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    
+    .chip {
+      background: var(--chip);
+      color: var(--text);
+      border: 2px solid var(--primary);
+      border-radius: 999px;
+      padding: 11px 18px;
+      font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all .2s;
+      box-shadow: 0 2px 6px rgba(19,94,199,.15);
+    }
+    
+    .chip:hover {
+      background: var(--primary);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(19,94,199,.3);
+    }
+    
+    .chip.cta {
+      background: var(--primary);
+      color: #fff;
+      font-size: 16px;
+      padding: 13px 24px;
+      animation: pulse 2s infinite;
+    }
+    
+    .chip.cta:hover {
+      background: var(--primary-dark);
+    }
+    
+    @keyframes pulse {
+      0%,100%{box-shadow:0 4px 12px rgba(19,94,199,.3)}
+      50%{box-shadow:0 4px 20px rgba(19,94,199,.5)}
+    }
+    
+    .final-cta {
+      text-align: center;
+      padding: 0rem 0;
+    }
+    
+    .final-cta h3 {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+      color: var(--primary-dark);
+    }
+    
+    .final-cta p {
+      font-size: 1.125rem;
+      color: #374151;
+      margin-bottom: 2rem;
+      line-height: 1.5;
+    }
+    
+    .urgency-banner {
+      background: #fef3c7;
+      border: 2px solid #f59e0b;
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      animation: pulse 2s infinite;
+    }
+    
+    .urgency-banner .timer {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #d97706;
+      margin-bottom: 0.5rem;
+    }
+    
+    .urgency-banner .message {
+      font-size: 0.875rem;
+      color: #92400e;
+      font-weight: 600;
+    }
+    
+    .countdown-banner {
+      background: rgba(254, 243, 199, 0.3);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      text-align: center;
+      font-size: 0.875rem;
+      color: #92400e;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      margin-top: -1rem;
+    }
+    
+    .countdown-text {
+      font-size: 0.875rem;
+      color: #92400e;
+      font-weight: 600;
+    }
+    
+    .countdown-timer {
+      font-size: 0.875rem;
+      color: #d97706;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .lead-cta-btn {
+      background: var(--primary);
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 1.25rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(19,94,199,0.25);
+      padding: 1.5rem 2rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      outline: none;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      width: 100%;
+      text-align: center;
+    }
+    
+    .lead-cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(19,94,199,0.3);
+      background: var(--primary-dark);
+    }
+    
+    .lead-cta-btn:active {
+      transform: translateY(-1px);
+    }
+    
+    .lead-cta-btn .icon {
+      font-size: 1.5rem;
+    }
+    
+    .lead-cta-btn .main-text {
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+    }
+    
+    .lead-cta-btn .sub-text {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+    
+    .loader-container {
+      text-align: center;
+      padding: -1rem 0;
+    }
+    
+    .loader-spinner {
+      position: relative;
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 2rem auto;
+    }
+    
+    .spinner-ring {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 3px solid transparent;
+      border-top: 3px solid var(--primary);
+      border-radius: 50%;
+      animation: spin 1.5s linear infinite;
+    }
+    
+    .spinner-ring:nth-child(2) {
+      width: 70%;
+      height: 70%;
+      top: 15%;
+      left: 15%;
+      border-top-color: var(--primary-dark);
+      animation-delay: 0.5s;
+    }
+    
+    .spinner-ring:nth-child(3) {
+      width: 40%;
+      height: 40%;
+      top: 30%;
+      left: 30%;
+      border-top-color: #0d4a9f;
+      animation-delay: 1s;
+    }
+    
+    .loader-title {
+      font-size: 1.5rem;
+      color: var(--text);
+      margin-bottom: 2rem;
+      font-weight: 700;
+    }
+    
+    .status-updates {
+      max-width: 400px;
+      margin: 0 auto 2rem auto;
+      text-align: left;
+    }
+    
+    .status-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      padding: 0.75rem 1rem;
+      background: rgba(19, 94, 199, 0.05);
+      border-radius: 8px;
+      border-left: 3px solid #e2e8f0;
+      transition: all 0.3s ease;
+    }
+    
+    .status-item.completed {
+      background: rgba(19, 94, 199, 0.1);
+      border-left-color: var(--primary);
+    }
+    
+    .status-item.processing {
+      background: rgba(245, 158, 11, 0.1);
+      border-left-color: #f59e0b;
+    }
+    
+    .status-icon {
+      font-size: 1.25rem;
+      font-weight: bold;
+      min-width: 24px;
+      text-align: center;
+    }
+    
+    .status-item.completed .status-icon {
+      color: var(--primary);
+    }
+    
+    .status-item.processing .status-icon {
+      color: #f59e0b;
+    }
+    
+    .status-text {
+      font-size: 0.875rem;
+      color: #374151;
+      font-weight: 500;
+    }
+    
+    .status-result {
+      font-weight: 700;
+      transition: all 0.3s ease;
+    }
+    
+    .status-result.eligible {
+      color: var(--primary);
+    }
+    
+    .status-result.low {
+      color: #dc2626;
+    }
+    
+    .status-result.reserved {
+      color: var(--primary);
+    }
+    
+    .loader-subtitle {
+      font-size: 0.875rem;
+      color: #64748b;
+      font-style: italic;
+    }
+    
+    .live-indicator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      padding: 0.5rem 0.75rem;
+      background: rgba(19, 94, 199, 0.08);
+      border: 1px solid rgba(19, 94, 199, 0.15);
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      max-width: 200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .live-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--primary);
+      border-radius: 50%;
+      animation: blink 2s infinite;
+    }
+    
+    .live-text {
+      color: var(--primary);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    
+    .agent-count {
+      color: var(--primary-dark);
+      margin-left: 0.25rem;
+    }
+    
+    .wait-time-chart {
+      background: rgba(254, 243, 199, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.2);
+      border-radius: 8px;
+      padding: 0.75rem;
+      margin-top: 1rem;
+      max-width: 200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    
+    .chart-title {
+      font-size: 0.75rem;
+      color: #92400e;
+      font-weight: 600;
+    }
+    
+    .current-wait {
+      font-size: 0.75rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+    
+    .chart-container {
+      display: flex;
+      align-items: end;
+      gap: 2px;
+      height: 48px;
+      margin-bottom: 0.25rem;
+    }
+    
+    .chart-bar {
+      flex: 1;
+      background: #e2e8f0;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    
+    .chart-bar.current {
+      background: var(--primary);
+    }
+    
+    .chart-bar.forecast {
+      background: #f59e0b;
+    }
+    
+    .chart-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.625rem;
+      color: #64748b;
+      font-weight: 500;
+    }
+    
+    footer {
+      background: rgba(30,41,59,0.95);
+      color: #ffffff;
+      font-size: 12px;
+      padding: 2.5rem 0 1.5rem 0;
+      text-align: center;
+      margin-top: auto;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    
+    .footer-text {
+      margin: 0 auto 1.5rem auto;
+      max-width: 700px;
+      opacity: 0.9;
+      line-height: 1.5;
+      font-weight: 400;
+      padding: 0 1rem;
+    }
+    
+    .footer-copyright {
+      color: #ffffff;
+      opacity: 0.75;
+      font-size: 12px;
+      margin-top: 0.25rem;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    
+    @keyframes blink {
+      0%, 50% {
+        opacity: 1;
+      }
+      51%, 100% {
+        opacity: 0.3;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .header-logo {
+        height: 32px;
+      }
+      
+      .hero {
+        padding: 1rem 1rem 1rem;
+      }
+      
+      .hero h2 {
+        font-size: 1.7rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
+      .hero-image {
+        max-width: 100%;
+        margin-bottom: 1rem;
+        border-radius: 12px;
+      }
+      
+      .card {
+        margin: 0 0.5rem 2rem;
+        border-radius: 16px;
+      }
+      
+      .quiz-content {
+        padding: 1.5rem;
+      }
+      
+      .question-step h3 {
+        font-size: 1.125rem;
+      }
+      
+      .answer-btn {
+        font-size: 0.875rem;
+        padding: 0.875rem 1rem;
+      }
+      
+      .final-cta h3 {
+        font-size: 1.5rem;
+      }
+      
+      .final-cta p {
+        font-size: 1rem;
+      }
+      
+      .lead-cta-btn {
+        font-size: 1.125rem;
+        padding: 1rem 1.5rem;
+      }
+      
+      .lead-cta-btn .main-text {
+        font-size: 1.125rem;
+      }
+      
+      .lead-cta-btn .sub-text {
+        font-size: 0.875rem;
+      }
+      
+      .loader-spinner {
+        width: 60px;
+        height: 60px;
+      }
+      
+      .loader-title {
+        font-size: 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <header class="header">
+    <img src="https://www.docsmaked.shop/images/shopsmartprogram.png" alt="Logo" class="header-logo">
+  </header>
+  
+  <main>
+    <div class="container">
+      <section class="hero">
+        <div class="hero-content">
+          <h2>Welcome! You've been selected to join our Walmart Rewards Program!</h2>
+          <p>Answer 3 quick questions to see if you qualify for $750 Walmart Gift Card!</p>
+          <img src="https://www.uplvlrewards.shop/images/walmart-pic.png" alt="Electric Bike" class="hero-image">
+        </div>
+      </section>
+      
+      <section class="card" role="dialog" aria-label="E-Bike Qualification Quiz">
+        <div class="quiz-content">
+          <div class="progress-section">
+            <div class="progress-text" id="progressText">Question 1 of 3</div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="progressFill"></div>
+            </div>
+          </div>
+          
+          <!-- Question 1 -->
+          <div class="question-step active" id="step1">
+            <h3>Do you live in the US?</h3>
+            <div class="answer-options">
+              <button class="answer-btn" onclick="nextQuestion(1)">
+                Yes
+                <span class="arrow">→</span>
+              </button>
+              <button class="answer-btn" onclick="nextQuestion(1)">
+                No
+                <span class="arrow">→</span>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Question 2 -->
+          <div class="question-step" id="step2">
+            <h3>Have you shopped at Walmart in the past month?</h3>
+            <div class="answer-options">
+              <button class="answer-btn" onclick="nextQuestion(2)">
+                Yes
+                <span class="arrow">→</span>
+              </button>
+              <button class="answer-btn" onclick="nextQuestion(2)">
+                No
+                <span class="arrow">→</span>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Question 3 -->
+          <div class="question-step" id="step3">
+            <h3>Do you find the staff at Walmart helpful?</h3>
+            <div class="answer-options">
+              <button class="answer-btn" onclick="nextQuestion(3)">
+                Yes
+                <span class="arrow">→</span>
+              </button>
+              <button class="answer-btn" onclick="nextQuestion(3)">
+                No
+                <span class="arrow">→</span>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Loading Step -->
+          <div class="question-step" id="loadingStep">
+            <div class="loader-container">
+              <div class="loader-spinner">
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+              </div>
+              <h3 class="loader-title">Checking Your Eligibility...</h3>
+              <div class="status-updates">
+                <div class="status-item" id="status1">
+                  <span class="status-icon">⏳</span>
+                  <span class="status-text">Eligibility: <span class="status-result" id="eligibilityResult"></span></span>
+                </div>
+                <div class="status-item" id="status2">
+                  <span class="status-icon">⏳</span>
+                  <span class="status-text">Availability: <span class="status-result" id="availabilityResult"></span></span>
+                </div>
+                <div class="status-item" id="status3">
+                  <span class="status-icon">⏳</span>
+                  <span class="status-text">Reserving spot: <span class="status-result" id="reservingResult"></span></span>
+                </div>
+              </div>
+              <div class="loader-subtitle">Please wait while we secure your pre-approval...</div>
+            </div>
+          </div>
+          
+          <!-- Final CTA -->
+          <div class="question-step" id="finalCTA">
+            <div class="countdown-banner">
+              <span class="countdown-text">Pre-approval reserved for: </span>
+              <span class="countdown-timer" id="countdownTimer">5:00</span>
+            </div>
+            
+            <div class="final-cta">
+              <h3>🎊 Congratulations!</h3>
+  <p>Amazing news! Your spot is confirmed, despite the high demand. Follow these steps to claim your Walmart gift card:</p>
+<div>
+ <div class="li">
+    <span class="check">✓</span>
+    <div>
+      <b>Click on "Continue To Claim!"</b>
+      <div class="muted">The button below</div>
+    </div>
+  </div>
+  <div class="li">
+    <span class="check">✓</span>
+    <div>
+      <b>Provide a valid email address</b>
+      <div class="muted">We keep your data safe</div>
+    </div>
+  </div>
+  <div class="li">
+    <span class="check">✓</span>
+    <div>
+      <b>Complete at least 2–5 suggested deals</b>
+      <div class="muted">Most people get $500+ in Walmart rewards completing just a few deals!</div>
+    </div>
+  </div>
+  <div class="li">
+    <span class="check">✓</span>
+    <div>
+      <b>Receive your Walmart gift card</b>
+      <div class="muted">And start shopping!</div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .li{
+    display:flex;
+    gap:14px;
+    padding:16px 0;
+    align-items:flex-start;
+  }
+  .check{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:24px;
+    height:24px;
+    border-radius:8px;
+    background:#135ec7;
+    font-size:14px;
+    font-weight:bold;
+    color:#ffffff;
+    flex-shrink:0;
+  }
+  .li b{
+    display:block;
+    margin-bottom:4px;
+    text-align:left;
+  }
+  .muted{
+    font-size:13px;
+    line-height:1.4;
+    color:#666;
+    text-align:left;
+  }
+</style>
+
+        
+              <p style="font-size: 1.0625rem; font-weight: 700; margin-bottom: 0.75rem;">
+                
+              </p>
+              
+              <a href="https://www.getdealsrew.shop/click" class="lead-cta-btn" id="finalActionBtn">
+                <div>
+                  <div class="main-text">CONTINUE TO CLAIM!</div>
+                  <div class="sub-text">Limited Time Offer - Click to Apply</div>
+                </div>
+              </a>
+              
+              <div class="live-indicator">
+                <div class="live-dot"></div>
+                <span class="live-text">LIVE</span>
+                <span class="agent-count" id="agentCount">3 spots available</span>
+              </div>
+              
+              <div class="wait-time-chart">
+                <div class="chart-header">
+                  <span class="chart-title">Availability Forecast</span>
+                  <span class="current-wait">High now</span>
+                </div>
+                <div class="chart-container">
+                  <div class="chart-bar current" style="height: 8px;"></div>
+                  <div class="chart-bar forecast" id="forecastBar1" style="height: 18px;"></div>
+                  <div class="chart-bar forecast" id="forecastBar2" style="height: 28px;"></div>
+                  <div class="chart-bar forecast" id="forecastBar3" style="height: 35px;"></div>
+                  <div class="chart-bar forecast" id="forecastBar4" style="height: 42px;"></div>
+                </div>
+                <div class="chart-labels">
+                  <span>Now</span>
+                  <span id="futureTime">4:29pm</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+
+ <style>
+.comments {
+    padding-left: 24px;
+    padding-right: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .comments {
+        padding-left: 48px;
+        padding-right: 48px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .comments {
+        padding-left: 270px;
+        padding-right: 270px;
+    }
+}
+
+/* Botão "Load more comments" com mais largura e mais padding */
+button.load-more {
+    max-width: 600px;
+    width: 100%;
+    padding: 16px 32px; /* ↑↓ 16px | ←→ 32px */
+    font-size: 1rem;
+    margin: 2rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 6px;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+    
+    </style>
+
+    <br>
+    <br>
+<div class="comments">
+                    <p class="others-say">Read what others have to say about our program:</p>
+                    <div class="sorting-box">
+                        <p>0 comments</p>
+                        <div class="inner-sorting-box">
+                            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle-notch" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#a6adb7" d="M288 39.056v16.659c0 10.804 7.281 20.159 17.686 23.066C383.204 100.434 440 171.518 440 256c0 101.689-82.295 184-184 184-101.689 0-184-82.295-184-184 0-84.47 56.786-155.564 134.312-177.219C216.719 75.874 224 66.517 224 55.712V39.064c0-15.709-14.834-27.153-30.046-23.234C86.603 43.482 7.394 141.206 8.003 257.332c.72 137.052 111.477 246.956 248.531 246.667C393.255 503.711 504 392.788 504 256c0-115.633-79.14-212.779-186.211-240.236C302.678 11.889 288 23.456 288 39.056z"></path></svg>
+                            <span>Sort by</span>
+                            <div class="sort">
+                                <button><span>Newest</span><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="sort" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="#374151" d="M41 288h238c21.4 0 32.1 25.9 17 41L177 448c-9.4 9.4-24.6 9.4-33.9 0L24 329c-15.1-15.1-4.4-41 17-41zm255-105L177 64c-9.4-9.4-24.6-9.4-33.9 0L24 183c-15.1 15.1-4.4 41 17 41h238c21.4 0 32.1-25.9 17-41z"></path></svg></button>
+                                <div class="dropdown-sort">
+                                    <button data-sort="top"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#374151" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg><span>Top</span></button>
+                                    <button data-sort="newest" class="selected"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#374151" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg><span>Newest</span></button>
+                                    <button data-sort="oldest"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#374151" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg><span>Oldest</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="mcomments">
+        <!-- Chelsea Dunn Comment -->
+        <div class="comment sort-coms start-coms" data-order="1" data-likes="1">
+            <a class="cmmimg" href="https://www.facebook.com/willa.everly" target="_blank"><img src="/albert-nl/images/ChelseaDunn.png" width="48" height="48" alt="Willa Everly"></a>
+            <a href="https://www.facebook.com/willa.everly" target="_blank" class="comment-user-name"><span> Chelsea Dunn </span></a>
+            <p class="comment-text">This is what I've got and still have $400 left</p>
+                <img class="fb-img" src="/albert-nl/images/test1.png" width="210" alt="Laura's ">
+            <div class="comment-meta">
+                <button>Like</button><span> · </span>
+                <button>Reply</button><span> · </span>
+                <span class="total-likes">1</span><span> · </span>
+                <span class="comment-age">a week ago</span>
+            </div>
+        </div>
+    
+        <!-- Diana McKenzie Comment -->
+        <div class="comment sort-coms start-coms" data-order="2" data-likes="1">
+            <a class="cmmimg" href="https://www.facebook.com/sammie.fenn" target="_blank"><img src="/albert-nl/images/DianaMcKenzie.png" width="48" height="48" alt="Samantha Fenn"></a>
+            <a href="https://www.facebook.com/sammie.fenn" target="_blank" class="comment-user-name"><span> Diana McKenzie </span></a>
+            <p class="comment-text">I live in United States... Can't wait to receive it!!</p>
+            <div class="comment-meta">
+                <button>Like</button><span> · </span>
+                <button>Reply</button><span> · </span>
+                <span class="total-likes">1</span><span> · </span>
+                <span class="comment-age">a week ago</span>
+            </div>
+        </div>
+    
+        <!-- Margaret Shepherd Comment with picture -->
+        <div class="comment sort-coms start-coms" data-order="3" data-likes="3">
+            <a class="cmmimg" href="https://www.facebook.com/laura.fairgrieve" target="_blank"><img src="/albert-nl/images/MargaretShepherd.png" width="48" height="48" alt="Laura Fairgrieve"></a>
+            <a href="https://www.facebook.com/laura.fairgrieve" target="_blank" class="comment-user-name"><span>  Margaret Shepherd </span></a>
+            <p class="comment-text">This is the best thing that ever happened to me, I lived in United States since birth.. And now to receive this amazing gift card! This progam is amazing!!</p>
+            <img class="fb-img" src="/albert-nl/images/test2.png" width="210" alt="Laura's ">
+            <div class="comment-meta">
+                <button>Like</button><span> · </span>
+                <button>Reply</button><span> · </span>
+                <span class="total-likes">3</span><span> · </span>
+                <span class="comment-age">a week ago</span>
+            </div>
+        </div>
+    
+        <!--  Nicole Harper Comment -->
+        <div class="comment sort-coms start-coms" data-order="4" data-likes="7">
+            <a class="cmmimg" href="https://www.facebook.com/profile.php?id=61554866372839" target="_blank"><img src="/albert-nl/images/NicoleHarper.png" width="48" height="48" alt="Antonio Santana"></a>
+            <a href="https://www.facebook.com/profile.php?id=61554866372839" target="_blank" class="comment-user-name"><span>Nicole Harper</span></a>
+            <p class="comment-text">Applied!!!</p>
+            <div class="comment-meta">
+                <button>Like</button><span> · </span>
+                <button>Reply</button><span> · </span>
+                <span class="total-likes">7</span><span> · </span>
+                <span class="comment-age">2 weeks ago</span>
+            </div>
+        </div>
+    
+        <!-- Jonathan Reed Comment -->
+        <div class="comment sort-coms start-coms" data-order="5" data-likes="7">
+            <a class="cmmimg" href="https://www.facebook.com/profile.php?id=61556838478710" target="_blank"><img src="/albert-nl/images/JonathanReed.png" width="48" height="48" alt="Wolf Richardson"></a>
+            <a href="https://www.facebook.com/profile.php?id=61556838478710" target="_blank" class="comment-user-name"><span>Jonathan Reed</span></a>
+            <p class="comment-text">Got everything I wanted from their website. Amazing program!</p>
+        <img class="fb-img" src="/albert-nl/images/test3.png" width="210" alt="Laura's ">
+            <div class="comment-meta">
+                <button>Like</button><span> · </span>
+                <button>Reply</button><span> · </span>
+                <span class="total-likes">7</span><span> · </span>
+                <span class="comment-age">2 weeks ago</span>
+            </div>
+        </div>
+    
+        <!--Layla Monroe Comment -->
+    <div class="comment sort-coms" data-order="6" data-likes="8">
+        <a class="cmmimg" href="https://www.facebook.com/profile.php?id=100072558012185" target="_blank"><img src="/albert-nl/images/LaylaMonroe.png" width="48" height="48" alt="Nicolas Rheault"></a>
+        <a href="https://www.facebook.com/profile.php?id=100072558012185" target="_blank" class="comment-user-name"><span>Layla Monroe</span></a>
+        <p class="comment-text">Was skeptical at first, but winning this Gift Card made me a believer. And I really used it.. Please note that this is available only in United States.</p>
+        <div class="comment-meta">
+            <button>Like</button><span> · </span>
+            <button>Reply</button><span> · </span>
+            <span class="total-likes">8</span><span> · </span>
+            <span class="comment-age">2 weeks ago</span>
+        </div>
+    </div>
+    
+    <!-- Chris Müller Comment -->
+    <div class="comment sort-coms" data-order="7" data-likes="3">
+        <a class="cmmimg" href="https://www.facebook.com/profile.php?id=100010528209702" target="_blank"><img src="/albert-nl/images/ChrisMuller.png" width="48" height="48" alt="Zoe Bennetts"></a>
+        <a href="https://www.facebook.com/profile.php?id=100010528209702" target="_blank" class="comment-user-name"><span>Chris Müller</span></a>
+        <p class="comment-text">Can't beleive this is only available in United States Can't wait to receive my Gift Card! My wishlist is hugeee.</p>
+        <img class="fb-img" src="/albert-nl/images/test4.png" width="210" alt="Laura's ">
+        <div class="comment-meta">
+            <button>Like</button><span> · </span>
+            <button>Reply</button><span> · </span>
+            <span class="total-likes">3</span><span> · </span>
+            <span class="comment-age">2 weeks ago</span>
+        </div>
+    </div>
+    
+    <!-- Caroline Fisher Comment -->
+    <div class="comment sort-coms" data-order="8" data-likes="12">
+        <a class="cmmimg" href="https://www.facebook.com/profile.php?id=61556454072764" target="_blank"><img src="/albert-nl/images/CarolineFisher.png" width="48" height="48" alt="Augay Laurent"></a>
+        <a href="https://www.facebook.com/profile.php?id=61556454072764" target="_blank" class="comment-user-name"><span>Caroline Fisher</span></a>
+        <p class="comment-text">A friend of mine told me that this is part of their program to expand in United States. I am so happy that I applied.. My wishlist is finally empty. This is the best thing that ever happened to me.</p>
+        <div class="comment-meta">
+            <button>Like</button><span> · </span>
+            <button>Reply</button><span> · </span>
+            <span class="total-likes">12</span><span> · </span>
+            <span class="comment-age">2 weeks ago</span>
+        </div>
+    </div>
+    
+    <!-- Melissa Quinn Comment -->
+    <div class="comment sort-coms" data-order="9" data-likes="3">
+        <a class="cmmimg" href="https://www.facebook.com/molly.creasey.5" target="_blank"><img src="/albert-nl/images/MelissaQuinn.png" width="48" height="48" alt="Molly Creasey"></a>
+        <a href="https://www.facebook.com/molly.creasey.5" target="_blank" class="comment-user-name"><span>Melissa Quinn</span></a>
+        <p class="comment-text">Applied, can't wait to receive it</p>
+        <div class="comment-meta">
+            <button>Like</button><span> · </span>
+            <button>Reply</button><span> · </span>
+            <span class="total-likes">3</span><span> · </span>
+            <span class="comment-age">1 day ago</span>
+        </div>
+    </div>
+    
+    <!-- Clark Downs Comment -->
+    <div class="comment sort-coms" data-order="10" data-likes="1">
+        <a class="cmmimg" href="https://www.facebook.com/profile.php?id=61556354936304" target="_blank"><img src="/albert-nl/images/AaronWells.png" width="48" height="48" alt="Clark Downs"></a>
+        <a href="https://www.facebook.com/profile.php?id=61556354936304" target="_blank" class="comment-user-name"><span>Aaron Wells</span></a>
+        <p class="comment-text">Applied, I must have it by the end of the week..</p>
+        <div class="comment-meta">
+            <button>Like</button><span> · </span>
+            <button>Reply</button><span> · </span>
+            <span class="total-likes">1</span><span> · </span>
+            <span class="comment-age">1 day ago</span>
+        </div>
+    </div>
+    
+    <!-- Sabrina Nagano Comment -->
+    <div class="comment sort-coms" data-order="11" data-likes="1">
+        <a class="cmmimg" href="https://www.facebook.com/jessica.mollard.5" target="_blank"><img src="/albert-nl/images/SabrinaNagano.png" width="48" height="48" alt="Jessica Mollard"></a>
+        <a href="https://www.facebook.com/jessica.mollard.5" target="_blank" class="comment-user-name"><span>Sabrina Nagano</span></a>
+        <p class="comment-text">Got everything I need!</p>
+            <img class="fb-img" src="/albert-nl/images/test7.png" width="210" alt="Laura's ">
+        <div class="comment-meta">
+            <button>Like</button><span> · </span>
+            <button>Reply</button><span> · </span>
+            <span class="total-likes">1</span><span> · </span>
+            <span class="comment-age">1 hour ago</span>
+        </div>
+    </div>
+    
+    <!-- Daniel Rojas Comment -->
+    <div class="comment sort-coms" data-order="13" data-likes="6">
+        <a class="cmmimg" href="https://www.facebook.com/profile.php?id=61556372008508" target="_blank"><img src="/albert-nl/images/DanielRojas.png" width="48" height="48" alt="Ric McCabe"></a>
+        <a href="https://www.facebook.com/profile.php?id=61556372008508" target="_blank" class="comment-user-name"><span>Daniel Rojas</span></a>
+        <p class="comment-text">I went with these and I didn't even spend it all</p>
+        <img class="fb-img" src="/albert-nl/images/test6.png" width="210" alt="Laura's ">
+        <div class="comment-meta">
+            <button>Like</button><span> · </span>
+            <button>Reply</button><span> · </span>
+            <span class="total-likes">6</span><span> · </span>
+            <span class="comment-age">1 hour ago</span>
+        </div>
+    </div>
+    
+    </div>
+    
+                    <button class="load-more"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle-notch" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#fff" d="M288 39.056v16.659c0 10.804 7.281 20.159 17.686 23.066C383.204 100.434 440 171.518 440 256c0 101.689-82.295 184-184 184-101.689 0-184-82.295-184-184 0-84.47 56.786-155.564 134.312-177.219C216.719 75.874 224 66.517 224 55.712V39.064c0-15.709-14.834-27.153-30.046-23.234C86.603 43.482 7.394 141.206 8.003 257.332c.72 137.052 111.477 246.956 248.531 246.667C393.255 503.711 504 392.788 504 256c0-115.633-79.14-212.779-186.211-240.236C302.678 11.889 288 23.456 288 39.056z" class=""></path></svg><span>Load 5 more comments</span></button>
+                    <div class="comments-footer">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#2563eb" d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z"></path></svg>
+                        <a>Facebook Comments Plugin</a>
+                    </div>
+                </div>
+    
+            </div>
+
+                </div>
+            </div>
+        </div>      
+     
+
+   <script type="text/javascript">
+    var text_remaining = 6;
+    var visible = 5;
+    var slide_question = 0;
+    var height_question = 0;
+    var stp2flag = false;
+    function timer(a,b) {
+            var min = Math.round((a-30)/60);
+            var sec = a%60;
+            $(b).html('YOUR SPOT IS RESERVED FOR <span class="top-timer">'+min+' MINUTES AND '+sec+' SECONDS</span>');
+            var t = setInterval(function() {
+                a--;
+                min = Math.round((a-30)/60);
+                sec = a%60;
+                $(b).html('YOUR SPOT IS RESERVED FOR <span class="top-timer">'+min+' MINUTES AND '+sec+' SECONDS</span>');	
+                if(a == 0) {
+                    clearInterval(t);
+                    $(b).html("YOUR SPOT IS NO LONGER RESERVED, BUT YOU CAN STILL TRY...");	
+                }
+            }, 1000);
+            return false;
+        }
+    jQuery.fn.orderBy = function(keySelector, order) {
+        return this.sort(function(a,b) {
+            a = keySelector.apply(a);
+            b = keySelector.apply(b);
+            if(order == "newest") {
+                if (a > b)
+                    return 1;
+                if (a < b)
+                    return -1;
+                return 0;
+            } else if(order == "oldest" || order == "top") {
+                if (a < b)
+                    return 1;
+                if (a > b)
+                    return -1;
+                return 0;
+            }
+        });
+    };
+    $(document).ready(function() {
+    
+        $(".question-number i").html($(".question").length);
+    
+        setTimeout(function() {
+            $(".sorting-box > p").html("130 comments");
+            $(".start-coms").removeClass("start-coms");
+        }, 250);
+    
+        $(document).on('click', 'textarea', function() {
+            $(".add-comment").addClass("active");
+        });
+    
+        $(".comment-button-left [type=checkbox]").on('change', function() {
+            if($(this).is(":checked") && text_remaining > 0) {
+                $(".comment-button-left p").show();
+                $(".comment-button-right button").addClass("disabled").prop("disabled", true);
+            } else {
+                $(".comment-button-left p").hide();
+                $(".comment-button-right button").removeClass("disabled").prop("disabled", false);
+            }
+        });
+    
+        $(document).on('click', '.sort > button', function() {
+            var $this = $(this);
+            $this.next().is(":visible") ? $this.next().hide() : $this.next().show();
+        });
+    
+
+
+
+      //////////
+    
+        $(document).on('click', '.load-more', function() {
+            var elem = $(".mcomments > :hidden").length < 5 ? $(".mcomments > :hidden").length : 5;
+            for(var i = 0;i<elem;i++) {
+                $(".mcomments > :hidden:first").show();
+            }
+            visible = visible + elem;
+            if(visible == $(".sort-coms").length) {
+                $(this).addClass("end-coms").prop("disabled", true).find("span").html("Loading...");
+            }
+        });
+    
+       
+    
+     
+    
+        $(".started button").on('click', function() {
+            $(".stp1").fadeOut(300, function() {
+                $("html, body").scrollTop(0);
+                $(".stp2").fadeIn(300, function() {
+                    $(".timer-top").slideDown(300, function() {
+                        timer(180,".timer-top");
+                    });
+                    stp2flag = true;
+                    $(".question").each(function() {
+                        height_question = height_question + $(this).outerHeight();
+                    });
+                });
+            });
+        });
+    
+        $(".card button").on('click', function() {
+            $this = $(this);
+            if($this.hasClass("active")) {
+                $this.removeClass("active");
+                $this.next().slideUp(200);
+            } else {
+                $this.parent().parent().find(".card button").removeClass("active");
+                $this.parent().parent().find(".card p").slideUp(200);
+                $this.toggleClass("active");
+                $this.next().slideToggle(200);
+            }
+        });
+    
+        $(".faq-overlay, .faq-close").on('click', function() {
+            $(".faq-screen").fadeOut(200, function() {
+                $(".faq-box").css({opacity: "0"});
+            });
+        });
+    
+        $(".tophead button").on('click', function() {
+            $(".faq-screen").fadeIn(200, function() {
+                $(".faq-box").css({opacity: "1"});
+            });
+        });
+    
+        $(".question button").on('click', function() {
+            var $this = $(this);
+            if($this.parent().next().hasClass("question")) {
+                $(".question-number span").html(parseInt($(".question-number span").html()) + 1)
+                slide_question = slide_question + $this.parent().outerHeight();
+                height_question = height_question - $this.parent().outerHeight();
+                $this.parent().next().removeClass("inactive");
+                $this.parent().addClass("scrolled-up");
+                $(".question-box").css({transform: "translateY(-"+slide_question+"px)", height: height_question+"px"});
+                $this.parent().css({opacity: 0, transform: "translateY(-50%)"});
+            } else {
+                $(".stp2").fadeOut(300, function() {
+                    $(".stp3").fadeIn(300, function() {
+                        setTimeout(function() { $(".loading-list li:nth-child(1)").removeClass("work").addClass("done"); $(".loading-list li:nth-child(2)").addClass("work"); }, 2900);
+                        setTimeout(function() { $(".loading-list li:nth-child(2)").removeClass("work").addClass("done"); $(".loading-list li:nth-child(3)").addClass("work"); }, 5000);
+                        setTimeout(function() { $(".loading-list li:nth-child(3)").removeClass("work").addClass("done"); $(".loading-list li:nth-child(4)").addClass("work"); }, 7750);
+                        setTimeout(function() { $(".loading-list li:nth-child(4)").removeClass("work").addClass("done"); }, 9700);
+                         setTimeout(function() {
+                                    var params = window.location.search; // Get current URL parameters
+                                    var continueURL = "./continue.html" + params; // Append parameters to new URL
+                                    window.location.href = continueURL;
+                                }, 10500);
+                            });
+                        });
+                    }
+                });
+        $(window).on('resize', function() {
+            if(stp2flag) {
+                var height_question_resize = 0;
+                var slide_question_resize = 0;
+                $(".question:not(.scrolled-up)").each(function() {
+                    height_question_resize = height_question_resize + $(this).outerHeight();
+                });
+                $(".question.scrolled-up").each(function() {
+                    slide_question_resize = slide_question_resize - $(this).outerHeight();
+                });
+                $(".question-box").css({transform: "translateY("+slide_question_resize+"px)", height: height_question_resize+"px"});
+            }
+        });
+    
+    });
+    </script>
+  <br>
+ 
+  <footer>
+    <div class="footer-text">
+      Trade names or rights associated with all brands on this site are the property of their respective owners and are not affiliated with this promotion.
+      <br>
+      <br>
+        The trademarks and assets, presented on the web page, are registered trademarks of such third parties who own those trademarks and assets. There's no affiliation, association or third party endorsement by such parties when their assets are in use. We cannot guarantee that you will receive any of the Offers that you request, as Offers are subject to availability and are often made by other entities. Offers distributed are limited in quantity, and our partners reserve the right to substitute Offers based on availability. Offers that are not distributed by our partners are monitored by other entities, and we are not responsible if such Offers are no longer available, change, if you do not receive the Offers, if you do not qualify for the Offers, or if any other issues arise. The third-party product names, logos, brands, and trademarks shown on this website are the property of their respective owners.
+    </div>
+    <div class="footer-copyright">
+      &copy; 2025 Shop Smart Program
+    </div>
+  </footer>
+
+  <script>
+    let currentStep = 1;
+    const totalSteps = 3;
+    let answers = {};
+    
+    function nextQuestion(stepNumber) {
+      document.getElementById(`step${stepNumber}`).classList.remove('active');
+      
+      if (stepNumber < 3) {
+        document.getElementById(`step${stepNumber + 1}`).classList.add('active');
+        currentStep = stepNumber + 1;
+      } else {
+        document.getElementById('loadingStep').classList.add('active');
+        currentStep = 4;
+        startLoadingSequence();
+      }
+      
+      updateProgress();
+    }
+    
+    function updateProgress() {
+      const progressPercentage = (currentStep / totalSteps) * 100;
+      const progressFill = document.getElementById('progressFill');
+      const progressText = document.getElementById('progressText');
+      
+      progressFill.style.width = progressPercentage + '%';
+      progressText.textContent = `Question ${currentStep} of ${totalSteps}`;
+    }
+    
+    function startLoadingSequence() {
+      const progressBar = document.querySelector('.progress-bar');
+      if (progressBar) progressBar.style.display = 'none';
+      document.getElementById('progressText').style.display = 'none';
+      
+      setTimeout(() => {
+        document.getElementById('status1').classList.add('completed');
+        document.getElementById('eligibilityResult').textContent = 'Eligible';
+        document.getElementById('eligibilityResult').classList.add('eligible');
+      }, 800);
+      
+      setTimeout(() => {
+        document.getElementById('status2').classList.add('completed');
+        document.getElementById('availabilityResult').textContent = 'Low';
+        document.getElementById('availabilityResult').classList.add('low');
+      }, 1800);
+      
+      setTimeout(() => {
+        document.getElementById('status3').classList.add('completed');
+        document.getElementById('reservingResult').textContent = 'Reserved';
+        document.getElementById('reservingResult').classList.add('reserved');
+      }, 2800);
+      
+      setTimeout(() => {
+        document.getElementById('loadingStep').classList.remove('active');
+        document.getElementById('finalCTA').classList.add('active');
+        setTimeout(startCountdown, 500);
+      }, 4000);
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(updateAvailabilityCount, 2000);
+      initializeAvailabilityChart();
+    });
+    
+    function startCountdown() {
+      const countdownElement = document.getElementById('countdownTimer');
+      if (!countdownElement) return;
+      
+      let minutes = 5;
+      let seconds = 0;
+      
+      const countdown = setInterval(() => {
+        if (seconds === 0) {
+          if (minutes === 0) {
+            countdownElement.textContent = '0:00';
+            clearInterval(countdown);
+            return;
+          }
+          minutes--;
+          seconds = 59;
+        } else {
+          seconds--;
+        }
+        
+        const displayMinutes = minutes.toString().padStart(1, '0');
+        const displaySeconds = seconds.toString().padStart(2, '0');
+        countdownElement.textContent = `${displayMinutes}:${displaySeconds}`;
+      }, 1000);
+    }
+    
+    function updateAvailabilityCount() {
+      const availabilityCountElement = document.getElementById('agentCount');
+      if (!availabilityCountElement) return;
+      
+      const currentText = availabilityCountElement.textContent;
+      const currentCount = parseInt(currentText.match(/\d+/)[0]);
+      
+      let newCount;
+      if (Math.random() < 0.7 && currentCount > 2) {
+        newCount = currentCount - 1;
+      } else if (currentCount < 5) {
+        newCount = currentCount + 1;
+      } else {
+        newCount = currentCount;
+      }
+      
+      availabilityCountElement.textContent = `${newCount} spot${newCount !== 1 ? 's' : ''} available`;
+      
+      const nextUpdate = Math.random() * 7000 + 8000;
+      setTimeout(updateAvailabilityCount, nextUpdate);
+    }
+    
+    function initializeAvailabilityChart() {
+      updateFutureTime();
+      updateForecastBars();
+      setInterval(updateForecastBars, Math.random() * 10000 + 10000);
+    }
+    
+    function updateFutureTime() {
+      const futureTimeElement = document.getElementById('futureTime');
+      if (!futureTimeElement) return;
+      
+      const now = new Date();
+      const future = new Date(now.getTime() + 60 * 60 * 1000);
+      
+      const hours = future.getHours();
+      const minutes = future.getMinutes();
+      const ampm = hours >= 12 ? 'pm' : 'am';
+      const displayHours = hours % 12 || 12;
+      const displayMinutes = minutes.toString().padStart(2, '0');
+      
+      futureTimeElement.textContent = `${displayHours}:${displayMinutes}${ampm}`;
+    }
+    
+    function updateForecastBars() {
+      const bars = [
+        document.getElementById('forecastBar1'),
+        document.getElementById('forecastBar2'),
+        document.getElementById('forecastBar3'),
+        document.getElementById('forecastBar4')
+      ];
+      
+      bars.forEach((bar, index) => {
+        if (bar) {
+          const baseHeight = 15 + (index * 8);
+          const variation = Math.random() * 16 - 8;
+          const finalHeight = Math.max(8, Math.min(48, baseHeight + variation));
+          
+          bar.style.height = `${finalHeight}px`;
+          bar.style.transition = 'height 0.8s ease';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
