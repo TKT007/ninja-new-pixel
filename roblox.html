@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox Safety Check - Important Question</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: #333;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 50px 40px;
+            max-width: 700px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #2d3748;
+            margin-bottom: 30px;
+            line-height: 1.4;
+            font-weight: 600;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 18px 60px;
+            font-size: 20px;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            min-width: 150px;
+        }
+
+        .btn-yes {
+            background: #48bb78;
+            color: white;
+        }
+
+        .btn-yes:hover {
+            background: #38a169;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(72, 187, 120, 0.4);
+        }
+
+        .btn-no {
+            background: #fc8181;
+            color: white;
+        }
+
+        .btn-no:hover {
+            background: #f56565;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(252, 129, 129, 0.4);
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .disclaimer {
+            font-size: 12px;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                padding: 40px 25px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            .buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .btn {
+                width: 100%;
+                padding: 16px 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="icon">⚠️</div>
+            <h1>Has your child experienced any form of harm, abuse, or exploitation through the Roblox platform?</h1>
+            
+            <div class="buttons">
+                <a href="YOUR_AFFILIATE_LINK_HERE" class="btn btn-yes">YES</a>
+                <button class="btn btn-no" onclick="handleNo()">NO</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p><strong>Important Notice:</strong> This is a legal information service connecting families with qualified attorneys.</p>
+        <p class="disclaimer">
+            Free case evaluation. No upfront costs. All consultations are 100% confidential. 
+            This website is not affiliated with Roblox Corporation. Legal outcomes may vary based on individual circumstances.
+        </p>
+        <p style="margin-top: 15px;">© 2025 All Rights Reserved | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+
+    <script>
+        function handleNo() {
+            alert('Thank you for your response. We hope your child stays safe online.');
+            // Optional: redirect to a thank you page or close the window
+            // window.location.href = 'thank-you.html';
+        }
+    </script>
+</body>
+</html>
