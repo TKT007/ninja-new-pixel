@@ -196,16 +196,12 @@
         </div>
         
         <div class="question" id="q1" style="display: none;">
-          <h3 class="text-center" style="color: #000000;">Was your child contacted or exploited by someone they met on Roblox?</h3>
+          <h3 class="text-center" style="color: #000000;">Do you know who your child is really talking to on Roblox?</h3>
           <div name="exploitation" value="yes" class="button q1-btn card_submit">Yes</div>
           <div name="exploitation" value="no" class="button q1-btn card_submit not_bt">No</div>
         </div>
         
-        <div class="question" id="q2" style="display: none;">
-          <h3 class="text-center" style="color: #000000;">Did your child suffer abuse-related trauma (emotional harm, exploitation, or worse)?</h3>
-          <div name="trauma" value="yes" class="button q2-btn card_submit">Yes</div>
-          <div name="trauma" value="no" class="button q2-btn card_submit not_bt">No</div>
-        </div>
+       
       </div>
     </section>
 
@@ -411,19 +407,9 @@
       
       var clickid = getUrlParameter('clickid');
 
-      // Quiz button handlers
-      $('.q0-btn').on('click', function() {
-        var answer = $(this).text().trim();
-        childUsedRoblox = answer;
-        
-        $('.q0-btn').removeClass('selected');
-        $(this).addClass('selected');
-        
-        $('#q0').fadeOut(500);
-        $('#q1').delay(500).fadeIn(500);
-      });
+     
 
-      $('.q1-btn').on('click', function() {
+      $('.q0-btn').on('click', function() {
         var answer = $(this).text().trim();
         exploitationAnswer = answer;
         
@@ -434,7 +420,7 @@
         $('#q2').delay(500).fadeIn(500);
       });
 
-      $('.q2-btn').on('click', function() {
+      $('.q1-btn').on('click', function() {
         var answer = $(this).text().trim();
         traumaAnswer = answer;
         
