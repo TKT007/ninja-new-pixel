@@ -393,85 +393,84 @@
   <!-- Quiz handler JavaScript -->
   <script>
     $(document).ready(function() {
-      var quizCurrentQuestion = 0;
-      var childUsedRoblox = 'No';
-      var exploitationAnswer = 'No';
-      var traumaAnswer = 'No';
-      
-      function getUrlParameter(name) {
+    var quizCurrentQuestion = 0;
+    var childUsedRoblox = 'No';
+    var exploitationAnswer = 'No';
+    
+    function getUrlParameter(name) {
         name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
         var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
         var results = regex.exec(location.search);
         return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-      }
-      
-      var clickid = getUrlParameter('clickid');
+    }
+    
+    var clickid = getUrlParameter('clickid');
 
-     
+    // Primeira pergunta
+    $('.q0-btn').on('click', function() {
+        var answer = $(this).text().trim();
+        childUsedRoblox = answer;
+        
+        $('.q0-btn').removeClass('selected');
+        $(this).addClass('selected');
+        
+        $('#q0').fadeOut(500);
+        $('#q1').delay(500).fadeIn(500);
+    });
 
-      $('.q0-btn').on('click', function() {
+    // Segunda pergunta - vai para a tela de agradecimento
+    $('.q1-btn').on('click', function() {
         var answer = $(this).text().trim();
         exploitationAnswer = answer;
         
         $('.q1-btn').removeClass('selected');
         $(this).addClass('selected');
         
-        $('#q1').fadeOut(500);
-        $('#q2').delay(500).fadeIn(500);
-      });
-
-      $('.q1-btn').on('click', function() {
-        var answer = $(this).text().trim();
-        traumaAnswer = answer;
-        
-        $('.q2-btn').removeClass('selected');
-        $(this).addClass('selected');
-        
         setTimeout(function() {
-          $('#quiz-section').fadeOut(500);
-          $('#thank-you-section').delay(500).fadeIn(500);
-          startLoadingSequence();
+            $('#quiz-section').fadeOut(500);
+            $('#thank-you-section').delay(500).fadeIn(500);
+            startLoadingSequence();
         }, 500);
-      });
+    });
 
-      function startLoadingSequence() {
+    function startLoadingSequence() {
         $('#loading1').show().addClass('fade-in');
 
         setTimeout(function() {
-          $('#loading1').addClass('fade-out');
-          setTimeout(function() {
-            $('#loading1').hide();
-            $('#loading2').show().addClass('fade-in');
-
+            $('#loading1').addClass('fade-out');
             setTimeout(function() {
-              $('#loading2').addClass('fade-out');
-              setTimeout(function() {
-                $('#loading2').hide();
-                $('#loading3').show().addClass('fade-in');
+                $('#loading1').hide();
+                $('#loading2').show().addClass('fade-in');
 
                 setTimeout(function() {
-                  $('#loading3').addClass('fade-out');
-                  setTimeout(function() {
-                    $('#loading3').hide();
-                    $('#thank-you-block').show().addClass('fade-in');
-                    
-                    var caseNumber = 'RBX-' + Math.floor(Math.random() * 9000 + 1000);
-                    $('#application-number').text(caseNumber);
-                    
-                    $('html, body').stop().animate({
-                      scrollTop: $('#thank-you-block').offset().top
-                    }, 250, 'swing');
-                  }, 300);
-                }, 1300);
-              }, 300);
-            }, 1300);
-          }, 300);
-        }, 1300);
-      }
+                    $('#loading2').addClass('fade-out');
+                    setTimeout(function() {
+                        $('#loading2').hide();
+                        $('#loading3').show().addClass('fade-in');
 
-      // Countdown timer
-      var timer2 = '4:47';
-      var interval = setInterval(function() {
+                        setTimeout(function() {
+                            $('#loading3').addClass('fade-out');
+                            setTimeout(function() {
+                                $('#loading3').hide();
+                                $('#thank-you-block').show().addClass('fade-in');
+                                
+                                var caseNumber = 'RBX-' + Math.floor(Math.random() * 9000 + 1000);
+                                $('#application-number').text(caseNumber);
+                                
+                                $('html, body').stop().animate({
+                                    scrollTop: $('#thank-you-block').offset().top
+                                }, 250, 'swing');
+                            }, 300);
+                        }, 1300);
+                    }, 300);
+                }, 1300);
+            }, 300);
+        }, 1300);
+    }
+
+    // Countdown timer
+    var timer2 = '4:47';
+    var interval = setInterval(function() {
         var timer = timer2.split(':');
         var minutes = parseInt(timer[0], 10);
         var seconds = parseInt(timer[1], 10);
@@ -483,8 +482,8 @@
         seconds = seconds < 10 ? '0' + seconds : seconds;
         $('.countdown').html(minutes + ':' + seconds);
         timer2 = minutes + ':' + seconds;
-      }, 1000);
-    });
+    }, 1000);
+});
   </script>
 
 </body>
