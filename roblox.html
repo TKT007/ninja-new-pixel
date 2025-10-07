@@ -1,180 +1,549 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roblox Safety Check - Important Question</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Was your child exploited on Roblox? You may qualify for significant compensation. Free case evaluation.">
+  <title>Roblox Abuse Lawsuit: Get Compensation for Your Child – Free Case Evaluation</title>
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet">
+  
+  <!-- Custom Styles -->
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #ffffff;
+      min-height: 100vh;
+      color: #000000;
+    }
+    
+    .question {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      border: 1px solid #e0e0e0;
+    }
+    
+    .button {
+      background: linear-gradient(135deg, #333333 0%, #1a1a1a 100%);
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      margin: 10px 0;
+      width: 100%;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: block;
+      text-align: center;
+    }
+    
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      color: white;
+      text-decoration: none;
+    }
+    
+    .button[value="yes"] {
+      background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+    }
+    
+    .button[value="yes"]:hover {
+      box-shadow: 0 8px 25px rgba(46, 125, 50, 0.3);
+    }
+    
+    .button[value="no"] {
+      background: linear-gradient(135deg, #d32f2f 0%, #c62828 100%);
+    }
+    
+    .button[value="no"]:hover {
+      box-shadow: 0 8px 25px rgba(211, 47, 47, 0.3);
+    }
+    
+    #continueBtn {
+      background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%) !important;
+    }
+    
+    #continueBtn:hover {
+      box-shadow: 0 8px 25px rgba(46, 125, 50, 0.3) !important;
+    }
+    
+    .button.selected {
+      background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+    }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            color: #333;
-        }
-
-        .container {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .card {
-            background: white;
-            border-radius: 12px;
-            padding: 50px 40px;
-            max-width: 700px;
-            width: 100%;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-            text-align: center;
-            border: 1px solid #e2e8f0;
-        }
-
-        .icon {
-            margin-bottom: 20px;
-        }
-
-        .icon img {
-            width: 80px;
-            height: 80px;
-            object-fit: contain;
-            border-radius: 8px;
-        }
-
-        h1 {
-            font-size: 28px;
-            color: #2d3748;
-            margin-bottom: 30px;
-            line-height: 1.4;
-            font-weight: 600;
-        }
-
-        .buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 40px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 18px 60px;
-            font-size: 20px;
-            font-weight: 600;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            min-width: 150px;
-        }
-
-        .btn-yes {
-            background: #3b82f6;
-            color: white;
-        }
-
-        .btn-yes:hover {
-            background: #2563eb;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
-        }
-
-        .btn-no {
-            background: #3b82f6;
-            color: white;
-        }
-
-        .btn-no:hover {
-            background: #2563eb;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
-        }
-
-        footer {
-            background: #f8fafc;
-            color: #475569;
-            text-align: center;
-            padding: 30px 20px;
-            font-size: 14px;
-            line-height: 1.6;
-            border-top: 1px solid #e2e8f0;
-        }
-
-        footer p {
-            margin-bottom: 10px;
-        }
-
-        footer a {
-            color: #3b82f6;
-            text-decoration: underline;
-        }
-
-        .disclaimer {
-            font-size: 12px;
-            opacity: 0.9;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        @media (max-width: 600px) {
-            .card {
-                padding: 40px 25px;
-            }
-
-            h1 {
-                font-size: 22px;
-            }
-
-            .buttons {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .btn {
-                width: 100%;
-                padding: 16px 40px;
-            }
-        }
-    </style>
+    .loading {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      border: 1px solid #e0e0e0;
+    }
+    
+    .boxme {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      border: 1px solid #e0e0e0;
+    }
+    
+    .testimonial {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      border: 1px solid #e0e0e0;
+    }
+    
+    footer {
+      background: #1a1a1a;
+      color: white;
+      padding: 40px 0;
+      margin-top: 50px;
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.5s ease-in;
+    }
+    
+    .fade-out {
+      animation: fadeOut 0.3s ease-out;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes fadeOut {
+      from { opacity: 1; transform: translateY(0); }
+      to { opacity: 0; transform: translateY(-20px); }
+    }
+    
+    .countdown {
+      color: #d32f2f;
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+    
+    .danger-box {
+      background: #fff3e0;
+      border-left: 4px solid #ff6f00;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+  </style>
+  
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
+
 <body>
-    <div class="container">
-        <div class="card">
-            <div class="icon">
-                <img src="https://assets.prd.heyflow.com/flows/l2SyP81v98lcTl5DZAu8/www/assets/e5c65b66-7dbf-4364-954e-abbe7491cc93/original.avif" alt="Alert Icon">
-            </div>
-            <h1>Do you know who your child is <br>
-                really talking to on Roblox?</h1>
-            
-            <div class="buttons">
-                <a href="https://fb.track-conv.shop/click" class="btn btn-yes">YES</a>
-                <a href="https://fb.track-conv.shop/click" class="btn btn-no">NO</a>
-            </div>
+  <!-- Header Banner -->
+  <div class="text-center py-2 mb-0 rounded-0" style="background-color: #1a1a1a; color: white; font-weight: bold; border: none; font-size: clamp(12px, 2vw, 18px);">
+    <div class="container d-flex align-items-center justify-content-center">
+      <div class="me-2" style="display: inline-flex; gap: 3px;">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700" stroke="#ffffff" stroke-width="1" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"></path>
+        </svg>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700" stroke="#ffffff" stroke-width="1" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"></path>
+        </svg>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700" stroke="#ffffff" stroke-width="1" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"></path>
+        </svg>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700" stroke="#ffffff" stroke-width="1" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"></path>
+        </svg>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700" stroke="#ffffff" stroke-width="1" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"></path>
+        </svg>
+      </div>
+      <span class="me-1" style="color: #fff; font-weight: 500; font-size: 0.90rem;">Legal Action Already Underway - Families Seeking Justice</span>
+    </div>
+  </div>
+
+  <div class="container" style="max-width: 800px;">
+    <!-- Quiz Section -->
+    <section id="quiz-section" class="container my-2">
+      <div class="text-center mb-3">
+        <h1 class="fw-bold" style="margin-top: 10px; color: #000000;">Is Your Child a Victim of <span style="color: #d32f2f;">Roblox Abuse?</span></h1>
+        <hr class="my-1">
+        <p class="text-center" style="font-size: 1.2rem; color: #000000;">If your child was exploited on Roblox and suffered physical, sexual, or emotional harm, you may be entitled to <strong>significant financial compensation</strong>.</p>
+        <p style="color: #000000;"><strong>Free Case Evaluation - Takes only 2 minutes.</strong><br><strong style="color: #d32f2f;">Act Now - Legal Deadlines Apply</strong></p>
+      </div>
+      
+      <div class="danger-box">
+        <h5 style="color: #e65100; font-weight: bold;"><i class="bi bi-exclamation-triangle-fill"></i> The Hidden Dangers of Roblox</h5>
+        <p class="mb-2" style="color: #000000;">Roblox has been linked to serious safety concerns:</p>
+        <ul style="font-size: 0.95rem; margin-bottom: 0; color: #000000;">
+          <li>Adults contacting kids through chat and voice features</li>
+          <li>Inappropriate or sexual content in games</li>
+          <li>Predators using off-platform apps like Discord</li>
+          <li>Inadequate parental controls and safety settings</li>
+        </ul>
+      </div>
+      
+      <div class="cards">
+        <div class="question" id="q0">
+          <h3 class="text-center" style="color: #000000;">Did your child use Roblox while under 18?</h3>
+          <div name="child_used_roblox" value="yes" class="button q0-btn card_submit">Yes</div>
+          <div name="child_used_roblox" value="no" class="button q0-btn card_submit not_bt">No</div>
         </div>
+        
+        <div class="question" id="q1" style="display: none;">
+          <h3 class="text-center" style="color: #000000;">Was your child contacted or exploited by someone they met on Roblox?</h3>
+          <div name="exploitation" value="yes" class="button q1-btn card_submit">Yes</div>
+          <div name="exploitation" value="no" class="button q1-btn card_submit not_bt">No</div>
+        </div>
+        
+        <div class="question" id="q2" style="display: none;">
+          <h3 class="text-center" style="color: #000000;">Did your child suffer abuse-related trauma (emotional harm, exploitation, or worse)?</h3>
+          <div name="trauma" value="yes" class="button q2-btn card_submit">Yes</div>
+          <div name="trauma" value="no" class="button q2-btn card_submit not_bt">No</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Thank You Section -->
+    <section id="thank-you-section" class="container my-2" style="display: none;">
+      <div class="text-center mb-3">
+        <h1 class="fw-bold" style="margin-top: 10px; color: #000000;">Is Your Child a Victim of <span style="color: #d32f2f;">Roblox Abuse?</span></h1>
+        <hr class="my-1">
+        <p class="text-center" style="font-size: 1.2rem; color: #000000;">If your child was exploited on Roblox and suffered physical, sexual, or emotional harm, you may be entitled to <strong>significant financial compensation</strong>.</p>
+        <p style="color: #000000;"><strong>Free Case Evaluation - Takes only 2 minutes.</strong><br><strong style="color: #d32f2f;">Act Now - Legal Deadlines Apply</strong></p>
+      </div>
+      
+      <div class="cards">
+        <div id="loading1" class="loading boxme" style="display: none;">
+          <h4 style="color: #000000;"><i class='bi bi-check-circle text-success fs-3'></i> Reviewing your responses...</h4>
+        </div>
+        
+        <div id="loading2" class="loading boxme" style="display: none;">
+          <h4 style="color: #000000;"><i class='bi bi-search fs-3' style="color: #333333;"></i> Checking case eligibility...</h4>
+        </div>
+        
+        <div id="loading3" class="loading boxme" style="display: none;">
+          <h4 style="color: #000000;"><i class='bi bi-shield-check fs-3' style="color: #333333;"></i> Connecting to legal team...</h4>
+        </div>
+        
+        <div id="thank-you-block" class="boxme" style="display: none;">
+          <h5 style="color: #2e7d32; font-size: 24px;">✅ You May Qualify!</h5>
+          <p style="font-size: 16px; font-weight: 600; color: #000000;">Based on your responses, your family may be eligible for <span style="color: #d32f2f;">significant compensation</span> from the Roblox abuse lawsuit.</p>
+          <p style="color: #000000;">Your case reference number is: <span id="application-number">RBX-8828</span></p>
+          
+          <a class="button" id="continueBtn" href="https://go.safejourney.vip/click" style="text-decoration: none">
+            Start Free Case Evaluation →
+          </a>
+          
+          <div class="danger-box mt-3">
+            <p style="color: #d32f2f; font-weight: bold; font-size: 20px; margin-bottom: 10px;">⚠️ Important: Legal Deadlines Are Approaching!</p>
+            <p style="margin-bottom: 5px; color: #000000;">Complete your free case evaluation to secure your claim:</p>
+            <h3 style="color: #000000;">Time remaining: <span class="countdown">4:47</span></h3>
+          </div>
+          
+          <div style="background: #f5f5f5; padding: 15px; border-radius: 8px; margin-top: 20px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);">
+            <h6 style="color: #000000; font-weight: bold;">Why Families Are Filing Lawsuits:</h6>
+            <ul style="font-size: 0.95rem; color: #000000; margin-bottom: 0;">
+              <li>Roblox failed to implement adequate safety measures</li>
+              <li>Enabled predators to exploit and harm children</li>
+              <li>Seeking accountability and systemic change</li>
+              <li>No upfront cost | 100% confidential | Nationwide support</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust Section -->
+    <div class="text-center mt-4 mb-3">
+      <p class="text-muted mb-2" style="font-size: 0.7rem; font-weight: 600;">Trusted by families nationwide</p>
     </div>
 
-    <footer>
-        <p><strong>Important Notice:</strong> This is a legal information service connecting families with qualified attorneys.</p>
-        <p class="disclaimer">
-            Free case evaluation. No upfront costs. All consultations are 100% confidential. 
-            This website is not affiliated with Roblox Corporation. Legal outcomes may vary based on individual circumstances.
-        </p>
-        <p style="margin-top: 15px;">© 2025 All Rights Reserved | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-    </footer>
+    <!-- Testimonials -->
+    <div class="testimonial d-flex align-items-center p-4 mb-3">
+      <img src="assets/testimonial.png" alt="Parent testimonial" class="rounded-circle me-3" style="width: 100px; height: 100px; object-fit: cover;">
+      <div>
+        <p class="fst-italic mb-2" style="font-size: 1rem; color: #000000;">"My 12-year-old was contacted by an adult on Roblox who groomed her for months. I had no idea this was happening until it was almost too late. The legal team helped us understand our rights and is fighting for justice. <strong>Don't wait - protect your child now!</strong>"</p>
+        
+        <div class="d-flex justify-content-start mb-2" style="gap: 5px;">
+          <div style="background-color: #fff; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 5px; border: 1px solid #ddd;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FFD700" width="18" height="18">
+              <path d="M12 .587l3.668 7.571 8.332 1.151-6.064 5.787 1.527 8.204-7.463-4.03L4.537 23.3l1.527-8.204-6.064-5.787 8.332-1.151z"></path>
+            </svg>
+          </div>
+        </div>
+        <h6 class="fw-bold mb-0" style="color: #000000;">Rebecca L. – California</h6>
+      </div>
+    </div>
+  </div>
+  <div class="testimonial d-flex align-items-center p-4 mb-3">
+      <img src="assets/testimonial1.png" alt="Parent testimonial" class="rounded-circle me-3" style="width: 100px; height: 100px; object-fit: cover;">
+      <div>
+        <p class="fst-italic mb-2" style="font-size: 1rem; color: #000000;">"Our son spent years playing Roblox. We thought the parental controls were keeping him safe. When we discovered he was being exploited, we were devastated. These lawsuits are holding Roblox accountable. <strong>If this happened to your family, you deserve justice!</strong>"</p>
+        
+        <div class="d-flex justify-content-start mb-2" style="gap: 5px;">
+          <div style="background-color: #fff; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 5px; border: 1px solid #ddd;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FFD700" width="18" height="18">
+              <path d="M12 .587l3.668 7.571 8.332 1.151-6.064 5.787 1.527 8.204-7.463-4.03L4.537 23.3l1.527-8.204-6.064-5.787 8.332-1.151z"></path>
+            </svg>
+          </div>
+          <div style="background-color: #fff; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 5px; border: 1px solid #ddd;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FFD700" width="18" height="18">
+              <path d="M12 .587l3.668 7.571 8.332 1.151-6.064 5.787 1.527 8.204-7.463-4.03L4.537 23.3l1.527-8.204-6.064-5.787 8.332-1.151z"></path>
+            </svg>
+          </div>
+          <div style="background-color: #fff; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 5px; border: 1px solid #ddd;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FFD700" width="18" height="18">
+              <path d="M12 .587l3.668 7.571 8.332 1.151-6.064 5.787 1.527 8.204-7.463-4.03L4.537 23.3l1.527-8.204-6.064-5.787 8.332-1.151z"></path>
+            </svg>
+          </div>
+          <div style="background-color: #fff; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 5px; border: 1px solid #ddd;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FFD700" width="18" height="18">
+              <path d="M12 .587l3.668 7.571 8.332 1.151-6.064 5.787 1.527 8.204-7.463-4.03L4.537 23.3l1.527-8.204-6.064-5.787 8.332-1.151z"></path>
+            </svg>
+          </div>
+          <div style="background-color: #fff; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 5px; border: 1px solid #ddd;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FFD700" width="18" height="18">
+              <path d="M12 .587l3.668 7.571 8.332 1.151-6.064 5.787 1.527 8.204-7.463-4.03L4.537 23.3l1.527-8.204-6.064-5.787 8.332-1.151z"></path>
+            </svg>
+          </div>
+        </div>
+        <h6 class="fw-bold mb-0" style="color: #000000;">Michael & Jennifer P. – Florida</h6>
+      </div>
+    </div>
 
-    <script>
-        // Script removido - ambos botões agora redirecionam para o link
-    </script>
+  <!-- Footer -->
+  <footer>
+    <div class="container text-center">
+      <ul class="list-inline mb-3">
+        <li class="list-inline-item"><a href="#quiz-section" class="text-white">Start Evaluation</a></li>
+        <li class="list-inline-item"><a href="#" class="text-white">Privacy Policy</a></li>
+        <li class="list-inline-item"><a href="#" class="text-white">Terms of Service</a></li>
+        <li class="list-inline-item"><a href="#quiz-section" class="text-white">Contact Us</a></li>
+      </ul>
+      <p class="small text-white" style="max-width: 800px; margin: 0 auto;">
+        This website is for informational purposes only and does not constitute legal advice. The information provided does not guarantee specific results, and results may vary based on individual circumstances. We are not a law firm. We recommend consulting with a qualified attorney before making legal decisions. By using this site, you agree that any action taken is at your own risk.<br><br>
+        *Roblox is facing lawsuits for allegedly enabling predators to exploit children through its platform. Families affected by abuse are pursuing legal action to seek accountability and compensation. Legal deadlines apply.
+      </p><br>
+      <p class="text-white">© 2025 All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Quiz handler JavaScript -->
+  <script>
+    $(document).ready(function() {
+      var quizCurrentQuestion = 0;
+      var childUsedRoblox = 'No';
+      var exploitationAnswer = 'No';
+      var traumaAnswer = 'No';
+      
+      function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+      }
+      
+      var clickid = getUrlParameter('clickid');
+
+      // Quiz button handlers
+      $('.q0-btn').on('click', function() {
+        var answer = $(this).text().trim();
+        childUsedRoblox = answer;
+        
+        $('.q0-btn').removeClass('selected');
+        $(this).addClass('selected');
+        
+        $('#q0').fadeOut(500);
+        $('#q1').delay(500).fadeIn(500);
+      });
+
+      $('.q1-btn').on('click', function() {
+        var answer = $(this).text().trim();
+        exploitationAnswer = answer;
+        
+        $('.q1-btn').removeClass('selected');
+        $(this).addClass('selected');
+        
+        $('#q1').fadeOut(500);
+        $('#q2').delay(500).fadeIn(500);
+      });
+
+      $('.q2-btn').on('click', function() {
+        var answer = $(this).text().trim();
+        traumaAnswer = answer;
+        
+        $('.q2-btn').removeClass('selected');
+        $(this).addClass('selected');
+        
+        setTimeout(function() {
+          $('#quiz-section').fadeOut(500);
+          $('#thank-you-section').delay(500).fadeIn(500);
+          startLoadingSequence();
+        }, 500);
+      });
+
+      function startLoadingSequence() {
+        $('#loading1').show().addClass('fade-in');
+
+        setTimeout(function() {
+          $('#loading1').addClass('fade-out');
+          setTimeout(function() {
+            $('#loading1').hide();
+            $('#loading2').show().addClass('fade-in');
+
+            setTimeout(function() {
+              $('#loading2').addClass('fade-out');
+              setTimeout(function() {
+                $('#loading2').hide();
+                $('#loading3').show().addClass('fade-in');
+
+                setTimeout(function() {
+                  $('#loading3').addClass('fade-out');
+                  setTimeout(function() {
+                    $('#loading3').hide();
+                    $('#thank-you-block').show().addClass('fade-in');
+                    
+                    var caseNumber = 'RBX-' + Math.floor(Math.random() * 9000 + 1000);
+                    $('#application-number').text(caseNumber);
+                    
+                    $('html, body').stop().animate({
+                      scrollTop: $('#thank-you-block').offset().top
+                    }, 250, 'swing');
+                  }, 300);
+                }, 1300);
+              }, 300);
+            }, 1300);
+          }, 300);
+        }, 1300);
+      }
+
+      // Countdown timer
+      var timer2 = '4:47';
+      var interval = setInterval(function() {
+        var timer = timer2.split(':');
+        var minutes = parseInt(timer[0], 10);
+        var seconds = parseInt(timer[1], 10);
+        --seconds;
+        minutes = seconds < 0 ? --minutes : minutes;
+
+        if (minutes < 0) clearInterval(interval);
+        seconds = seconds < 0 ? 59 : seconds;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+        $('.countdown').html(minutes + ':' + seconds);
+        timer2 = minutes + ':' + seconds;
+      }, 1000);
+    });
+  </script>
+
 </body>
-</html>
+</html></path>
+            </svg>
+          </div>
+          <div style="background-color: #fff; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 5px; border: 1px solid #ddd;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FFD700" width="18" height="18">
+              <path d="M12 .587l3.668 7.571 8.332 1.151-6.064 5.787 1.527 8.204-7.463-4.03L4.537 23.3l1.527-8.204-6.064-5.787 8.332-1.151z"></path>
+            </svg>
+          </div>
+          <div style="background-color: #fff; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 5px; border: 1px solid #ddd;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FFD700" width="18" height="18">
+              <path d="M12 .587l3.668 7.571 8.332 1.151-6.064 5.787 1.527 8.204-7.463-4.03L4.537 23.3l1.527-8.204-6.064-5.787 8.332-1.151z"></path>
+            </svg>
+          </div>
+          <div style="background-color: #fff; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 5px; border: 1px solid #ddd;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FFD700" width="18" height="18">
+              <path d="M12 .587l3.668 7.571 8.332 1.151-6.064 5.787 1.527 8.204-7.463-4.03L4.537 23.3l1.527-8.204-6.064-5.787 8.332-1.151z"></path>
+            </svg>
+          </div>
+          <div style="background-color: #fff; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 5px; border: 1px solid #ddd;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FFD700" width="18" height="18">
+              <path d="M12 .587l3.668 7.571 8.332 1.151-6.064 5.787 1.527 8.204-7.463-4.03L4.537 23.3l1.527-8.204-6.064-5.787 8.332-1.151z"></path>
+            </svg>
+          </div>
+        </div>
+        <h6 class="fw-bold mb-0" style="color: #000000;">Sarah M. – Texas</h6>
+      </div>
+    </div>
+
+    <div class="testimonial d-flex align-items-center p-4 mb-3">
+      <img src="assets/testimonial1.png" alt="Parent testimonial" class="rounded-circle me-3" style="width: 100px; height: 100px; object-fit: cover;">
+      <div>
+        <p class="fst-italic mb-2" style="font-size: 1rem; color: #000000;">"Our son spent years playing Roblox. We thought the parental controls were keeping him safe. When we discovered he was being exploited, we were devastated. These lawsuits are holding Roblox accountable. <strong>If this happened to your family, you deserve justice!</strong>"</p>
+        
+        <div class="d-flex justify-content-start mb-2" style="gap: 5px;">
+          <div style="background-color: #fff; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 5px; border: 1px solid #ddd;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FFD700" width="18" height="18">
+              <path d="M12 .587l3.668 7.571 8.332 1.151-6.064 5.787 1.527 8.204-7.463-4.03L4.537 23.3l1.527-8.204-6.064-5.787 8.332-1.151z"></path>
+            </svg>
+          </div>
+          <div style="background-color: #fff; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 5px; border: 1px solid #ddd;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FFD700" width="18" height="18">
+              <path d="M12 .587l3.668 7.571 8.332 1.151-6.064 5.787 1.527 8.204-7.463-4.03L4.537 23.3l1.527-8.204-6.064-5.787 8.332-1.151z"></path>
+            </svg>
+          </div>
+          <div style="background-color: #fff; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 5px; border: 1px solid #ddd;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FFD700" width="18" height="18">
+              <path d="M12 .587l3.668 7.571 8.332 1.151-6.064 5.787 1.527 8.204-7.463-4.03L4.537 23.3l1.527-8.204-6.064-5.787 8.332-1.151z"></path>
+            </svg>
+          </div>
+          <div style="background-color: #fff; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 5px; border: 1px solid #ddd;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FFD700" width="18" height="18">
+              <path d="M12 .587l3.668 7.571 8.332 1.151-6.064 5.787 1.527 8.204-7.463-4.03L4.537 23.3l1.527-8.204-6.064-5.787 8.332-1.151z"></path>
+            </svg>
+          </div>
+          <div style="background-color: #fff; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 5px; border: 1px solid #ddd;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FFD700" width="18" height="18">
+              <path d="M12 .587l3.668 7.571 8.332 1.151-6.064 5.787 1.527 8.204-7.463-4.03L4.537 23.3l1.527-8.204-6.064-5.787 8.332-1.151z"></path>
+            </svg>
+          </div>
+        </div>
+        <h6 class="fw-bold mb-0" style="color: #000000;">Michael & Jennifer P. – Florida</h6>
+      </div>
+    </div>
+
+    <div class="testimonial d-flex align-items-center p-4 mb-3">
+      <img src="assets/testimonial2.png" alt="Parent testimonial" class="rounded-circle me-3" style="width: 100px; height: 100px; object-fit: cover;">
+      <div>
+        <p class="fst-italic mb-2" style="font-size: 1rem; color: #000000;">"My daughter was only 10 when a predator found her on Roblox. The emotional trauma has been devastating for our entire family. Roblox knew about these dangers and did nothing. <strong>Don't let your child become another statistic - get help now!</strong>"</p>
+        
+        <div class="d-flex justify-content-start mb-2" style="gap: 5px;">
+          <div style="background-color: #fff; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 5px; border: 1px solid #ddd;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FFD700" width="18" height="18">
+              <path d="M12 .587l3.668 7.571 8.332 1.151-6.064 5.787 1.527 8.204-7.463-4.03L4.537 23.3l1.527-8.204-6.064-5.787 8.332-1.151z"></path>
+            </svg>
+          </div>
+          <div style="background-color: #fff; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 5px; border: 1px solid #ddd;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FFD700" width="18" height="18">
+              <path d="M12 .587l3.668 7.571 8.332 1.151-6.064 5.787 1.527 8.204-7.463-4.03L4.537 23.3l1.527-8.204-6.064-5.787 8.332-1.151z"></path>
+            </svg>
+          </div>
+          <div style="background-color: #fff; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 5px; border: 1px solid #ddd;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FFD700" width="18" height="18">
+              <path d="M12 .587l3.668 7.571 8.332 1.151-6.064 5.787 1.527 8.204-7.463-4.03L4.537 23.3l1.527-8.204-6.064-5.787 8.332-1.151z"></path>
+            </svg>
+          </div>
+          <div style="background-color: #fff; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 5px; border: 1px solid #ddd;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FFD700" width="18" height="18">
+              <path d="M12 .587l3.668 7.571 8.332 1.151-6.064 5.787 1.527 8.204-7.463-4.03L4.537 23.3l1.527-8.204-6.064-5.787 8.332-1.151z"></path>
+            </svg>
+          </div>
+          <div style="background-color: #fff; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 5px; border: 1px solid #ddd;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FFD700" width="18" height="18">
+              <path d="M12 .587l3.668 7.571 8.332 1.151-6.064 5.787 1.527 8.204-7.463-4.03L4.537 23.3l1.527-8.204-
