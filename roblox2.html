@@ -190,16 +190,54 @@
      
       
       <div class="cards">
-       <div class="question" id="q0">
-  <h3 class="text-center" style="color: #000000;">Did your child use Roblox while under 18?</h3>
-  <a href="https://go.safejourney.vip/click" class="button q0-btn card_submit" style="text-decoration: none">Yes</a>
-  <a href="https://go.safejourney.vip/click" class="button q0-btn card_submit not_bt" style="text-decoration: none">No</a>
-</div>
+        <div class="question" id="q0">
+          <h3 class="text-center" style="color: #000000;">Did your child use Roblox while under 18?</h3>
+          <div name="child_used_roblox" value="yes" class="button q0-btn card_submit">Yes</div>
+          <div name="child_used_roblox" value="no" class="button q0-btn card_submit not_bt">No</div>
+        </div>
         
-        
+       
     </section>
 
-   
+    <!-- Thank You Section -->
+    <section id="thank-you-section" class="container my-2" style="display: none;">
+      <div class="text-center mb-3">
+        <h1 class="fw-bold" style="margin-top: 10px; color: #000000;">Is Your Child a Victim of <span style="color: #d32f2f;">Roblox Abuse?</span></h1>
+        <hr class="my-1">
+        <p class="text-center" style="font-size: 1.2rem; color: #000000;">If your child was exploited on Roblox and suffered physical, sexual, or emotional harm, you may be entitled to <strong>significant financial compensation</strong>.</p>
+        <p style="color: #000000;"><strong>Free Case Evaluation - Takes only 2 minutes.</strong><br><strong style="color: #d32f2f;">Act Now - Legal Deadlines Apply</strong></p>
+      </div>
+      
+
+        
+        
+        <div id="thank-you-block" class="boxme" style="display: none;">
+          <h5 style="color: #2e7d32; font-size: 24px;">✅ You May Qualify!</h5>
+          <p style="font-size: 16px; font-weight: 600; color: #000000;">Based on your responses, your family may be eligible for <span style="color: #d32f2f;">significant compensation</span> from the Roblox abuse lawsuit.</p>
+          <p style="color: #000000;">Your case reference number is: <span id="application-number">RBX-8828</span></p>
+          
+          <a class="button" id="continueBtn" href="https://go.safejourney.vip/click" style="text-decoration: none">
+            Start Free Case Evaluation →
+          </a>
+          
+          <div class="danger-box mt-3">
+            <p style="color: #d32f2f; font-weight: bold; font-size: 20px; margin-bottom: 10px;">⚠️ Important: Legal Deadlines Are Approaching!</p>
+            <p style="margin-bottom: 5px; color: #000000;">Complete your free case evaluation to secure your claim:</p>
+            <h3 style="color: #000000;">Time remaining: <span class="countdown">4:47</span></h3>
+          </div>
+          
+          <div style="background: #f5f5f5; padding: 15px; border-radius: 8px; margin-top: 20px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);">
+            <h6 style="color: #000000; font-weight: bold;">Why Families Are Filing Lawsuits:</h6>
+            <ul style="font-size: 0.95rem; color: #000000; margin-bottom: 0;">
+              <li>Roblox failed to implement adequate safety measures</li>
+              <li>Enabled predators to exploit and harm children</li>
+              <li>Seeking accountability and systemic change</li>
+              <li>No upfront cost | 100% confidential | Nationwide support</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Trust Section -->
     <div class="text-center mt-4 mb-3">
@@ -336,7 +374,112 @@
   <!-- Bootstrap 5 JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
- 
+  <!-- Quiz handler JavaScript -->
+  <script>
+    $(document).ready(function() {
+      var quizCurrentQuestion = 0;
+      var childUsedRoblox = 'No';
+      var exploitationAnswer = 'No';
+      var traumaAnswer = 'No';
+      
+      function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+      }
+      
+      var clickid = getUrlParameter('clickid');
+
+      // Quiz button handlers
+      $('.q0-btn').on('click', function() {
+        var answer = $(this).text().trim();
+        childUsedRoblox = answer;
+        
+        $('.q0-btn').removeClass('selected');
+        $(this).addClass('selected');
+        
+        $('#q0').fadeOut(500);
+        $('#q1').delay(500).fadeIn(500);
+      });
+
+      $('.q1-btn').on('click', function() {
+        var answer = $(this).text().trim();
+        exploitationAnswer = answer;
+        
+        $('.q1-btn').removeClass('selected');
+        $(this).addClass('selected');
+        
+        $('#q1').fadeOut(500);
+        $('#q2').delay(500).fadeIn(500);
+      });
+
+      $('.q2-btn').on('click', function() {
+        var answer = $(this).text().trim();
+        traumaAnswer = answer;
+        
+        $('.q2-btn').removeClass('selected');
+        $(this).addClass('selected');
+        
+        setTimeout(function() {
+          $('#quiz-section').fadeOut(500);
+          $('#thank-you-section').delay(500).fadeIn(500);
+          startLoadingSequence();
+        }, 500);
+      });
+
+      function startLoadingSequence() {
+        $('#loading1').show().addClass('fade-in');
+
+        setTimeout(function() {
+          $('#loading1').addClass('fade-out');
+          setTimeout(function() {
+            $('#loading1').hide();
+            $('#loading2').show().addClass('fade-in');
+
+            setTimeout(function() {
+              $('#loading2').addClass('fade-out');
+              setTimeout(function() {
+                $('#loading2').hide();
+                $('#loading3').show().addClass('fade-in');
+
+                setTimeout(function() {
+                  $('#loading3').addClass('fade-out');
+                  setTimeout(function() {
+                    $('#loading3').hide();
+                    $('#thank-you-block').show().addClass('fade-in');
+                    
+                    var caseNumber = 'RBX-' + Math.floor(Math.random() * 9000 + 1000);
+                    $('#application-number').text(caseNumber);
+                    
+                    $('html, body').stop().animate({
+                      scrollTop: $('#thank-you-block').offset().top
+                    }, 250, 'swing');
+                  }, 300);
+                }, 1300);
+              }, 300);
+            }, 1300);
+          }, 300);
+        }, 1300);
+      }
+
+      // Countdown timer
+      var timer2 = '4:47';
+      var interval = setInterval(function() {
+        var timer = timer2.split(':');
+        var minutes = parseInt(timer[0], 10);
+        var seconds = parseInt(timer[1], 10);
+        --seconds;
+        minutes = seconds < 0 ? --minutes : minutes;
+
+        if (minutes < 0) clearInterval(interval);
+        seconds = seconds < 0 ? 59 : seconds;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+        $('.countdown').html(minutes + ':' + seconds);
+        timer2 = minutes + ':' + seconds;
+      }, 1000);
+    });
+  </script>
 
 </body>
 </html>
