@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
 <script>
     function verify(protectionToken, ttl, signature) {
         try {
@@ -15,7 +16,7 @@
         }
     }
 
-    const protectionToken = ''; // Your secret key
+    const protectionToken = 'NTE2YmRmNzBmZDE5MGJmNjFhMTNmMmVlYzM3ZWJlYWE='; // Your secret key
     const fallbackUrl = 'https://www.google.com/'; // Redirect URL for users who didn't pass the check
     const getParamName = 'key' // Landing protection key parameter name
     const ttl = 30; // Time in minutes
@@ -25,6 +26,7 @@
         document.location.href = fallbackUrl;
     }
 </script>
+    
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Was your child exploited on Roblox? You may qualify for significant compensation. Free case evaluation.">
