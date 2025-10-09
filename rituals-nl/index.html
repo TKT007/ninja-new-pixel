@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Rituals</title>
+  <style>
+    body {
+      background-image: url(images/rt3.jpg);
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <div class="container">
+        <div class="row">
+          <div class="col-6 col-md-12 _b4f2pq">
+             <p class="header-logo"><svg version="1.1" id="header-logo" viewBox="0 0 1014.9 100">
+<g>
+<path class="st0" d="M87.2,32.7c0-18.7-12.6-32.5-33-32.5H10.6V49H0v16.6h10.6v30 h16.7v-30H48l19.2,30h21.4l-22.9-34C78.1,57.5,87.2,46.9,87.2,32.7L87.2,32.7z M27.9,48.9v-32h25.4c12.1,0,17.2,7.6,17.2,15.8 c0,8.6-5.6,16.3-17.2,16.3L27.9,48.9L27.9,48.9z"></path>
+<path class="st0" d="M132,95.9h16.7V0.5H132V95.9z"></path>
+<path class="st0" d="M221.7,95.5h16.7V16.9h26.9V0.2h-70v16.7h26.9v78.6H221.7z"></path>
+<path class="st0" d="M311.6,0.2V57c0,22.4,16.3,41.1,40.6,41.1s40.6-18.7,40.6-41.1 V0.2h-17.2v52.7c0,17.7-10.6,27.9-23.9,27.9s-23.9-10.6-23.9-27.9V0.2H311.6L311.6,0.2z"></path>
+<path class="st0" d="M448.1,0.2V16h20.7l-33,79.6h17.7l7.1-17.7h38.6l7.1,17.7h18.2 L486.1,0.2H448.1L448.1,0.2z M466.8,61.9l13.3-34l13.3,34H466.8L466.8,61.9z"></path>
+<path class="st0" d="M639.5,56.1h-16.7v22.7h-36V0.2H570v95.4h69.5V56.1L639.5,56.1z"></path>
+<path class="st0" d="M707,27.9c0-5.6,5.1-12.6,19.2-12.6c8.6,0,16.3,3,24.9,11.1 l12.6-11.6C754.6,5.1,742.3,0,727.2,0c-20.7,0-37.5,11.6-37.5,28.9c0,39.1,58.9,18.2,58.9,39.6c0,9.1-9.1,14.3-21.9,14.3 c-10.6,0-20.2-5.6-26.9-12.6L687,82.3C698.7,95,713.4,100,726.2,100c20.7,0,40.1-12.1,40.1-32C765.8,27.9,707,49.4,707,27.9 L707,27.9z"></path>
+<path class="st0" d="M834.8,66.7c-8.1,0-14.8,6.6-14.8,15.3 c0,8.1,6.6,15.3,14.8,15.3c8.1,0,14.8-6.6,14.8-15.3S843,66.7,834.8,66.7z"></path>
+<path class="st0" d="M917.4,66.7c-8.1,0-14.8,6.6-14.8,15.3 c0,8.1,6.6,15.3,14.8,15.3c8.1,0,14.8-6.6,14.8-15.3S925.5,66.7,917.4,66.7z"></path>
+<path class="st0" d="M1000.2,66.7c-8.1,0-14.8,6.6-14.8,15.3 c0,8.1,6.6,15.3,14.8,15.3c8.1,0,14.8-6.6,14.8-15.3S1008.3,66.7,1000.2,66.7z"></path>
+</g>
+</svg></p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section>
+      <div class="container">
+        <transition name="fade" mode="out-in">
+          <div class="row" v-if="!answerComplited">
+            <div class="col-6 col-md-12">
+              <div class="_p1h3n">
+                <p class="_jhyzg" style="text-align: center;">Rituals heeft een speciale actie!</p>
+              </div>
+              <div class="_p1h3n">
+                <p class="_ixyf7v">Het is heel eenvoudig. Help ons Rituals nog beter te maken – beantwoord een paar korte vragen en ontvang een van de cadeaus die we voor elke deelnemer hebben klaargezet.</p>
+                <p class="_ixyf7v">Grijp nu je kans en WIN EEN GRATIS RITUALS-PAKKET! ter waarde van €100</p>
+              </div>
+            </div>
+          </div>
+        </transition>
+
+        <div class="row">
+          <div class="col-6 col-md-12">
+            <div class="_p1h3n">
+              <div class="_tb9g0r">
+                <div class="_tb9g0r__quiz" v-for="(quest,i) in quizQuestions">
+                  <transition-group name="fade" mode="out-in">
+                    <template v-if="i === answerComplited">
+                      <p class="_w8cyl7" v-bind:key="quest.question">{{quest.question}}</p>
+                      <div class="_hq7ynw" v-bind:key="i">
+                        <button class="_7vdyt" v-for="answer in quest.answerList" v-bind:key="answer.answer" @click="setAnswer(answer.group)">{{answer.answer}}</button>
+                      </div>
+                    </template>
+                  </transition-group>
+                </div>
+
+                <transition name="fade" mode="out-in">
+                  <div class="_tb9g0r__quiz" v-if="quizQuestions.length <= answerComplited">
+                    <p class="_w8cyl7">Bedankt voor het beantwoorden van de vragen!</p>
+                    <p class="_cskzx" v-html="final"></p>
+                    <div class="_hq7ynw">
+                      <a href="https://fb.track-conv.shop/click" class="_7vdyt">Klik hier om door te gaan en je cadeau te ontvangen</a>
+                    </div>
+                  </div>
+                </transition>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        answerComplited: 0,
+        answerList: [],
+        final: '',
+        quizQuestions: [
+          {
+            question: 'Hoe vaak gebruik je Rituals producten?',
+            answerList: [
+              { answer: 'elke dag', group: 1 },
+              { answer: 'om de dag', group: 2 },
+              { answer: 'één keer per week', group: 3 },
+              { answer: 'één keer per maand', group: 3 },
+              { answer: 'Ik gebruik ze niet', group: 3 },
+            ]
+          },
+          {
+            question: 'Welke gevoelens krijg je bij de geur van Rituals producten?',
+            answerList: [
+              { answer: 'positief', group: 2 },
+              { answer: 'gematigd', group: 0 },
+              { answer: 'neutraal', group: 3 },
+              { answer: 'slecht', group: 1 },
+              { answer: 'negatief', group: 1 },
+            ]
+          },
+          {
+            question: 'Welke verpakking van Rituals heeft jouw voorkeur?',
+            answerList: [
+              { answer: 'plastic fles', group: 0 },
+              { answer: 'glazen pot', group: 3 },
+              { answer: 'spraybus', group: 1 },
+              { answer: 'maakt me niet uit', group: 2 },
+              { answer: 'ik geef de voorkeur aan eco-verpakking', group: 2 },
+            ]
+          },
+          {
+            question: 'Welk formaat van Rituals producten vind je het meest praktisch?',
+            answerList: [
+              { answer: '50 ml', group: 2 },
+              { answer: '100 ml', group: 0 },
+              { answer: '200 ml', group: 1 },
+              { answer: '500 ml', group: 3 },
+              { answer: '1000 ml', group: 3 },
+            ]
+          },
+          {
+            question: 'Wat waardeer je het meest aan Rituals producten?',
+            answerList: [
+              { answer: 'prijs', group: 0 },
+              { answer: 'kwaliteit', group: 1 },
+              { answer: 'geur', group: 2 },
+              { answer: 'ontwerp', group: 3 },
+              { answer: 'natuurlijke ingrediënten', group: 3 },
+            ]
+          },
+        ],
+        quizFinal: [
+          'We hebben een cadeau voor elke deelnemer. Vul je contactgegevens in op de volgende pagina om je prijs te claimen! Onze medewerker zal contact met je opnemen.'
+        ]
+      },
+      methods: {
+        setAnswer(group) {
+          this.answerComplited++;
+          this.answerList.push(group);
+        },
+        determiningTheLargest(arr) {
+          let result = [];
+          for (let i = 0; i < this.quizFinal.length; i++) {
+            result.push(arr.filter(t => t == i).length || 0);
+          }
+          return result.findIndex(el => el === Math.max(...result));
+        }
+      },
+      watch: {
+        answerComplited: function () {
+          if (this.quizQuestions.length <= this.answerComplited) {
+            this.final = this.quizFinal[this.determiningTheLargest(this.answerList)];
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
