@@ -1,0 +1,139 @@
+
+<!DOCTYPE html><html lang="nl"><head>
+  <meta charset="UTF-8">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="images/favicon.png" type="image/png">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Welkom</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/slick.css">
+  <link rel="stylesheet" href="css/style.css">
+  
+ 
+</head>
+<body>
+  <picture>
+    <source srcset="images/bg-mob.jpg" media="(max-width: 600px)">
+    <source srcset="images/bg-tablet.jpg" media="(max-width: 900px)">
+    <img src="images/bg.jpg" class="bg" alt="Achtergrondafbeelding">
+  </picture>
+
+  <div class="container">
+    <!-- Werk dit logo-afbeelding indien nodig bij met een e-bike merk logo -->
+    <img src="images/logo.png" class="logo" alt="Logo">
+
+    <picture>
+      <source srcset="images/bag.png" media="(max-width: 600px)">
+      <source srcset="images/bag.png" media="(max-width: 900px)">
+      <img src="images/bag.png" class="main" alt="Hoofdafbeelding e-bike">
+    </picture>
+
+    <div class="wrapper">
+      <h1 class="header__title">
+        Welkom bij ons e-bike programma!
+      </h1>
+      <div class="final__text hide">
+        <h1>Bedankt!</h1>
+        <h1>Voor je antwoorden</h1>
+        <h3>Gefeliciteerd!</h3>
+        Klik op de knop hieronder en vul je gegevens in om je kans op een e-bike veilig te stellen.
+      </div>
+      <p class="header__text">
+        Beantwoord een korte vragenlijst (minder dan één minuut) en maak kans op een elektrische fiets!
+      </p>
+
+      <div class="test">
+        <div class="quest">
+          <p class="quest__text">
+            Heb je de afgelopen maand een e-bike gebruikt of overwogen te kopen?
+          </p>
+          <div>
+            <button class="btn qes">Ja</button>
+            <button class="btn qes">Nee</button>
+          </div>
+        </div>
+        <div class="quest">
+          <p class="quest__text">
+            Ben je geïnteresseerd in duurzame mobiliteit en elektrische fietsen?
+          </p>
+          <div>
+            <button class="btn qes">Ja</button>
+            <button class="btn qes">Nee</button>
+          </div>
+        </div>
+        <div class="quest">
+          <p class="quest__text">
+            Vergelijk je vaak verschillende merken en modellen e-bikes online?
+          </p>
+          <div>
+            <button class="btn qes">Ja</button>
+            <button class="btn qes">Nee</button>
+          </div>
+        </div>
+        <div class="quest">
+          <p class="quest__text">
+            Zou je een e-bike aanbevelen aan je vrienden of familie?
+          </p>
+          <div>
+            <button class="btn qes">Ja</button>
+            <button class="btn qes">Nee</button>
+          </div>
+        </div>
+
+        <div class="quest">
+          <a href="https://track.hop-deals1.shop/click" class="btn btn-final">Doorgaan</a>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p>GEEN AANKOOP VEREIST. Deelname alleen voor meerderjarige inwoners vanaf 18 jaar. Afbeeldingen van prijzen dienen uitsluitend ter illustratie. Alle merken, logo’s en afbeeldingen van derden op onze website zijn eigendom van hun respectieve eigenaren. Er wordt geen goedkeuring of samenwerking met e-bike fabrikanten gesuggereerd.</p>
+    </div>
+  </footer>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/slick.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      $('.test').slick({
+        infinite: false,
+        arrows: false,
+        swipe: false,
+        dots: true,
+        adaptiveHeight: true
+      });
+
+      $('.test').on('afterChange', function(event, slick, currentSlide) {
+        if (slick.$slides.length - 1 == currentSlide) {
+          $('.header__text').addClass('hide');
+          $('.header__title').addClass('hide');
+          $('.final__text').removeClass('hide').addClass('show');
+
+          // Facebook Pixel of andere tracking-code
+          fbq('track', 'PageView');
+        }
+      });
+
+      $('.qes').click(function(e) {
+        e.preventDefault();
+        $('.test').slick('slickNext');
+
+        var check = $('.slick-dots .slick-active').prev('li');
+        if (check) {
+          check.addClass('check');
+        }
+      });
+    });
+  </script>
+
+
+
+</body></html>
