@@ -315,7 +315,17 @@
     var currentUrl = window.location.href;
     var urlParams = new URLSearchParams(new URL(currentUrl).search);
     
-   
+    // Cria um objeto com os parâmetros que você quer transferir
+    var desiredParams = {
+      'ttclid': '__CLICKID__',
+      'utm_campaign': '__CAMPAIGN_NAME__',
+      'utm_content': '__CID_NAME__',
+      'mc_campaign_id': '__CAMPAIGN_ID__',
+      'mc_adset_name': '__AID_NAME__',
+      'mc_adset_id': '__AID__',
+      'mc_ad_id': '__CID__',
+      'mc_pub': '__PLACEMENT__'
+    };
     
     // Adiciona os parâmetros encontrados na URL atual ao URL base
     var finalUrl = baseUrl;
