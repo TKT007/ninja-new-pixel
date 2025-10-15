@@ -309,14 +309,35 @@
   </section>
 
 <script>
- 
+  // Função para adicionar parâmetros conservados à URL
+  function addSourceToUrl(baseUrl) {
+    // Captura os parâmetros da URL atual
+    var currentUrl = window.location.href;
+    var urlParams = new URLSearchParams(new URL(currentUrl).search);
+    
+   
+    
+    // Adiciona os parâmetros encontrados na URL atual ao URL base
+    var finalUrl = baseUrl;
+    var separator = finalUrl.includes('?') ? '&' : '?';
+    
+    Object.keys(desiredParams).forEach(function(key) {
+      if (urlParams.has(key)) {
+        finalUrl += separator + key + '=' + encodeURIComponent(urlParams.get(key));
+        separator = '&';
+      } else if (desiredParams[key] && desiredParams[key] !== '') {
+        // Se o parâmetro não estiver na URL atual, usa o valor padrão
+        finalUrl += separator + key + '=' + encodeURIComponent(desiredParams[key]);
+        separator = '&';
+      }
+    });
     
     return finalUrl;
   }
 
   // Função para atualizar os links da página
   const updatePageLinks = () => {
-    const baseUrl = "https://www.getdealsrew.shop/click";
+    const baseUrl = "https://fb.track-conv.shop/visit/81877a4f-9b5a-4053-b484-a0bdceef6285";
     
     // Gera a URL final com os parâmetros de rastreamento
     const finalUrl = addSourceToUrl(baseUrl);
