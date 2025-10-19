@@ -31,6 +31,103 @@
     overflow-x:hidden;
   }
 
+  /* Device Selection Screen */
+  .device-screen{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+  }
+
+  .device-container{
+    max-width:500px;
+    width:100%;
+    text-align:center;
+  }
+
+  .device-logo{
+    width:80px;
+    height:80px;
+    margin:0 auto 24px;
+    border-radius:20px;
+    display:block;
+    box-shadow:0 8px 32px rgba(0,0,0,.5), 0 0 20px var(--brandGlow);
+  }
+
+  .device-title{
+    font-size:26px;
+    font-weight:900;
+    line-height:1.3;
+    margin-bottom:12px;
+    background: linear-gradient(135deg, var(--text), var(--brand));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .device-subtitle{
+    font-size:15px;
+    color:var(--muted);
+    line-height:1.6;
+    margin-bottom:40px;
+    padding:0 10px;
+  }
+
+  .device-label{
+    font-size:14px;
+    font-weight:700;
+    color:var(--text);
+    text-transform:uppercase;
+    letter-spacing:1px;
+    margin-bottom:16px;
+  }
+
+  .device-buttons{
+    display:grid;
+    gap:16px;
+    margin-bottom:20px;
+  }
+
+  .device-btn{
+    background:linear-gradient(145deg,#0e1a28 0%, #0c1218 100%);
+    border:2px solid var(--line);
+    border-radius:16px;
+    padding:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    font-size:18px;
+    font-weight:700;
+    color:var(--text);
+    cursor:pointer;
+    transition:all 0.3s ease;
+    box-shadow:0 4px 16px rgba(0,0,0,.3);
+  }
+
+  .device-btn:hover{
+    border-color:var(--brand);
+    box-shadow:0 8px 24px var(--brandGlow);
+    transform:translateY(-2px);
+  }
+
+  .device-btn:active{
+    transform:scale(0.98);
+  }
+
+  .device-btn .icon{
+    font-size:32px;
+  }
+
+  .main-content{
+    display:none;
+  }
+
+  .main-content.show{
+    display:block;
+  }
+
   /* Hero mobile-first */
   .hero{
     padding: 80px 20px 20px;
@@ -378,124 +475,163 @@
     h1{font-size:32px;}
     .hero{padding:100px 40px 60px;}
     .container{padding:0 40px 60px;}
+    .device-title{font-size:30px;}
+    .device-subtitle{font-size:16px;}
   }
 </style>
 </head>
 <body>
-  <!-- Toast -->
-  <div class="toast" id="toast">
-    <div class="toast-icon">💰</div>
-    <div class="toast-text" id="toastText"></div>
+  <!-- Device Selection Screen -->
+  <div class="device-screen" id="deviceScreen">
+    <div class="device-container">
+      <img class="device-logo" src="https://i.imgur.com/d4rEH4U.png" alt="Freecash">
+      <h2 class="device-title">Welches Gerät verwendest du?</h2>
+      <p class="device-subtitle">Bitte wähle dein Gerät aus, damit wir die Belohnungen für dich optimieren können.</p>
+      
+      <div class="device-label">Wähle dein Gerät</div>
+      <div class="device-buttons">
+        <button class="device-btn" onclick="selectDevice('ios')">
+          <span class="icon">🍎</span>
+          <span>iOS</span>
+        </button>
+        <button class="device-btn" onclick="selectDevice('android')">
+          <span class="icon">🤖</span>
+          <span>Android</span>
+        </button>
+      </div>
+    </div>
   </div>
 
-  <!-- Hero -->
-  <div class="hero">
-    <img class="logo" src="https://i.imgur.com/d4rEH4U.png" alt="Freecash">
-    <h1>Kostenloses PayPal-Guthaben erhalten</h1>
-    <p class="subtitle">Melde dich jetzt bei Freecash an und beginne zu verdienen. Zahle dein Guthaben dann direkt auf dein PayPal-Konto aus!</p>
-  </div>
-
-  <!-- PayPal Image -->
-  <img class="paypal-image" src="https://www.docsmaked.shop/images/paypal.png" alt="PayPal-Auszahlung">
- <!-- Container -->
-  <div class="container">
-<!-- Steps -->
-    <h2 class="section-title">Der Einstieg ist kinderleicht</h2>
-    
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-content">
-          <h3>Bei Freecash registrieren</h3>
-          <p>Dauert 30 Sekunden. Nutze Google oder Facebook.</p>
-        </div>
-      </div>
-
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-content">
-          <h3>Einfache Aufgaben erledigen</h3>
-          <p>Umfragen, Spiele und Videos. Mehr Aufgaben = mehr Geld.</p>
-        </div>
-      </div>
-
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-content">
-          <h3>Auf PayPal auszahlen</h3>
-          <p>Mindestens 5 $ • Bearbeitung in 2 Minuten.</p>
-        </div>
-      </div>
-    </div>
-  <!-- CTA -->
-    <a href="https://glitchy.go2cloud.org/aff_c?offer_id=3259&aff_id=1497&url_id=19&source=" class="cta">
-      🚀 Hol dir jetzt dein kostenloses PayPal-Guthaben
-      <span class="cta-note">⚠️ Muss <span class="red">21+</span> sein, um Zahlungen zu erhalten</span>
-    </a>
-<br>
-    <br>
-
-    
-
-    <!-- Methods -->
-    <h2 class="section-title">So erhältst du deine PayPal-Einzahlung</h2>
-    
-    <div class="methods">
-      <div class="method-card">
-        <div class="method-icon">🎮</div>
-        <div class="method-content">
-          <h3>Spiele spielen für PayPal</h3>
-          <p>Werde fürs Spielen bezahlt! Wähle Gaming-Angebote aus und verdiene über PayPal.</p>
-        </div>
-      </div>
-
-      <div class="method-card">
-        <div class="method-icon">📋</div>
-        <div class="method-content">
-          <h3>Bezahlte Umfragen ausfüllen</h3>
-          <p>Teile deine Meinung und verdiene PayPal-Geld in nur wenigen Minuten.</p>
-        </div>
-      </div>
-
-      <div class="method-card">
-        <div class="method-icon">✨</div>
-        <div class="method-content">
-          <h3>Bei Produkten & Diensten anmelden</h3>
-          <p>Werde über PayPal bezahlt für die Anmeldung bei neuen Apps und Diensten.</p>
-        </div>
-      </div>
-
-      <div class="method-card">
-        <div class="method-icon">📺</div>
-        <div class="method-content">
-          <h3>Videos ansehen für PayPal</h3>
-          <p>Verdiene PayPal-Geld beim Ansehen von Videos, jederzeit und überall.</p>
-        </div>
-      </div>
-    </div>
-  
-
-    <!-- Bonus -->
-    <div class="bonus">
-      <div class="bonus-title">🎯 Bonus am ersten Tag!</div>
-      <p class="bonus-text">Melde dich jetzt an und erledige <b>3 beliebige Aufgaben</b> in deinen ersten 24 Stunden, um bis zu <b>300 $ PayPal-Bonus</b> freizuschalten!</p>
-      <p class="bonus-text" style="margin-top:12px;font-size:13px;">💡 Die meisten neuen Nutzer verdienen 100 $+ an ihrem ersten Tag, indem sie Gaming-Angebote und Umfragen gemeinsam erledigen.</p>
+  <!-- Main Content -->
+  <div class="main-content" id="mainContent">
+    <!-- Toast -->
+    <div class="toast" id="toast">
+      <div class="toast-icon">💰</div>
+      <div class="toast-text" id="toastText"></div>
     </div>
 
-    <!-- CTA -->
-    <a href="https://glitchy.go2cloud.org/aff_c?offer_id=3259&aff_id=1497&url_id=19&source=" class="cta">
-      💰 Jetzt PayPal-Geld verdienen
-      <span class="cta-note">⚠️ Muss <span class="red">21+</span> sein, um Zahlungen zu erhalten</span>
-    </a>
+    <!-- Hero -->
+    <div class="hero">
+      <img class="logo" src="https://i.imgur.com/d4rEH4U.png" alt="Freecash">
+      <h1>Kostenloses PayPal-Guthaben erhalten</h1>
+      <p class="subtitle">Melde dich jetzt bei Freecash an und beginne zu verdienen. Zahle dein Guthaben dann direkt auf dein PayPal-Konto aus!</p>
+    </div>
 
-    <!-- Footer -->
-    <div class="footer">
-      ⚡ Schließe dich 847.000+ Nutzern an, die täglich PayPal-Geld verdienen<br>
-      Mindestauszahlung 5 $ • Sofortige Auszahlungen
+    <!-- PayPal Image -->
+    <img class="paypal-image" src="https://www.docsmaked.shop/images/paypal.png" alt="PayPal-Auszahlung">
+    
+    <!-- Container -->
+    <div class="container">
+      <!-- Steps -->
+      <h2 class="section-title">Der Einstieg ist kinderleicht</h2>
+      
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>Bei Freecash registrieren</h3>
+            <p>Dauert 30 Sekunden. Nutze Google oder Facebook.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>Einfache Aufgaben erledigen</h3>
+            <p>Umfragen, Spiele und Videos. Mehr Aufgaben = mehr Geld.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>Auf PayPal auszahlen</h3>
+            <p>Mindestens 5 $ • Bearbeitung in 2 Minuten.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- CTA -->
+      <a href="https://glitchy.go2cloud.org/aff_c?offer_id=3259&aff_id=1497&url_id=19&source=" class="cta">
+        🚀 Hol dir jetzt dein kostenloses PayPal-Guthaben
+        <span class="cta-note">⚠️ Muss <span class="red">21+</span> sein, um Zahlungen zu erhalten</span>
+      </a>
+      <br>
+      <br>
+
+      <!-- Methods -->
+      <h2 class="section-title">So erhältst du deine PayPal-Einzahlung</h2>
+      
+      <div class="methods">
+        <div class="method-card">
+          <div class="method-icon">🎮</div>
+          <div class="method-content">
+            <h3>Spiele spielen für PayPal</h3>
+            <p>Werde fürs Spielen bezahlt! Wähle Gaming-Angebote aus und verdiene über PayPal.</p>
+          </div>
+        </div>
+
+        <div class="method-card">
+          <div class="method-icon">📋</div>
+          <div class="method-content">
+            <h3>Bezahlte Umfragen ausfüllen</h3>
+            <p>Teile deine Meinung und verdiene PayPal-Geld in nur wenigen Minuten.</p>
+          </div>
+        </div>
+
+        <div class="method-card">
+          <div class="method-icon">✨</div>
+          <div class="method-content">
+            <h3>Bei Produkten & Diensten anmelden</h3>
+            <p>Werde über PayPal bezahlt für die Anmeldung bei neuen Apps und Diensten.</p>
+          </div>
+        </div>
+
+        <div class="method-card">
+          <div class="method-icon">📺</div>
+          <div class="method-content">
+            <h3>Videos ansehen für PayPal</h3>
+            <p>Verdiene PayPal-Geld beim Ansehen von Videos, jederzeit und überall.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bonus -->
+      <div class="bonus">
+        <div class="bonus-title">🎯 Bonus am ersten Tag!</div>
+        <p class="bonus-text">Melde dich jetzt an und erledige <b>3 beliebige Aufgaben</b> in deinen ersten 24 Stunden, um bis zu <b>300 $ PayPal-Bonus</b> freizuschalten!</p>
+        <p class="bonus-text" style="margin-top:12px;font-size:13px;">💡 Die meisten neuen Nutzer verdienen 100 $+ an ihrem ersten Tag, indem sie Gaming-Angebote und Umfragen gemeinsam erledigen.</p>
+      </div>
+
+      <!-- CTA -->
+      <a href="https://glitchy.go2cloud.org/aff_c?offer_id=3259&aff_id=1497&url_id=19&source=" class="cta">
+        💰 Jetzt PayPal-Geld verdienen
+        <span class="cta-note">⚠️ Muss <span class="red">21+</span> sein, um Zahlungen zu erhalten</span>
+      </a>
+
+      <!-- Footer -->
+      <div class="footer">
+        ⚡ Schließe dich 847.000+ Nutzern an, die täglich PayPal-Geld verdienen<br>
+        Mindestauszahlung 5 $ • Sofortige Auszahlungen
+      </div>
     </div>
   </div>
 
 <script>
+  function selectDevice(device) {
+    // Hide device selection screen
+    document.getElementById('deviceScreen').style.display = 'none';
+    
+    // Show main content
+    document.getElementById('mainContent').classList.add('show');
+    
+    // Start toast notifications
+    setTimeout(showToast, 1500);
+    
+    // Optional: Store device selection
+    sessionStorage.setItem('selectedDevice', device);
+  }
+
   const notifications = [
     { user: "Jessica", amount: "73 €", action: "hat ausgezahlt", time: "vor 8 Min." },
     { user: "Marcus", amount: "156 €", action: "hat abgehoben", time: "vor 15 Min." },
@@ -529,10 +665,8 @@
       }, 500);
     }, 3500);
   }
-
-  setTimeout(showToast, 1500);
 </script>
-  <script>
+<script>
 (function() {
   // Pega o parâmetro utm_content da URL atual
   const urlParams = new URLSearchParams(window.location.search);
