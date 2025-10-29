@@ -1,284 +1,40 @@
-<html lang="SE" style="--vh: 625px;"><head><base href="/lander/sstv-es-rtznt-m1shp-sm-ffctvn-ne/index.html">
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
     <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <link href="css/css.css" rel="stylesheet">
-    <link href="css/comments.css" rel="stylesheet">
-    <link href="css/style_2.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" referrerpolicy="no-referrer">
-    </script>
-    <script src="js/scripts.js"></script>
-    <script src="js/video3.js"></script>
-    <title>ArtiZynt</title>
-    <link href="images/product.png" rel="shortcut icon" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtiZynt - Brasil</title>
     <style>
-        .formFb__img {
-            max-width: 350px !important;
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
         }
-
-        .tv_icons {
-            flex-wrap: wrap;
-        }
-
-        @media screen and (max-width: 360px) {
-            .main_header {
-                font-size: 30px;
-            }
-
-            .tv_icons>img {
-                scale: 0.7;
-            }
-
-        }
-
-        #video {
-            pointer-events: auto;
-        }
-
-
-        .iti {
-            width: 100%;
-        }
-
-        @media screen and (max-width: 500px) {
-            .main_header {
-                font-size: 25px;
-            }
-
-            .tv_icons {
-                gap: 10px;
-            }
-
-            .tv_icons img {
-                width: 85px;
-            }
-
-            .block_tv p {
-                font-size: 28px;
-            }
-
-            #open-video,
-            #popup,
-            #play {
-                font-size: 1rem;
-            }
-        }
-
-        @media screen and (max-width: 380px) {
-            .main_header {
-                font-size: 30px;
-            }
-
-            .block_tv p {
-                font-size: 24px;
-            }
-
-            .tv_icons img {
-                width: 70px;
-            }
-
-
-        }
-
-
-        .iti {
-            width: 100%;
-        }
-    </style>
-
-</head>
-
-<body style="position: fixed; top: 0px; left: 0px; right: 0px; width: 100%; overflow: hidden; touch-action: none;"><iframe id="iframe" src="https://life.nextgen-bio.com/zLf2b58B?dm=1&amp;fbpixel=26072619922338356&amp;xbaer=nekton&amp;xsource=783314780966939&amp;fbtoken=EABLi94p2gxEBP2KKlcEk5RuN5aOQQe3gsqPF8V3acq1olA0FDOxN9vvcf9iP02v2Gejo6hkCs1yJ89RS5tyYjgSTSBDmbOtaz2tgZCZCOZB90aJ8GbwYmljZByHfKoIHhuWfGjNCFGfyrsyHrZABMgkY23tj3K3JleKpeltdInmUaF3442ZAzLV3UmNFIjjZA1gIQZDZD&amp;fbclid=IwY2xjawNvT6pleHRuA2FlbQIxMABicmlkETF3VWxvTE1KTWJMemNCOFM0AR5pZJH4ZJZgIKd7pGP76aeVrl2hlfuXXpr2jkLho0Wrq_feNX-xDnMuT9Aa4A_aem_Bby2Q6Tcm2Txnocl4gpfpg&amp;xlang=es" frameborder="0" style="position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 100000000; display: none; background-color: white; overflow: auto;"></iframe>
-    <h1 class="main_header">LA RECETA CASERA MÁS EFICAZ <span class="green_bg">PARA ALIVIAR EL DOLOR DE ESPALDA Y</span>
-        RODILLAS EN SOLO 4 HORAS!
-    </h1>
-    <div class="video_wrapper">
-        <div id="container_video" class="fullscreen">
-            <div id="close" style="font-size: 1.5rem; font-weight: bold; color: rgb(255, 255, 255); display: block;">X</div>
-            <div id="open-video">
-                <div>
-                    <h4>Haga clic para permanecer en línea</h4>
-                </div>
-            </div>
-            <div id="popup">
-                <div>
-                    <button id="close-popup">×</button>
-                    <h2>Quedan 17 paquetes de ArtiZynt</h2>
-                    <h2>¡Realice su pedido ahora!</h2>
-                </div>
-            </div>
-            <div id="play" style="display: none;">
-                <div>
-                    <h4>El video ha comenzado</h4>
-                    <h4>¡Haga clic para escuchar!</h4>
-                </div>
-            </div>
-            <video autoplay="autoplay" class="productVideo" id="video" muted="" playsinline="" preload="metadata">
-                <source src="vid1.mp4" type="video/mp4">
-            </video>
-            <div class="preload_container Deactivate">
-                <div class="preload_box">
-                    <span class="preload_text">Su video se está cargando. Por favor, espere.</span>
-                    <span class="preload_timer">3</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <form action="api.php" class="order_form" id="order" method="POST"><input name="sub2" type="hidden" value="nekton"><input name="sub1" type="hidden" value="sm336kaukbb">
-        <div class="formFb" id="formFb">
-            <div class="formFb__container">
-                <h2>ArtiZynt</h2>
-                <p class="formFb__action formFb__text"><b>¡DATE PRISA!</b> Los paquetes promocionales se agotarán
-                    pronto.</p>
-                <p class="formFb__counter formFb__text"><b>Actualización:</b> solo quedan <span class="form-instock red">17</span> unidades al <span class="js-current-date"></span>.</p>
-                <div class="formFb__img"><img alt="" src="images/product.png" loading="lazy"></div>
-                <div class="formFb__price">
-                    <p class="formFb__price--txt formFb__text">-50% DESCUENTO</p>
-                    <span class="formFb__price--p">
-                        <span class="oldPriceAndLabelForLandingInfoApi formFb__price--old"><span class="price-old">78</span> <span>EUR</span></span>
-                        <span class="priceAndLabelForLandingInfoApi formFb__price--new"><span class="price-new">39</span> <span>EUR</span></span>
-                    </span>
-                </div>
-                <span style="font-family: 'Montserrat, sans-serif'; font-size: 25px; color: red; padding: 20px 0;">Quedan:
-                    17 paquetes</span>
-                <div class="formFb__inputs">
-                    <label>Su nombre:</label>
-                    <input autocomplete="name" minlength="3" name="name" placeholder="Su nombre" required="required" type="text">
-                </div>
-                <div class="formFb__inputs">
-                    <label>Su teléfono:</label>
-                    <input autocomplete="tel" class="phone" name="phone" placeholder="teléfono" required="required" type="tel" value="" maxlength="12">
-                </div>
-                <button class="formFb__btn" type="submit" disabled="true" style="opacity: 0.5;">ENVIAR PEDIDO</button>
-                <p class="formFb__counter formFb__text">*Este descuento es válido para un paquete al pedir el
-                    tratamiento completo</p>
-            </div>
-        </div>
-    </form>
-    <style>
-        select {
-            display: block;
-            border: 1px solid #3578e563;
-            padding-left: 10px;
-            padding: .5em .65em;
-            width: 100%;
+        .video-container {
+            max-width: 800px;
             margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        video {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
         }
     </style>
-    <style>
-        .fb-comments-wrapper {
-            display: none;
-            opacity: 0;
-        }
-    </style>
-    <script>
-        (function () {
-            var EVENT_NAME = 'VideoView25';
-            var THRESHOLD = 0.25; // 25%
-            var EPS_SECONDS = 1; // допуск к порогу
-            var MIN_DURATION = 0.5; // отсечь микровидео
-
-            var v = document.querySelector('.productVideo'); // одно HTML5-видео
-            if (!v) return;
-
-            var fired = false;
-
-            function getVideoId() {
-                return v.getAttribute('data-video-id') || v.id || v.currentSrc || v.src || 'video';
-            }
-
-            function send(payload) {
-                (function trySend(i) {
-                    if (typeof fbq === 'function') {
-                        fbq('trackCustom', EVENT_NAME, payload);
-                    } else if (i < 20) {
-                        setTimeout(function () {
-                            trySend(i + 1);
-                        }, 250);
-                    }
-                })(0);
-            }
-
-            function check() {
-                if (fired) return;
-                var dur = v.duration;
-                if (!isFinite(dur) || dur < MIN_DURATION) return;
-                var cur = v.currentTime || 0;
-                var thresholdSec = Math.max(dur * THRESHOLD - EPS_SECONDS, 0); // учли допуск
-                if (cur >= thresholdSec) {
-                    fired = true;
-                    v.removeEventListener('timeupdate', check);
-                    v.removeEventListener('play', check);
-                    v.removeEventListener('loadedmetadata', check);
-                    send({
-                        percent: 25,
-                        videoId: getVideoId(),
-                        duration: Math.round(dur),
-                        currentTime: Math.round(cur),
-                        source: 'html5'
-                    });
-                }
-            }
-
-            if (v.readyState >= 1) setTimeout(check, 0);
-            v.addEventListener('loadedmetadata', check);
-            v.addEventListener('play', check);
-            v.addEventListener('timeupdate', check);
-        })();
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var comments = document.querySelectorAll('.fb-comments-wrapper');
-
-            function fadeInElement(element, duration) {
-                var start = null;
-
-                function step(timestamp) {
-                    if (!start) start = timestamp;
-                    var progress = timestamp - start;
-                    element.style.opacity = progress / duration;
-                    if (progress < duration) {
-                        window.requestAnimationFrame(step);
-                    }
-                }
-
-                window.requestAnimationFrame(step);
-            }
-
-            function displayCommentsSequentially(index) {
-                if (index >= comments.length) {
-                    return;
-                }
-
-                var comment = comments[index];
-                comment.style.display = 'block';
-                fadeInElement(comment, 500); // 500 миллисекунд для анимации появления
-
-                if (index > 0) {
-                    comments[index - 1].parentNode.insertBefore(comment, comments[index - 1]);
-                }
-
-                setTimeout(function () {
-                    displayCommentsSequentially(index + 1);
-                }, 10000); // 10 секунд задержки
-            }
-
-            displayCommentsSequentially(0);
-        });
-    </script>
-
-    <script>
-        let x_country_code = '+346'
-        let x_minlength = 8;
-        let x_maxLength = 8;
-        let x_scrollItem = 'a';
-        let x_scrollblock = 'form';
-        let x_parametr = new URLSearchParams(
-            'dm=zLf2b58B%2C1&xvimeo=&ad_campaign_id=%7B%7Bcampaign.id%7D%7D&fbpixel=26072619922338356&xbaer=nekton&xsource=783314780966939&ad_id=%7B%7Bad.id%7D%7D&adset_id=%7B%7Badset.id%7D%7D&xcreo=%7B%7Bad.name%7D%7D&pp=&nocloackpls=&fbtoken=EABLi94p2gxEBP2KKlcEk5RuN5aOQQe3gsqPF8V3acq1olA0FDOxN9vvcf9iP02v2Gejo6hkCs1yJ89RS5tyYjgSTSBDmbOtaz2tgZCZCOZB90aJ8GbwYmljZByHfKoIHhuWfGjNCFGfyrsyHrZABMgkY23tj3K3JleKpeltdInmUaF3442ZAzLV3UmNFIjjZA1gIQZDZD&fbclid=IwY2xjawNvT6pleHRuA2FlbQIxMABicmlkETF3VWxvTE1KTWJMemNCOFM0AR5pZJH4ZJZgIKd7pGP76aeVrl2hlfuXXpr2jkLho0Wrq_feNX-xDnMuT9Aa4A_aem_Bby2Q6Tcm2Txnocl4gpfpg&xoffer=&xlang=es&xtoken=&place={place}&adset={adset}'
-        );
-    </script>
-    <script src="https://amalgama.me/lander/input/input.js?x_version=1"></script>
-
-
-
-
-</body></html>
+</head>
+<body>
+    <div class="video-container">
+        <h1>ArtiZynt - Alívio para Dores nas Costas e Joelhos</h1>
+        <video controls autoplay muted playsinline>
+            <!-- SUBSTITUA ESTA URL PELA URL REAL DO SEU VÍDEO -->
+            <source src="https://seudominio.com/videos/vid1.mp4" type="video/mp4">
+            <source src="https://seudominio.com/videos/vid1.webm" type="video/webm">
+            Seu navegador não suporta o elemento de vídeo.
+        </video>
+    </div>
+</body>
+</html>
