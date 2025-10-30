@@ -319,8 +319,8 @@ src="https://www.facebook.com/tr?id=2466641977039062&ev=PageView&noscript=1"
       </div>
     </div>
 
- <!-- CTA -->
-<a id="cta" class="cta" href="CTA_URL" onclick="ttq.track('AddToCart', {content_type: 'product', content_id: 'apple-pay-750', value: 0.50, currency: 'USD'}); ttq.track('Purchase', {content_type: 'product', content_id: 'apple-pay-750', value: 0.50, currency: 'USD'}); ttq.track('SubmitForm', {content_type: 'lead', content_id: 'apple-pay-lead', value: 0.50, currency: 'USD'});">
+<!-- CTA -->
+<a id="cta" class="cta" href="CTA_URL" onclick="if(typeof ttq !== 'undefined'){ttq.track('AddToCart', {content_id: 'apple-pay-750', content_type: 'product', value: 0.50, currency: 'USD'});}">
   → START EARNING NOW
 </a>
 
