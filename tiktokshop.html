@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>TikApply.com - Start Earning from TikTok Videos</title>
+<style>
+  :root{
+    --bg:#f8fafc;
+    --panel:#ffffff;
+    --card:#ffffff;
+    --line:#e2e8f0;
+    --text:#000000;
+    --muted:#64748b;
+    --brand:#000000;
+    --brand2:#fe2c55;
+    --brandGlow: rgba(254,44,85,.15);
+    --accent:#00f2ea;
+    --accentGlow: rgba(0,242,234,.2);
+    --tiktok-gradient: linear-gradient(135deg, #000000 0%, #1a1a1a 40%, #000000 100%);
+    --tiktok-text-gradient: linear-gradient(135deg, #000000 0%, #2a2a2a 50%, #000000 100%);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background: 
+      radial-gradient(circle at 20% 80%, rgba(254,44,85,.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(0,242,234,.04) 0%, transparent 50%),
+      linear-gradient(180deg, #f1f5f9 0%, #f8fafc 100%);
+    color:var(--text);
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    min-height:100vh;
+    overflow-x:hidden;
+  }
+
+  /* Hero mobile-first */
+  .hero{
+    padding: 80px 20px 20px;
+    text-align: center;
+  }
+  
+  .logo{
+    width:80px;
+    height:80px;
+    margin:0 auto 24px;
+    border-radius:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--tiktok-gradient);
+    font-size:40px;
+    box-shadow:0 8px 32px rgba(0,0,0,.15), 0 4px 16px rgba(0,0,0,.1);
+  }
+
+  .alert{
+    background:linear-gradient(135deg, #fff 0%, #fef2f2 100%);
+    border:1px solid #fecaca;
+    border-radius:12px;
+    padding:12px 16px;
+    margin:0 auto 24px;
+    max-width:400px;
+    font-size:14px;
+    color:#991b1b;
+    font-weight:600;
+    box-shadow:0 4px 12px rgba(220,38,38,.1);
+  }
+
+  h1{
+    font-size:28px;
+    font-weight:900;
+    line-height:1.2;
+    margin-bottom:12px;
+    background: var(--tiktok-text-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle{
+    font-size:16px;
+    color:var(--muted);
+    line-height:1.6;
+    margin-bottom:32px;
+    padding:0 10px;
+  }
+
+  /* Container */
+  .container{
+    max-width:540px;
+    margin:0 auto;
+    padding:0 20px 40px;
+  }
+
+  /* Input section */
+  .input-section{
+    background:var(--panel);
+    border:2px solid var(--line);
+    border-radius:20px;
+    padding:24px 20px;
+    margin-bottom:24px;
+    box-shadow:0 8px 24px rgba(0,0,0,.06);
+  }
+
+  .input-label{
+    font-size:14px;
+    font-weight:600;
+    color:var(--text);
+    margin-bottom:12px;
+    display:block;
+  }
+
+  .input-wrapper{
+    display:flex;
+    gap:8px;
+    margin-bottom:16px;
+  }
+
+  .input{
+    flex:1;
+    padding:14px 16px;
+    border:2px solid var(--line);
+    border-radius:12px;
+    font-size:16px;
+    font-family:inherit;
+    transition:all .3s ease;
+    background:var(--bg);
+    color:var(--text);
+  }
+
+  .input:focus{
+    outline:none;
+    border-color:#000000;
+    box-shadow:0 0 0 4px rgba(0,0,0,.1);
+  }
+
+  .btn{
+    padding:14px 24px;
+    background:var(--tiktok-gradient);
+    color:#fff;
+    border:none;
+    border-radius:12px;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+    transition:all .3s ease;
+    box-shadow:0 4px 12px rgba(0,0,0,.2);
+  }
+
+  .btn:active{
+    transform:scale(0.98);
+  }
+
+  .features{
+    display:flex;
+    gap:16px;
+    font-size:13px;
+    color:var(--muted);
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+
+  .feature-item{
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+
+  /* Section titles */
+  .section-title{
+    font-size:22px;
+    font-weight:800;
+    text-align:center;
+    margin-bottom:24px;
+    color:var(--text);
+  }
+
+  /* Steps */
+  .steps{
+    margin-bottom:48px;
+  }
+
+  .step{
+    display:flex;
+    gap:16px;
+    margin-bottom:24px;
+    align-items:flex-start;
+  }
+
+  .step-num{
+    width:48px;
+    height:48px;
+    background:var(--tiktok-gradient);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
+    font-weight:900;
+    color:#fff;
+    flex-shrink:0;
+    box-shadow:0 4px 16px rgba(0,0,0,.2);
+  }
+
+  .step-content h3{
+    font-size:16px;
+    font-weight:700;
+    color:var(--text);
+    margin-bottom:4px;
+  }
+
+  .step-content p{
+    font-size:14px;
+    color:var(--muted);
+    line-height:1.5;
+  }
+
+  /* Testimonials */
+  .testimonials{
+    display:grid;
+    gap:16px;
+    margin-bottom:48px;
+  }
+
+  .testimonial{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:20px;
+    box-shadow:0 4px 16px rgba(0,0,0,.04);
+  }
+
+  .testimonial-header{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:12px;
+  }
+
+  .testimonial-avatar{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:var(--tiktok-gradient);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-weight:700;
+    font-size:14px;
+    flex-shrink:0;
+  }
+
+  .testimonial-name{
+    font-size:15px;
+    font-weight:700;
+    color:var(--text);
+  }
+
+  .testimonial-text{
+    font-size:14px;
+    color:var(--muted);
+    line-height:1.6;
+  }
+
+  /* Earnings box */
+  .earnings{
+    background:linear-gradient(135deg, #fff 0%, #fef2f2 100%);
+    border:2px solid #fecaca;
+    border-radius:20px;
+    padding:24px 20px;
+    margin-bottom:48px;
+    box-shadow:0 8px 24px rgba(220,38,38,.08);
+  }
+
+  .earnings-title{
+    font-size:18px;
+    font-weight:700;
+    text-align:center;
+    margin-bottom:20px;
+    color:var(--text);
+  }
+
+  .earnings-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:14px 0;
+    border-bottom:1px dashed var(--line);
+  }
+  .earnings-row:last-child{
+    border-bottom:none;
+  }
+
+  .earnings-label{
+    font-size:15px;
+    color:var(--muted);
+  }
+
+  .earnings-value{
+    font-size:20px;
+    font-weight:800;
+    color:#000000;
+    text-shadow:0 0 12px rgba(0,0,0,.1);
+  }
+
+  /* Bonus offer */
+  .bonus{
+    background:linear-gradient(135deg, #ecfeff 0%, #cffafe 100%);
+    border:2px solid #67e8f9;
+    border-radius:20px;
+    padding:24px 20px;
+    margin-bottom:32px;
+    position:relative;
+    box-shadow: 0 0 30px var(--accentGlow);
+  }
+
+  .bonus::before{
+    content:'⚡ EARLY ACCESS';
+    position:absolute;
+    top:-1px;
+    right:20px;
+    background:var(--accent);
+    color:#000000;
+    font-size:10px;
+    font-weight:800;
+    padding:4px 12px;
+    border-radius:0 0 8px 8px;
+    letter-spacing:.5px;
+  }
+
+  .bonus-title{
+    font-size:18px;
+    font-weight:800;
+    color:var(--text);
+    margin-bottom:12px;
+  }
+
+  .bonus-text{
+    font-size:15px;
+    color:#0f172a;
+    line-height:1.6;
+  }
+
+  /* CTA Button */
+  .cta{
+    display:block;
+    background:var(--tiktok-gradient);
+    color:#fff;
+    font-weight:900;
+    font-size:18px;
+    text-align:center;
+    padding:20px;
+    border-radius:16px;
+    text-decoration:none;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+    box-shadow:0 12px 32px rgba(0,0,0,.25), 0 4px 12px rgba(0,0,0,.15);
+    position:relative;
+    overflow:hidden;
+    margin-bottom:16px;
+  }
+
+  .cta::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background:linear-gradient(90deg, transparent, rgba(255,255,255,.3), transparent);
+    transition:left 0.6s ease;
+  }
+
+  .cta:active{
+    transform: scale(0.98);
+  }
+
+  .cta:active::before{
+    left:100%;
+  }
+
+  /* Footer */
+  .footer{
+    text-align:center;
+    padding:20px;
+    font-size:12px;
+    color:var(--muted);
+    line-height:1.6;
+  }
+
+  .footer a{
+    color:var(--muted);
+    text-decoration:none;
+    border-bottom:1px solid var(--line);
+  }
+
+  /* Toast notifications */
+  .toast{
+    position:fixed;
+    top:20px;
+    left:50%;
+    transform:translateX(-50%) translateY(-60px);
+    width:calc(100% - 32px);
+    max-width:400px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 16px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    box-shadow:0 8px 24px rgba(0,0,0,.15);
+    opacity:0;
+    transition:all .5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index:1000;
+  }
+
+  .toast.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+  }
+
+  .toast-icon{
+    font-size:24px;
+    flex-shrink:0;
+  }
+
+  .toast-text{
+    flex:1;
+    font-size:13px;
+    line-height:1.4;
+    color:var(--text);
+  }
+
+  .toast-amount{
+    color:#000000;
+    font-weight:800;
+  }
+
+  .toast-time{
+    font-size:11px;
+    color:var(--muted);
+    display:block;
+    margin-top:2px;
+  }
+
+  /* Pulse animation */
+  @keyframes pulse {
+    0%, 100% { box-shadow:0 12px 32px rgba(0,0,0,.25), 0 4px 12px rgba(0,0,0,.15); }
+    50% { box-shadow:0 16px 40px rgba(0,0,0,.3), 0 6px 16px rgba(0,0,0,.2); }
+  }
+  .cta{
+    animation: pulse 3s ease-in-out infinite;
+  }
+
+  /* Tablet adjustments */
+  @media (min-width: 600px){
+    h1{font-size:32px;}
+    .hero{padding:100px 40px 40px;}
+    .container{padding:0 40px 60px;}
+  }
+</style>
+</head>
+<body>
+  <!-- Toast -->
+  <div class="toast" id="toast">
+    <div class="toast-icon">💸</div>
+    <div class="toast-text" id="toastText"></div>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="logo">🎵</div>
+    <div class="alert">Alex P. received instant payout of $756 to PayPal 💸</div>
+    <h1>Start Earning from TikTok Videos</h1>
+    <p class="subtitle">Join the TikTok Earning Beta and get paid for every short video you watch.</p>
+  </div>
+
+  <!-- Container -->
+  <div class="container">
+    <!-- Input Section -->
+    <div class="input-section">
+      <label class="input-label">Enter your TikTok @username</label>
+      <div class="input-wrapper">
+        <input type="text" class="input" placeholder="@yourusername">
+        <button class="btn">Check Earnings</button>
+      </div>
+      <div class="features">
+        <div class="feature-item">✓ No downloads required</div>
+        <div class="feature-item">✓ Secure & verified program</div>
+        <div class="feature-item">✓ Over 15,000 active earners</div>
+      </div>
+    </div>
+
+    <!-- Steps -->
+    <h2 class="section-title">Quick Start Guide →</h2>
+    
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3>Create Your Account</h3>
+          <p>Enter your email to join the TikTok Earning Beta.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3>Watch & Earn</h3>
+          <p>Watch short TikTok clips daily — each completed view adds to your balance.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h3>Withdraw Earnings</h3>
+          <p>Get instant payouts via PayPal, CashApp, or direct deposit.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonials -->
+    <h2 class="section-title">What Our Users Say</h2>
+    
+    <div class="testimonials">
+      <div class="testimonial">
+        <div class="testimonial-header">
+          <div class="testimonial-avatar">JP</div>
+          <div class="testimonial-name">Jordan P.</div>
+        </div>
+        <p class="testimonial-text">At first I didn't believe it, but I've already made $312 in my first week just watching videos. Super easy to use!</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-header">
+          <div class="testimonial-avatar">ML</div>
+          <div class="testimonial-name">Mia L.</div>
+        </div>
+        <p class="testimonial-text">Legit platform. The cash-out to PayPal was instant after I reached $50.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-header">
+          <div class="testimonial-avatar">CD</div>
+          <div class="testimonial-name">Chris D.</div>
+        </div>
+        <p class="testimonial-text">I'm literally earning money while scrolling TikTok. Couldn't ask for better!</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-header">
+          <div class="testimonial-avatar">ER</div>
+          <div class="testimonial-name">Emma R.</div>
+        </div>
+        <p class="testimonial-text">Love the design and simplicity. The daily rewards keep me motivated.</p>
+      </div>
+    </div>
+
+    <!-- Earnings box -->
+    <div class="earnings">
+      <div class="earnings-title">Your Estimated Weekly Earnings</div>
+      <div class="earnings-row">
+        <div class="earnings-label">Based on average viewing activity</div>
+        <div class="earnings-value">$1000</div>
+      </div>
+      <div class="earnings-row">
+        <div class="earnings-label">Videos/Day</div>
+        <div class="earnings-value">50+</div>
+      </div>
+      <div class="earnings-row">
+        <div class="earnings-label">Per Video</div>
+        <div class="earnings-value">$0.50</div>
+      </div>
+      <div class="earnings-row">
+        <div class="earnings-label">Payout Time</div>
+        <div class="earnings-value">24hrs</div>
+      </div>
+    </div>
+
+    <!-- Bonus -->
+    <div class="bonus">
+      <div class="bonus-title">TikApply.com is currently in early access.</div>
+      <p class="bonus-text">Limited spots available for new users.</p>
+    </div>
+
+    <!-- CTA -->
+    <a href="#" class="cta">
+      🚀 Start Earning Now
+    </a>
+
+    <!-- Footer -->
+    <div class="footer">
+      <a href="#">Privacy Policy</a> · <a href="#">Terms</a> · <a href="#">Support</a>
+    </div>
+  </div>
+
+<script>
+  const notifications = [
+    { user: "Sarah M.", amount: "$523", action: "received payout", time: "5 min ago" },
+    { user: "Jake R.", amount: "$892", action: "cashed out", time: "12 min ago" },
+    { user: "Emma K.", amount: "$645", action: "withdrew", time: "8 min ago" },
+    { user: "Mike T.", amount: "$734", action: "received", time: "18 min ago" },
+    { user: "Lisa W.", amount: "$956", action: "cashed out", time: "3 min ago" },
+    { user: "Ryan B.", amount: "$678", action: "withdrew", time: "25 min ago" }
+  ];
+
+  let index = 0;
+  let showing = false;
+
+  function showToast(){
+    if(showing) return;
+    showing = true;
+
+    const toast = document.getElementById('toast');
+    const textEl = document.getElementById('toastText');
+    const n = notifications[index];
+
+    textEl.innerHTML = `<strong>${n.user}</strong> ${n.action} of <span class="toast-amount">${n.amount}</span> to PayPal<span class="toast-time">${n.time}</span>`;
+
+    toast.classList.add('show');
+
+    setTimeout(() => {
+      toast.classList.remove('show');
+      setTimeout(() => {
+        showing = false;
+        index = (index + 1) % notifications.length;
+        setTimeout(showToast, 2000 + Math.random() * 2000);
+      }, 500);
+    }, 3500);
+  }
+
+  setTimeout(showToast, 1500);
+</script>
+</body>
+</html>
