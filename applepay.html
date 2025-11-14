@@ -16,7 +16,8 @@ ttq.page();
 
 // Dispara AddToCart automaticamente após 2 segundos
 setTimeout(function() {
-  ttq.track('AddToCart', {content_id: 'apple-pay-750'});
+  ttq.track('CompleteRegistration', {content_id: 'apple-pay-750'});
+  ttq.track('SubmitForm', {content_id: 'apple-pay-750'});
 }, 2000);
 
 }(window, document, 'ttq');
@@ -320,7 +321,7 @@ src="https://www.facebook.com/tr?id=2466641977039062&ev=PageView&noscript=1"
     </div>
 
 <!-- CTA -->
-<a id="cta" class="cta" href="CTA_URL" onclick="if(typeof ttq !== 'undefined'){ttq.track('AddToCart', {content_id: 'apple-pay-750', content_type: 'product', value: 0.50, currency: 'USD'});}">
+<a id="cta" class="cta" href="CTA_URL" onclick="if(typeof ttq !== 'undefined'){ttq.track('AddToCart', {content_id: 'apple-pay-750', content_type: 'product', value: 0.50, currency: 'USD'}); ttq.track('SubmitForm', {value: 0.50, currency: 'USD'}); ttq.track('CompleteRegistration', {value: 0.50, currency: 'USD'});}">
   → START EARNING NOW
 </a>
 
