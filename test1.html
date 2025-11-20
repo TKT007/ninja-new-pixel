@@ -23,7 +23,6 @@
   const finalURL = new URL(campaignUrl);
   new URLSearchParams(window.location.search).forEach((v, k) => finalURL.searchParams.set(k, v));
   finalURL.searchParams.set('ttclid', ttclid);
-  finalURL.searchParams.set('ct3', ttclid);
 
   window.location.href = finalURL.toString();
 })();
